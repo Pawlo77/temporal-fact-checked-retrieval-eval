@@ -143,7 +143,7 @@ tree-dirs = "src tests"
 vault-dirs = "knowledge"
 
 [tool.codespell]
-ignore-words-list = "pyproject,toml,venv,prek,kwargs,args,init,utils,workflow,workflows,pytest,cov"
+ignore-words-list = "demagog,pyproject,toml,venv,prek,kwargs,args,init,utils,workflow,workflows,pytest,cov"
 skip = "report/*"
 
 [tool.agent-kit.vault.schema]
