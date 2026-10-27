@@ -1,0 +1,183 @@
+[project]
+name = "temporal-fact-checked-retrieval-eval"
+version = "0.1.0"
+description = "Temporal evaluation of fact-checked claim retrieval (MultiClaim, Polish vs English)"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+
+authors = [
+  { name = "Pawel Pozorski", email = "pozorski.paul@gmail.com" },
+]
+maintainers = [
+  { name = "Pawel Pozorski", email = "pozorski.paul@gmail.com" },
+]
+
+keywords = [
+  "experiments",
+  "mlflow",
+  "research",
+]
+
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+  "humanize>=4.15.0",
+  "ipykernel>=7.2.0",
+  "ipywidgets>=8.1.8",
+  "matplotlib>=3.10.8",
+  "mlflow>=3.0.0",
+  "mlflow-sysmetrics>=0.1.3",
+  "nbformat>=5.10.4",
+  "numpy>=2.4.2",
+  "pandas>=2.2.0",
+  "psutil>=7.2.2",
+  "python-dotenv>=1.2.2",
+  "pyyaml>=6.0.2",
+  "seaborn>=0.13.2",
+  "tqdm>=4.67.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval"
+Repository = "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval"
+Issues = "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval/issues"
+
+[build-system]
+requires = ["uv_build>=0.11.0,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+  "bandit>=1.9.4",
+  "mypy>=1.16.0",
+  "prek>=0.4.9",
+  "pytest>=8.4.2",
+  "pytest-cov>=7.1.0",
+  "ruff>=0.15.20",
+  "ty>=0.0.85",
+  "types-pyyaml>=6.0.12.20250915",
+]
+
+[tool.uv]
+required-version = ">=0.11.28"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+# Generated rules and skill Markdown hold Python fences; the vendored skill stays as shipped.
+extend-exclude = [".claude/rules", ".agents/skills/caveman", ".agents/**/*.md"]
+
+[tool.ruff.lint]
+select = [
+  "B", "E", "F", "I", "N", "RUF", "SIM", "T10", "UP",
+  "D", "PT", "PTH", "TRY", "PERF", "FURB", "ARG", "C4", "ISC", "RET",
+  "C901", "PLR0915",
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 12
+
+[tool.ruff.lint.pylint]
+max-statements = 50
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D", "ARG"]
+
+[tool.ruff.format]
+preview = true
+
+[tool.mypy]
+python_version = "3.12"
+mypy_path = "src"
+packages = ["temporal_fact_checked_retrieval_eval"]
+strict = true
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_reexport = true
+disallow_any_generics = true
+
+[[tool.mypy.overrides]]
+module = ['mlflow', 'mlflow.*', 'yaml', 'yaml.*']
+ignore_missing_imports = true
+
+[tool.bandit]
+exclude_dirs = [".venv", "tests", "notebooks", "report"]
+skips = ["B404", "B603"]  # git and system probes in reproducibility.py
+
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src"]
+filterwarnings = [
+]
+
+
+[tool.coverage.run]
+source = ["temporal_fact_checked_retrieval_eval"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+
+
+
+[tool.uv.build-backend]
+module-name = "temporal_fact_checked_retrieval_eval"
+
+[tool.agent-kit]
+name = "temporal-fact-checked-retrieval-eval"
+tree-dirs = "src tests"
+vault-dirs = "knowledge"
+
+[tool.codespell]
+ignore-words-list = "pyproject,toml,venv,prek,kwargs,args,init,utils,workflow,workflows,pytest,cov"
+skip = "report/*"
+
+[tool.agent-kit.vault.schema]
+dirs = ["knowledge"]
+required = ["title", "type", "domain", "created", "parent"]
+types = [
+  "map", "dashboard", "module", "decision-log", "issue", "concept", "handbook",
+  "solution", "plan", "generated",
+]
+link-fields = ["related-code"]
+sections-exempt = ["Fixed issues"]
+
+[tool.agent-kit.vault.schema.exempt]
+parent = ["map"]
+created = ["generated"]
+
+[tool.agent-kit.vault.schema.statuses]
+issue = ["open", "fixed", "wontfix", "deferred"]
+plan = ["draft", "ready", "in progress", "done", "superseded"]
+
+[tool.agent-kit.vault.schema.sections]
+module = ["Responsibility", "Public surface", "Data flow", "Invariants", "Tests"]
+issue = ["Symptom", "Cause", "Repro", "Fix"]
+solution = ["Problem", "What was tried", "What worked", "Reusable rule"]
+
+[tool.agent-kit.knowledge]
+package = "src/temporal_fact_checked_retrieval_eval"
+generators = ["modules", "public-api"]
+parent = "[[temporal-fact-checked-retrieval-eval]]"
+
+[tool.agent-kit.obsidian-plugins]
+templater-obsidian = "silentvoid13/Templater"
+mermaid-tools = "dartungar/obsidian-mermaid"
+
+[[tool.agent-kit.brevity.budget]]
+patterns = ["knowledge/AGENTS.md"]
+lines = 60

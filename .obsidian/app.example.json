@@ -1,0 +1,15 @@
+{
+  "alwaysUpdateLinks": true,
+  "userIgnoreFilters": [
+    ".venv/",
+    "dist/",
+    ".pytest_cache/",
+    ".ruff_cache/",
+    ".mypy_cache/",
+    ".remember/logs/",
+    ".remember/tmp/",
+    "knowledge/_templates/",
+    "/^(README|CONTRIBUTING|AGENTS|CLAUDE)\\.md$/",
+    "/(^|\\/)(AGENTS|CLAUDE)\\.md$/"
+  ]
+}

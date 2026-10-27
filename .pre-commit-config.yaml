@@ -1,0 +1,209 @@
+default_language_version:
+  python: python3.12
+
+default_install_hook_types:
+  - pre-commit
+  - commit-msg
+  - pre-push
+
+exclude: |
+  (?x)^(
+    docs/_build/|
+    \.venv/|
+    dist/|
+    \.pytest_cache/|
+    \.ruff_cache/|
+    \.pytest_benchmark/|
+    \.obsidian/plugins/[^/]+/(manifest\.json|main\.js|styles\.css)
+  )
+
+minimum_prek_version: "0.5.0"
+
+ci:
+  autofix_commit_msg: |
+    chore: apply prek autofixes
+  autoupdate_commit_msg: |
+    chore: prek autoupdate
+
+repos:
+  - repo: builtin
+    hooks:
+      - id: trailing-whitespace
+        # Generated jit-context indexes end in empty TSV columns.
+        exclude: \.tsv$
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+        # Obsidian rewrites its own settings without a final newline on every open.
+        exclude: ^\.obsidian/[^/]+(/[^/]+/data)?\.json$
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+        exclude: ^papers/
+      - id: detect-private-key
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: forbid-new-submodules
+
+  - repo: local
+    hooks:
+      - id: name-tests-test
+        name: python tests naming
+        entry: >-
+          bash -c 'status=0; for f in "$@"; do base=$(basename "$f");
+          case "$base" in conftest.py|__init__.py|_*) continue ;; test_*.py) ;; *)
+          echo "Test files must be named test_*.py -> $f"; status=1;; esac; done;
+          exit $status'
+        language: system
+        files: ^tests/.*\.py$
+        pass_filenames: true
+
+      - id: uv-lock
+        name: uv lock check
+        entry: uv lock --check
+        language: system
+        files: ^(pyproject\.toml|uv\.lock)$
+        pass_filenames: false
+        always_run: false
+
+      - id: strip-watermarks
+        name: strip AI attribution watermarks
+        entry: uv run python scripts/strip_watermarks.py
+        language: system
+        types: [text]
+        exclude: ^scripts/strip_watermarks\.py$
+
+      - id: memory-content-guard
+        name: memory files contain no secrets or personal data
+        entry: uv run python scripts/hooks/check_memory_files.py
+        language: system
+        files: \.md$  # the script keeps to .remember/ and the vault-dirs of pyproject.toml
+
+      - id: knowledge-build
+        name: rebuild generated knowledge notes
+        entry: make knowledge
+        language: system
+        files: ^(src/|experiments/|pyproject\.toml|tests/benchmarks/(baselines?|mutation-results)\.json|docs/release_notes\.rst|knowledge/(issues|decisions|architecture|concepts)/|\.claude/jit-context/)
+        pass_filenames: false
+
+      - id: vault-check
+        name: vault consistency (notes, links, generated notes)
+        entry: make vault-check
+        language: system
+        always_run: true
+        pass_filenames: false
+
+      - id: brevity
+        name: brevity budgets (rule brevity)
+        entry: uv run python scripts/check_brevity.py
+        language: system
+        files: \.(md|mdc|rst|py|ipynb)$
+        pass_filenames: false
+
+      - id: rules-sync
+        name: Claude Code rules match Cursor rules
+        entry: uv run python scripts/sync_rules.py --check
+        language: system
+        files: ^(\.cursor/rules/.*\.mdc|\.claude/rules/.*\.md|scripts/sync_rules\.py)$
+        pass_filenames: false
+
+      - id: agents-sync
+        name: Codex agents match Claude Code agents
+        entry: uv run python scripts/sync_agents.py --check
+        language: system
+        files: ^(\.claude/agents/.*\.md|\.codex/agents/.*\.toml|scripts/sync_agents\.py)$
+        pass_filenames: false
+
+      - id: configs-sync
+        name: agent tool configs match scripts/sync_configs.py
+        entry: uv run python scripts/sync_configs.py --check
+        language: system
+        files: ^(\.claude/settings\.json|\.codex/(hooks\.json|config\.toml)|\.cursor/hooks\.json|scripts/sync_configs\.py|pyproject\.toml)$
+        pass_filenames: false
+
+      - id: skills-ref
+        name: skills follow the Agent Skills spec
+        entry: make skills-check
+        language: system
+        files: ^(\.agents/skills/|\.claude/agents/|tests/hooks/test_(skill_frontmatter|agents)\.py)
+        pass_filenames: false
+
+      - id: mypy
+        name: mypy
+        entry: uv run mypy --config-file=pyproject.toml
+        language: system
+        files: ^src/
+        pass_filenames: false
+
+      - id: ty
+        name: ty (advisory)
+        entry: bash -c 'uv run ty check src || true'
+        language: system
+        pass_filenames: false
+        always_run: true
+        verbose: true
+
+      - id: agent-check
+        name: make agent-check (mirrors CI)
+        entry: make agent-check
+        language: system
+        stages: [pre-push]
+        pass_filenames: false
+        always_run: true
+
+      - id: strip-watermarks-msg
+        name: strip AI attribution from the commit message
+        entry: uv run python scripts/strip_watermarks.py
+        language: system
+        stages: [commit-msg]
+        always_run: true
+
+      - id: conventional-commit-msg
+        name: conventional commit message
+        entry: python scripts/hooks/commit_msg.py
+        language: system
+        stages: [commit-msg]
+        always_run: true
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.2
+    hooks:
+      - id: ruff-check
+        types_or: [python, pyi]
+        args: [--fix]
+      - id: ruff-format
+        types_or: [python, pyi]
+
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.31.1
+    hooks:
+      - id: zizmor
+        args: [-q, --min-severity=medium, --config, .github/zizmor.yml]
+        files: ^\.github/workflows/[^/]+\.ya?ml$
+
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.9.4
+    hooks:
+      - id: bandit
+        args: [-c, pyproject.toml]
+        exclude: ^tests/
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.3
+    hooks:
+      - id: codespell
+        # The words codespell accepts: [tool.codespell] in pyproject.toml.
+        args: [--toml, pyproject.toml]
+        exclude: |
+          (?x)^(
+            uv\.lock|
+            LICENSE|
+            \.remember/|
+            \.claude/jit-context/|
+            docs/_build/|
+            examples/.*\.ipynb
+          )

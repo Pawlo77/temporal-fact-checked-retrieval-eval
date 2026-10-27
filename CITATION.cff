@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this work in research, please cite it."
+title: "temporal-fact-checked-retrieval-eval: Temporal evaluation of fact-checked claim retrieval (MultiClaim, Polish vs English)"
+type: software
+authors:
+  - family-names: "Pozorski"
+    given-names: "Pawel"
+    email: "pozorski.paul@gmail.com"
+license: Apache-2.0
+repository-code: "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval"

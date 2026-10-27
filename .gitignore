@@ -1,0 +1,123 @@
+# macOS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+.pytest_benchmark/
+
+# Translations
+*.mo
+*.pot
+
+# Logs
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Environments and secrets
+.env
+.env.*
+!.env.example
+.envrc
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Type checkers
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# UV / package managers
+.pdm-python
+.pdm-build/
+.pixi
+
+# Ruff
+.ruff_cache/
+
+# PyPI configuration
+.pypirc
+
+# Obsidian: per-machine UI state and plugin caches. Plugin settings and manifests are
+# committed; `make obsidian-plugins` downloads the pinned releases (main.js, styles.css).
+.obsidian/workspace*.json
+.obsidian/graph.json
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/styles.css
+.obsidian/plugins/*/wasm/
+.smart-env/
+
+# Agent tooling: user-local Claude Code settings
+.claude/settings.local.json
+
+# Obsidian: per-machine settings (Obsidian rewrites them); copy the committed *.example.json (CONTRIBUTING.md)
+.obsidian/app.json
+.obsidian/appearance.json
+.obsidian/community-plugins.json
+.obsidian/core-plugins.json
+.obsidian/templates.json
+.obsidian/plugins/*/data.json
+
+
+# Experiment outputs and tracking: never commit
+mlflow.db
+mlflow.db-*
+mlruns/
+runs/
+outputs/
+logs/
+data/
+
+# Project-specific entries below

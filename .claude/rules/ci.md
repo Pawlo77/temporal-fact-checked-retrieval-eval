@@ -1,0 +1,21 @@
+---
+paths:
+  - ".github/**"
+---
+
+<!-- Generated from .cursor/rules/ci.mdc by scripts/sync_rules.py; do not edit. -->
+
+# CI
+
+The workflows of this repository, their triggers and the required checks:
+`ci-workflows.mdc`. Settings and branch protection: `.agents/skills/ci/reference.md`.
+
+## Conventions
+
+- Top-level `permissions: contents: read`; a job widens only what it needs.
+- Every `actions/checkout` sets `persist-credentials: false`.
+- Pin actions by exact version tag; the `zizmor` prek hook (`.github/zizmor.yml`) reports zero findings.
+- uv `version: "0.12.23"` in every workflow, equal to `required-version` in `pyproject.toml`.
+- Pass `${{ ... }}` into `run:` through `env:`, never inline.
+- No `paths:` filter on a workflow with a required check: a skipped workflow never reports.
+- Keep job names stable: branch protection requires them by name.

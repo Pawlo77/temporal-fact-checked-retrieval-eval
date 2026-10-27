@@ -1,0 +1,15 @@
+{
+  // Workspace of the repository; add sibling repositories as extra folders.
+  "folders": [
+    {
+      "name": "temporal-fact-checked-retrieval-eval",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "${workspaceFolder:temporal-fact-checked-retrieval-eval}/.venv/bin/python",
+    "files.exclude": {
+      "**/__pycache__": true
+    }
+  }
+}

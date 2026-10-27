@@ -1,0 +1,13 @@
+# Minimal experiment config — extend with dataset, model, and training sections.
+experiment:
+  name: default-experiment
+
+mlflow:
+  enabled: true
+  tracking_uri: sqlite:///mlruns.db
+  experiment_name: default-experiment
+  run_name: null
+  log_params: true
+  log_metrics: true
+  log_artifacts: true
+  retain_local_checkpoints: false

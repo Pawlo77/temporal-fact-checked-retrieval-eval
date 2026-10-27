@@ -1,0 +1,14 @@
+# Index skip only: files stay @-readable.
+uv.lock
+docs/_build/
+htmlcov/
+dist/
+build/
+*.egg-info/
+.obsidian/
+.remember/logs/
+.remember/tmp/
+# Generated copies; their sources are indexed
+knowledge/generated/
+.claude/rules/
+.codex/agents/

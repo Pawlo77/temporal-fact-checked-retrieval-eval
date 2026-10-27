@@ -1,0 +1,16 @@
+---
+description: Granular commits and PRs; always ask permission first
+alwaysApply: true
+---
+
+# Git commits and pull requests
+
+- Commits, pushes and PRs happen inside skill `ship` (it classifies the branch and merges routine changes itself); outside it, never without the user's explicit permission.
+- One logical change per commit; when a change spans unrelated concerns, propose a numbered commit plan.
+- Message: `type: summary` (`feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `ci`, `build`, `perf`), imperative, no period, ≤ 72 characters; an optional body says what changed and why.
+- Before committing: the exit criteria in `AGENTS.md`, then `git status`, `git diff` and `git log -5`; stage only that commit's files.
+- No AI attribution (`Co-Authored-By: Claude`, `Generated with …`) anywhere; `scripts/strip_watermarks.py` and `pr-title.yaml` enforce it.
+- Never `--no-verify`, amend or force-push; push a feature branch, never `main`; never draft or WIP PRs (the shell guard denies them).
+- After pushing, run `uv run python scripts/pr_follow.py` until it exits 0 (desktop app: `ccd_pr` `get_status` while checks run). It lists red checks, a stale branch, open threads and every comment (Codecov, Copilot): fix red checks in new commits, merge `origin/main` when behind, fix or answer each comment; never hand off on red.
+- PRs open ready for review, titled in commit style, with the body of `.github/pull_request_template.md`.
+- After `gh pr create`: `gh pr edit <n> --add-assignee Pawlo77 --add-label <label>`, with `bug` for `fix`, `documentation` for `docs` and `enhancement` otherwise.

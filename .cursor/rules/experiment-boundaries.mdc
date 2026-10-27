@@ -1,0 +1,12 @@
+---
+description: Experiment repo scope; code vs notebooks vs paper
+alwaysApply: true
+---
+
+# Experiment boundaries
+
+- Runnable code in `src/temporal_fact_checked_retrieval_eval/` — notebooks in `notebooks/`, paper in `report/`, configs in `configs/`
+- YAML experiment configs in `configs/`; load via `load_experiment_config` in `config.py`
+- Add modules only with real implementation, never empty package trees
+- Heavy optional dependencies → `[project.optional-dependencies]` extras when introduced
+- MLflow artifacts (`mlruns/`, `mlruns.db`) stay gitignored — log via tracking helpers only

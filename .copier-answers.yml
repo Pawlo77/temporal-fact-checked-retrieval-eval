@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier; run `copier update` instead.
+_commit: c7af5c4
+_src_path: /private/tmp/claude-501/-Users-pawelp-Desktop-education-pw-nlp/90206a9e-3060-41b3-b5b7-688ce2c2ddfe/scratchpad/tpl
+affiliation: Warsaw University of Technology
+author_email: pozorski.paul@gmail.com
+author_name: Pawel Pozorski
+description: Temporal evaluation of fact-checked claim retrieval (MultiClaim, Polish
+    vs English)
+module: temporal_fact_checked_retrieval_eval
+owner: Pawlo77
+scaffold: experiment
+slug: temporal-fact-checked-retrieval-eval
+vault: true
+year: '2026'

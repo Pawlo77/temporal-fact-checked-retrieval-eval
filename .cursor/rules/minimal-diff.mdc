@@ -1,0 +1,14 @@
+---
+description: Smallest correct change; no drive-by refactors
+alwaysApply: true
+---
+
+# Minimal diff
+
+- Read the surrounding code first; match its naming, types and patterns.
+- Solve the requested task only; no drive-by refactors.
+- Reuse existing functions before adding abstractions; no one-line helpers; no handling for impossible cases.
+- New behaviour needs tests first (`tdd.mdc`); no tests of the obvious.
+- No new markdown files unless requested.
+- If two approaches work, pick the simpler one that matches the repository.
+- When porting from another repository, bring over only the slice the task needs.

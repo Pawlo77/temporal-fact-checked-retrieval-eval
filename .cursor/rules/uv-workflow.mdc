@@ -1,0 +1,12 @@
+---
+description: uv-based dev workflow
+globs: "**/*.py,**/*.toml,Makefile"
+alwaysApply: false
+---
+
+# uv workflow
+
+- Install: `make install`; run tools with `uv run`.
+- Dependencies: edit `pyproject.toml`, then `uv lock`; commit `uv.lock` with them. Never `pip install`.
+- Hooks: `prek`, never the `pre-commit` CLI; `make prek-all` matches the remote Prek Checks.
+- Python version: see `.python-version`.
