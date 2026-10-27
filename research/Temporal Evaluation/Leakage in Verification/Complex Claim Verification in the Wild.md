@@ -64,7 +64,7 @@ Intuition: the temporal and site constraints remove exactly the documents a real
 ## Relation to our project
 
 - It quantifies how much apparent performance comes from post-claim fact-checks, the closest verification analogue of our random-versus-causal gap ([[Proposed Task]]; [[Enhanced topic research]]).
-- Its search non-stationarity finding argues for a frozen, timestamped archive such as [[MultiClaim]] over live search ([[Research summary]]).
+- Its search non-stationarity finding argues for a frozen, timestamped archive such as [[MultiClaim]] over live search ([[Leakage in Verification]]).
 - In PFCR a fact-check for the post is the goal, not a leak, so its site constraint does not transfer; only the time constraint does ([[Language scope analysis]]).
 - It does not cover ranking metrics, pool size or multilingual data.
 

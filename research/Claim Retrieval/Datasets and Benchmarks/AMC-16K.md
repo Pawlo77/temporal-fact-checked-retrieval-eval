@@ -69,7 +69,7 @@ Intuition: a fact-check is useful if a fact-checker would open it, not only if i
 
 ## Relation to our project
 
-- Human relevance labels beyond fact-checker links are not new; AMC-16K is the precedent for our sibling qrels ([[Research summary]]).
+- Human relevance labels beyond fact-checker links are not new; AMC-16K is the precedent for our sibling qrels ([[Datasets and Benchmarks]]).
 - The 400 Polish pairs can validate our LLM relevance judge on Polish before we trust it on sibling fact-checks ([[Proposed Task]]).
 - The topic-similarity false positives warn that an LLM judge may over-label same-topic earlier fact-checks as relevant ([[Enhanced topic research]]).
 - Lower Slavic scores support treating Polish as a hard language rather than assuming parity with English ([[Language scope analysis]]).

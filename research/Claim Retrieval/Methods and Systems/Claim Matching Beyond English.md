@@ -69,7 +69,7 @@ Intuition: the student inherits the teacher's English similarity space and maps 
 - We cite it for the observation that claims recur across messages and languages, which motivates our sibling qrels: an earlier fact-check of the same claim also answers a post ([[Proposed Task]], [[Enhanced topic research]]).
 - Its argument that single-report labels miss matches is the missing-label problem our sibling labels address for MultiClaim ([[MultiClaim]]).
 - It does not bear on Polish, which is outside its five languages ([[Language scope analysis]]).
-- No temporal protocol: the paper is evidence that PFCR evaluation without dates was the norm in 2021 ([[Research summary]]).
+- No temporal protocol: the paper is evidence that PFCR evaluation without dates was the norm in 2021 ([[Methods and Systems]]).
 
 ## Future work
 

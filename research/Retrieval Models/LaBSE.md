@@ -68,7 +68,7 @@ Intuition: the margin forces each true translation to beat every non-translation
 ## Relation to our project
 
 - LaBSE is our classic cross-lingual baseline. It suits Polish posts that are close translations of an English fact-check's claim and should fail when the post only paraphrases or alludes to it ([[Proposed Task]], [[Enhanced topic research]]).
-- Its training crawl ends in 2019-2020 (CommonCrawl 2019-35, Wikipedia May 2020). It is the one model in our set with a documented cutoff before most MultiClaim fact-checks, which makes it the low-exposure control for parametric leakage ([[Research summary]]).
+- Its training crawl ends in 2019-2020 (CommonCrawl 2019-35, Wikipedia May 2020). It is the one model in our set with a documented cutoff before most MultiClaim fact-checks, which makes it the low-exposure control for parametric leakage ([[Retrieval Models]]).
 - We expect it to trail [[Multilingual E5]] and [[BGE-M3]] on Success@10; a small gap on Polish-English pairs would suggest that cross-lingual PFCR there is mostly translation matching ([[Language scope analysis]]).
 
 ## Future work

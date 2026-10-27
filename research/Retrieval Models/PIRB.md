@@ -71,7 +71,7 @@ Intuition: the student inherits the teacher's English retrieval space while lear
 - PIRB is our evidence for choosing Polish encoders: mE5-large is the strongest off-the-shelf model and the distilled Polish RoBERTa ([[mmlw-retrieval-roberta-large]]) adds about a point ([[Proposed Task]], [[Enhanced topic research]]).
 - A large Polish-vs-multilingual gap on PFCR would therefore be informative, since PIRB averages predict a small one ([[Language scope analysis]]).
 - Its distillation from English teachers on Polish-English pairs suggests Polish posts and English fact-checks share a space. PIRB never tests that cross-lingual case, so we measure it.
-- Its hybrid recipe and SPLADE results support running BM25 alongside dense models. Under a causal index, BM25 statistics must come from $P(q)$ only, which a learned rescorer trained on full-pool scores would not respect ([[Research summary]]).
+- Its hybrid recipe and SPLADE results support running BM25 alongside dense models. Under a causal index, BM25 statistics must come from $P(q)$ only, which a learned rescorer trained on full-pool scores would not respect ([[Retrieval Models]]).
 
 ## Future work
 

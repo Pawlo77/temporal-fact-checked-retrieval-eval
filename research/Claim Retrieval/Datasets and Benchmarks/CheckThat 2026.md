@@ -59,7 +59,7 @@ Intuition: users rarely look past the first five results in known-item search.
 
 ## Relation to our project
 
-- No PFCR task in 2026, so there is no live shared task to overlap with; a temporal PFCR task stays open as a possible proposal ([[Research summary]]).
+- No PFCR task in 2026, so there is no live shared task to overlap with; a temporal PFCR task stays open as a possible proposal ([[Datasets and Benchmarks]]).
 - Task 2 handles leakage by releasing new test sets, the shared-task version of our out-of-time concern, but it says nothing about evidence published after the claim ([[Enhanced topic research]]).
 - The pipeline figure still places PFCR between check-worthiness and evidence retrieval, which supports framing our work as a pipeline step ([[Proposed Task]]).
 

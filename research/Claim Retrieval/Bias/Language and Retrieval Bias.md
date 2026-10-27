@@ -66,7 +66,7 @@ Intuition: if a fact-check appears in many unrelated top lists, its retrieval re
 
 - Language bias is already covered here, so our Polish-English contrast must be framed as a difference in temporal penalty, not as language bias ([[Proposed Task]], [[Language scope analysis]]).
 - Retrieval bias toward popular claims interacts with sibling qrels: popular claims have more earlier fact-checks, so we stratify the causal penalty by claim-cluster size ([[Enhanced topic research]]).
-- Malformed fact-checks recurring in top lists argue for cleaning the pool before indexing, applied equally to full and causal pools ([[Research summary]]).
+- Malformed fact-checks recurring in top lists argue for cleaning the pool before indexing, applied equally to full and causal pools ([[Bias]]).
 - A causal pool changes which popular claims exist at $t_q$; whether retrieval bias shrinks under $P(q)$ is a question our data can answer.
 
 ## Future work

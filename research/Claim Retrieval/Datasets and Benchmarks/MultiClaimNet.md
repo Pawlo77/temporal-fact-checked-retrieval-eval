@@ -68,7 +68,7 @@ Intuition: if A matches B and B matches C, all three state one fact.
 
 - Cluster ids plus timestamps let us find an earlier fact-check of the same claim for a post whose gold fact-check is later, the basis of our cluster-expanded causal protocol and sibling qrels ([[Proposed Task]]).
 - The fast repeat times suggest many posts have a same-cluster fact-check shortly before them, which bears on answerability under a causal pool ([[Enhanced topic research]]).
-- LLM-made clusters inherit LLM errors; we validate sibling relevance by hand and report coverage of unclustered fact-checks ([[Research summary]]).
+- LLM-made clusters inherit LLM errors; we validate sibling relevance by hand and report coverage of unclustered fact-checks ([[Datasets and Benchmarks]]).
 
 ## Future work
 

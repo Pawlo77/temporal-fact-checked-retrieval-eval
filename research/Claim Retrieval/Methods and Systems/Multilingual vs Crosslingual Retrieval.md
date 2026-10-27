@@ -75,7 +75,7 @@ Intuition: a negative that shares words and topic with the post forces the model
 - Its fact-check-disjoint split addresses one training leak, a fact-check seen in training; it leaves index leakage and answerability untouched, which our causal index $P(q)$ adds ([[Enhanced topic research]]).
 - Polish is one of its 30 post languages with 1,309 monolingual pairs, a usable size reference for our Polish slice ([[Language scope analysis]]).
 - Dropping the identical-claim relationship matches our plan to report such pairs separately ([[MultiClaim Zenodo Records]]).
-- We take [[Multilingual E5]], [[BGE-M3]] and [[bge-reranker-v2-m3]] as in its comparison, so our scores can be compared with its random-split numbers ([[Research summary]]).
+- We take [[Multilingual E5]], [[BGE-M3]] and [[bge-reranker-v2-m3]] as in its comparison, so our scores can be compared with its random-split numbers ([[Methods and Systems]]).
 
 ## Future work
 

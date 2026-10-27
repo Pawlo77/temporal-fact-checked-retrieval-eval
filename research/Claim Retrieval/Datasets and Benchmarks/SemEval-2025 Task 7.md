@@ -68,7 +68,7 @@ Intuition: two posts making the same claim should share all the claim's fact-che
 
 ## Relation to our project
 
-- The test set is already out-of-time relative to training, so we cannot claim temporal test posts as new; we cite it as the precedent ([[Research summary]]).
+- The test set is already out-of-time relative to training, so we cannot claim temporal test posts as new; we cite it as the precedent ([[Datasets and Benchmarks]]).
 - The Polish test slice and per-team Polish scores are our main Polish source and reference numbers ([[Language scope analysis]]).
 - Because the pool extends past the last post, re-evaluating with a causal pool $P(q) = \{f \in P : t_f < t_q\}$ is a direct test of our RQ1 ([[Proposed Task]]).
 - Polish being unseen in training must be modelled in our Polish-English difference-in-differences ([[Enhanced topic research]]).

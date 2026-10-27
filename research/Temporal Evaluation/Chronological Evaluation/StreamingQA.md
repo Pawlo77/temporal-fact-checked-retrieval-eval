@@ -68,7 +68,7 @@ Intuition: the pool a question may use is the pool that existed when it was aske
 - The closest design to our rolling-origin protocol: dated queries over a dated, growing pool, evaluated per period ([[Proposed Task]]). Our causal pool $P(q)$ is stricter, per query rather than per quarter.
 - It separates index freshness from model freshness, which maps onto our split between index leakage and parametric leakage in LLM rerankers ([[Enhanced topic research]]).
 - The lag analysis is a template for our time-to-findability curve: performance as a function of the gap between query and knowledge.
-- Dated retrieval helped DPR; for PFCR a date feature would itself use $t_f$, so any such system must respect the causal pool ([[Research summary]]).
+- Dated retrieval helped DPR; for PFCR a date feature would itself use $t_f$, so any such system must respect the causal pool ([[Chronological Evaluation]]).
 
 ## Future work
 

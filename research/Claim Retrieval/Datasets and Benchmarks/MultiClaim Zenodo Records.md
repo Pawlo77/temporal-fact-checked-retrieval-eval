@@ -64,7 +64,7 @@ Intuition: one fact-check may have several instances, so $t_f$ is a choice, not 
 - The timestamps are the basis of our causal pool $P(q) = \{f \in P : t_f < t_q\}$; we must fix a rule for $t_f$ (earliest instance) and report sensitivity to it ([[Proposed Task]]).
 - The `relationship` field lets us report results separately for fact-checker links and text-identity links ([[Enhanced topic research]]).
 - v2 raises the Polish query count, which our power statement depends on ([[Language scope analysis]]).
-- No re-sharing: our release can hold only ids, cutoffs and code ([[Research summary]]).
+- No re-sharing: our release can hold only ids, cutoffs and code ([[Datasets and Benchmarks]]).
 
 ## Future work
 
