@@ -6,10 +6,14 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 tags: [handbook, research, language-scope, power-analysis, study-design]
 created: 2026-10-27
 updated: 2026-10-27
+related:
+  - "[[Original Task]]"
+  - "[[Proposed Task]]"
+  - "[[Enhanced topic research]]"
 ---
 # Language scope analysis
 
-Question: is a Polish-vs-English contrast enough for a publishable causal evaluation of previously fact-checked claim retrieval (PFCR), or should the language set be broadened? Builds on [[Original Task]], [[Proposed Task]] and [[Enhanced topic research]]. Sources checked on 2026-10-27; dataset counts are the papers' published numbers, our own counts come only after data access.
+Question: is a Polish-vs-English contrast enough for a publishable causal evaluation of previously fact-checked claim retrieval (PFCR), or should the language set be broadened? Sources checked on 2026-10-27; dataset counts are the papers' published numbers, our own counts come only after data access.
 
 ## Recommendation
 

@@ -14,7 +14,7 @@ related:
 ---
 # Proposed Task
 
-One project that covers the whole of [[Original Task]]: both team slots of the brief (sparse and dense baselines; reranking and gap decomposition) are workstreams of a single study with one split, one results table and one paper. Evidence, references and the full protocol definitions are in [[Enhanced topic research]]; the literature position is in [[Research]].
+One project that covers the whole of [[Original Task]]: both team slots of the brief (sparse and dense baselines; reranking and gap decomposition) are workstreams of a single study with one split, one results table and one paper.
 
 ## Title
 
@@ -113,4 +113,3 @@ ACL Rolling Review (Findings or main) as an evaluation-methodology paper with a 
 - Date reliability and missing post dates; small answerable Polish set; v2 access.
 - Overlap with the dataset authors' group and with [[Role of Context in PFCR]]: claim only the index restriction, the decomposition and the multilingual mechanism test.
 - Scope perception of the wider language set: the reporting rules and the sign-off gate address it.
-- Details in [[Enhanced topic research]] and [[Language scope analysis]].
