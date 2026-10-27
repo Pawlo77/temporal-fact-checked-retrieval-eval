@@ -35,6 +35,7 @@ updated: 2026-10-27
 - [[EDEN job templates]]: CPU, GPU, array, dependency chain, interactive, Jupyter.
 - [[EDEN monitoring and troubleshooting]]: queue, efficiency, pending reasons, pitfalls.
 - [[EDEN resource profiling]]: real vs allocated usage, speed tracking and bottleneck diagnosis.
+- [[EDEN notifications and job control]]: mail, webhooks, following jobs, timeouts, requeue.
 
 ## Legend
 
