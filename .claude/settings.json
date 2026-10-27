@@ -5,6 +5,12 @@
         "source": "github",
         "repo": "astral-sh/claude-code-plugins"
       }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
     }
   },
   "enabledPlugins": {
@@ -14,7 +20,8 @@
     "context7@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "remember@claude-plugins-official": true,
-    "astral@astral-sh": true
+    "astral@astral-sh": true,
+    "ponytail@ponytail": true
   },
   "env": {
     "ENABLE_STOP_REVIEW": "0",
@@ -108,15 +115,15 @@
       "WebFetch(domain:arxiv.org)",
       "WebFetch(domain:doi.org)",
       "WebFetch(domain:api.crossref.org)",
-      "WebFetch(domain:api.openalex.org)",
       "Read(**)",
       "Edit(src/**)",
       "Edit(tests/**)",
       "Edit(.agents/skills/**)",
       "Edit(.remember/**)",
       "Edit(plans/**)",
-      "Edit(research/**)",
-      "Bash(make vault-check*)"
+      "Bash(make vault-check*)",
+      "WebFetch(domain:api.openalex.org)",
+      "Edit(research/**)"
     ],
     "deny": [
       "Read(**/.env)",

@@ -10,7 +10,7 @@ Experiments: edit `configs/experiment.yaml`; local MLflow: `make mlflow`.
 
 ## Agent-only
 
-- Chat in caveman ultra (rule `.cursor/rules/caveman.mdc`); files, code, commits and PR bodies stay normal prose.
+- Ponytail full is on (rule `.cursor/rules/ponytail.mdc`): write the least code that solves the task, reuse first; commits, PR bodies and files stay normal prose.
 - Delivery goes through skill `ship`; outside it no commit, push, tag or PR; never force push, amend, draft PRs or push to `main`.
 - No new markdown or doc expansion unless asked.
 - No runtime dependency without a justification in `pyproject.toml`.
