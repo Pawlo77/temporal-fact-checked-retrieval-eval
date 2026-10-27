@@ -34,7 +34,7 @@ related:
 
 **Goal:** Measure how much of the reported performance of previously fact-checked claim retrieval (PFCR) survives an index that cannot see the future, separate the reasons for the drop, and release the protocol, split definitions and code so others can reuse them. This is the whole of project 2 ("Retrieval that cannot see the future: temporal evaluation of fact-checked claim retrieval") as one study: both team slots of the brief (sparse and dense baselines; reranking and gap decomposition) are workstreams of a single plan with one split, one results table and one paper.
 
-**Architecture:** A dated MultiClaim corpus feeds one protocol module that builds the random, strict causal, size-matched and cluster-expanded pools. Retrieval systems run under every protocol and write rows to one shared results table. Analysis reads that table: cluster bootstrap per system, Polish-English difference-in-differences, an additive gap decomposition, and 50 hand-coded failures. Everything beyond the brief's scope is a stretch tier that unlocks only after the core is complete.
+**Architecture:** A dated MultiClaim corpus, read through a dataset-agnostic adapter, feeds one protocol module that builds the random, strict causal, size-matched and cluster-expanded pools. Retrieval systems run under every protocol and write rows to one shared results table. Analysis reads that table: cluster bootstrap per system, Polish-English difference-in-differences, an additive gap decomposition, and 50 hand-coded failures. Everything beyond the brief's scope is a stretch tier that unlocks only after the core is complete.
 
 **Tech Stack:** Python 3.12, uv, bm25s (custom causal statistics), sentence-transformers, transformers and vLLM, MLflow, statsmodels; EDEN cluster with A100-class GPUs; open-weight models only for any text taken from MultiClaim.
 
@@ -157,7 +157,9 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 
 - [ ] **Step 1:** Strict causal pool and answerability flag; property tests (no pool item dated after the post).
 - [ ] **Step 2:** Size-matched control; delayed-query variant; chronological training split.
-- [ ] **Step 3:** Freeze the split format (ids, cutoffs, qrels) and the one results schema by 25 November.
+- [ ] **Step 3:** Dataset-agnostic protocol module: all protocols read a small adapter (posts, fact-checks, gold pairs, timestamps with instance intervals), so any dated corpus, a second dataset or a newer fact-check dump, is processed by re-running the module with a new cutoff and no code changes; test it with a synthetic corpus and with MultiClaim.
+- [ ] **Step 4:** Write the formal definition of causal evaluation for retrieval over a growing archive (pool P(q), answerability, the protocols as operators on the pool) and its properties, each with a proof sketch and a test: pools are monotone in the cutoff; the unconditional strict-causal Success@k is bounded by the answerable rate; the size-matched control has the same pool size as the causal pool; the additive chain telescopes to the total gap.
+- [ ] **Step 5:** Freeze the split format (ids, cutoffs, qrels) and the one results schema by 25 November.
 
 ### Task 3: Core systems (W2, W3)
 
@@ -237,10 +239,10 @@ The full register has 28 risks with checks and stop/go gates (Risk register). Th
 - **Assessment:** as a single-dataset audit the paper is a solid Findings or SIGIR-short candidate; reviewers may call "index only earlier fact-checks" obvious, and on queries with unchanged gold the filter only removes distractors. An A* attempt needs a consequence, which the plan builds in as follows.
 - **What the paper needs and where the plan provides it:**
   1. System rankings change: RQ6 and the ranking-reversal check (Task 4, core, costs almost nothing extra).
-  2. The effect generalises: a second dated dataset (Task 5 step 3), framed as a general causal-evaluation protocol for retrieval over a growing archive.
+  2. The effect generalises: a formal, dataset-agnostic protocol (Task 2 steps 3 and 4) plus a second dated dataset (Task 5 step 3), framed as a general causal-evaluation protocol for retrieval over a growing archive.
   3. A mechanism: the archive-density dose-response across seven languages (extended tier).
   4. A consequence for practice: the recovery analysis (Task 5 step 4).
-  5. A resource: the time-masked split released as id lists and code, rebuildable for new fact-check dumps.
+  5. A resource: the time-masked split released as id lists and code, rebuildable for a newer fact-check dump or another dated corpus by re-running the dataset-agnostic module (Task 2 step 3).
 - **Decision rule:** after the core and the ranking-reversal check, aim at an A* venue only if reversals are significant or the best system changes and the answerable-rate gate holds; then unlock the second dataset before other extended work. Otherwise target Findings or SIGIR short.
 - **Timing:** ARR 4 January 2027 and SIGIR 21 January 2027 are not realistic for an A* attempt with about ten supervisor Wednesdays left; aim at the next ARR cycle after the course, with the deadline checked at that time.
 - **Claims to avoid:** anything the novelty position lists as not new; no claim that leakage is removed or that Polish is special without the within-language evidence.
