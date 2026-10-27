@@ -27,4 +27,5 @@ Start here: [[Dashboard]]. Fixed bugs: [[Fixed issues]].
 - [[Enhanced topic research]]
 - [[Research summary]]
 - [[Language scope analysis]]
+- [[Literature corrections log]]
 - [[EDEN overview]]

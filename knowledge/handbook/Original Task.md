@@ -21,8 +21,8 @@ The task is evaluated on random splits, so a system can be rewarded for matching
 
 ## Data (status: READY, one access request must go out in October)
 
-- MultiClaim (Pikuliak et al., EMNLP 2023): 206k fact-checks in 39 languages, 28k social media posts, 31k post-to-fact-check pairs, all carrying publication dates. Repository `github.com/kinit-sk/multiclaim`; the Zenodo record is access-restricted, so request access in October rather than November.
-- AMC-16K (Vykopal et al.): curated 16k-pair subset across 20 languages. SemEval-2025 Task 7 release, derived from MultiClaim. Both usable as secondary evaluation sets.
+- [[MultiClaim]] ([[MultiClaim|Pikuliak et al.]], EMNLP 2023): 206k fact-checks in 39 languages, 28k social media posts, 31k post-to-fact-check pairs, all carrying publication dates. Repository `github.com/kinit-sk/multiclaim`; the Zenodo record is access-restricted, so request access in October rather than November.
+- [[AMC-16K]] (Vykopal et al.): curated 16k-pair subset across 20 languages. [[SemEval-2025 Task 7]] release, derived from [[MultiClaim]]. Both usable as secondary evaluation sets.
 - Polish is the focus, English the control. Poland has a small fact-check ecosystem (Demagog, Konkret24, AFP Sprawdzam, Fakehunter), so a thin national index should make the temporal penalty worse for Polish queries than for English ones. That contrast is the result; without the control there is no claim.
 
 ## What we will do
@@ -43,11 +43,11 @@ Proposing a new retrieval architecture, judging claim veracity, and language-bia
 
 ## Starting point
 
-Shaar et al. 2020 introduced the task, MultiClaim scaled it to 39 languages, SemEval-2025 Task 7 ran on it. Retrieval on Polish is not new and must not be claimed as such. New this year: the temporal evaluation protocol and the size of the gap it exposes.
+[[That is a Known Lie|Shaar et al. 2020]] introduced the task, [[MultiClaim]] scaled it to 39 languages, [[SemEval-2025 Task 7]] ran on it. Retrieval on Polish is not new and must not be claimed as such. New this year: the temporal evaluation protocol and the size of the gap it exposes.
 
 ## Data and ethics
 
-Public texts and published fact-checks. A retrieval system can make a named journalist or outlet look like a disinformation source: report errors in aggregate, publish no ranked list of suspect outlets or authors. Respect the MultiClaim access terms in any release.
+Public texts and published fact-checks. A retrieval system can make a named journalist or outlet look like a disinformation source: report errors in aggregate, publish no ranked list of suspect outlets or authors. Respect the [[MultiClaim]] access terms in any release.
 
 ## Skills
 
@@ -57,11 +57,11 @@ Python, information retrieval (BM25, dense retrievers, cross-encoder reranking),
 
 | Dimension | Value (1-5) | Basis |
 |---|---|---|
-| D1 Data work | 2 | MultiClaim as released; one access request (Zenodo) and a temporal split of existing data |
+| D1 Data work | 2 | [[MultiClaim]] as released; one access request (Zenodo) and a temporal split of existing data |
 | D2 Compute and infrastructure | 3 | BM25, multilingual dense, cross-lingual encoder and cross-encoder over 206k fact-checks, Polish and English |
 | D3 Technical depth | 3 | Four retrieval systems including reranking |
 | D4 Methodological demands | 5 | Protocol design, bootstrap significance tests, 4+ systems, manual analysis of 50 failures, gap decomposition |
-| D5 External dependencies and risks | 3 | Restricted Zenodo record, MultiClaim access terms, risk of exposing named outlets or journalists |
+| D5 External dependencies and risks | 3 | Restricted Zenodo record, [[MultiClaim]] access terms, risk of exposing named outlets or journalists |
 | Total | 16 | Hard |
 
 See also [[EDEN overview]] and [[Proposed Task]].

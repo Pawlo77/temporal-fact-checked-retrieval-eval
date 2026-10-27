@@ -23,19 +23,19 @@ Question: is a Polish-vs-English contrast enough for a publishable causal evalua
 
 - A two-point contrast has zero degrees of freedom for a mechanism: any Polish-English difference is confounded with platform mix, topic mix, outlet practice (backlink vs ClaimReview), date distribution, OCR share and translation quality.
 - Polish is not an extreme: MultiClaim v1 lists 6,912 Polish fact-checks, the same order as Turkish 6,676, Hindi 7,149, German 4,996 and French 4,355, so "thin national archive" is a claim about English (85,814), not about Polish specifically.
-- English is a poor "control" on its own: its pool is the cross-lingual fallback for most languages (most crosslingual pairs in SemEval-2025 Task 7 involve English), so it differs in kind, not only in size.
+- English is a poor "control" on its own: its pool is the cross-lingual fallback for most languages (most crosslingual pairs in [[SemEval-2025 Task 7]] involve English), so it differs in kind, not only in size.
 - A dose-response design turns the hypothesis into a testable prediction (penalty falls as archive density rises, within and across languages), which reviewers accept as mechanism evidence; a single difference only shows that two numbers differ.
 
 ## Why this is not the out-of-scope language-bias study
 
-- Vykopal et al. (EACL 2026) study language bias as LLM detection performance that is better for high-resource languages, across 20 languages on AMC-16K with translated prompts, plus retrieval bias (popular claims retrieved disproportionately).
+- [[Language and Retrieval Bias|Vykopal et al. (EACL 2026)]] study language bias as LLM detection performance that is better for high-resource languages, across 20 languages on [[AMC-16K]] with translated prompts, plus retrieval bias (popular claims retrieved disproportionately).
 - Our outcome is a within-language protocol difference (random minus causal, same model, same language, same queries), which is a property of the archive's temporal coverage, not of model competence in a language.
 - The explanatory variable is fact-check ecosystem density at query time, a per-query continuous covariate, not language identity or resource level.
 - Rules that keep it out of scope: never rank languages by absolute Success@10; report only within-language deltas and slopes; no claims about which model handles which language better; language enters as a random effect, not as the finding.
 
 ## Evidence table
 
-Counts from the papers. v1 = MultiClaim (Table 5 posts and fact-checks); v2 = monolingual pairs in the Ramponi et al. MultiClaim v2 subset (post text only, languages with at least 200 posts, Table 4 diagonal); ST7 = SemEval-2025 Task 7 monolingual test (Table 2).
+Counts from the papers. v1 = [[MultiClaim]] (Table 5 posts and fact-checks); v2 = monolingual pairs in the [[Multilingual vs Crosslingual Retrieval|Ramponi et al.]] MultiClaim v2 subset (post text only, languages with at least 200 posts, Table 4 diagonal); ST7 = [[SemEval-2025 Task 7]] monolingual test (Table 2).
 
 | Language | v1 fact-checks | v1 posts | v2 subset mono pairs | ST7 test posts / pairs / pool claims | Main outlets in v1 (Table 6) |
 |---|---|---|---|---|---|
@@ -117,7 +117,7 @@ Within-language query-level slope of hit on log10 causal pool size (linear proba
 | Dense and BM25 load | negligible extra | negligible: encode the pool once, apply time masks at search time | negligible |
 | LLM reranker (RQ5) | pl, en | keep pl, en only | keep pl, en only |
 | Annotation | 50 queries + 200 pl + 200 en sibling judgments | unchanged; other languages get automatic covariates and LLM sibling judgments only | same as B, more unvalidated LLM labels |
-| Data work | v1 + ST7 for two languages | per-language archive and sibling counts from v2 and MultiClaimNet; timestamp checks for 5 more languages (50 dates each) | 10 more languages of timestamp checks |
+| Data work | v1 + ST7 for two languages | per-language archive and sibling counts from v2 and [[MultiClaimNet]]; timestamp checks for 5 more languages (50 dates each) | 10 more languages of timestamp checks |
 | Reviewer reaction | "n = 2 languages, Polish could differ for any reason" | "mechanism tested with variation in archive density; Polish is a well-powered case study" | "broad but shallow; why Polish in the title?" |
 | Novelty | protocol novel, language claim weak | protocol plus a mechanism claim nobody has tested for PFCR | same as B, small marginal gain |
 
@@ -138,23 +138,23 @@ Within-language query-level slope of hit on log10 causal pool size (linear proba
 - A: workshop paper (FEVER, NLP4PI) or a Findings short; an ARR long submission risks "limited generalization" and "confounded comparison" reviews.
 - B: ARR long (Findings or main) as evaluation methodology with a mechanism claim; SIGIR short or resource track; the time-masked split for seven languages is a stronger resource and a natural basis for a CLEF temporal PFCR task proposal.
 - C: same venues as B with a marginal gain in generality, at the cost of the Polish framing and higher overlap with multilingual analyses from the dataset authors' group.
-- No temporal or causal PFCR evaluation was found in searches on 2026-10-27; CheckThat! 2026 has no PFCR task; the novelty sits in the protocol and the dose-response, not in the number of languages.
+- No date-restricted-index PFCR evaluation was found in searches on 2026-10-27; the one chronological PFCR evaluation, [[Role of Context in PFCR|Shaar et al. 2022]] ([[Role of Context in PFCR]]), used a chronological split without a date-restricted index; [[CheckThat 2026|CheckThat! 2026]] has no PFCR task; the novelty sits in the protocol and the dose-response, not in the number of languages.
 
 ## Risks
 
 - v2 access: without v2, Polish falls back to 453 v1 posts plus 500 ST7 test posts and the slope loses Turkish (7 v1 posts), so B degrades towards A; request v2 now.
 - Archive size measured from the dataset is the dataset's coverage, not the true national ecosystem (collection is via Google Fact Check Explorer and selected outlets); state it as "indexed archive density".
-- Language identification in v2 is automatic (Google Translate in the release, four detectors in Ramponi et al.); per-language counts carry noise.
+- Language identification in v2 is automatic (Google Translate in the release, four detectors in [[Multilingual vs Crosslingual Retrieval|Ramponi et al.]]); per-language counts carry noise.
 - Single-outlet languages (cs, sk) confound archive size with one outlet's practice; leave-one-language-out and outlet-level random effects (aggregate only, no ranked outlet list) mitigate it.
-- Scope perception: a reviewer or the supervisor may still read seven languages as a language study; the reporting rules above and a one-line statement distinguishing it from Vykopal et al. (EACL 2026) address it.
+- Scope perception: a reviewer or the supervisor may still read seven languages as a language study; the reporting rules above and a one-line statement distinguishing it from [[Language and Retrieval Bias|Vykopal et al. (EACL 2026)]] address it.
 - Compute: reranking roughly triples; subsample English and Spanish queries and cap top-k at 100.
 
 ## References
 
-- MultiClaim (Pikuliak et al., EMNLP 2023), Tables 5-7: https://arxiv.org/html/2305.07991v2 ; https://aclanthology.org/2023.emnlp-main.1027/
+- [[MultiClaim]] ([[MultiClaim|Pikuliak et al.]], EMNLP 2023), Tables 5-7: https://arxiv.org/html/2305.07991v2 ; https://aclanthology.org/2023.emnlp-main.1027/
 - MultiClaim v2 Zenodo record: https://zenodo.org/records/15413169
-- SemEval-2025 Task 7 overview (Peng et al.), Tables 2-4: https://aclanthology.org/2025.semeval-1.323.pdf
-- Ramponi et al. 2025, Multilingual vs Crosslingual Retrieval of Fact-Checked Claims, Table 1 and Table 4: https://arxiv.org/html/2505.22118v2 ; https://aclanthology.org/2025.emnlp-main.1480/
-- Vykopal et al. 2026, Investigating Language and Retrieval Bias in Multilingual PFCD, EACL: https://aclanthology.org/2026.eacl-long.240/ ; https://arxiv.org/abs/2509.25138
-- MultiClaimNet: https://arxiv.org/abs/2503.22280
-- CheckThat! 2026 lab overview: https://arxiv.org/abs/2602.09516
+- [[SemEval-2025 Task 7]] overview ([[SemEval-2025 Task 7|Peng et al.]]), Tables 2-4: https://aclanthology.org/2025.semeval-1.323.pdf
+- [[Multilingual vs Crosslingual Retrieval|Ramponi et al. 2025]], Multilingual vs Crosslingual Retrieval of Fact-Checked Claims, Table 1 and Table 4: https://arxiv.org/html/2505.22118v2 ; https://aclanthology.org/2025.emnlp-main.1480/
+- [[Language and Retrieval Bias|Vykopal et al. 2026]], Investigating Language and Retrieval Bias in Multilingual PFCD, EACL: https://aclanthology.org/2026.eacl-long.240/ ; https://arxiv.org/abs/2509.25138
+- [[MultiClaimNet]]: https://arxiv.org/abs/2503.22280
+- [[CheckThat 2026|CheckThat! 2026]] lab overview: https://arxiv.org/abs/2602.09516
