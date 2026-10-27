@@ -116,6 +116,8 @@ Yes, a single family is a real research risk, and the largest one sits in RQ5 an
 
 ## Changes to the plan
 
+Applied in [[2026-10-27-temporal-retrieval-eval]] on 2026-10-27; kept here as the record of what changed.
+
 - Systems, "LLM scale" line in [[2026-10-27-temporal-retrieval-eval]]: replace "Qwen3-Embedding-8B and a Qwen3 reranker" with "Qwen3-Embedding-8B as retriever; rerankers Qwen3-Reranker-8B, Gemma 3 27B, Apertus 70B (and 8B), Llama 3.3 70B, Bielik 11B v3 on Polish, Olmo 3 32B on English", all over one shared candidate list.
 - RQ5 wording: "Do LLM rerankers gain more on queries whose gold fact-check predates the model's cutoff, and does that gain track each model's own cutoff and measured exposure?"
 - RQ5 design: per model $m$ with stated cutoff $K(m)$, stratify queries by gold fact-check date $t_f < K(m)$ (exposed) vs $t_f > K(m)$ (unexposed); estimate the reranker gain over the shared first stage in each stratum.

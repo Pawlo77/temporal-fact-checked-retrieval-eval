@@ -54,8 +54,8 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 - **RQ2:** What share of the random-vs-causal gap is answerability loss, pool composition, training leakage, or missing sibling labels?
 - **RQ3:** Is the penalty larger for Polish than for English (difference-in-differences)? With the extended languages: does archive density at query time explain it?
 - **RQ4:** How many days after a post does the first relevant fact-check become retrievable (time-to-findability among debunked posts)?
-- **RQ6:** Does the ranking of retrieval systems change between the random and the causal protocol (rank reversals, rank correlation with intervals, significance of the reversals), and does the effect appear on a second dated dataset?
 - **RQ5 (stretch):** Do LLM rerankers gain more on queries whose gold fact-check predates the model's training cutoff, and does that gain track each model's own cutoff?
+- **RQ6:** Does the ranking of retrieval systems change between the random and the causal protocol (rank reversals, rank correlation with intervals, significance of the reversals), and does the effect appear on a second dated dataset?
 - **H-answerability:** most gold pairs are post-first, so many queries are unanswerable under a causal index by definition; the share is measured first, not assumed.
 - **H-distractors (restated after the risk review):** on queries whose gold is unchanged between protocols, the causal pool only removes later distractors, so the conditional score may rise; the hypothesis is that time-local distractors are harder than the same number of random ones (causal vs size-matched random). A null or positive conditional delta is reported as a finding.
 - **H-PL and H-DOSE (extended tier):** pre-registered tests of the Polish-English difference and of the dose-response on log causal same-language pool size.
@@ -87,7 +87,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 - **Time-to-findability:** delayed-query variant (re-query at post date plus 0, 1, 3, 7, 30, 90 days); right-censored at the dataset end; named "among debunked posts" because every post in the data has a fact-check by construction.
 - **Timestamps:** a fact-check or post can carry several dated instances (republications, other outlets or platforms), so its time is an interval, not a point. Primary rule: earliest instance as publication time, day resolution. Sensitivity runs: margins of 0, 1 and 7 days; first-listed and median instance; and bounds, a conservative pool (fact-check counts as published only at its latest instance, post at its earliest) against a liberal pool (earliest instance for the fact-check, latest for the post). Report, per language, the answerable rate and every headline score under both bounds, the share of queries whose pool membership flips between them, and a clean subset restricted to single-instance fact-checks. 100 dates per language are checked against live URLs; posts without dates are dropped and reported.
 - **Metrics and statistics:** Success@10, MRR, answerable rate, conditional and unconditional scores; cluster bootstrap by gold fact-check or MultiClaimNet cluster (posts sharing a fact-check are not independent); Holm correction across systems; difference-in-differences with an independent bootstrap per language.
-- **Gap decomposition:** additive chain random, size-matched random, cluster-expanded causal, strict causal answerable, strict causal all queries, every step scored unconditionally on one fixed query set, with order-shuffling (Shapley-style averaging); covariates: signed post-to-debunk lag, lexical overlap, cross-lingual gold flag, relationship type, earlier-sibling count, topic, platform.
+- **Gap decomposition:** additive chain random, size-matched random, cluster-expanded causal, strict causal answerable, strict causal all queries, every step scored unconditionally on one fixed query set, with order-shuffling (Shapley-style averaging); the core chain omits the cluster-expanded step, which belongs to the extended tier; covariates: signed post-to-debunk lag, lexical overlap, cross-lingual gold flag, relationship type, earlier-sibling count, topic, platform.
 - **Failure analysis:** 50 newly failing queries, two annotators, Cohen's kappa; codebook: answerability, lexical leakage, narrative drift, cross-lingual-only debunk, missing label, timestamp error, multimodal-only. Failure coding stays human; LLMs may only pre-sort.
 
 ## 6. Languages
@@ -140,7 +140,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 
 - [ ] **Step 1:** Send the v1, v2 and SemEval access requests from pw.edu.pl addresses naming all team members (target 28 October); supervisor co-signs.
 - [ ] **Step 2:** On the existing EDEN account, check partitions, time limits, quotas and compute-node internet; pre-download models on the login node.
-- [ ] **Step 3:** Write to the dataset authors: may a second team, id-list and qrel releases and EDEN storage be used; what do the timestamps mean.
+- [ ] **Step 3:** Write to the dataset authors: may id-list and qrel releases and EDEN storage be used; what do the timestamps mean.
 - [ ] **Step 4:** Obtain the supervisor's answers to the questions in section 12 (co-signing, ethics statement, grading weights).
 
 ### Task 1: Dated corpus and first checks (W1)
@@ -180,7 +180,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 - [ ] **Step 1:** Polish sibling qrels with the validated judge panel; fact-checker-only qrels reported next to expanded ones.
 - [ ] **Step 2:** Added languages and the dose-response mixed model (with v2).
 - [ ] **Step 3:** Second dated dataset: identify a corpus with dated posts and fact-checks whose terms allow our use (candidates to check: the Snopes-based CheckThat! claim-matching data and CrowdChecked), build its causal split with the same protocol module and repeat the ranking-reversal check.
-- [ ] **Step 4:** Recovery analysis: with the same candidates, test whether time-aware negatives or a recency-aware rerank recovers the lost performance; reported as an analysis, not a new method.
+- [ ] **Step 4:** Recovery analysis: on MultiClaim (and the second dataset if built), test whether time-aware negatives or a recency-aware rerank recovers the lost performance; reported as an analysis, not a new method.
 - [ ] **Step 5:** Fine-tuned retriever under random and chronological training with the same test set.
 - [ ] **Step 6:** LLM-scale systems and RQ5 with the model set of section 7.
 
@@ -191,7 +191,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 
 ## 10. Timeline and decision gates
 
-About 10 usable supervisor Wednesdays remain to the end of January 2027 (11 November and 6 January are public holidays; 23 and 30 December are likely breaks).
+About 10 usable supervisor Wednesdays remain (estimate) to the end of January 2027 (11 November and 6 January are public holidays; 23 and 30 December are likely breaks).
 
 | Gate | When | Rule |
 |---|---|---|
@@ -206,7 +206,7 @@ About 10 usable supervisor Wednesdays remain to the end of January 2027 (11 Nove
 
 - Split definitions as id lists plus code that rebuilds them from the official files; no post text.
 - The shared results table: at least four systems under the random and the temporal protocol, Polish and English, with significance tests; the central number is how much more the temporal split costs Polish.
-- The gap decomposition and the coded analysis of 50 newly failing queries.
+- The ranking-reversal analysis (RQ6), the gap decomposition and the coded analysis of 50 newly failing queries.
 - Extended tier, if unlocked: judged sibling ids, released prompts, model hashes and response-cache index, dose-response analysis.
 - A paper written from the shared table.
 
@@ -218,7 +218,7 @@ About 10 usable supervisor Wednesdays remain to the end of January 2027 (11 Nove
 
 ## 13. Main risks and mitigations
 
-The full register has 28 risks with checks and stop/go gates (Risk register). The ones that can reshape the project:
+The full register has 26 risks with checks and stop/go gates (Risk register). The ones that can reshape the project:
 - **Answerability unknown:** no source reports how many MultiClaim pairs have the fact-check before the post; measured first (Task 1), headline adapts (section 10).
 - **Near-tautological headline:** on queries with the same gold under both protocols only distractors are removed; the plan reports answerability and ranking separately and scores the chain unconditionally on one query set.
 - **Access terms:** the Zenodo terms forbid sharing beyond named requesters; handled by naming everyone in one request, local open-weight models only, and written confirmation of what may be released.
