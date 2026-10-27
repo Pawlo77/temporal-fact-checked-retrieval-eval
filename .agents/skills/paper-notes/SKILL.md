@@ -10,8 +10,7 @@ description: >-
 One note per paper at `research/<Area>/[<Theme>/]<Short title>.md`, hub `research/Research.md`;
 every folder has a note named after it that lists its papers. No PDFs are kept. The
 project's half of this skill is [reference.md](reference.md) (layout and placement,
-section contracts, tags, glossary, notation); every note starts from [template.md](template.md). No `research/`
-here: the project enables it with `copier update --data vault=true --data research=true`.
+section contracts, tags, glossary, notation); every note starts from [template.md](template.md).
 
 ## 1. Verify the paper exists (gate)
 
@@ -56,7 +55,7 @@ A paper without readable full text is recorded as unread, never written from the
    for each and mark it `Done`, `Partly done` (link the verified later paper) or
    `Open (searched YYYY-MM)`.
 4. Re-read the source for every number, dataset and claim you wrote; delete what you
-   cannot find. Then fill `Verification` with today's date.
+   cannot find. Then set `verified` in the frontmatter to today's date.
 5. Read the note once as a newcomer: each idea once, no section repeating another.
 
 ## 5. Link
