@@ -24,7 +24,14 @@ File names are the paper's short name (method or system name), never `Year - Aut
 
 | Paper changes | Folder | Tag |
 |---------------|--------|-----|
-| (what a paper must change to belong here) | `research/<Area>/[<Theme>/]` | `theme/<slug>` |
+| a PFCR dataset, shared task or benchmark release | `research/Claim Retrieval/Datasets and Benchmarks/` | `theme/datasets` |
+| a PFCR or claim-matching method, system or evaluation study | `research/Claim Retrieval/Methods and Systems/` | `theme/methods` |
+| language, popularity or other bias in PFCR | `research/Claim Retrieval/Bias/` | `theme/bias` |
+| evidence or answer leakage in claim verification | `research/Temporal Evaluation/Leakage in Verification/` | `theme/verification-leakage` |
+| chronological splits, time-respecting evaluation, temporal persistence, recsys leakage | `research/Temporal Evaluation/Chronological Evaluation/` | `theme/chronological` |
+| LLM parametric or search-based temporal contamination | `research/Temporal Evaluation/LLM Temporal Leakage/` | `theme/llm-leakage` |
+| how to split data and what random splits hide | `research/Evaluation Methodology/Data Splits/` | `theme/splits` |
+| an embedding model, retriever or reranker used as a system | `research/Retrieval Models/` | `theme/models` |
 
 ## Sections (exact order, no others)
 
@@ -54,18 +61,23 @@ Whole note: 500–1500 words.
 
 | Use | Not | Meaning |
 |-----|-----|---------|
-| (term) | (synonyms to avoid) | (meaning) |
+| PFCR | claim matching, fact-check retrieval | retrieving previously fact-checked claims for a post |
+| post | tweet, query, claim (as the query) | the social media text used as the query |
+| fact-check | debunk, document | an article in the retrieval pool |
+| causal index | time-restricted pool | pool holding only fact-checks published before the post |
+| leakage | contamination (for LLM pretraining only) | information from after the query time reaching the evaluation |
+| Success@k | recall@k, hit rate | share of queries with a gold fact-check in the top k |
 
 ## Notation
 
-(The project's symbols. Rename a paper's symbols to these and say so once.)
+Query post $q$ with time $t_q$; fact-check $f$ with time $t_f$; pool $P$; causal pool $P(q) = \{f \in P : t_f < t_q\}$; gold set $G(q)$; rank of the first gold item $r_q$; Success@k $= \frac{1}{|Q|}\sum_q \mathbb{1}[r_q \le k]$; MRR $= \frac{1}{|Q|}\sum_q 1/r_q$. Rename a paper's symbols to these and say so once.
 
 ## Tags (vocabulary)
 
 Paper notes carry `type/paper`, one `theme/` and one or more `topic/`:
 
-- `theme/`: (one slug per row of Placement).
-- `topic/`: (add values here before using them).
+- `theme/`: `datasets`, `methods`, `bias`, `verification-leakage`, `chronological`, `llm-leakage`, `splits`, `models`.
+- `topic/`: `multilingual`, `polish`, `english`, `temporal`, `leakage`, `dense-retrieval`, `reranking`, `bm25`, `evaluation`, `significance`, `benchmark`, `shared-task`, `embedding`, `llm`, `recsys` (add values here before using them).
 
 Other notes: `type/hub`, `type/theme`.
 
