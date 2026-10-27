@@ -22,6 +22,10 @@ section contracts, tags, glossary, notation); every note starts from [template.m
   ```bash
   uv run python .agents/skills/paper-notes/scripts/verify_citation.py "research/<Area>/<Short title>.md"
   ```
+- Status `OK` means the DOI/arXiv record matches (Crossref, else DataCite) and `verified`
+  is a past ISO date. `OK (url only)` is weaker, for sources without DOI or arXiv id
+  (proceedings, model cards, GitHub, Zenodo): only that `url` resolves and the title words
+  occur in its page title. Say so in the report; use it only when no id exists.
 - Every prior work linked in Motivation is checked the same way; unverifiable ones are not
   linked.
 - Finding candidates for the user: agent `paper-scout`, then a table of citation,
