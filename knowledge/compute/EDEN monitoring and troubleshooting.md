@@ -32,6 +32,7 @@ scancel <jobid>; scancel -u $USER       # cancel one / all
 ```
 
 - Web status: https://eden-status.mini.pw.edu.pl [V].
+- Grafana dashboard `eden-overview`: https://edenstatus.mini.pw.edu.pl/d/7I8DDL3nz/eden-overview?orgId=1 (link from the maintainer, not crawled).
 - GPU use during a run: `srun --jobid=<jobid> --overlap nvidia-smi` [V:slurm, U on cluster policy]; or log `nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv -l 30 &` inside the script.
 - Group usage reports: `sreport cluster accountutilizationbyuser accounts=<group>` [V].
 

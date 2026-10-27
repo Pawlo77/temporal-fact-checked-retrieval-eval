@@ -86,5 +86,5 @@ ssh -L <port>:<node>:<port> -J <mini-login>@<mini-ssh-gateway> <user>@<eden-logi
 ## Other services
 
 - LLM pilot service on EDEN (OpenAI-compatible chat endpoint, one model on one H200, key on request, all conversations logged) [V].
-- Cluster status page: https://eden-status.mini.pw.edu.pl [V].
+- Cluster status page: https://eden-status.mini.pw.edu.pl [V]; Grafana: https://edenstatus.mini.pw.edu.pl/d/7I8DDL3nz/eden-overview?orgId=1 (link from the maintainer).
 - Contact and rules pages: https://hpc.mini.pw.edu.pl/contact/, https://hpc.mini.pw.edu.pl/rules/ [V].
