@@ -122,7 +122,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 ### Task 0: Approvals and access (week 1)
 
 - [ ] **Step 1:** Send the v1, v2 and SemEval access requests from pw.edu.pl addresses naming all team members (target 28 October); lecturer co-signs.
-- [ ] **Step 2:** Request the EDEN account through the supervisor; pre-download models on the login node.
+- [ ] **Step 2:** On the existing EDEN account, check partitions, time limits, quotas and compute-node internet; pre-download models on the login node.
 - [ ] **Step 3:** Write to the dataset authors: may a second team, id-list and qrel releases and EDEN storage be used; what do the timestamps mean.
 - [ ] **Step 4:** Obtain the lecturer's answers to the questions in section 12.
 
@@ -172,7 +172,7 @@ About 10 usable supervisor Wednesdays remain to the end of January 2027 (11 Nove
 
 | Gate | When | Rule |
 |---|---|---|
-| Access and account | 18 Nov | no data access: switch to a protocol-and-code deliverable on whatever record arrived; no EDEN account: core runs on CPU BM25 plus small encoders |
+| Data access | 18 Nov | no data access by then: switch to a protocol-and-code deliverable on whatever record arrived and tell the lecturer |
 | Split and schema frozen | 25 Nov | ids, cutoffs, qrels format, one results schema |
 | Answerability check | first data week | Polish strict-causal answerable at least 150: keep the Polish-English difference-in-differences as headline; 50 to 149: report it as descriptive with intervals; below 50: the headline becomes answerability and time-to-findability, Polish as a case study |
 | Core complete | 16 Dec | 4 systems x 3 protocols x 2 languages in one table with cluster-bootstrap intervals; otherwise all extended work stops |
@@ -189,14 +189,12 @@ About 10 usable supervisor Wednesdays remain to the end of January 2027 (11 Nove
 
 ## 12. Decisions requested from the lecturer
 
-1. Is Polish and English the graded scope, with extra languages optional, or is the wider set welcome (needs written sign-off)?
-2. Does the course require one team to cover both brief slots, or is a second team expected to share the split?
-3. May "reproduces from public data" be read as "reproduces for anyone granted MultiClaim access"?
-4. Will you co-sign the Zenodo requests from a pw.edu.pl address and request the EDEN account for the team?
-5. Does the faculty need an ethics statement or data-management note for restricted social-media data?
-6. Is a strong negative result (the gap is answerability, not ranking) acceptable as the main finding?
-7. Is a paper submission expected, and does a late-January course deadline conflict with ARR or SIGIR timing?
-8. Which grading weight falls on the 50-query manual analysis versus the results table?
+1. The brief asks for Polish and English. We would also like to run Spanish, German, Turkish, Czech and Slovak as an optional extra analysis, to test whether the Polish penalty depends on how large the fact-check archive is. May we add them, or should we stay with Polish and English only?
+2. The brief asks for code that reproduces both evaluations "from the public data". MultiClaim is not fully public: access must be requested and the data may not be re-shared. Is it enough that our code reproduces the results for anyone who has been granted access to MultiClaim?
+3. Will you co-sign the Zenodo access requests from a pw.edu.pl address?
+4. Does the faculty need an ethics statement or data-management note for restricted social-media data?
+5. The main finding may turn out to be that an index limited to earlier fact-checks barely changes ranking quality, and that most of the score drop comes from posts whose fact-check did not exist yet. Is such a result acceptable as the main finding?
+6. How will the project be graded: how much weight falls on the manual analysis of 50 failing queries compared with the results table, so that we can plan our effort accordingly?
 
 ## 13. Main risks and mitigations
 
@@ -215,11 +213,7 @@ The full register has 28 risks with checks and stop/go gates (Risk register). Th
 - **New:** a per-query date-restricted fact-check index for PFCR, answerability separated from ranking, a pool-size control matched to the time-restricted pool, statistics leakage for PFCR, sibling qrels, time-to-findability, the additive gap decomposition and, in the extended tier, the archive-density mechanism test.
 - **Venues:** a 2027 workshop first (FEVER, NLP4PI); SIGIR short or ACL Rolling Review only if a ranking effect appears; a CLEF temporal PFCR task proposal for 2028 at the earliest.
 
-## 15. Supporting documents
-
-Language scope (counts, power tables and options), LLM selection (model research and risks), Risk register (28 risks, first checks, supervisor questions), Topic research (novelty map and references), Literature corrections (what the first literature pass got wrong) and the 54 verified paper notes under research/.
-
-## 16. Key references
+## 15. Key references
 
 - Pikuliak et al., Multilingual Previously Fact-Checked Claim Retrieval (MultiClaim), EMNLP 2023: https://aclanthology.org/2023.emnlp-main.1027/
 - SemEval-2025 Task 7 overview: https://aclanthology.org/2025.semeval-1.323/
