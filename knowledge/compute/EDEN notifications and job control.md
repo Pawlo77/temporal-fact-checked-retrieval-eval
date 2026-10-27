@@ -25,7 +25,7 @@ How to find out that a job started, finished or failed, and how to run long work
 
 - `END` and `FAIL` are the useful pair; `TIME_LIMIT_80` warns at 80 percent of `--time` [V:slurm].
 - For arrays add `ARRAY_TASKS` or mail arrives per task, which floods an inbox [V:slurm].
-- Whether the cluster relays mail to outside addresses is [U]; test with a 1-minute job before relying on it.
+- `MailProg` is `/bin/mail`; `mail`, `mailx` and `sendmail` exist, `msmtp` does not [V:run]. A test job with `--mail-type=END,FAIL` was submitted; delivery to an outside address is confirmed only when the message arrives [U].
 - Spam filters may drop the first message: check the junk folder once.
 
 ## Alternatives without a mail relay
@@ -41,7 +41,7 @@ squeue -u $USER -o "%.10i %.9P %.20j %.8T %.10M %.10l %R"   # [V:run]
 sacct -u $USER -S today -o JobID,JobName,State,ExitCode,Elapsed,NodeList   # [V:run]
 tail -F logs/<name>_<jobid>.log                                              # [standard]
 watch -n 30 'squeue -u $USER'                                                # [standard]
-scontrol show job <jobid> | grep -E 'JobState|Reason|RunTime|StartTime|NodeList'   # [V:slurm]
+scontrol show job <jobid> | grep -E 'JobState|Reason|RunTime|StartTime|NodeList'   # [V:run]; works only for 5 minutes after a job ends, then use sacct
 ```
 
 - Run the watching shell in `tmux` so a dropped connection does not end it [V].
@@ -49,8 +49,8 @@ scontrol show job <jobid> | grep -E 'JobState|Reason|RunTime|StartTime|NodeList'
 
 ## Surviving timeouts and failures
 
-- `--signal=B:USR1@300` sends `USR1` to the batch shell 5 minutes before the limit, so the script can save a checkpoint and exit [V:slurm, U on EDEN].
-- `--requeue` lets Slurm restart a job after a node failure; the script must resume from its checkpoint and be idempotent [V:slurm, U whether requeue is allowed on EDEN].
+- `--signal=B:USR1@300` sends `USR1` to the batch shell 5 minutes before the limit, so the script can save a checkpoint and exit [V:slurm]; `KillWait` is 30 s after a kill signal [V:run].
+- `JobRequeue=1` on EDEN, so `--requeue` is allowed [V:run]; the script must resume from its checkpoint and be idempotent.
 - Write results per cell, skip cells whose output exists, and keep the grid in an array so a failed cell reruns alone ([[EDEN job templates]]).
 - Pin each cell's seed and config in its output directory so a rerun is comparable.
 - `scancel <jobid>` ends a job; `scancel -u $USER --state=PENDING` clears only the queue [V:slurm].

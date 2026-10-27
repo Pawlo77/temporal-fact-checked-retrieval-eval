@@ -22,7 +22,7 @@ updated: 2026-10-27
 - Private space deleted 3 months after expiry; reminders 1 month and 1 week before [V].
 - Blocked or expired accounts deleted after 3+ months; inactive accounts after 12+ months [V].
 - Login to EDEN may differ from the faculty gateway login [V].
-- X.509 certificate page exists in the wiki (`pl:topics:certyfikat_x509`); contents not read [U].
+- Some cluster web services (for example the wiki's Redmine) use the cluster's own CA; install the CA certificate from the wiki page `pl:topics:certyfikat_x509` (per-OS steps for Linux, Windows, macOS, Firefox) to avoid browser warnings [V:run]. Browsers can read the wiki; automated fetchers get 403 [V:run].
 
 ## Hosts
 

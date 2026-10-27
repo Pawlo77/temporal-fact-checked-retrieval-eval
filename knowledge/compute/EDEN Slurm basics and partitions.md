@@ -74,6 +74,9 @@ sacctmgr show qos format=Name,MaxWall,MaxTRESPU,Priority   # [V:slurm] may be de
 - Accounting enforces associations and limits (`AccountingStorageEnforce=associations,limits`) [V:run].
 - Default account of a new user is `null` with `MaxSubmit=0`: a job without `-A <group>` fails with `AssocMaxSubmitJobLimit` [V:run].
 - QOS seen: `normal` (default for jobs, no limits shown), `long-part` (long partition), `student` (20 submitted jobs per user, `cpu=72`, 2 `rtx6000`, `mem=1T` per user), `test-no-fairshare`, `3dgnome` [V:run].
+- `JobRequeue=1`, `KillWait=30 s`, `OverTimeLimit=0`, `bf_max_job_test=2000` [V:run].
+- `MinJobAge=300 s`: a finished job disappears from `scontrol show job` after 5 minutes; use `sacct` afterwards [V:run].
+- Accounting gather is `jobacct_gather/linux` every 30 s; no profile plugin, so `--profile` is unavailable [V:run].
 - A reservation `vllm_reservation` holds one H200 and 4 CPUs on `hopper-2` for partition `llm` until 2027-10-05 [V:run].
 
 ## Choosing where to run
@@ -97,10 +100,13 @@ sshare -l                               # fair-share state of your account [V:ru
 - A100 40 GB (`dgx-*`, 32 GPUs) is the large default pool; `hopper` (8 H100) and `hopper-2` (H200) are single nodes that fill quickly, so check `sfree` before asking for them.
 - CPU-only work: omit `--gres`; `short` and `long` contain both DGX and CPU-only `sr-*` nodes, so Slurm may place it on either; pin `-w sr-3` for a CPU node [V:slurm].
 - Many small jobs: use one array (maximum size 50000), not hundreds of separate submissions.
+- Observed demand at the probe: estimated start times for pending `hopper` and `hopper-2` jobs were 6 to 24 hours away, while a free A100 job in `short` started in about a minute [V:run].
+- `sbatch --test-only` printed the planned node and start time for an A100 request and submitted nothing [V:run]; `sprio -l` lists the priority terms (age, fair-share, QOS), with fair-share the largest [V:run].
+- `squeue -t PD -o "%i %P %D %C %b %S %R"` shows estimated start and pending reason for other people's jobs [V:run].
 - If nothing is free, shrink the request (fewer CPUs, less RAM, shorter time) instead of waiting for a big node.
 
 ## Why pending
 
-- Docs have an FAQ entry for PENDING with free-looking resources; body is a separate page, not fetched [U]. A job needed about one minute to start on a free A100 in `short` [V:run].
+- The docs FAQ page on PENDING with free-looking resources holds only the question and no answer text [V:run] (read in a browser; the page refuses automated fetches). A job needed about one minute to start on a free A100 in `short` [V:run].
 - Typical reasons: `Priority`, `Resources`, `ReqNodeNotAvail` (reservation), `AssocGrpCPURunMinutesLimit`/group limits [V:slurm].
 - Check: `squeue -u $USER -o "%.10i %.12P %.20j %.8T %.10M %.10l %R"`, `scontrol show job <id> | grep -i reason`.

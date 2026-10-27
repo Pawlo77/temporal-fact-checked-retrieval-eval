@@ -24,7 +24,7 @@ updated: 2026-10-27
 ## Install uv in home (if missing)
 
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh     # outbound internet works from the login node [V:run]; the installer itself was not run
+curl -LsSf https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 sh     # [V:run]: installed uv 0.13.6 into ~/.local/bin without touching shell profiles
 export PATH="$HOME/.local/bin:$PATH"
 uv --version
 ```
@@ -40,7 +40,11 @@ python -c "import torch; print(torch.__version__, torch.version.cuda)"
 ```
 
 - `--frozen` installs exactly `uv.lock`.
-- If the lock pins a CPU-only torch, add the CUDA index in `pyproject.toml` or run `uv pip install torch --index-url https://download.pytorch.org/whl/cu124` [U on CUDA tag].
+- Set `export UV_HTTP_TIMEOUT=120`: the default 30 s timed out on one large wheel in a compute-node job; with the larger timeout `uv sync` of a 145-package project took about 10 s from a warm cache [V:run].
+- In a batch or `srun` job `~/.local/bin` is not on `PATH`; add `export PATH="$HOME/.local/bin:$PATH"`, otherwise tests that call `uv` fail (4 of 299 failed without it, all passed with it) [V:run].
+- A project `.venv` of 145 packages was 785 MB; PyTorch with `cu128` wheels adds about 6 GB of CUDA libraries to a venv [V:run].
+- PyTorch does not install `numpy`; add it if code calls `.numpy()` [V:run].
+- If the lock pins a CPU-only torch, add the CUDA index in `pyproject.toml` or run `uv pip install torch --index-url https://download.pytorch.org/whl/cu128`; `torch 2.11.0+cu128` installed and ran on an A100 [V:run].
 - Rebuild instead of copying `.venv` from a laptop (macOS wheels do not run on Linux).
 
 ## Plain venv

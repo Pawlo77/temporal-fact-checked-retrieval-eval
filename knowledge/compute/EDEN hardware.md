@@ -41,6 +41,7 @@ updated: 2026-10-27
 
 - Snapshot from `sfree` (2026-10-27): A100 nodes had 0 to 8 of 8 GPUs free, `hopper` 2 of 8, `hopper-2` 5 of 12 gres, `pascal` 4 of 4; it varies by the hour [V:run].
 - P100 lacks bf16 and flash-attention support; use fp16 or skip [U].
+- CPUs seen: AMD EPYC 7742 on the A100 node, Xeon E5-2695 v4 on `pascal` [V:run].
 - `sr-*` nodes (CPU-only, about 1 TiB RAM visible to Slurm, 48 cores) take CPU-only jobs in partitions `short` and `long` [V:run].
 - Login node: Ubuntu 24.04, 8 cores, 62 GB RAM, no GPU, shared by many users at once; keep heavy work off it [V:run].
 - `stud-*` nodes and a `student` partition are not visible to an account in the `researchers` group [V:run].

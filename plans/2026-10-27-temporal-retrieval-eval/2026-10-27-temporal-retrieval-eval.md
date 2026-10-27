@@ -139,7 +139,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 ### Task 0: Approvals and access (week 1)
 
 - [ ] **Step 1:** Send the v1, v2 and SemEval access requests from pw.edu.pl addresses naming all team members (target 28 October); supervisor co-signs.
-- [ ] **Step 2:** On the existing EDEN account, check partitions, time limits, quotas and compute-node internet; pre-download models on the login node.
+- [x] **Step 2:** On the existing EDEN account, partitions, time limits, quotas, compute-node internet and a project install were checked on 2026-10-27 (compute notes); remaining: pre-download models on the login node.
 - [ ] **Step 3:** Write to the dataset authors: may id-list and qrel releases and EDEN storage be used; what do the timestamps mean.
 - [ ] **Step 4:** Obtain the supervisor's answers to the questions in section 12 (co-signing, ethics statement, grading weights).
 

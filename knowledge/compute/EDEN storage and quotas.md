@@ -18,7 +18,7 @@ updated: 2026-10-27
 |---|---|---|---|
 | `/home2/<group>/<user>` | shared: login node + `dgx-[1-4]` | DDN array, HDD | default for code, venvs, results [V] |
 | `/mnt/evafs/groups/<group>/` | group-shared | storage array (path from cheat sheet) | corpora, embeddings, HF cache; `/mnt/evafs/groups/<group>` exists for many groups [V:run] |
-| `/scratch` | shared: login + DGX | 24 NVMe, 332.6 TiB | temporary data during computation only [V]; `/scratch/shared` exists on the login node but not on `dgx-2` [V:run] |
+| `/scratch` | shared: login + DGX | 24 NVMe, 332.6 TiB | temporary data during computation only [V]; `/scratch/shared` exists on the login node but `/scratch` is absent on `dgx-2` and `pascal` [V:run] |
 | `/raid` | per DGX, not shared | 4x NVMe RAID 0 | I/O-heavy job-local data [V] |
 | `/mnt/workspace/dgx-[1-4]` | login node view of each `/raid` | NFS | fetch results from a DGX `/raid` [V] |
 
@@ -26,6 +26,7 @@ updated: 2026-10-27
 - Each user has a private space and a group space on the array, capped separately [V].
 - Users in several groups get each group space [V].
 - A full group space blocks new writes for the whole group [V].
+- `/mnt/evafs/groups/<group>` is owned by `root:<group>` with mode `2770`; it is writable only for members of that Unix group. A Slurm account name does not imply Unix membership: an account in the `researchers` group but not in `<group>` could list the parent and not write [V:run]; check with `id`.
 - Numeric quotas are not published [V that absent; values U].
 - Local node disks are shared and temporary; remove or archive after a run [V].
 
@@ -54,7 +55,7 @@ lfs quota -h -g <unix-group> /mnt/evafs   # group usage [V:run]; the `researcher
 - `df -h $HOME` reports a 200 GB filesystem for the home mount although the user quota is unlimited; treat 200 GB as the practical home limit until tested [V:run]; use group space for large data.
 - `$HOME` is `/home2/faculty/<user>` [V:run].
 - A compute node has a local `/` of 1.8 TB (about 1.6 TB free) and `/dev/shm` of 504 GB; both are local and temporary [V:run].
-- `/raid` does not exist on the login node, as expected for a per-DGX mount [V:run].
+- `/raid` does not exist on the login node or on `pascal`, and exists on `dgx-2` [V:run].
 
 ## Retention and backup
 

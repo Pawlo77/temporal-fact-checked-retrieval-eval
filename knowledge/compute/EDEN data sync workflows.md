@@ -15,7 +15,7 @@ updated: 2026-10-27
 ## Principles
 
 - Code via git or rsync; data once to group storage; results back by rsync [U, practice].
-- Whether gateway home and cluster home share a filesystem is unknown [U]; the cheat sheet syncs in two hops.
+- Gateway home and cluster home are separate (the gateway home is on an NFS share, and a directory present on the cluster home was absent there) [V:run]; direct `rsync -az ./ eden:path/` through the jump host works [V:run], so the two-hop copy is unnecessary.
 - Prefer the direct jump-host form (one command) [V that jump form works for ssh].
 - Never sync secrets (`.env`, tokens, ssh keys).
 - `--exclude='.*'` also drops `.git`, `.venv`, `.env`; list excludes explicitly when you need `.git`.

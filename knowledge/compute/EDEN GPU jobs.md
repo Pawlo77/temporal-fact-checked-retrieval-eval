@@ -67,9 +67,11 @@ PY
 
 - `CUDA_ERROR_UNSUPPORTED_PTX_VERSION (222)`: library or PTX mismatch; recompile on the host where it runs or use wheels built for that architecture [V].
 - Architectures differ across A100 (sm_80), H100/H200 (sm_90), P100 (sm_60), Blackwell (sm_120); use recent torch wheels (cu12x) [U on exact versions].
-- Blackwell RTX 6000 needs a torch build with sm_120 support [U].
+- A P100 (`pascal`, sm_60): `torch 2.11.0+cu128` loaded but every matmul failed with an accelerator error, although `torch.cuda.is_bf16_supported()` returned True; use an older torch with sm_60 kernels or another GPU, and do not trust that flag on Pascal [V:run].
+- A100 (sm_80): `torch 2.11.0+cu128` works, bf16 supported, host-to-GPU copy 9.9 GiB/s with pinned memory [V:run].
+- Blackwell RTX 6000 needs a torch build with sm_120 support [U]; H100 and H200 (sm_90) were not probed because their queues were hours long [V:run].
 - `CUDA out of memory`: lower batch size, use fp16/bf16, sort by length, free cache (`torch.cuda.empty_cache()`).
-- bf16 requires Ampere or newer; on P100 use fp16 [U].
+- bf16 requires Ampere or newer; the P100 reported bf16 as supported yet failed (see above), so use fp16 or skip it [V:run].
 
 ## VRAM sizing rules of thumb [U]
 
