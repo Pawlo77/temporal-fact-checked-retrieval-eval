@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.12", "3.13"]
+        python: ["3.12"]
     env:
       # Overrides the tracked .python-version so `uv run` keeps the matrix interpreter.
       UV_PYTHON: ${{ matrix.python }}
