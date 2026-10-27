@@ -11,6 +11,32 @@ related:
   - "[[Literature corrections]]"
   - "[[Research]]"
   - "[[Language scope]]"
+  - "[[MultiClaim]]"
+  - "[[SemEval-2025 Task 7]]"
+  - "[[TREC 2011 Microblog]]"
+  - "[[Role of Context in PFCR]]"
+  - "[[StreamingQA]]"
+  - "[[TIFIN India]]"
+  - "[[AMC-16K]]"
+  - "[[MultiClaimNet]]"
+  - "[[Missing Counter-Evidence]]"
+  - "[[AVeriTeC]]"
+  - "[[Complex Claim Verification in the Wild]]"
+  - "[[Chronological Splits Rumor Detection]]"
+  - "[[LongEval 2023]]"
+  - "[[Temporal Leakage in Date-Filtered Web Retrieval]]"
+  - "[[We Need to Talk about Standard Splits]]"
+  - "[[We Need to Talk about Random Splits]]"
+  - "[[Mind the Gap]]"
+  - "[[Multilingual vs Crosslingual Retrieval]]"
+  - "[[Multilingual E5]]"
+  - "[[BGE-M3]]"
+  - "[[mmlw-retrieval-roberta-large]]"
+  - "[[PIRB]]"
+  - "[[LaBSE]]"
+  - "[[bge-reranker-v2-m3]]"
+  - "[[polish-reranker-roberta-v3]]"
+  - "[[Qwen3 Embedding]]"
 ---
 # Topic research
 
@@ -216,55 +242,3 @@ Previously fact-checked claim retrieval (PFCR) is scored on [[MultiClaim]] and [
 - Reranking robustness under causal pools: subsumed by S4 and S5 rows.
 - Parametric leakage of LLM rerankers as a standalone paper: novel, but needs clean post-cutoff queries (MultiClaim v2 up to April 2025 helps); kept as RQ5.
 - Veracity of retrieved claims, new retrievers, language-bias study: out of scope by the brief.
-
-## Reference list
-
-Per-paper verification notes are in `research/`; corrections in [[Literature corrections]].
-
-- Ounis, Macdonald, Lin, Soboroff 2011, Overview of the TREC-2011 Microblog Track, TREC 2011: https://trec.nist.gov/pubs/trec20/papers/MICROBLOG.OVERVIEW.pdf ; note [[TREC 2011 Microblog]]
-- [[That is a Known Lie|Shaar et al. 2020]], That is a Known Lie, ACL: https://aclanthology.org/2020.acl-main.332/ ; note [[That is a Known Lie]]
-- Shaar, Alam, Da San Martino, Nakov 2022, The Role of Context in Detecting Previously Fact-Checked Claims, Findings NAACL, pp. 1619-1631: https://aclanthology.org/2022.findings-naacl.122/ ; arXiv: https://arxiv.org/abs/2104.07423 ; note [[Role of Context in PFCR]]
-- [[MultiClaim|Pikuliak et al. 2023]], Multilingual Previously Fact-Checked Claim Retrieval ([[MultiClaim]]), EMNLP: https://aclanthology.org/2023.emnlp-main.1027/ ; arXiv HTML with tables: https://arxiv.org/html/2305.07991v2 ; note [[MultiClaim]]
-- MultiClaim v1 Zenodo record: https://zenodo.org/records/7737983 ; note [[MultiClaim Zenodo Records]]
-- MultiClaim v2 Zenodo record: https://zenodo.org/records/15413169
-- [[MultiClaim]] code: https://github.com/kinit-sk/multiclaim
-- [[SemEval-2025 Task 7|Peng et al.]] 2025, [[SemEval-2025 Task 7]] overview: https://aclanthology.org/2025.semeval-1.323/ ; note [[SemEval-2025 Task 7]]
-- [[SemEval-2025 Task 7]] data on Zenodo: https://zenodo.org/records/14989176
-- Devadiga et al. 2025, [[TIFIN India]] at SemEval-2025, SemEval: https://aclanthology.org/2025.semeval-1.299/ ; note [[TIFIN India]]
-- Ramponi, Rovera, Moro, Tonelli 2025, Multilingual vs Crosslingual Retrieval of Fact-Checked Claims, EMNLP: https://aclanthology.org/2025.emnlp-main.1480/ ; note [[Multilingual vs Crosslingual Retrieval]]
-- Vykopal et al. 2025, LLMs for Multilingual Previously Fact-Checked Claim Detection ([[AMC-16K]]), Findings EMNLP: https://aclanthology.org/2025.findings-emnlp.852/ ; note [[AMC-16K]]
-- Vykopal et al. 2025, A Generative-AI-Driven Claim Retrieval System, arXiv preprint: https://arxiv.org/abs/2504.20668 ; note [[Generative-AI Claim Retrieval]]
-- [[Language and Retrieval Bias|Vykopal et al. 2026]], Investigating Language and Retrieval Bias in Multilingual PFCD, EACL: https://aclanthology.org/2026.eacl-long.240/ ; note [[Language and Retrieval Bias]]
-- [[MultiClaimNet|Panchendrarajan et al. 2025]], [[MultiClaimNet]], Findings EMNLP: https://aclanthology.org/2025.findings-emnlp.599/ ; data: https://zenodo.org/records/15100352 ; note [[MultiClaimNet]]
-- [[Claim Matching Beyond English|Kazemi et al. 2021]], Claim Matching Beyond English, ACL: https://aclanthology.org/2021.acl-long.347/ ; note [[Claim Matching Beyond English]]
-- [[CrowdChecked|Hardalov et al. 2022]], [[CrowdChecked]], AACL: https://aclanthology.org/2022.aacl-main.22/ ; note [[CrowdChecked]]
-- Shaar et al. 2021, [[CheckThat 2021 Task 2|CheckThat! 2021 Task 2]] overview, CEUR-WS: https://ceur-ws.org/Vol-2936/paper-29.pdf ; note [[CheckThat 2021 Task 2]]
-- Nakov et al. 2022, [[CheckThat 2022 Task 2|CheckThat! 2022 Task 2]] overview, CEUR-WS: https://ceur-ws.org/Vol-3180/paper-29.pdf ; note [[CheckThat 2022 Task 2]]
-- Struss et al. 2026, The CLEF-2026 CheckThat! Lab, ECIR: https://arxiv.org/abs/2602.09516 ; site: https://checkthat.gitlab.io/ ; note [[CheckThat 2026]]
-- [[Missing Counter-Evidence|Glockner et al. 2022]], [[Missing Counter-Evidence]], EMNLP: https://aclanthology.org/2022.emnlp-main.397/ ; note [[Missing Counter-Evidence]]
-- Schlichtkrull et al. 2023, [[AVeriTeC]], NeurIPS Datasets and Benchmarks: https://arxiv.org/abs/2305.13117 ; note [[AVeriTeC]]
-- [[Complex Claim Verification in the Wild|Chen et al. 2024]], Complex Claim Verification with Evidence Retrieved in the Wild, NAACL: https://aclanthology.org/2024.naacl-long.196/ ; note [[Complex Claim Verification in the Wild]]
-- [[Chronological Splits Rumor Detection|Mu et al. 2023]], It's about Time: chronological splits for rumour detection, Findings EACL: https://aclanthology.org/2023.findings-eacl.55/ ; note [[Chronological Splits Rumor Detection]]
-- Ji, Sun, Zhang, Li 2023, A Critical Study on Data Leakage in Recommender System Offline Evaluation, TOIS: https://dl.acm.org/doi/10.1145/3569930 ; note [[Data Leakage in Recommender Evaluation]]
-- Le, Liu, Medlar, Glowacka 2025, Don't Get Ahead of Yourself: A Critical Study on Data Leakage in Offline Evaluation of Sequential Recommenders, RecSys '25, pp. 1164-1168 (extended abstract): https://dl.acm.org/doi/10.1145/3705328.3759329 ; note [[Dont Get Ahead of Yourself]]
-- Alkhalifa et al. 2023, Overview of the CLEF-2023 [[LongEval 2023|LongEval]] Lab on Longitudinal Evaluation of Model Performance, CLEF 2023 (LNCS), pp. 440-458: https://link.springer.com/chapter/10.1007/978-3-031-42448-9_28 ; extended overview CEUR-WS Vol-3497 paper 184 ; note [[LongEval 2023]]
-- [[StreamingQA|Liska et al. 2022]], [[StreamingQA]], ICML (PMLR 162): https://proceedings.mlr.press/v162/liska22a.html ; note [[StreamingQA]]
-- [[We Need to Talk about Standard Splits|Gorman and Bedrick 2019]], We Need to Talk about Standard Splits, ACL: https://aclanthology.org/P19-1267/ ; note [[We Need to Talk about Standard Splits]]
-- [[We Need to Talk about Random Splits|Søgaard et al. 2021]], We Need To Talk About Random Splits, EACL: https://aclanthology.org/2021.eacl-main.156/ ; note [[We Need to Talk about Random Splits]]
-- [[Mind the Gap|Lazaridou et al. 2021]], Mind the Gap, NeurIPS: https://proceedings.neurips.cc/paper/2021/hash/f5bf0ba0a17ef18f9607774722f5698c-Abstract.html ; note [[Mind the Gap]]
-- El Lahib, Xia, Li, Wang, Pi 2026, Temporal Leakage in Search-Engine Date-Filtered Web Retrieval, ACL 2026 short: https://aclanthology.org/2026.acl-short.65/ ; note [[Temporal Leakage in Date-Filtered Web Retrieval]]
-- Zhang and Stadie 2026, [[All Leaks Count|All Leaks Count, Some Count More]]: temporal contamination in LLM backtesting, Findings EMNLP: https://aclanthology.org/2026.findings-emnlp.1690/ ; note [[All Leaks Count]]
-- Li, Wang, El Lahib, Xia, Pi 2026, [[Simulated Ignorance Fails]]: A Systematic Study of LLM Behaviors on Forecasting Problems Before Model Knowledge Cutoff, IJCAI 2026: https://ijcai.org/proceedings/2026/650 ; arXiv 2601.13717 ; note [[Simulated Ignorance Fails]]
-- Wang et al. 2024, [[Multilingual E5]] Text Embeddings: A Technical Report, arXiv technical report: https://arxiv.org/abs/2402.05672 ; note [[Multilingual E5]]
-- [[Complex Claim Verification in the Wild|Chen et al. 2024]], M3-Embedding ([[BGE-M3]]), Findings ACL: https://aclanthology.org/2024.findings-acl.137/ ; note [[BGE-M3]]
-- Feng et al. 2022, [[LaBSE]], ACL: https://aclanthology.org/2022.acl-long.62/ ; note [[LaBSE]]
-- Zhang et al. 2025, [[Qwen3 Embedding]], arXiv technical report: https://arxiv.org/abs/2506.05176 ; note [[Qwen3 Embedding]]
-- Dadas et al. 2024, [[PIRB]], LREC-COLING: https://aclanthology.org/2024.lrec-main.1117/ ; note [[PIRB]]
-- sdadas/[[mmlw-retrieval-roberta-large]]: https://huggingface.co/sdadas/mmlw-retrieval-roberta-large ; note [[mmlw-retrieval-roberta-large]]
-- sdadas/[[polish-reranker-roberta-v3]]: https://huggingface.co/sdadas/polish-reranker-roberta-v3 ; note [[polish-reranker-roberta-v3]]
-- BAAI/[[bge-reranker-v2-m3]]: https://huggingface.co/BAAI/bge-reranker-v2-m3 ; note [[bge-reranker-v2-m3]]
-- ACL 2027 call for main conference papers: https://2027.aclweb.org/calls/main/
-- SIGIR 2027 dates: https://sigir2027.org/
-- ECIR 2027 resource papers call: https://www.ecir2027.co.uk/call-for-resource-papers
-- FEVER workshop: https://fever.ai/
-- NLP4PI 2026 proceedings: https://aclanthology.org/2026.nlp4pi-1.0.pdf

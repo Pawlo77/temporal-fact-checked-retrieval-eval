@@ -25,6 +25,10 @@ related:
   - "[[All Leaks Count]]"
   - "[[Temporal Leakage in Date-Filtered Web Retrieval]]"
   - "[[LLM Temporal Leakage]]"
+  - "[[MultiClaim]]"
+  - "[[CAISA]]"
+  - "[[Panel of LLM Evaluators]]"
+  - "[[LLM Judges Favour LLM Rankers]]"
 ---
 # LLM selection and single-model risk
 
@@ -54,7 +58,7 @@ Yes, a single family is a real research risk, and the largest one sits in RQ5 an
 | API drift and non-determinism | Reproducibility of reranker and judge rows | GPT-4 prime identification fell from 84% (March 2023) to 51% (June 2023) (Chen et al., arXiv 2307.09009); "deterministic" settings still swing accuracy up to 15% across runs (Atil et al., arXiv 2408.04667) | Open weights with commit hashes; temperature 0, fixed seed, cached outputs; API only as a dated ceiling row |
 | Licence and data-access terms | Data release; any API call | MultiClaim is research-only with no re-sharing ([[Topic research]]); Gemma terms, Llama 3.3 Community License, Command A CC-BY-NC, Mistral Research License (model cards) | Local inference only for post text; release prompts, ids and labels, never text; record each licence in the results table |
 | Language coverage | Seven-language dose-response ([[Language scope]]) | Llama 3.3 does not list Polish; Qwen3 lists Polish among 119 languages; Gemma 3 over 140; Command A and Mistral Large list Polish (model cards) | Prefer models listing Polish; run the LLM reranker on Polish and English first, as the scope plan says |
-| Contamination with fact-check sites | RQ1 to RQ5 for every pretrained model | Contamination inflates fake-news detection scores by up to 23% across 17 LLMs (TripleFact, ACL 2025); fact-check-site claims stay easy after cutoffs (Chen, Huang and Dhingra, arXiv 2410.14651); Qwen3 embedders are trained on queries generated from the Qwen3 pretraining corpus ([[Qwen3 Embedding]]) | Exposure indicator per gold fact-check for open-data models; stratify, never claim leakage removed |
+| Contamination with fact-check sites | RQ1 to RQ5 for every pretrained model | Injecting benchmark data into one model's fine-tuning raised its fake-news F1 from 0.62 to 0.85, a 23-point rise in one model, not a measured inflation of the 17 evaluated LLMs (TripleFact, ACL 2025); fact-check-site claims stay easy after cutoffs (Chen, Huang and Dhingra, arXiv 2410.14651); Qwen3 embedders are trained on queries generated from the Qwen3 pretraining corpus ([[Qwen3 Embedding]]) | Exposure indicator per gold fact-check for open-data models; stratify, never claim leakage removed |
 | Cost and compute | W3 timeline | RankGPT reranking cost about $50 per test experiment ([[Multilingual vs Crosslingual Retrieval]]); a three-family panel was over seven times cheaper than a single GPT-4 judge (Verga et al., arXiv 2404.18796) | Open weights on HPC; rerank top 30 to 50 only; cache every call |
 
 ## What other papers use
@@ -62,7 +66,7 @@ Yes, a single family is a real research risk, and the largest one sits in RQ5 an
 | Paper | Role | Models | Languages | Result |
 |---|---|---|---|---|
 | [[TIFIN India]] (SemEval-2025) | Listwise reranker of top 50, RRF fusion | Qwen2.5-72B-Instruct | Translated to English; Polish test | S@10 0.938 mono, Polish 0.886; reranking adds 0.025 |
-| [CAISA (SemEval-2025)](https://aclanthology.org/2025.semeval-1.183/) | Post-filtering of retrieved claims | Llama-3-8B-Instruct | Task languages | S@10 55.7% reported |
+| [[CAISA|CAISA (SemEval-2025)]] | Post-filtering of retrieved claims | Llama-3-8B-Instruct | Task languages | S@10 55.7% reported |
 | [[SemEval-2025 Task 7]] overview | Shared task | Winner (PINGAN AI) undescribed | 8 train languages, Polish and Turkish test-only | Polish S@10 0.882 to 0.926 for top four teams |
 | [[Multilingual vs Crosslingual Retrieval]] (Ramponi et al., EMNLP 2025) | LLM reranker of top 30 | RankGPT; backbone LLM not named in the paper | 47 languages, no Polish breakdown | MRR@10 0.8042 multilingual, 0.6140 crosslingual with multilingual-e5-large |
 | [[AMC-16K]] (Vykopal et al., Findings EMNLP 2025) | Pairwise relevance classifier | Mistral Large 123B, Command R+ 104B, Qwen2.5 72B and 7B, Llama3.1 70B and 8B, Mistral 7B | 20 languages incl. 400 Polish pairs | Best macro F1 82.46 mono, 80.54 cross (Mistral Large, few-shot); 70B+ significantly better |
@@ -75,8 +79,8 @@ Yes, a single family is a real research risk, and the largest one sits in RQ5 an
 | [[Simulated Ignorance Fails]] (IJCAI 2026) | Cutoff probe | Nine models, cutoffs April 2024 to January 2025 | English | Prompted cutoff closes 48% of the gap |
 | [[All Leaks Count]] (Findings EMNLP 2026) | Claim-level leakage audit | Qwen3.5-35B, Kimi-K2.5, Claude Sonnet 4 | English | Date-filtered RAG raises leakage 2.5 to 4.7 times |
 | [[Temporal Leakage in Date-Filtered Web Retrieval]] (ACL 2026) | Leakage judge | gpt-oss-120b (same model as forecaster) | English | Quadratic weighted kappa 0.85 with humans on 134 documents |
-| [Verga et al., 2024 (PoLL)](https://arxiv.org/abs/2404.18796) | Judge panel | Command R, Haiku, GPT-3.5 vs GPT-4 | English | Kappa with humans 0.763 vs 0.627 (NQ), max voting |
-| [Balog et al., SIGIR 2025](https://arxiv.org/abs/2503.19092) | LLM relevance judge vs rankers | LLM judges and LLM rankers on TREC DL 2019/2020 | English | Significant judge bias towards LLM-based rankers |
+| [[Panel of LLM Evaluators|Verga et al., 2024 (PoLL)]] | Judge panel | Command R, Haiku, GPT-3.5 vs GPT-4 | English | Kappa with humans 0.763 vs 0.627 (NQ), max voting |
+| [[LLM Judges Favour LLM Rankers|Balog et al., SIGIR 2025]] | LLM relevance judge vs rankers | LLM judges and LLM rankers on TREC DL 2019/2020 | English | Significant judge bias towards LLM-based rankers |
 
 ## Proposed model set
 
@@ -123,29 +127,3 @@ Yes, a single family is a real research risk, and the largest one sits in RQ5 an
 - Gap decomposition: narrative drift judged by the same panel; report Fleiss' and Cohen's kappa.
 - Main risks and [[Risk register]]: add "single-family LLM dependence" with this note as mitigation; Deliverables: add released prompts, model hashes and the response cache index.
 - Language scope: LLM rerankers stay on Polish and English ([[Language scope]]); judges run on all languages only after per-language validation.
-
-## References
-
-- Qwen3 blog (languages, licence, no cutoff): https://qwenlm.github.io/blog/qwen3/
-- Qwen3 Embedding report: https://arxiv.org/abs/2506.05176
-- Gemma 3 model card (cutoff August 2024): https://ai.google.dev/gemma/docs/core/model_card_3 ; https://huggingface.co/google/gemma-3-27b-it
-- Apertus report (cutoff March 2024, Goldfish loss, robots.txt with hindsight): https://arxiv.org/abs/2509.14233 ; card: https://huggingface.co/swiss-ai/Apertus-70B-Instruct-2509
-- Olmo 3 32B card (cutoff December 2024, English): https://huggingface.co/allenai/Olmo-3-1125-32B
-- Llama 3.3 70B card (cutoff December 2023, languages): https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct
-- Bielik 11B v3: https://huggingface.co/speakleash/Bielik-11B-v3.0-Instruct ; https://arxiv.org/abs/2601.11579
-- PLLuM family: https://arxiv.org/abs/2511.03823
-- gpt-oss-120b: https://huggingface.co/openai/gpt-oss-120b
-- Command A: https://huggingface.co/CohereLabs/c4ai-command-a-03-2025
-- Mistral Large 2411: https://huggingface.co/mistralai/Mistral-Large-Instruct-2411
-- Ramponi et al. 2025: https://aclanthology.org/2025.emnlp-main.1480/
-- SemEval-2025 Task 7: https://aclanthology.org/2025.semeval-1.323/ ; TIFIN India: https://aclanthology.org/2025.semeval-1.299/ ; CAISA: https://aclanthology.org/2025.semeval-1.183/
-- AMC-16K: https://aclanthology.org/2025.findings-emnlp.852/ ; Language and Retrieval Bias: https://aclanthology.org/2026.eacl-long.240/ ; Generative-AI claim retrieval: https://arxiv.org/abs/2504.20668
-- Cheng et al. 2024, Dated Data: https://arxiv.org/abs/2403.12958
-- Simulated Ignorance Fails: https://ijcai.org/proceedings/2026/650 ; All Leaks Count: https://aclanthology.org/2026.findings-emnlp.1690/ ; date-filtered retrieval: https://aclanthology.org/2026.acl-short.65/
-- TripleFact: https://aclanthology.org/2025.acl-long.431/ ; Chen, Huang, Dhingra: https://arxiv.org/abs/2410.14651
-- Panickssery et al. 2024: https://proceedings.neurips.cc/paper_files/paper/2024/hash/7f1f0218e45f5414c79c0679633e47bc-Abstract-Conference.html
-- Verga et al. 2024, PoLL: https://arxiv.org/abs/2404.18796
-- Self-preference in rubric evaluation: https://arxiv.org/abs/2604.06996
-- Balog, Metzler, Qin, SIGIR 2025: https://arxiv.org/abs/2503.19092
-- Clarke and Dietz: https://arxiv.org/abs/2412.17156
-- Chen, Zaharia, Zou: https://arxiv.org/abs/2307.09009 ; Atil et al.: https://arxiv.org/abs/2408.04667

@@ -15,6 +15,7 @@ PFCR and claim-matching methods, systems and evaluation studies: how posts are m
 - That split restricts training data only; no date-restricted verified-claim pool is described.
 - [[Multilingual vs Crosslingual Retrieval]] finds LLM reranking best on a 47-language v2 subset, with random stratified splits.
 - [[TIFIN India]] (translate, fine-tune with hard negatives, rerank the top 50) is a leakage-testable recipe: Success@10 0.938.
+- [[CAISA]] filters 500 embedder candidates with Llama-3 8B-Instruct: Success@10 57.7%, no temporal analysis.
 - [[Generative-AI Claim Retrieval]] offers date filtering as a user feature, not as an evaluation protocol.
 - Open: rerankers add little over a fine-tuned retriever, so gains must be reported separately under full and causal pools.
 
@@ -27,3 +28,4 @@ PFCR and claim-matching methods, systems and evaluation studies: how posts are m
 | [[Multilingual vs Crosslingual Retrieval]] | 2025 | On 47 languages of MultiClaim v2, LLM reranking and similarity-mined negatives win; crosslingual retrieval behaves differently. |
 | [[TIFIN India]] | 2025 | Translate to English, fine-tune Stella with hard negatives, rerank with Qwen2.5-72B: Success@10 0.938 at SemEval-2025 Task 7. |
 | [[Generative-AI Claim Retrieval]] | 2025 | Retrieval, LLM filtering, summaries and verdicts for fact-checkers; date filtering through embeddings fails. |
+| [[CAISA]] | 2025 | Jina, e5 or MPNet keep 500 candidates, zero-shot Llama-3 8B-Instruct scores relevance: Success@10 57.7% in the crosslingual track. |

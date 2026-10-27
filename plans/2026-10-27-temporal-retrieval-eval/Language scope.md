@@ -8,8 +8,16 @@ created: 2026-10-27
 updated: 2026-10-27
 related:
   - "[[Original Task]]"
-  - "[[2026-10-27-temporal-retrieval-eval|Project plan]]"
+  - "[[2026-10-27-temporal-retrieval-eval]]"
   - "[[Topic research]]"
+  - "[[SemEval-2025 Task 7]]"
+  - "[[Language and Retrieval Bias]]"
+  - "[[AMC-16K]]"
+  - "[[MultiClaim]]"
+  - "[[Multilingual vs Crosslingual Retrieval]]"
+  - "[[MultiClaimNet]]"
+  - "[[Role of Context in PFCR]]"
+  - "[[CheckThat 2026]]"
 ---
 # Language scope
 
@@ -152,13 +160,3 @@ Within-language query-level slope of hit on log10 causal pool size (linear proba
 - Single-outlet languages (cs, sk) confound archive size with one outlet's practice; leave-one-language-out and outlet-level random effects (aggregate only, no ranked outlet list) mitigate it.
 - Scope perception: a reviewer or the supervisor may still read seven languages as a language study; the reporting rules above and a one-line statement distinguishing it from [[Language and Retrieval Bias|Vykopal et al. (EACL 2026)]] address it.
 - Compute: reranking roughly triples; subsample English and Spanish queries and cap top-k at 100.
-
-## References
-
-- [[MultiClaim]] ([[MultiClaim|Pikuliak et al.]], EMNLP 2023), Tables 5-7: https://arxiv.org/html/2305.07991v2 ; https://aclanthology.org/2023.emnlp-main.1027/
-- MultiClaim v2 Zenodo record: https://zenodo.org/records/15413169
-- [[SemEval-2025 Task 7]] overview ([[SemEval-2025 Task 7|Peng et al.]]), Tables 2-4: https://aclanthology.org/2025.semeval-1.323.pdf
-- [[Multilingual vs Crosslingual Retrieval|Ramponi et al. 2025]], Multilingual vs Crosslingual Retrieval of Fact-Checked Claims, Table 1 and Table 4: https://arxiv.org/html/2505.22118v2 ; https://aclanthology.org/2025.emnlp-main.1480/
-- [[Language and Retrieval Bias|Vykopal et al. 2026]], Investigating Language and Retrieval Bias in Multilingual PFCD, EACL: https://aclanthology.org/2026.eacl-long.240/ ; https://arxiv.org/abs/2509.25138
-- [[MultiClaimNet]]: https://arxiv.org/abs/2503.22280
-- [[CheckThat 2026|CheckThat! 2026]] lab overview: https://arxiv.org/abs/2602.09516
