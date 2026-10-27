@@ -8,6 +8,7 @@ arxiv: "{{ARXIV ID}}"
 doi: "{{DOI}}"
 url: "{{URL OF PUBLISHED VERSION, ELSE ARXIV}}"
 citekey: {{firstauthor}}{{year}}{{firstword}}
+verified: {{YYYY-MM-DD}}
 theme: "[[{{THEME}}]]"
 tags: [type/paper, theme/{{theme-slug}}, topic/{{topic}}]
 ---
@@ -52,8 +53,3 @@ Intuition: {{one sentence in plain words}}.
 
 - **Done:** {{direction the paper names}}; [{{Later author}} et al., {{YEAR}}]({{verified URL}}).
 - **Open:** {{gap no later work closes}} (searched {{YYYY-MM}}).
-
-## Verification
-
-- Sources: {{arXiv record, Crossref DOI, proceedings page}}.
-- Verified on {{YYYY-MM-DD}}.

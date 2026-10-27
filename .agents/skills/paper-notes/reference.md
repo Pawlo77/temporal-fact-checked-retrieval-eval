@@ -46,7 +46,6 @@ File names are the paper's short name (method or system name), never `Year - Aut
 | `> [!failure] Limitations` | One bullet per failure mode |
 | `## Relation to our project` | What we take, test or avoid; links to project notes |
 | `## Future work` | Bullets led by `**Done:**` or `**Partly done:**` (with a verified link) or `**Open:**` ending `(searched YYYY-MM)` |
-| `## Verification` | Sources checked and `Verified on YYYY-MM-DD` |
 
 Whole note: 500–1500 words.
 
@@ -86,5 +85,5 @@ Other notes: `type/hub`, `type/theme`.
 `title` (short name = filename = heading), `aliases` (official title first), `authors`
 (full names, published order), `year`, `venue` (with volume and pages), `arxiv` and/or
 `doi`, `url` (published version, else arXiv), `citekey`
-(`<firstauthor><year><firstword>`), `theme`, `tags`. `scripts/verify_citation.py` must
+(`<firstauthor><year><firstword>`), `verified` (`YYYY-MM-DD` the citation and full text were checked; there is no Verification section), `theme`, `tags`. `scripts/verify_citation.py` must
 print `OK` for the note.
