@@ -79,7 +79,7 @@ Query post $q$ with time $t_q$; fact-check $f$ with time $t_f$; pool $P$; causal
 Paper notes carry `type/paper`, one `theme/` and one or more `topic/`:
 
 - `theme/`: `datasets`, `methods`, `bias`, `verification-leakage`, `chronological`, `llm-leakage`, `splits`, `models`, `llm-evaluated`, `llm-judge-model`, `llm-judging`.
-- `topic/`: `multilingual`, `polish`, `english`, `temporal`, `leakage`, `dense-retrieval`, `reranking`, `bm25`, `evaluation`, `significance`, `benchmark`, `shared-task`, `embedding`, `llm`, `recsys` (add values here before using them).
+- `topic/`: `multilingual`, `polish`, `english`, `temporal`, `leakage`, `dense-retrieval`, `reranking`, `bm25`, `evaluation`, `significance`, `benchmark`, `shared-task`, `embedding`, `llm`, `recsys`, `judge-bias`, `reproducibility` (add values here before using them).
 
 Other notes: `type/hub`, `type/theme`.
 
