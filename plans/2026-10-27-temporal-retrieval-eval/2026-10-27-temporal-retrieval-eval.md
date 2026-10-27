@@ -14,6 +14,7 @@ related:
   - "[[LLM selection]]"
   - "[[Risk register]]"
   - "[[Literature corrections]]"
+  - "[[Expansion options]]"
   - "[[Research]]"
   - "[[Qwen3 Embedding]]"
   - "[[Gemma 3]]"
