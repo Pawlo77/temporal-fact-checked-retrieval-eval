@@ -2,7 +2,7 @@
 title: "EDEN access and networking"
 type: handbook
 domain: vault
-parent: "[[EDEN overview]]"
+parent: "[[compute]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
@@ -85,6 +85,6 @@ ssh -L <port>:<node>:<port> -J <mini-login>@<mini-ssh-gateway> <user>@<eden-logi
 
 ## Other services
 
-- LLM pilot service on EDEN (OpenAI-compatible chat endpoint, one model on one H200, key on request, all conversations logged) [V]; not used by this project.
+- LLM pilot service on EDEN (OpenAI-compatible chat endpoint, one model on one H200, key on request, all conversations logged) [V].
 - Cluster status page: https://eden-status.mini.pw.edu.pl [V].
 - Contact and rules pages: https://hpc.mini.pw.edu.pl/contact/, https://hpc.mini.pw.edu.pl/rules/ [V].

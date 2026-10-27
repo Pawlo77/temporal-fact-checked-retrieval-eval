@@ -2,7 +2,10 @@
 title: "EDEN data sync workflows"
 type: handbook
 domain: vault
-parent: "[[EDEN overview]]"
+parent: "[[compute]]"
+related:
+  - "[[EDEN storage and quotas]]"
+  - "[[EDEN Python environments]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
@@ -11,7 +14,7 @@ updated: 2026-10-27
 
 ## Principles
 
-- Code via git or rsync; data once to group storage; results back by rsync [U, project practice].
+- Code via git or rsync; data once to group storage; results back by rsync [U, practice].
 - Whether gateway home and cluster home share a filesystem is unknown [U]; the cheat sheet syncs in two hops.
 - Prefer the direct jump-host form (one command) [V that jump form works for ssh].
 - Never sync secrets (`.env`, tokens, ssh keys).
@@ -52,7 +55,7 @@ rsync -avz --partial --progress -e "ssh -J <mini-login>@<mini-ssh-gateway>" \
 
 - Compress many small files first: `tar -cf - data/raw | zstd -T0 > raw.tar.zst`, copy, unpack on the cluster.
 - Verify: `rsync -avzc -n` or `sha256sum` on both sides.
-- Large corpus: one copy in group space shared by all jobs [V that group space exists, U path].
+- Large datasets: one copy in group space shared by all jobs [V that group space exists, U path].
 
 ## Results back
 
@@ -61,7 +64,7 @@ rsync -avz --partial --progress -e "ssh -J <mini-login>@<mini-ssh-gateway>" \
   <user>@<eden-login-node>:/mnt/evafs/groups/<group>/artifacts/runs/ ./runs_from_eden/
 ```
 
-- Pull only small run files (`runs/*.jsonl`, metrics); leave embeddings on the cluster.
+- Pull only small result files (run files, metrics); leave large arrays on the cluster.
 - Fetch `/raid` results from a DGX through `/mnt/workspace/dgx-N` on the login node [V].
 - Archive long-term results elsewhere; no guaranteed backup [V].
 
@@ -69,4 +72,3 @@ rsync -avz --partial --progress -e "ssh -J <mini-login>@<mini-ssh-gateway>" \
 
 - Free space before big copies: `df -h /mnt/evafs/groups/<group>` [U on mount path].
 - A full group space blocks writes for all members [V].
-- Related: [[EDEN storage and quotas]], [[EDEN Python environments]].

@@ -2,7 +2,7 @@
 title: "EDEN job templates"
 type: handbook
 domain: vault
-parent: "[[EDEN overview]]"
+parent: "[[compute]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
@@ -30,12 +30,12 @@ updated: 2026-10-27
 python3 hello.py
 ```
 
-## CPU job (BM25 index) [cheat sheet, U partition]
+## CPU job [cheat sheet, U partition]
 
 ```bash
 #!/usr/bin/env bash
 #SBATCH -A <group>
-#SBATCH --job-name=bm25-index
+#SBATCH --job-name=cpu-job
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
@@ -51,18 +51,18 @@ pwd; hostname; date
 cd /home2/<group>/<user>/<project>
 source .venv/bin/activate
 export HF_HOME=/mnt/evafs/groups/<group>/hf_cache
-python -m <module> index --system bm25
+python -m <module> index
 date
 ```
 
 - Smoke test with `srun` on the same flags before `sbatch`.
 
-## GPU job (dense encoding)
+## GPU job
 
 ```bash
 #!/usr/bin/env bash
 #SBATCH -A <group>
-#SBATCH --job-name=dense-encode
+#SBATCH --job-name=gpu-job
 #SBATCH --partition=<gpu-partition>
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
@@ -79,15 +79,15 @@ export TOKENIZERS_PARALLELISM=false
 nvidia-smi
 uv pip freeze > logs/freeze_${SLURM_JOB_ID}.txt
 python -m <module> encode --model <hf-model> --batch-size 128 --fp16 \
-  --out /mnt/evafs/groups/<group>/artifacts/emb/<model>.npy
+  --out /mnt/evafs/groups/<group>/artifacts/<model>.npy
 ```
 
-## Array job: grid from a CSV
+## Array job: cells from a CSV
 
 ```bash
 #!/usr/bin/env bash
 #SBATCH -A <group>
-#SBATCH --job-name=grid
+#SBATCH --job-name=cells
 #SBATCH --partition=<gpu-partition>
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
@@ -101,34 +101,16 @@ cd /home2/<group>/<user>/<project>
 source .venv/bin/activate
 export HF_HOME=/mnt/evafs/groups/<group>/hf_cache HF_HUB_OFFLINE=1
 
-# grid.csv: header + one row per cell: system,protocol,lang
-ROW=$(sed -n "$((SLURM_ARRAY_TASK_ID + 2))p" grid.csv)
-IFS=, read -r S P L <<< "$ROW"
-OUT=/mnt/evafs/groups/<group>/artifacts/runs/${S}_${P}_${L}.jsonl
+# cells.csv: header + one row per cell: a,b,c
+ROW=$(sed -n "$((SLURM_ARRAY_TASK_ID + 2))p" cells.csv)
+IFS=, read -r A B C <<< "$ROW"
+OUT=/mnt/evafs/groups/<group>/artifacts/runs/${A}_${B}_${C}.jsonl
 [ -s "$OUT" ] && { echo "skip $OUT"; exit 0; }       # idempotent
-python -m <module> run --system "$S" --protocol "$P" --lang "$L" --out "$OUT"
+python -m <module> run --a "$A" --b "$B" --c "$C" --out "$OUT"
 ```
 
 - `%4` caps concurrent tasks; max array size is a cluster setting [U]: `scontrol show config | grep MaxArraySize`.
-- Rerun failures: `sbatch --array=3,7,12 grid.sh`.
-- Task index to cell arithmetic without a CSV:
-
-```bash
-SYSTEMS=(bm25 dense rerank); PROTOCOLS=(monolingual crosslingual); LANGS=(en de es pt)
-i=$SLURM_ARRAY_TASK_ID
-S=${SYSTEMS[$((i / 8))]}; P=${PROTOCOLS[$(((i / 4) % 2))]}; L=${LANGS[$((i % 4))]}
-```
-
-- Generate `grid.csv`:
-
-```bash
-python - <<'PY' > grid.csv
-import itertools
-print("system,protocol,lang")
-for s, p, l in itertools.product(["bm25", "dense", "rerank"], ["monolingual", "crosslingual"], ["en", "de", "es", "pt"]):
-    print(f"{s},{p},{l}")
-PY
-```
+- Rerun failures: `sbatch --array=3,7,12 cells.sh`.
 
 ## Dependency chain
 
@@ -136,10 +118,10 @@ PY
 #!/usr/bin/env bash
 set -euo pipefail
 mkdir -p logs
-J1=$(sbatch --parsable bm25_index.sh)
-J2=$(sbatch --parsable encode.sh)
-J3=$(sbatch --parsable --dependency=afterok:${J1}:${J2} grid.sh)        # waits for the whole array
-J4=$(sbatch --parsable --dependency=afterok:${J3} bootstrap.sh)
+J1=$(sbatch --parsable stage1.sh)
+J2=$(sbatch --parsable stage2.sh)
+J3=$(sbatch --parsable --dependency=afterok:${J1}:${J2} cells.sh)        # waits for the whole array
+J4=$(sbatch --parsable --dependency=afterok:${J3} stage4.sh)
 echo "$J1 $J2 $J3 $J4"
 squeue -u "$USER" -o "%.10i %.20j %.8T %.20E"
 ```

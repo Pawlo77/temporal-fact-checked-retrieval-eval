@@ -2,7 +2,10 @@
 title: "EDEN monitoring and troubleshooting"
 type: handbook
 domain: vault
-parent: "[[EDEN overview]]"
+parent: "[[compute]]"
+related:
+  - "[[EDEN Slurm basics and partitions]]"
+  - "[[EDEN storage and quotas]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
@@ -67,4 +70,3 @@ scancel <jobid>; scancel -u $USER       # cancel one / all
 - Default `--time` takes partition max and may not start before a reservation [V].
 - Committing `<email>`, usernames or hostnames from scripts.
 - Rules: group leader must file yearly report or group loses access [V].
-- Related: [[EDEN Slurm basics and partitions]], [[EDEN storage and quotas]].

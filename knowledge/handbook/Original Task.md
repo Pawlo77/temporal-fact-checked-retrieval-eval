@@ -64,4 +64,4 @@ Python, information retrieval (BM25, dense retrievers, cross-encoder reranking),
 | D5 External dependencies and risks | 3 | Restricted Zenodo record, [[MultiClaim]] access terms, risk of exposing named outlets or journalists |
 | Total | 16 | Hard |
 
-See also [[EDEN overview]] and [[Proposed Task]].
+See also [[compute]] and [[Proposed Task]].

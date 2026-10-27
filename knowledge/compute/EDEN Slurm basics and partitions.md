@@ -2,7 +2,11 @@
 title: "EDEN Slurm basics and partitions"
 type: handbook
 domain: vault
-parent: "[[EDEN overview]]"
+parent: "[[compute]]"
+related:
+  - "[[EDEN GPU jobs]]"
+  - "[[EDEN job templates]]"
+  - "[[EDEN monitoring and troubleshooting]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
@@ -70,7 +74,3 @@ sacctmgr show qos format=Name,MaxWall,MaxTRESPU,Priority   # [V:slurm] may be de
 - Docs have an FAQ entry for PENDING with free-looking resources; body is a separate page, not fetched [U].
 - Typical reasons: `Priority`, `Resources`, `ReqNodeNotAvail` (reservation), `AssocGrpCPURunMinutesLimit`/group limits [V:slurm].
 - Check: `squeue -u $USER -o "%.10i %.12P %.20j %.8T %.10M %.10l %R"`, `scontrol show job <id> | grep -i reason`.
-
-## Related
-
-- [[EDEN GPU jobs]], [[EDEN job templates]], [[EDEN monitoring and troubleshooting]].

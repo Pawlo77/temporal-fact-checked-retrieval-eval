@@ -2,7 +2,10 @@
 title: "EDEN hardware"
 type: handbook
 domain: vault
-parent: "[[EDEN overview]]"
+parent: "[[compute]]"
+related:
+  - "[[EDEN GPU jobs]]"
+  - "[[EDEN Slurm basics and partitions]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
@@ -34,11 +37,9 @@ updated: 2026-10-27
 - DGX local SSD: 3.8 TiB + 15 TiB per node; `/raid` NVMe RAID 0 on DGX.
 - Description page and grant text disagree (GPU count 44/48/56, DDN 1.5 vs 1.6 PiB); trust per-node table.
 
-## Choosing hardware for this project
+## Notes
 
-- Encoding and reranking fit in 16 GB VRAM for 0.5B-parameter models in fp16; see [[EDEN project compute plan]].
-- A100 40 GB: default GPU for encoders and rerankers; H100/H200: faster, scarcer [U on queue pressure].
+- H100/H200: faster, scarcer than A100 [U on queue pressure].
 - P100 lacks bf16 and flash-attention support; use fp16 or skip [U].
-- CPU-only BM25 and bootstrap: `sr-*` (3 TiB RAM each) if a partition exposes them [U on partition mapping].
+- `sr-*` nodes (3 TiB RAM each) suit CPU-only work if a partition exposes them [U on partition mapping].
 - Node-to-partition mapping is not published [U]; see [[EDEN Slurm basics and partitions]].
-- Related: [[EDEN GPU jobs]].

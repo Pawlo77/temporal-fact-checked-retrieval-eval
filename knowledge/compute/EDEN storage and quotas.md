@@ -2,7 +2,10 @@
 title: "EDEN storage and quotas"
 type: handbook
 domain: vault
-parent: "[[EDEN overview]]"
+parent: "[[compute]]"
+related:
+  - "[[EDEN data sync workflows]]"
+  - "[[EDEN Python environments]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
@@ -56,12 +59,7 @@ lfs quota -hg <group> /mnt/evafs        # [U] Lustre group quota form
 - No guarantee of long-term storage or recovery; LTO tape backup is an extra paid service [V].
 - Keep code in git; copy final results off the cluster.
 
-## Placement plan for this project
+## Scratch and raid
 
-- Code: `$HOME/<project>` (git clone or [[EDEN data sync workflows]]).
-- Fact-check corpus, posts, qrels: `/mnt/evafs/groups/<group>/data/` once [U path].
-- Embeddings, indexes, run files: `/mnt/evafs/groups/<group>/artifacts/` [U path].
-- HF model cache: `/mnt/evafs/groups/<group>/hf_cache` ([[EDEN Python environments]]).
-- Temporary heavy I/O (shuffled shards, tokenized caches): `/scratch/<user>/` or `/raid/<user>/` during the job, then copy out.
+- Temporary heavy I/O: `/scratch/<user>/` or `/raid/<user>/` during the job, then copy out.
 - `/raid` is per node: a job on `dgx-2` cannot read what a job wrote on `dgx-1`; read via `/mnt/workspace/dgx-N` from the login node.
-- Estimated footprint: see [[EDEN project compute plan]].

@@ -2,7 +2,11 @@
 title: "EDEN Python environments"
 type: handbook
 domain: vault
-parent: "[[EDEN overview]]"
+parent: "[[compute]]"
+related:
+  - "[[EDEN job templates]]"
+  - "[[EDEN data sync workflows]]"
+  - "[[EDEN GPU jobs]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
@@ -66,17 +70,13 @@ export SENTENCE_TRANSFORMERS_HOME=$HF_HOME/sbert
 
 ```bash
 mkdir -p "$HF_HOME"
-huggingface-cli download BAAI/bge-m3
-huggingface-cli download intfloat/multilingual-e5-large
-huggingface-cli download BAAI/bge-reranker-v2-m3
+huggingface-cli download <org>/<model>
 ```
 
 - Then in jobs: `export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1` so a missing file fails fast instead of hanging [U that compute nodes lack internet].
-- Model ids above are examples; the project's actual list lives in `configs/experiment.yaml`.
 - Gated models need a token on the login node only; never write it in scripts or the vault.
 
 ## Reproducibility
 
 - Log `pip freeze` or `uv pip freeze > logs/freeze_$SLURM_JOB_ID.txt` at job start.
 - Pin seeds and write config copy next to results.
-- Related: [[EDEN job templates]], [[EDEN data sync workflows]], [[EDEN GPU jobs]].

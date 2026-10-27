@@ -2,7 +2,10 @@
 title: "EDEN GPU jobs"
 type: handbook
 domain: vault
-parent: "[[EDEN overview]]"
+parent: "[[compute]]"
+related:
+  - "[[EDEN job templates]]"
+  - "[[EDEN Slurm basics and partitions]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
@@ -27,7 +30,7 @@ scontrol show node hopper | grep -i -E 'gres|cpu'
 
 ## Which GPU
 
-- Default for encoders and rerankers: A100 40 GB on `dgx-1`..`dgx-4` [V hardware, U partition].
+- A100 40 GB on `dgx-1`..`dgx-4` [V hardware, U partition].
 - H100 80 GiB `hopper`, H200 140 GiB `hopper-2`: larger batches, long contexts [V hardware].
 - RTX 6000 Blackwell 95 GiB on `stud-2`, `stud-3`: teaching queue, students [V].
 - Pin node only when needed: `-w dgx-3` [V]; otherwise let the scheduler choose.
@@ -65,13 +68,8 @@ PY
 
 - Weights: params x 2 B in fp16/bf16; params x 4 B in fp32.
 - Inference activations: batch x seq_len x hidden x layers dominated; start with batch 64, seq 256 and double until 80 percent of VRAM.
-- Concrete numbers for this project: [[EDEN project compute plan]].
 
 ## Multi-GPU
 
-- `--gres=gpu:4` plus `torchrun --nproc_per_node=4`; only worthwhile for training, not for this project's inference [U].
-- Multi-node over InfiniBand (DGX only, 200 Gb/s) not needed here [V hardware].
-
-## Related
-
-- [[EDEN job templates]] for the GPU sbatch scripts, [[EDEN Slurm basics and partitions]].
+- `--gres=gpu:4` plus `torchrun --nproc_per_node=4`; only worthwhile for training, not for inference [U].
+- Multi-node over InfiniBand is DGX only, 200 Gb/s [V hardware].
