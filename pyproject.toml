@@ -196,3 +196,8 @@ sentences = true
 patterns = ["research/*.md"]  # the hub
 words = 600
 sentences = true
+
+[[tool.agent-kit.brevity.budget]]
+patterns = [".agents/skills/paper-notes/reference.md"]  # project vocabulary: placement, glossary, tags
+words = 600
+sentences = true
