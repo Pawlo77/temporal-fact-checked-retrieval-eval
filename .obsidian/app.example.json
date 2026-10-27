@@ -9,6 +9,11 @@
     ".remember/logs/",
     ".remember/tmp/",
     "knowledge/_templates/",
+    "configs/",
+    "notebooks/",
+    "outputs/",
+    "report/",
+    "mlruns/",
     "/^(README|CONTRIBUTING|AGENTS|CLAUDE)\\.md$/",
     "/(^|\\/)(AGENTS|CLAUDE)\\.md$/"
   ]
