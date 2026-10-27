@@ -18,7 +18,7 @@ related:
 ---
 # Temporal Retrieval Evaluation Plan
 
-**Status:** draft, for the lecturer's approval
+**Status:** draft, for the supervisor's approval
 
 **Goal:** Measure how much of the reported performance of previously fact-checked claim retrieval (PFCR) survives an index that cannot see the future, separate the reasons for the drop, and release the protocol, split definitions and code so others can reuse them. This is the whole of project 2 ("Retrieval that cannot see the future: temporal evaluation of fact-checked claim retrieval") as one study: both team slots of the brief (sparse and dense baselines; reranking and gap decomposition) are workstreams of a single plan with one split, one results table and one paper.
 
@@ -121,10 +121,10 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 
 ### Task 0: Approvals and access (week 1)
 
-- [ ] **Step 1:** Send the v1, v2 and SemEval access requests from pw.edu.pl addresses naming all team members (target 28 October); lecturer co-signs.
+- [ ] **Step 1:** Send the v1, v2 and SemEval access requests from pw.edu.pl addresses naming all team members (target 28 October); supervisor co-signs.
 - [ ] **Step 2:** On the existing EDEN account, check partitions, time limits, quotas and compute-node internet; pre-download models on the login node.
 - [ ] **Step 3:** Write to the dataset authors: may a second team, id-list and qrel releases and EDEN storage be used; what do the timestamps mean.
-- [ ] **Step 4:** Obtain the lecturer's answers to the questions in section 12 (co-signing, ethics statement, grading weights).
+- [ ] **Step 4:** Obtain the supervisor's answers to the questions in section 12 (co-signing, ethics statement, grading weights).
 
 ### Task 1: Dated corpus and first checks (W1)
 
@@ -172,7 +172,7 @@ About 10 usable supervisor Wednesdays remain to the end of January 2027 (11 Nove
 
 | Gate | When | Rule |
 |---|---|---|
-| Data access | 18 Nov | no data access by then: switch to a protocol-and-code deliverable on whatever record arrived and tell the lecturer |
+| Data access | 18 Nov | no data access by then: switch to a protocol-and-code deliverable on whatever record arrived and tell the supervisor |
 | Split and schema frozen | 25 Nov | ids, cutoffs, qrels format, one results schema |
 | Answerability check | first data week | Polish strict-causal answerable at least 150: keep the Polish-English difference-in-differences as headline; 50 to 149: report it as descriptive with intervals; below 50: the headline becomes answerability and time-to-findability, Polish as a case study |
 | Core complete | 16 Dec | 4 systems x 3 protocols x 2 languages in one table with cluster-bootstrap intervals; otherwise all extended work stops |
@@ -187,7 +187,7 @@ About 10 usable supervisor Wednesdays remain to the end of January 2027 (11 Nove
 - Extended tier, if unlocked: judged sibling ids, released prompts, model hashes and response-cache index, dose-response analysis.
 - A paper written from the shared table.
 
-## 12. Decisions requested from the lecturer
+## 12. Decisions requested from the supervisor
 
 1. Will you co-sign the Zenodo access requests from a pw.edu.pl address?
 2. Does the faculty need an ethics statement or data-management note for restricted social-media data?
