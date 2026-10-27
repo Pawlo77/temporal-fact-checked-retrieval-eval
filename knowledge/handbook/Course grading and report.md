@@ -52,7 +52,7 @@ ACL 2015 style, not the Interspeech scaffold in `report/`. The course template i
 - `reproducibility-checklist.tex` — appendix, graded in Phase 3.
 - `acl2015.sty`, `acl.bst` — style and bibliography files.
 
-Swap `report/` to this template when the first report is written.
+These files are now in `report/` (the Interspeech scaffold was removed); fill them in per phase.
 
 ## Mandatory in every phase (conditions of acceptance, not scored)
 
