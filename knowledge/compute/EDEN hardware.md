@@ -42,4 +42,4 @@ updated: 2026-10-27
 - H100/H200: faster, scarcer than A100 [U on queue pressure].
 - P100 lacks bf16 and flash-attention support; use fp16 or skip [U].
 - `sr-*` nodes (3 TiB RAM each) suit CPU-only work if a partition exposes them [U on partition mapping].
-- Node-to-partition mapping is not published [U]; see [[EDEN Slurm basics and partitions]].
+- Node-to-partition mapping is not published [U].

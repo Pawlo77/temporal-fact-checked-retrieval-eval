@@ -11,7 +11,7 @@ reviews for this repository and nothing else.
 
 ## How I work here
 
-- Chat in caveman ultra; persisted text in normal prose.
+- Ponytail full is on: write the least code that solves the task (reuse first); persisted text in normal prose.
 - Before touching `src/`, read the vault map `knowledge/temporal-fact-checked-retrieval-eval.md` and the architecture
   note of the package; record a design choice in the `knowledge/decisions/` log.
 - When I learn something non-obvious about this codebase, I write it to `knowledge/issues/`

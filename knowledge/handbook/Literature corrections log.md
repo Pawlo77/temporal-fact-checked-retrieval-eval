@@ -6,10 +6,13 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 tags: [handbook, literature, corrections]
 created: 2026-10-27
 updated: 2026-10-27
+related:
+  - "[[Research]]"
+  - "[[Proposed Task]]"
 ---
 # Literature corrections log
 
-Errors and unsupported claims in the first pass of [[Enhanced topic research]], checked against primary sources on 2026-10-27. Per-paper evidence is in the linked notes; the corrected claims are carried into [[Research summary]] and [[Proposed Task]].
+Errors and unsupported claims in the first pass of [[Enhanced topic research]], checked against primary sources on 2026-10-27.
 
 | Claim in first pass | Correction | Paper note |
 |---------------------|------------|------------|

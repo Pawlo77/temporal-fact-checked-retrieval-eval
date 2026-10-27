@@ -5,7 +5,17 @@ parent: "[[Temporal Evaluation]]"
 ---
 # LLM Temporal Leakage
 
-How post-cutoff information reaches an evaluation through an LLM's parametric knowledge or through date-filtered web search, and how to measure and block it. Part of [[Temporal Evaluation]].
+How post-cutoff information reaches an evaluation through an LLM's parametric knowledge or through date-filtered web search, and how to measure and block it.
+
+## Summary
+
+- [[Temporal Leakage in Date-Filtered Web Retrieval]]: date filters return a page with major post-cutoff information for 71% and 81% of questions.
+- [[Simulated Ignorance Fails]]: a prompted cutoff closes only 48% of the gap to true ignorance; reasoning models leak more.
+- [[All Leaks Count]]: date-filtered RAG amplifies claim-level leakage 2.5 to 4.7 times.
+- A hard date filter is insufficient, so the causal pool must be built from stored timestamps.
+- Open: parametric leakage of LLM rerankers on PFCR, measured on pre- vs post-cutoff query strata.
+- Open: high-salience topics are the most exposed, so strata should be reported per topic.
+- Open: training cutoffs of the embedders are mostly unstated; stratify rather than claim them away.
 
 | Paper | Year | Takeaway |
 |-------|------|----------|

@@ -68,7 +68,7 @@ Intuition: a split is a good evaluation if its $r$ is close to $r$ on new sample
 ## Relation to our project
 
 - We take its central claim: random splits overstate deployment performance, and a later independent sample is the better estimate. Our causal protocol evaluates each post $q$ against $P(q)$, the fact-checks published before $t_q$, which is that later-sample principle applied to the retrieval pool ([[Proposed Task]], [[Enhanced topic research]]).
-- The ranking flip under a new sample (POS tagger with and without CRF) is what we test for retrieval families. Does system order under Success@10 and MRR survive the switch to a causal index ([[Research summary]])?
+- The ranking flip under a new sample (POS tagger with and without CRF) is what we test for retrieval families. Does system order under Success@10 and MRR survive the switch to a causal index ([[Data Splits]])?
 - Its headline-drift appendix motivates our chronological training regime for fine-tuned retrievers, together with [[Mind the Gap]] and [[Role of Context in PFCR]].
 - We avoid citing it as recommending time-based splits: its stated recommendation is new samples, else biased or adversarial splits.
 

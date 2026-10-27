@@ -5,7 +5,18 @@ parent: "[[Claim Retrieval]]"
 ---
 # Methods and Systems
 
-PFCR and claim-matching methods, systems and evaluation studies: how posts are matched to earlier fact-checks, and under which splits those systems were scored. Part of [[Claim Retrieval]].
+PFCR and claim-matching methods, systems and evaluation studies: how posts are matched to earlier fact-checks, and under which splits those systems were scored.
+
+## Summary
+
+- [[That is a Known Lie]] defines PFCR and sets BM25 plus a reranker as the first strong baseline on a random split.
+- [[Claim Matching Beyond English]] shows multilingual claim matching without a temporal protocol.
+- [[Role of Context in PFCR]] already compares chronological and random splits: reranker MAP 0.602 (sentence random) down to 0.429 (debate chronological).
+- That split restricts training data only; no date-restricted verified-claim pool is described.
+- [[Multilingual vs Crosslingual Retrieval]] finds LLM reranking best on a 47-language v2 subset, with random stratified splits.
+- [[TIFIN India]] (translate, fine-tune with hard negatives, rerank the top 50) is a leakage-testable recipe: Success@10 0.938.
+- [[Generative-AI Claim Retrieval]] offers date filtering as a user feature, not as an evaluation protocol.
+- Open: rerankers add little over a fine-tuned retriever, so gains must be reported separately under full and causal pools.
 
 | Paper | Year | Takeaway |
 |-------|------|----------|

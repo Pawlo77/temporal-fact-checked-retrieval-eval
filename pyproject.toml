@@ -74,7 +74,7 @@ required-version = ">=0.11.28"
 target-version = "py312"
 line-length = 88
 # Generated rules and skill Markdown hold Python fences; the vendored skill stays as shipped.
-extend-exclude = [".claude/rules", ".agents/skills/caveman", ".agents/**/*.md"]
+extend-exclude = [".claude/rules", ".agents/skills/ponytail", ".agents/**/*.md"]
 
 [tool.ruff.lint]
 select = [

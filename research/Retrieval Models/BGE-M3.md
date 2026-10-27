@@ -76,7 +76,7 @@ Intuition: the ensemble of three views ranks better than any one view, so each v
 - BGE-M3 is our second multilingual dense baseline; its sparse and multi-vector modes give a hybrid run from the same model, a cheap contrast with BM25 under the causal index ([[Proposed Task]], [[Enhanced topic research]]).
 - The MKQA Polish row is the one published Polish-to-English retrieval number for these encoders, and it is close for mE5-large and BGE-M3. Our Polish posts against English fact-checks test whether that parity holds for claims ([[Language scope analysis]]).
 - Its sparse weights depend on learned term importance, not on corpus statistics, so unlike BM25 they leak no future document frequencies; the dense index can be masked to $P(q)$ at search time.
-- It is the base model of [[bge-reranker-v2-m3]], so reranker and retriever share pre-training exposure; we treat that as one parametric-leakage source ([[Research summary]]).
+- It is the base model of [[bge-reranker-v2-m3]], so reranker and retriever share pre-training exposure; we treat that as one parametric-leakage source ([[Retrieval Models]]).
 
 ## Future work
 

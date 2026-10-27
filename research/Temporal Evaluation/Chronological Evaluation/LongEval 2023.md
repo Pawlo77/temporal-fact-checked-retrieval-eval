@@ -69,7 +69,7 @@ Intuition: robustness is the change of a system's score between collections, rea
 
 - The precedent for reporting effectiveness and robustness as separate rankings; we report the causal score and the random-to-causal change per system for the same reason ([[Proposed Task]]).
 - Its result is a caution: temporal drop is not guaranteed and can even reverse, so our causal penalty must be measured, not assumed ([[Enhanced topic research]]).
-- LongEval tests whether systems persist across later snapshots; our causal index restricts each query to fact-checks published before it, a per-query cut-off LongEval does not impose ([[Research summary]]).
+- LongEval tests whether systems persist across later snapshots; our causal index restricts each query to fact-checks published before it, a per-query cut-off LongEval does not impose ([[Chronological Evaluation]]).
 - A possible venue model: a temporal PFCR task in the LongEval style is the CLEF route named in our plan.
 
 ## Future work

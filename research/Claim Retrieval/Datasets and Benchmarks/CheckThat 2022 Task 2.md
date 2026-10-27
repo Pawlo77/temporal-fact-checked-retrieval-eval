@@ -61,7 +61,7 @@ Intuition: new test queries against an unchanged archive check whether 2021 syst
 
 ## Relation to our project
 
-- A test set added after training data resembles an out-of-time test, but without stated dates we cannot treat it as one; [[SemEval-2025 Task 7]] is the clearer precedent ([[Research summary]]).
+- A test set added after training data resembles an out-of-time test, but without stated dates we cannot treat it as one; [[SemEval-2025 Task 7]] is the clearer precedent ([[Datasets and Benchmarks]]).
 - BigIR's 2021-trained model staying near the top suggests little drift on this English Snopes data, a contrast to measure on multilingual posts ([[Enhanced topic research]]).
 - The hard-negative plus reranker recipe of the winner matches the system families we evaluate ([[Proposed Task]]).
 

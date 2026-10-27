@@ -6,8 +6,11 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 tags: [handbook, task]
 created: 2026-10-27
 updated: 2026-10-27
+related:
+  - "[[Proposed Task]]"
+  - "[[compute]]"
 ---
-# Task description
+# Original Task
 
 Course project 2 of the NLP course (Warsaw University of Technology): **Retrieval that cannot see the future: temporal evaluation of fact-checked claim retrieval**. Supervisor: Soveatin Kuntur (M.Sc. Eng.). Difficulty: Hard (16/25). Availability: Wednesdays only, during NLP course hours. Max 2 teams: one on sparse and dense retrieval baselines, one on reranking and gap decomposition; one shared split, one shared results table.
 
@@ -63,5 +66,3 @@ Python, information retrieval (BM25, dense retrievers, cross-encoder reranking),
 | D4 Methodological demands | 5 | Protocol design, bootstrap significance tests, 4+ systems, manual analysis of 50 failures, gap decomposition |
 | D5 External dependencies and risks | 3 | Restricted Zenodo record, [[MultiClaim]] access terms, risk of exposing named outlets or journalists |
 | Total | 16 | Hard |
-
-See also [[compute]] and [[Proposed Task]].

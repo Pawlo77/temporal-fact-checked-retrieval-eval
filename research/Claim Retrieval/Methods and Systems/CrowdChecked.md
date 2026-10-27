@@ -66,7 +66,7 @@ Intuition: pairs the model keeps disbelieving lose influence, so noisy crowd lin
 
 - It is a concrete instance of training-time leakage that our chronological training regime targets: later supervision, shared fact-checks, and a test set that is older than the training data ([[Proposed Task]], [[Enhanced topic research]]).
 - Its 8,898-article overlap shows why we keep fact-checks in the training pool separate by date, not only posts.
-- The reply-link mechanism yields pairs where the post precedes the reply but not necessarily the fact-check, so it is not a source of post-first labels for us ([[Research summary]]).
+- The reply-link mechanism yields pairs where the post precedes the reply but not necessarily the fact-check, so it is not a source of post-first labels for us ([[Methods and Systems]]).
 - We do not use its English-only data; our language contrast is Polish vs English ([[Language scope analysis]]).
 
 ## Future work

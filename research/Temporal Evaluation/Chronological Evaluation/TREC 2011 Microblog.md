@@ -66,7 +66,7 @@ Intuition: a time-respecting evaluation must filter not only the returned docume
 
 - The oldest precedent for our causal index: each query has a time and systems may use only documents and statistics from before it ([[Proposed Task]]). We cite it as the origin of the idea, not claim it as new.
 - Its definition of future evidence names corpus-statistics leakage: BM25 IDF computed over the full fact-check pool uses later fact-checks even when they are filtered from results. Our BM25 must use causal-pool statistics, with full-pool statistics as a sensitivity row ([[Enhanced topic research]]).
-- Separate reporting of constrained and unconstrained runs is the template for our random vs causal tables; the small rank change it found is a baseline expectation to test ([[Research summary]]).
+- Separate reporting of constrained and unconstrained runs is the template for our random vs causal tables; the small rank change it found is a baseline expectation to test ([[Chronological Evaluation]]).
 - Unlike PFCR, relevance here is topical and the pool grows continuously; it has no notion of answerability.
 
 ## Future work

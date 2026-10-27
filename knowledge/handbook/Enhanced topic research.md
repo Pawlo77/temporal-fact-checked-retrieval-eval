@@ -6,10 +6,15 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 tags: [handbook, research, novelty, venues, temporal-evaluation]
 created: 2026-10-27
 updated: 2026-10-27
+related:
+  - "[[Original Task]]"
+  - "[[Literature corrections log]]"
+  - "[[Research]]"
+  - "[[Language scope analysis]]"
 ---
 # Enhanced topic research
 
-Builds on [[Original Task]]. Sources checked on 2026-10-27 and re-verified the same day against primary sources (per-paper notes in `research/`, corrections in [[Literature corrections log]]); every claim below carries a URL in the reference list. Counts quoted from papers are the papers' numbers, not ours; our own counts come only after the data request is granted. Team-level synthesis: [[Research summary]].
+Sources checked on 2026-10-27 and re-verified the same day against primary sources; every claim below carries a URL in the reference list. Counts quoted from papers are the papers' numbers, not ours; our own counts come only after the data request is granted.
 
 ## Recommended enhanced topic
 
@@ -191,7 +196,6 @@ Previously fact-checked claim retrieval (PFCR) is scored on [[MultiClaim]] and [
 
 - Reading: with about 450 Polish queries, a Polish-English penalty difference below roughly 4-6 points of S@10 is not detectable; with only about 150 answerable Polish queries the MDE grows to roughly 7-10 points, so pooling sources is necessary.
 - Replace assumed d with the measured discordance after the first run and re-state the MDE in the paper.
-- Per-language counts with v2 and the dose-response power are in [[Language scope analysis]].
 
 ## Venue strategy
 
