@@ -140,11 +140,16 @@ module-name = "temporal_fact_checked_retrieval_eval"
 [tool.agent-kit]
 name = "temporal-fact-checked-retrieval-eval"
 tree-dirs = "src tests"
-vault-dirs = "knowledge"
+vault-dirs = "knowledge research"
+papers-dir = "report"  # skill latex-papers
 
 [tool.codespell]
 ignore-words-list = "demagog,pyproject,toml,venv,prek,kwargs,args,init,utils,workflow,workflows,pytest,cov"
-skip = "report/*"
+skip = "report/*,research/*"
+
+[tool.agent-kit.vault]
+notes = ["knowledge", "research"]
+isolated = ["knowledge", "research"]  # every note needs an inbound link
 
 [tool.agent-kit.vault.schema]
 dirs = ["knowledge"]
@@ -181,3 +186,13 @@ mermaid-tools = "dartungar/obsidian-mermaid"
 [[tool.agent-kit.brevity.budget]]
 patterns = ["knowledge/AGENTS.md"]
 lines = 60
+
+[[tool.agent-kit.brevity.budget]]
+patterns = ["research/*/*.md"]  # paper and folder notes
+words = 1500
+sentences = true
+
+[[tool.agent-kit.brevity.budget]]
+patterns = ["research/*.md"]  # the hub
+words = 600
+sentences = true

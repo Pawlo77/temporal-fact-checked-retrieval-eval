@@ -70,12 +70,14 @@ ALLOW = (
     "WebFetch(domain:arxiv.org)",
     "WebFetch(domain:doi.org)",
     "WebFetch(domain:api.crossref.org)",
+    "WebFetch(domain:api.openalex.org)",
     "Read(**)",
     "Edit(src/**)",
     "Edit(tests/**)",
     "Edit(.agents/skills/**)",
     "Edit(.remember/**)",
     "Edit(plans/**)",
+    "Edit(research/**)",
     "Bash(make vault-check*)",
 )
 """Permission rules that are safe in every repository."""
