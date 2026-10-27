@@ -70,5 +70,5 @@ rsync -avz --partial --progress -e "ssh -J <mini-login>@<mini-ssh-gateway>" \
 
 ## Checks
 
-- Free space before big copies: `df -h /mnt/evafs/groups/<group>` [U on mount path].
+- Free space before big copies: `df -h /mnt/evafs/groups/<group>`; the path exists [V:run].
 - A full group space blocks writes for all members [V].

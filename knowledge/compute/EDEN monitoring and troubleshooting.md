@@ -25,7 +25,7 @@ scontrol show reservations              # maintenance windows [V]
 sshare -l                               # fairshare [V]
 sshare -laA <group>                     # group + members [V]
 sacct -A <group> -S 2026-10-01 -o JobID,JobName,Partition,State,Elapsed,MaxRSS,AllocTRES%40
-seff <jobid>                            # CPU/RAM efficiency after the run [U, needs slurm-contrib]
+seff <jobid>                            # not installed on EDEN [V:run]; use `sacct -j <jobid> -o JobID,Elapsed,MaxRSS,AllocTRES%40` instead
 sacct -j <jobid> --format=JobID,State,ExitCode,Elapsed,MaxRSS,ReqMem   # [V:slurm]
 tail -f logs/<name>_<jobid>.log
 scancel <jobid>; scancel -u $USER       # cancel one / all
@@ -49,14 +49,14 @@ scancel <jobid>; scancel -u $USER       # cancel one / all
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| job rejected at submit | missing or wrong `-A` | add `-A <group>` [V] |
+| job rejected at submit, `AssocMaxSubmitJobLimit` | missing or wrong `-A` (default account `null` cannot submit) | add `-A <group>` [V:run] |
 | job gone, no log | log dir absent | `mkdir -p logs` [V] |
 | `TIMEOUT` | `--time` too short | measure on a slice, raise |
 | `OUT_OF_MEMORY` / `Killed` | `--mem` too low | raise; check `MaxRSS` via `sacct` |
 | `CUDA out of memory` | batch too large | halve batch, fp16, sort by length |
 | `no CUDA device` | no `--gres=gpu` or login node | request GPU [V] |
 | `CUDA_ERROR_UNSUPPORTED_PTX_VERSION` | arch/PTX mismatch | rebuild or use matching wheel [V] |
-| HF download hangs | no internet on node | pre-download, `HF_HUB_OFFLINE=1` [U] |
+| HF download hangs | transient network or Hub outage (compute nodes have internet [V:run]) | retry; pre-download, `HF_HUB_OFFLINE=1` |
 | `Disk quota exceeded` / write fails | full group space | free space, move data [V] |
 | `srun --pty` ended | ssh drop | `tmux` [V] |
 | import errors for compiled libs | venv built elsewhere | rebuild on cluster |

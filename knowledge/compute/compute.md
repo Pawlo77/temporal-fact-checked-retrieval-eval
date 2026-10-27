@@ -33,6 +33,7 @@ updated: 2026-10-27
 
 - **[V]**: verified on the EDEN docs (crawl of 2026-10-27, English and Polish wiki pages, rules, description, news).
 - **[V:slurm]**: verified on SchedMD Slurm documentation (https://slurm.schedmd.com); generic Slurm, not confirmed on EDEN.
+- **[V:run]**: verified by read-only commands and one 4-minute GPU test job on the cluster on 2026-10-27 (login node and a compute node).
 - **[U]**: unverified: cheat sheet, standard Slurm default, or estimate; test on the cluster.
 
 ## Cheat-sheet quick path

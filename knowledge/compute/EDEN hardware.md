@@ -39,7 +39,22 @@ updated: 2026-10-27
 
 ## Notes
 
-- H100/H200: faster, scarcer than A100 [U on queue pressure].
+- Snapshot from `sfree` (2026-10-27): A100 nodes had 0 to 8 of 8 GPUs free, `hopper` 2 of 8, `hopper-2` 5 of 12 gres, `pascal` 4 of 4; it varies by the hour [V:run].
 - P100 lacks bf16 and flash-attention support; use fp16 or skip [U].
-- `sr-*` nodes (3 TiB RAM each) suit CPU-only work if a partition exposes them [U on partition mapping].
-- Node-to-partition mapping is not published [U].
+- `sr-*` nodes (CPU-only, about 1 TiB RAM visible to Slurm, 48 cores) take CPU-only jobs in partitions `short` and `long` [V:run].
+- Login node: Ubuntu 24.04, 8 cores, 62 GB RAM, no GPU, shared by many users at once; keep heavy work off it [V:run].
+- `stud-*` nodes and a `student` partition are not visible to an account in the `researchers` group [V:run].
+- `hopper-2` exposes 4 whole H200 plus MIG slices (`h200_4g.71gb` x4, `h200_3g.71gb` x4) [V:run].
+
+## Partition per node [V:run]
+
+| Partition | Nodes | GPUs (Slurm gres) | Max time | Default time |
+|---|---|---|---|---|
+| `short` (default) | `dgx-[1-4]`, `sr-[1-3]` | `a100` x8 per DGX | 1 day | 1 h |
+| `long` | `dgx-[1-4]`, `sr-[1-2]` | `a100` x8 per DGX | 5 days | 2 days |
+| `experimental` | `pascal` | `tesla` x4 | 5 days | 1 day |
+| `hopper` | `hopper` | `h100` x8 | 5 days | 1 day |
+| `hopper-2` | `hopper-2` | `h200` x4 + MIG slices | 1 day | 1 day |
+
+- The DGX GPU observed on a compute node was `NVIDIA A100-SXM4-40GB` (40 GiB) [V:run].
+- Per-node memory seen by Slurm: about 1 TiB on `dgx-[2-4]`, 2 TiB on `dgx-1` and `hopper-2` [V:run].

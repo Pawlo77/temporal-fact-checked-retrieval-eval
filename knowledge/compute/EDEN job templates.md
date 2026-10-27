@@ -109,7 +109,7 @@ OUT=/mnt/evafs/groups/<group>/artifacts/runs/${A}_${B}_${C}.jsonl
 python -m <module> run --a "$A" --b "$B" --c "$C" --out "$OUT"
 ```
 
-- `%4` caps concurrent tasks; max array size is a cluster setting [U]: `scontrol show config | grep MaxArraySize`.
+- `%4` caps concurrent tasks; max array size is 50000 [V:run].
 - Rerun failures: `sbatch --array=3,7,12 cells.sh`.
 
 ## Dependency chain
@@ -135,7 +135,7 @@ squeue -u "$USER" -o "%.10i %.20j %.8T %.20E"
 
 ```bash
 srun -p student -A <group> --cpus-per-task=1 --mem=4G --time=00:30:00 --pty bash
-srun -p <gpu-partition> -A <group> --gres=gpu:1 --cpus-per-task=8 --mem=32G --time=01:00:00 --pty bash   # [U partition]
+srun -p short -A <group> --gres=gpu:a100:1 --cpus-per-task=8 --mem=32G --time=01:00:00 --pty bash   # [V:run] (a 1-GPU `srun` ran on `dgx-2` with `-A`)
 srun -w dgx-3 --time 00:15:00 --pty --account <group> bash
 ```
 

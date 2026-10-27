@@ -42,7 +42,7 @@ ssh <user>@<eden-login-node>
 # from outside, one hop with jump host [V]
 ssh -J <mini-login>@<mini-ssh-gateway> <user>@<eden-login-node>
 
-# explicit two-step form (cheat sheet) [U]
+# explicit two-step form (cheat sheet); the gateway host is the one beginning with `ssh.`; the bare faculty domain timed out from outside the campus network [V:run]
 ssh <user>@<mini-ssh-gateway>
 ssh <user>@<eden-login-node>
 ```
@@ -58,9 +58,9 @@ Host eden
     ServerAliveCountMax 5
 ```
 
-- Then `ssh eden`, `rsync ... eden:path`, `scp file eden:path` [U for this config; standard OpenSSH].
+- Then `ssh eden`, `rsync ... eden:path`, `scp file eden:path` work [V:run].
 - Keep this file in `~/.ssh/config`, never in the vault.
-- Key auth: `ssh-copy-id` to both hops; key distribution policy on EDEN not documented [U].
+- Key auth: `ssh-copy-id` to both hops works and removes both password prompts [V:run]; add `ControlMaster auto`, `ControlPath ~/.ssh/cm-%r@%h:%p` and `ControlPersist 10m` so repeat connections reuse one login.
 
 ## Sessions that survive disconnects
 

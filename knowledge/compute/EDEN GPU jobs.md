@@ -17,7 +17,7 @@ updated: 2026-10-27
 - `--gres=gpu:N` is the documented form; `--gres=gpu:1` example [V].
 - `--gres=gpu:0` explicitly requests none (tutorial CPU job) [V].
 - Syntax `gpu[:type]:count`, count defaults to 1 [V:slurm].
-- Typed form `--gres=gpu:a100:1`: type names on EDEN not published [U]; list with below.
+- Typed form `--gres=gpu:a100:1` works [V:run]; types: `a100`, `h100`, `h200`, `h200_4g.71gb`, `h200_3g.71gb`, `tesla`.
 - `--gres` and `--gpus-per-node` cannot be combined [V:slurm].
 - Without a GPU request a job sees no GPU [V].
 - Reservations are exclusive [V].
@@ -30,7 +30,7 @@ scontrol show node hopper | grep -i -E 'gres|cpu'
 
 ## Which GPU
 
-- A100 40 GB on `dgx-1`..`dgx-4` [V hardware, U partition].
+- A100 40 GB on `dgx-1`..`dgx-4`, in partitions `short` and `long` [V hardware, [V:run] partition].
 - H100 80 GiB `hopper`, H200 140 GiB `hopper-2`: larger batches, long contexts [V hardware].
 - RTX 6000 Blackwell 95 GiB on `stud-2`, `stud-3`: teaching queue, students [V].
 - Pin node only when needed: `-w dgx-3` [V]; otherwise let the scheduler choose.
@@ -53,8 +53,15 @@ print(torch.cuda.get_device_name(0), torch.cuda.mem_get_info())
 PY
 ```
 
-- Never test CUDA on the login node; no GPU there [U].
-- `CUDA_VISIBLE_DEVICES` is set by Slurm to the allocated GPU [V:slurm].
+- Never test CUDA on the login node; no GPU and no `nvidia-smi` there [V:run].
+- `CUDA_VISIBLE_DEVICES` is set by Slurm to the allocated GPU [V:run] (a 1-GPU job saw `0`).
+
+## Driver and toolkit [V:run]
+
+- Compute node driver `595.71.05`, reporting CUDA 13.2: current `cu12x` and `cu13x` wheels run.
+- A CUDA 12.8 toolkit sits in `/usr/local/cuda-12.8`; `nvcc` is not on `PATH`, so add it only for builds.
+- No PyTorch is preinstalled: install it in your own environment ([[EDEN Python environments]]).
+- Open-file limit is 1024: raise `ulimit -n` in the job script for many dataloader workers.
 
 ## CUDA errors
 

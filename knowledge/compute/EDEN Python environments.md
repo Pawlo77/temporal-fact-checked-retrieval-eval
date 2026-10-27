@@ -16,15 +16,15 @@ updated: 2026-10-27
 ## Facts
 
 - Docs do not describe `module`, conda, uv or Python versions [V that absent].
-- Check availability first: `python3 --version; which uv conda; module avail 2>&1 | head` [U].
+- Login node: Python 3.12.3 and `pip` present; `venv` and `ensurepip` import; no `uv`, `conda`, `mamba` and no `module` command; `git`, `rsync`, `tmux`, `screen`, `curl`, `wget`, `lfs` present; no Apptainer, Singularity or Docker [V:run].
 - Build environments on the cluster so binary wheels match the OS and CPU [U, standard].
 - Home is shared with DGX nodes and the login node, so a venv in home works inside jobs [V].
-- Compute nodes' internet access is not documented [U]; install packages on the login node.
+- Login and compute nodes both reach PyPI and Hugging Face over HTTPS [V:run], so packages and models can also be fetched inside a job.
 
 ## Install uv in home (if missing)
 
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh     # [U] needs outbound internet from the login node
+curl -LsSf https://astral.sh/uv/install.sh | sh     # outbound internet works from the login node [V:run]; the installer itself was not run
 export PATH="$HOME/.local/bin:$PATH"
 uv --version
 ```
@@ -73,7 +73,7 @@ mkdir -p "$HF_HOME"
 huggingface-cli download <org>/<model>
 ```
 
-- Then in jobs: `export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1` so a missing file fails fast instead of hanging [U that compute nodes lack internet].
+- Compute nodes have internet [V:run], so offline mode is optional; set `export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1` anyway for reproducible runs that must not fetch files.
 - Gated models need a token on the login node only; never write it in scripts or the vault.
 
 ## Reproducibility
