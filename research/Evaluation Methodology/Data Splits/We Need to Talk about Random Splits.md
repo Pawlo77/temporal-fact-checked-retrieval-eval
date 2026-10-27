@@ -28,11 +28,11 @@ tags: [type/paper, theme/splits, topic/evaluation, topic/temporal, topic/english
 
 The paper's setting is not retrieval; it compares how well five evaluation splits predict performance on a later or separate sample of the same domain.
 
-**Split types.** Standard (the dataset's own split, where one exists); random (resampled 3-10 times, cross-validation); heuristic (sentences above a length threshold, about 10% of data, go to test); adversarial; new samples (separately collected in-domain data, for time-stamped datasets the most recent period).
+**Split types.** Standard (the dataset's own split, where one exists); random (resampled 3-10 times, cross-validation). Heuristic: sentences above a length threshold, about 10% of data, go to test. Also adversarial, and new samples: separately collected in-domain data, for time-stamped datasets the most recent period.
 
 **Adversarial split.** Build a ball tree over pairwise Wasserstein distances, pick a random centroid, and put its $k$ nearest neighbours in test; the rest is training. Exact worst-case selection is NP-hard, so this is an approximation averaged over five runs.
 
-**Comparable score.** Results come from different samples, so each is reported as error reduction over a baseline, $r = (p_s - p_b)/(1 - p_b)$, with $p_s$ the system and $p_b$ a random (or, for headlines, identity) baseline.
+**Comparable score.** Results come from different samples, so each is an error reduction over a baseline, $r = (p_s - p_b)/(1 - p_b)$. Here $p_s$ is the system and $p_b$ a random (for headlines, identity) baseline.
 
 Intuition: a split is a good evaluation if its $r$ is close to $r$ on new samples; the mean squared error to new samples ranks the split types.
 
@@ -45,9 +45,9 @@ Intuition: a split is a good evaluation if its $r$ is close to $r$ on new sample
 
 ## Experiments
 
-- **Seven tasks, five split types:** POS tagging, two SentEval probing tasks, translation quality estimation, headline generation, emoji prediction, news classification; random and standard splits overestimate on every task, heuristic splits are more optimistic than new samples in 5 of 7 tasks and adversarial splits in 4 of 7.
+- **Seven tasks, five split types:** POS tagging, two SentEval probing tasks, translation quality estimation, headline generation, emoji prediction, news classification; random and standard splits overestimate on every task. Heuristic splits are more optimistic than new samples in 5 of 7 tasks, adversarial splits in 4 of 7.
 - **Alternative heuristics (appendix):** splits by rare words lower scores, but less than the length threshold; bootstrap resampling gives slightly lower error reduction than cross-validation.
-- **Temporal drift, headlines (appendix):** three equal-size models trained on a random half, the earlier half or the later half of 1994-2003 and tested on 2004; the earlier-half model is clearly worse, partly from vocabulary change such as "US" replacing "U.S.".
+- **Temporal drift, headlines (appendix):** three equal-size models trained on a random half, the earlier half or the later half of 1994-2003, tested on 2004. The earlier-half model is clearly worse, partly from vocabulary change such as "US" replacing "U.S.".
 - **Temporal drift, emojis (appendix):** training on single days before a fixed test day; the correlation between temporal gap and performance is significant ($p < 0.05$).
 
 ## Data
@@ -68,7 +68,7 @@ Intuition: a split is a good evaluation if its $r$ is close to $r$ on new sample
 ## Relation to our project
 
 - We take its central claim: random splits overstate deployment performance, and a later independent sample is the better estimate. Our causal protocol evaluates each post $q$ against $P(q)$, the fact-checks published before $t_q$, which is that later-sample principle applied to the retrieval pool ([[Proposed Task]], [[Enhanced topic research]]).
-- The ranking flip under a new sample (POS tagger with and without CRF) is the outcome we test for retrieval families: whether system order under Success@10 and MRR survives the switch to a causal index ([[Research summary]]).
+- The ranking flip under a new sample (POS tagger with and without CRF) is what we test for retrieval families. Does system order under Success@10 and MRR survive the switch to a causal index ([[Research summary]])?
 - Its headline-drift appendix motivates our chronological training regime for fine-tuned retrievers, together with [[Mind the Gap]] and [[Role of Context in PFCR]].
 - We avoid citing it as recommending time-based splits: its stated recommendation is new samples, else biased or adversarial splits.
 
