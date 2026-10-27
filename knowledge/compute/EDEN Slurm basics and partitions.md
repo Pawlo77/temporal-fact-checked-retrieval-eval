@@ -54,7 +54,7 @@ updated: 2026-10-27
 
 - `student`: appears in all docs examples, 1 CPU, 4 GB, 30 min interactive [V].
 - Other partition names (`short`, GPU, CPU): not published; `short` appears in the cheat sheet [U].
-- Discover: 
+- Discover:
 
 ```bash
 sinfo -o "%P %a %l %D %G %c %m %N"
