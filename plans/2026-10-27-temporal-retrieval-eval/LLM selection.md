@@ -66,7 +66,7 @@ Yes, a single family is a real research risk, and the largest one sits in RQ5 an
 | Paper | Role | Models | Languages | Result |
 |---|---|---|---|---|
 | [[TIFIN India]] (SemEval-2025) | Listwise reranker of top 50, RRF fusion | Qwen2.5-72B-Instruct | Translated to English; Polish test | S@10 0.938 mono, Polish 0.886; reranking adds 0.025 |
-| [[CAISA|CAISA (SemEval-2025)]] | Post-filtering of retrieved claims | Llama-3-8B-Instruct | Task languages | S@10 55.7% reported |
+| [[CAISA\|CAISA (SemEval-2025)]] | Post-filtering of retrieved claims | Llama-3-8B-Instruct | Task languages | S@10 55.7% reported |
 | [[SemEval-2025 Task 7]] overview | Shared task | Winner (PINGAN AI) undescribed | 8 train languages, Polish and Turkish test-only | Polish S@10 0.882 to 0.926 for top four teams |
 | [[Multilingual vs Crosslingual Retrieval]] (Ramponi et al., EMNLP 2025) | LLM reranker of top 30 | RankGPT; backbone LLM not named in the paper | 47 languages, no Polish breakdown | MRR@10 0.8042 multilingual, 0.6140 crosslingual with multilingual-e5-large |
 | [[AMC-16K]] (Vykopal et al., Findings EMNLP 2025) | Pairwise relevance classifier | Mistral Large 123B, Command R+ 104B, Qwen2.5 72B and 7B, Llama3.1 70B and 8B, Mistral 7B | 20 languages incl. 400 Polish pairs | Best macro F1 82.46 mono, 80.54 cross (Mistral Large, few-shot); 70B+ significantly better |
@@ -79,8 +79,8 @@ Yes, a single family is a real research risk, and the largest one sits in RQ5 an
 | [[Simulated Ignorance Fails]] (IJCAI 2026) | Cutoff probe | Nine models, cutoffs April 2024 to January 2025 | English | Prompted cutoff closes 48% of the gap |
 | [[All Leaks Count]] (Findings EMNLP 2026) | Claim-level leakage audit | Qwen3.5-35B, Kimi-K2.5, Claude Sonnet 4 | English | Date-filtered RAG raises leakage 2.5 to 4.7 times |
 | [[Temporal Leakage in Date-Filtered Web Retrieval]] (ACL 2026) | Leakage judge | gpt-oss-120b (same model as forecaster) | English | Quadratic weighted kappa 0.85 with humans on 134 documents |
-| [[Panel of LLM Evaluators|Verga et al., 2024 (PoLL)]] | Judge panel | Command R, Haiku, GPT-3.5 vs GPT-4 | English | Kappa with humans 0.763 vs 0.627 (NQ), max voting |
-| [[LLM Judges Favour LLM Rankers|Balog et al., SIGIR 2025]] | LLM relevance judge vs rankers | LLM judges and LLM rankers on TREC DL 2019/2020 | English | Significant judge bias towards LLM-based rankers |
+| [[Panel of LLM Evaluators\|Verga et al., 2024 (PoLL)]] | Judge panel | Command R, Haiku, GPT-3.5 vs GPT-4 | English | Kappa with humans 0.763 vs 0.627 (NQ), max voting |
+| [[LLM Judges Favour LLM Rankers\|Balog et al., SIGIR 2025]] | LLM relevance judge vs rankers | LLM judges and LLM rankers on TREC DL 2019/2020 | English | Significant judge bias towards LLM-based rankers |
 
 ## Proposed model set
 

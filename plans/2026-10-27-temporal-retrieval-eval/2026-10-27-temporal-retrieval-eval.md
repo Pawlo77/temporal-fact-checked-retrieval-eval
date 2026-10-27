@@ -109,14 +109,14 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 
 | Role | Model | Stated cutoff | Why |
 |---|---|---|---|
-| Retriever | [[Qwen3 Embedding|Qwen3-Embedding-8B]] | none stated | strongest multilingual embedder; "cutoff unknown" stratum |
-| Reranker | [[Qwen3 Embedding|Qwen3-Reranker-8B]] | none stated | continuity; "cutoff unknown" |
-| Reranker | [[Gemma 3|Gemma 3 27B-it]] | August 2024 | cutoff inside the query period |
-| Reranker (auditable) | [[Apertus|Apertus-70B-Instruct]] (and 8B for a size axis) | March 2024 | open pretraining data: each gold fact-check can be searched for |
-| Reranker (auditable, English) | [[Olmo 3|Olmo 3 32B]] | December 2024 | second open-data cutoff |
-| Reranker (Polish) | [[Bielik 11B v3|Bielik-11B-v3.0-Instruct]] | none stated | Polish-specialised |
-| Reranker (control) | [[Llama 3.3|Llama-3.3-70B-Instruct]] | December 2023 | earliest cutoff, widest split |
-| Judge | [[gpt-oss-120b]], [[Command A|Command A (03-2025)]], [[Mistral Large 2411|Mistral-Large-Instruct-2411]] | n/a | three families disjoint from every evaluated system; majority vote |
+| Retriever | [[Qwen3 Embedding\|Qwen3-Embedding-8B]] | none stated | strongest multilingual embedder; "cutoff unknown" stratum |
+| Reranker | [[Qwen3 Embedding\|Qwen3-Reranker-8B]] | none stated | continuity; "cutoff unknown" |
+| Reranker | [[Gemma 3\|Gemma 3 27B-it]] | August 2024 | cutoff inside the query period |
+| Reranker (auditable) | [[Apertus\|Apertus-70B-Instruct]] (and 8B for a size axis) | March 2024 | open pretraining data: each gold fact-check can be searched for |
+| Reranker (auditable, English) | [[Olmo 3\|Olmo 3 32B]] | December 2024 | second open-data cutoff |
+| Reranker (Polish) | [[Bielik 11B v3\|Bielik-11B-v3.0-Instruct]] | none stated | Polish-specialised |
+| Reranker (control) | [[Llama 3.3\|Llama-3.3-70B-Instruct]] | December 2023 | earliest cutoff, widest split |
+| Judge | [[gpt-oss-120b]], [[Command A\|Command A (03-2025)]], [[Mistral Large 2411\|Mistral-Large-Instruct-2411]] | n/a | three families disjoint from every evaluated system; majority vote |
 
 - **RQ5 design:** per model with a stated cutoff, stratify queries by gold fact-check date before or after that cutoff and estimate the reranker gain over the shared first stage; control with difference-in-differences against the cross-encoders; a gain jump at each model's own cutoff, not at a common date, is the leakage signature. Qwen3 and Bielik are reported as "cutoff unknown". For Apertus and Olmo, exposure is checked directly in the released pretraining data.
 - **Narrative-drift labels (validity gate):** the drift prompt and judge-panel model versions are frozen before validation; two humans label a stratified calibration sample of 100 items (50 Polish, 50 English); drift enters the analysis as a covariate only when the panel-vs-human Cohen's kappa is at least 0.6 on each language, otherwise it is reported as exploratory and the human-coded 50 failing queries carry the drift finding; every drift result is shown with and without the covariate, and a 5% sample is rerun three times for label flip rate.
