@@ -5,7 +5,7 @@ parent: "[[Evaluation Methodology]]"
 ---
 # Data Splits
 
-How to split data for training and testing, and what random, standard and time-blind splits hide. Part of [[Evaluation Methodology]].
+How to split data for training and testing, and what random, standard and time-blind splits hide.
 
 ## Summary
 

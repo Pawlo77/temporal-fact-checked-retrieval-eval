@@ -5,7 +5,7 @@ parent: "[[Temporal Evaluation]]"
 ---
 # Chronological Evaluation
 
-Chronological splits, time-respecting retrieval evaluation, temporal persistence and leakage in recommender evaluation: how scores change when a system sees only what existed at query time. Part of [[Temporal Evaluation]].
+Chronological splits, time-respecting retrieval evaluation, temporal persistence and leakage in recommender evaluation: how scores change when a system sees only what existed at query time.
 
 ## Summary
 

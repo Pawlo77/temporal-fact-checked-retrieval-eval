@@ -5,7 +5,7 @@ parent: "[[Temporal Evaluation]]"
 ---
 # LLM Temporal Leakage
 
-How post-cutoff information reaches an evaluation through an LLM's parametric knowledge or through date-filtered web search, and how to measure and block it. Part of [[Temporal Evaluation]].
+How post-cutoff information reaches an evaluation through an LLM's parametric knowledge or through date-filtered web search, and how to measure and block it.
 
 ## Summary
 

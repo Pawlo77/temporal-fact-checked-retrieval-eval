@@ -5,7 +5,7 @@ parent: "[[Claim Retrieval]]"
 ---
 # Bias
 
-Language, popularity and other systematic biases in PFCR: which languages and which fact-checks systems favour, and how that distorts aggregate scores. Part of [[Claim Retrieval]].
+Language, popularity and other systematic biases in PFCR: which languages and which fact-checks systems favour, and how that distorts aggregate scores.
 
 ## Summary
 

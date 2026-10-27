@@ -5,7 +5,7 @@ parent: "[[Claim Retrieval]]"
 ---
 # Methods and Systems
 
-PFCR and claim-matching methods, systems and evaluation studies: how posts are matched to earlier fact-checks, and under which splits those systems were scored. Part of [[Claim Retrieval]].
+PFCR and claim-matching methods, systems and evaluation studies: how posts are matched to earlier fact-checks, and under which splits those systems were scored.
 
 ## Summary
 

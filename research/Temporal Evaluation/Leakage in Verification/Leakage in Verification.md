@@ -5,7 +5,7 @@ parent: "[[Temporal Evaluation]]"
 ---
 # Leakage in Verification
 
-Evidence or answer leakage in claim verification: retrieved evidence that was written after the claim, or that is itself a fact-check of it, inflates scores. Part of [[Temporal Evaluation]].
+Evidence or answer leakage in claim verification: retrieved evidence that was written after the claim, or that is itself a fact-check of it, inflates scores.
 
 ## Summary
 
