@@ -70,11 +70,11 @@ Intuition: a high SLB retriever ignores fact-checks in other languages, which ma
 
 ## Relation to our project
 
-- Our main corpus; the per-instance timestamps make a causal pool $P(q) = \{f \in P : t_f < t_q\}$ possible ([[Proposed Task]]).
+- Our main corpus; the per-instance timestamps make a causal pool $P(q) = \{f \in P : t_f < t_q\}$ possible ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
 - Its three temporal analyses are precedents we must cite: none removes future fact-checks from the pool or separates answerability from ranking, which is our RQ1 ([[Datasets and Benchmarks]]).
-- The random pool-size sweep is not size-matched per query; our matched control extends it ([[Enhanced topic research]]).
+- The random pool-size sweep is not size-matched per query; our matched control extends it ([[2026-10-27-topic-research|Topic research]]).
 - The random 80:10:10 split is the training-leakage baseline we contrast with chronological training.
-- Polish (453 posts) is thin here, which is why we pool with [[SemEval-2025 Task 7]] and v2 ([[MultiClaim Zenodo Records]], [[Language scope analysis]]).
+- Polish (453 posts) is thin here, which is why we pool with [[SemEval-2025 Task 7]] and v2 ([[MultiClaim Zenodo Records]], [[2026-10-27-language-scope|Language scope analysis]]).
 
 ## Future work
 

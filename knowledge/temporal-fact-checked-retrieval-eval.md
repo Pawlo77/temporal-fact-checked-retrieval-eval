@@ -10,26 +10,26 @@ updated: 2026-10-27
 
 Causal (time-respecting) evaluation of previously fact-checked claim retrieval on MultiClaim, with a Polish focus and an English control. The repository is also an Obsidian vault.
 
-Start here: [[Proposed Task]]. Dashboard: [[Dashboard]]. Open items: [[Fixed issues]]. Literature: [[Research]].
+Start here: [[2026-10-27-temporal-retrieval-eval|Project plan]]. Dashboard: [[Dashboard]]. Open items: [[Fixed issues]]. Literature: [[Research]].
 
 > [!note] State of the code
-> Planning phase: the package holds the experiment scaffold only, no retrieval code or results yet. The project plan is [[Proposed Task]]; the assigned brief is [[Original Task]].
+> Planning phase: the package holds the experiment scaffold only, no retrieval code or results yet. The project plan is [[2026-10-27-temporal-retrieval-eval|Project plan]]; the assigned brief is [[Original Task]].
 
 ## Components
 
 | Note | Role |
 |---|---|
-| [[Proposed Task]] | Enhanced project: protocol, systems, gap decomposition, deliverables |
+| [[2026-10-27-temporal-retrieval-eval\|Project plan]] | Enhanced project: protocol, systems, gap decomposition, deliverables |
 | [[Original Task]] | The assigned brief |
 | [[Research]] | Verified paper notes by area: claim retrieval, temporal evaluation, methodology, models |
 | [[compute]] | EDEN cluster: access, hardware, storage, Slurm, GPU jobs, environments |
 
 ## Flow
 
-1. Request MultiClaim access and build the dated corpus ([[Proposed Task]]).
+1. Request MultiClaim access and build the dated corpus ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
 2. Build the splits: random, strict causal, size-matched random, cluster-expanded causal.
 3. Run BM25, dense, cross-lingual and reranking systems under each protocol ([[compute]]).
-4. Report Success@10 and MRR with paired bootstrap, then decompose the gap and code 50 failing queries ([[Language scope analysis]]).
+4. Report Success@10 and MRR with paired bootstrap, then decompose the gap and code 50 failing queries ([[2026-10-27-language-scope|Language scope analysis]]).
 
 ## Invariants
 
@@ -44,11 +44,15 @@ Start here: [[Proposed Task]]. Dashboard: [[Dashboard]]. Open items: [[Fixed iss
 
 ## Research
 
-Literature on one question: how much retrieval performance survives a time-respecting index. Index and corrections: [[Research]], [[Literature corrections log]].
+Literature on one question: how much retrieval performance survives a time-respecting index. Index and corrections: [[Research]], [[2026-10-27-literature-corrections|Literature corrections log]].
+
+## Plans
+
+[[2026-10-27-temporal-retrieval-eval|Project plan]] · [[2026-10-27-topic-research|Topic research]] · [[2026-10-27-language-scope|Language scope analysis]] · [[2026-10-27-literature-corrections|Literature corrections log]]
 
 ## Handbook
 
-[[Original Task]] · [[Proposed Task]] · [[Enhanced topic research]] · [[Language scope analysis]] · [[Literature corrections log]] · [[compute]]
+[[Original Task]] · [[compute]]
 
 ## Generated
 

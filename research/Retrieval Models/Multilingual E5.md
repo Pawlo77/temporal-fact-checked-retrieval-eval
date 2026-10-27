@@ -62,9 +62,9 @@ Intuition: naturally co-occurring text pairs teach the encoder that a title and 
 
 ## Relation to our project
 
-- mE5-large and mE5-large-instruct are our main multilingual dense baselines and the base for the fine-tuned system trained under random and chronological regimes ([[Proposed Task]], [[Enhanced topic research]]).
+- mE5-large and mE5-large-instruct are our main multilingual dense baselines and the base for the fine-tuned system trained under random and chronological regimes ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[2026-10-27-topic-research|Topic research]]).
 - The pre-training crawl includes CC News and Reddit with no stated end date, so exposure to fact-check-era text cannot be ruled out. We treat it as possible parametric leakage and compare query strata rather than claiming it away ([[Retrieval Models]]).
-- Polish evidence comes from [[PIRB]], where mE5-large is the strongest off-the-shelf model (57.29 NDCG@10); the cross-lingual Polish-English case is untested ([[Language scope analysis]]).
+- Polish evidence comes from [[PIRB]], where mE5-large is the strongest off-the-shelf model (57.29 NDCG@10); the cross-lingual Polish-English case is untested ([[2026-10-27-language-scope|Language scope analysis]]).
 - Encoding the pool once and masking by $t_f < t_q$ at search time makes the causal pool $P(q)$ cheap for a bi-encoder like this one.
 
 ## Future work

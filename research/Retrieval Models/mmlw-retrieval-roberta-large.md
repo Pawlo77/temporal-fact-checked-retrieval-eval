@@ -58,8 +58,8 @@ The card dates a model update to 2023-12-26 ("improved results"); the earlier we
 
 ## Relation to our project
 
-- Our Polish-specialised encoder: apply "zapytanie: " to posts and nothing to fact-checks ([[Proposed Task]], [[Enhanced topic research]]).
-- Distillation from an English teacher makes Polish post to English fact-check retrieval plausible, but the card shows only Polish results, so we measure it ([[Language scope analysis]]) and compare against [[Multilingual E5]] and [[BGE-M3]].
+- Our Polish-specialised encoder: apply "zapytanie: " to posts and nothing to fact-checks ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[2026-10-27-topic-research|Topic research]]).
+- Distillation from an English teacher makes Polish post to English fact-check retrieval plausible, but the card shows only Polish results, so we measure it ([[2026-10-27-language-scope|Language scope analysis]]) and compare against [[Multilingual E5]] and [[BGE-M3]].
 - It is the retriever that [[polish-reranker-roberta-v3]] is scored with (average 65.17 on PIRB), a natural first-stage and reranker pair.
 
 ## Future work

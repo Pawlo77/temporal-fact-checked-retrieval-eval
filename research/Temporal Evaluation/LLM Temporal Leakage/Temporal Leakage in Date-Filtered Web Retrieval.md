@@ -66,7 +66,7 @@ Intuition: the question-level rate asks "could a forecaster find a decisive page
 
 ## Relation to our project
 
-- Supports our timestamp-leakage category: a publication or crawl date is not the date the content last changed, and fact-check pages are routinely edited after publication, so the fact-check time $t_f$ may be wrong. We keep a frozen archive with stored dates and audit a sample of dates by hand ([[Proposed Task]], [[Enhanced topic research]]).
+- Supports our timestamp-leakage category: a publication or crawl date is not the date the content last changed, and fact-check pages are routinely edited after publication, so the fact-check time $t_f$ may be wrong. We keep a frozen archive with stored dates and audit a sample of dates by hand ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[2026-10-27-topic-research|Topic research]]).
 - Related-content sidebars on a fact-check page can mention later claims; our text cleaning should strip them before indexing.
 - The causal pool $P(q)$ must be built from stored timestamps, never from a live engine's date filter ([[LLM Temporal Leakage]]).
 - Not covered: claim matching, fact-check archives and ranking metrics.

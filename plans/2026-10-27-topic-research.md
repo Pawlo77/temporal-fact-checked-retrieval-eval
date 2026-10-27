@@ -1,18 +1,19 @@
 ---
-title: "Enhanced topic research"
-type: handbook
+title: "Topic research"
+type: plan
 domain: vault
 parent: "[[temporal-fact-checked-retrieval-eval]]"
-tags: [handbook, research, novelty, venues, temporal-evaluation]
+status: done
+tags: [plan, research, novelty, venues, temporal-evaluation]
 created: 2026-10-27
 updated: 2026-10-27
 related:
   - "[[Original Task]]"
-  - "[[Literature corrections log]]"
+  - "[[2026-10-27-literature-corrections|Literature corrections log]]"
   - "[[Research]]"
-  - "[[Language scope analysis]]"
+  - "[[2026-10-27-language-scope|Language scope analysis]]"
 ---
-# Enhanced topic research
+# Topic research
 
 Sources checked on 2026-10-27 and re-verified the same day against primary sources; every claim below carries a URL in the reference list. Counts quoted from papers are the papers' numbers, not ours; our own counts come only after the data request is granted.
 
@@ -30,7 +31,7 @@ Previously fact-checked claim retrieval (PFCR) is scored on [[MultiClaim]] and [
 
 - RQ1: How much of the Success@10 and MRR reported under the standard protocol survives a causal index, on answerable queries only, after controlling for pool size?
 - RQ2: Which share of the random-vs-causal gap comes from (a) answerability loss, (b) pool composition, (c) training-set leakage in fine-tuned models, (d) missing labels for earlier same-claim fact-checks?
-- RQ3: Is the causal penalty larger for Polish than for English, and does archive density explain it (fewer earlier siblings, longer post-to-debunk lags, more cross-lingual-only earlier debunks)? Language set and dose-response design: [[Language scope analysis]].
+- RQ3: Is the causal penalty larger for Polish than for English, and does archive density explain it (fewer earlier siblings, longer post-to-debunk lags, more cross-lingual-only earlier debunks)? Language set and dose-response design: [[2026-10-27-language-scope|Language scope analysis]].
 - RQ4: How long after a post does the first relevant fact-check become retrievable (time-to-findability), and how does it differ by language and system?
 - RQ5: Do LLM rerankers gain from parametric knowledge of debunks published after the query (parametric temporal leakage), measured on queries before vs after model knowledge cutoffs?
 
@@ -91,7 +92,7 @@ Previously fact-checked claim retrieval (PFCR) is scored on [[MultiClaim]] and [
 - Training-time leakage for multilingual social-media PFCR ([[MultiClaim]]/SemEval), extending the debate-level chronological split of [[Role of Context in PFCR|Shaar et al. 2022]] and separating it from index and answerability effects.
 - Statistics leakage measured for PFCR: BM25 with full-pool vs causal-pool corpus statistics.
 - Parametric temporal leakage of LLM rerankers on PFCR, measured with pre- and post-cutoff query strata.
-- Polish-English difference-in-differences with an explicit power statement, plus the archive-density dose-response of [[Language scope analysis]]; prior Polish PFCR evidence: SemEval-2025 test (500 posts, 564 pairs; per-team Polish S@10 in Table 8), MultiClaim v1 tables (6,912 fact-checks, 453 posts), [[AMC-16K]] Polish annotations and LLM results (Vykopal et al. 2025), and Polish as one of 47 languages in [[Multilingual vs Crosslingual Retrieval|Ramponi et al. 2025]].
+- Polish-English difference-in-differences with an explicit power statement, plus the archive-density dose-response of [[2026-10-27-language-scope|Language scope analysis]]; prior Polish PFCR evidence: SemEval-2025 test (500 posts, 564 pairs; per-team Polish S@10 in Table 8), MultiClaim v1 tables (6,912 fact-checks, 453 posts), [[AMC-16K]] Polish annotations and LLM results (Vykopal et al. 2025), and Polish as one of 47 languages in [[Multilingual vs Crosslingual Retrieval|Ramponi et al. 2025]].
 - Confidence: these claims hold as far as searches on 2026-10-27 reached; [[Role of Context in PFCR|Shaar et al. 2022]] was read via arXiv and an excerpt, so a date restriction of its pool cannot be fully ruled out.
 
 ## Method outline
@@ -219,7 +220,7 @@ Previously fact-checked claim retrieval (PFCR) is scored on [[MultiClaim]] and [
 
 ## Reference list
 
-Per-paper verification notes are in `research/`; corrections in [[Literature corrections log]].
+Per-paper verification notes are in `research/`; corrections in [[2026-10-27-literature-corrections|Literature corrections log]].
 
 - Ounis, Macdonald, Lin, Soboroff 2011, Overview of the TREC-2011 Microblog Track, TREC 2011: https://trec.nist.gov/pubs/trec20/papers/MICROBLOG.OVERVIEW.pdf ; note [[TREC 2011 Microblog]]
 - [[That is a Known Lie|Shaar et al. 2020]], That is a Known Lie, ACL: https://aclanthology.org/2020.acl-main.332/ ; note [[That is a Known Lie]]

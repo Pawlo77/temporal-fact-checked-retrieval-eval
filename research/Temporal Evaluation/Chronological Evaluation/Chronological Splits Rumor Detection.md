@@ -66,8 +66,8 @@ Intuition: holding proportions and class balance fixed, the only change is wheth
 
 ## Relation to our project
 
-- Evidence for our training-regime arm: a fine-tuned model trained and tested on random splits of misinformation data can look far better than it is on new events ([[Proposed Task]]).
-- Its near-duplicate analysis has a PFCR counterpart: under a random protocol, posts of a recurring claim and their fact-checks from the future sit in the pool. Our coded failure analysis should count lexical near-duplicates in the same way ([[Enhanced topic research]]).
+- Evidence for our training-regime arm: a fine-tuned model trained and tested on random splits of misinformation data can look far better than it is on new events ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
+- Its near-duplicate analysis has a PFCR counterpart: under a random protocol, posts of a recurring claim and their fact-checks from the future sit in the pool. Our coded failure analysis should count lexical near-duplicates in the same way ([[2026-10-27-topic-research|Topic research]]).
 - For PFCR itself the chronological training split already exists in [[Role of Context in PFCR]]; this paper is supporting evidence from a neighbouring task, not a precedent for the causal index ([[Chronological Evaluation]]).
 - Its caveat that pretraining post-dates the data maps to our parametric-leakage strata for LLM rerankers.
 

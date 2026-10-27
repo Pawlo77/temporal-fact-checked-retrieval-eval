@@ -1,15 +1,16 @@
 ---
 title: "Language scope analysis"
-type: handbook
+type: plan
 domain: vault
 parent: "[[temporal-fact-checked-retrieval-eval]]"
-tags: [handbook, research, language-scope, power-analysis, study-design]
+status: draft
+tags: [plan, language-scope, power-analysis, study-design]
 created: 2026-10-27
 updated: 2026-10-27
 related:
   - "[[Original Task]]"
-  - "[[Proposed Task]]"
-  - "[[Enhanced topic research]]"
+  - "[[2026-10-27-temporal-retrieval-eval|Project plan]]"
+  - "[[2026-10-27-topic-research|Topic research]]"
 ---
 # Language scope analysis
 
@@ -21,7 +22,7 @@ Question: is a Polish-vs-English contrast enough for a publishable causal evalua
 - Replace "Polish penalty is larger than English" as the only mechanism test with a dose-response test: the causal penalty as a function of archive density (log causal same-language pool size at post time, earlier-sibling count, post-to-debunk lag).
 - Identify the mechanism mainly from within-language variation (the causal pool grows over time inside every language), with between-language spread as corroboration; two languages alone cannot separate "thin archive" from everything else that differs between Polish and English.
 - Keep the brief's deliverables unchanged: the Polish-English difference-in-differences stays the central number, the 50-query manual analysis stays 25 Polish + 25 English.
-- Needs supervisor sign-off before committing, since the brief names Polish and English only; [[Proposed Task]] adopts it as an additive robustness layer with Polish and English only as the fallback.
+- Needs supervisor sign-off before committing, since the brief names Polish and English only; [[2026-10-27-temporal-retrieval-eval|Project plan]] adopts it as an additive robustness layer with Polish and English only as the fallback.
 
 ## Why two languages is thin
 
@@ -135,7 +136,7 @@ Within-language query-level slope of hit on log10 causal pool size (linear proba
 - Inclusion rule per language: at least 250 dated queries and at least 100 strict-causal answerable queries; below that the language is reported descriptively and enters only the pooled model.
 - Czech and Slovak are thin-archive anchors from a single AFP outlet each; keep them as separate points and run a leave-one-language-out check on the slope.
 - 50-query manual analysis: unchanged (25 pl, 25 en), so the brief's qualitative deliverable and kappa are not diluted.
-- Workstreams: the single plan in [[Proposed Task]] runs sparse and dense baselines (W2) on all seven languages, since encoding and masking are cheap; cross-encoders (W3) on all seven, the LLM reranker and the full additive gap chain (W4) on Polish and English; the mixed model is fitted on the one shared results table.
+- Workstreams: the single plan in [[2026-10-27-temporal-retrieval-eval|Project plan]] runs sparse and dense baselines (W2) on all seven languages, since encoding and masking are cheap; cross-encoders (W3) on all seven, the LLM reranker and the full additive gap chain (W4) on Polish and English; the mixed model is fitted on the one shared results table.
 
 ## Venue fit and novelty
 

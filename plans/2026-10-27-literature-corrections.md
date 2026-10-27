@@ -1,18 +1,19 @@
 ---
 title: "Literature corrections log"
-type: handbook
+type: plan
 domain: vault
 parent: "[[temporal-fact-checked-retrieval-eval]]"
-tags: [handbook, literature, corrections]
+status: done
+tags: [plan, literature, corrections]
 created: 2026-10-27
 updated: 2026-10-27
 related:
   - "[[Research]]"
-  - "[[Proposed Task]]"
+  - "[[2026-10-27-temporal-retrieval-eval|Project plan]]"
 ---
 # Literature corrections log
 
-Errors and unsupported claims in the first pass of [[Enhanced topic research]], checked against primary sources on 2026-10-27.
+Errors and unsupported claims in the first pass of [[2026-10-27-topic-research|Topic research]], checked against primary sources on 2026-10-27.
 
 | Claim in first pass | Correction | Paper note |
 |---------------------|------------|------------|

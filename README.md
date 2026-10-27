@@ -35,12 +35,13 @@ Retrieval errors can make a named journalist or outlet look like a disinformatio
 |---|---|
 | `src/temporal_fact_checked_retrieval_eval/` | package: `dataset`, `models`, `training`, `orchestration`, `config` |
 | `configs/experiment.yaml` | experiment configuration |
-| `knowledge/` | Obsidian vault: task description, proposed task, research notes, EDEN cluster guide (`knowledge/compute/`) |
+| `knowledge/` | Obsidian vault: the assigned brief and the EDEN cluster guide (`knowledge/compute/`) |
+| `plans/` | the project plan with its supporting research, language scope and risk notes |
 | `research/` | one note per paper read, with verified citations |
 | `report/` | LaTeX report |
 | `notebooks/`, `outputs/` | analysis notebooks and run outputs |
 
-Start with `knowledge/handbook/Proposed Task.md`.
+Start with `plans/2026-10-27-temporal-retrieval-eval.md`.
 
 ## Development
 

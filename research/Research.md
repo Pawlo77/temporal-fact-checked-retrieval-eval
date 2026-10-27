@@ -8,7 +8,7 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 
 Literature on one question: **how much of the reported performance of previously fact-checked claim retrieval (PFCR) survives when a system may search only fact-checks published before the post, and is the penalty larger for Polish than for English?**
 
-A naive "index only earlier fact-checks" filter mixes four effects: the gold fact-check not existing yet, a smaller pool, training-time leakage and missing labels for earlier fact-checks of the same claim. The project separates them with a causal index, answerability-aware metrics and a gap decomposition; see [[Proposed Task]]. State of the art per area is in the `## Summary` of each area note; novelty position below.
+A naive "index only earlier fact-checks" filter mixes four effects: the gold fact-check not existing yet, a smaller pool, training-time leakage and missing labels for earlier fact-checks of the same claim. The project separates them with a causal index, answerability-aware metrics and a gap decomposition; see [[2026-10-27-temporal-retrieval-eval|Project plan]]. State of the art per area is in the `## Summary` of each area note; novelty position below.
 
 ## Areas
 

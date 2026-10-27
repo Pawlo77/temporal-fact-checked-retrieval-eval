@@ -7,7 +7,7 @@ tags: [handbook, task]
 created: 2026-10-27
 updated: 2026-10-27
 related:
-  - "[[Proposed Task]]"
+  - "[[2026-10-27-temporal-retrieval-eval|Project plan]]"
   - "[[compute]]"
 ---
 # Original Task

@@ -67,7 +67,7 @@ Intuition: if prompting really hid the outcome, a model would be equally good (o
 
 ## Relation to our project
 
-- Rules out prompting an LLM reranker to "pretend it is date $t$": parametric leakage is handled by stratifying queries by model cutoff (RQ5 in [[Proposed Task]]), as in the post-cutoff versus pre-cutoff split here ([[Enhanced topic research]]).
+- Rules out prompting an LLM reranker to "pretend it is date $t$": parametric leakage is handled by stratifying queries by model cutoff (RQ5 in [[2026-10-27-temporal-retrieval-eval|Project plan]]), as in the post-cutoff versus pre-cutoff split here ([[2026-10-27-topic-research|Topic research]]).
 - The domain finding suggests high-salience claims (elections, wars) are the most exposed to memorised verdicts, so our strata should be reported per topic ([[LLM Temporal Leakage]]).
 - Pair with [[All Leaks Count]], which measures leakage in stated reasoning but also cannot see silent use of knowledge.
 

@@ -57,8 +57,8 @@ Intuition: the model reads the post and the fact-check together, so word-level i
 
 ## Relation to our project
 
-- Our multilingual reranker; it can score Polish posts against English fact-checks, unlike the Polish-only [[polish-reranker-roberta-v3]] ([[Proposed Task]], [[Language scope analysis]]).
-- Sharing a base with [[BGE-M3]] means reranker and retriever share pre-training exposure; we treat it as one parametric-leakage source and report the retriever alone next to every reranked run ([[Enhanced topic research]]).
+- Our multilingual reranker; it can score Polish posts against English fact-checks, unlike the Polish-only [[polish-reranker-roberta-v3]] ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[2026-10-27-language-scope|Language scope analysis]]).
+- Sharing a base with [[BGE-M3]] means reranker and retriever share pre-training exposure; we treat it as one parametric-leakage source and report the retriever alone next to every reranked run ([[2026-10-27-topic-research|Topic research]]).
 
 ## Future work
 

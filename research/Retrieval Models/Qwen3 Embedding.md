@@ -64,10 +64,10 @@ Intuition: many in-batch comparisons sharpen the space, and the mask avoids puni
 
 ## Relation to our project
 
-- Qwen3-Embedding-8B and Qwen3-Reranker-8B are our LLM-scale systems ([[Proposed Task]], [[Enhanced topic research]]).
+- Qwen3-Embedding-8B and Qwen3-Reranker-8B are our LLM-scale systems ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[2026-10-27-topic-research|Topic research]]).
 - Released in June 2025, after MultiClaim and the SemEval-2025 test period, with no stated cutoff. The backbone may have read fact-checks published after many test posts, so these models anchor the parametric-leakage strata of RQ5 ([[Retrieval Models]]).
 - Its reranker table shows bge-reranker-v2-m3 can fall below a strong embedder, so we report the embedder alone next to every reranked run.
-- No Polish breakdown means Polish quality must come from our own runs and from [[PIRB]]-style evidence ([[Language scope analysis]]).
+- No Polish breakdown means Polish quality must come from our own runs and from [[PIRB]]-style evidence ([[2026-10-27-language-scope|Language scope analysis]]).
 
 ## Future work
 
