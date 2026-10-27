@@ -28,7 +28,6 @@ updated: 2026-10-27
 - [[EDEN data sync workflows]]: rsync hops, excludes, data upload.
 - [[EDEN job templates]]: CPU, GPU, array, dependency chain, interactive, Jupyter.
 - [[EDEN monitoring and troubleshooting]]: queue, efficiency, pending reasons, pitfalls.
-- [[compute plan]]: the single project-specific note: sizing for indexing, encoding, reranking, bootstrap; job grid; placement.
 
 ## Legend
 

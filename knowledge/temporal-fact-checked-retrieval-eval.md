@@ -22,13 +22,13 @@ Start here: [[Proposed Task]]. Dashboard: [[Dashboard]]. Open items: [[Fixed iss
 | [[Proposed Task]] | Enhanced project: protocol, systems, gap decomposition, deliverables |
 | [[Original Task]] | The assigned brief |
 | [[Research]] | Verified paper notes by area: claim retrieval, temporal evaluation, methodology, models |
-| [[compute]] | EDEN cluster: access, storage, Slurm, GPU jobs, environments, project compute plan |
+| [[compute]] | EDEN cluster: access, hardware, storage, Slurm, GPU jobs, environments |
 
 ## Flow
 
 1. Request MultiClaim access and build the dated corpus ([[Proposed Task]]).
 2. Build the splits: random, strict causal, size-matched random, cluster-expanded causal.
-3. Run BM25, dense, cross-lingual and reranking systems under each protocol ([[compute plan]]).
+3. Run BM25, dense, cross-lingual and reranking systems under each protocol ([[compute]]).
 4. Report Success@10 and MRR with paired bootstrap, then decompose the gap and code 50 failing queries ([[Language scope analysis]]).
 
 ## Invariants
