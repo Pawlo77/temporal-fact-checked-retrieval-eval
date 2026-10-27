@@ -3,7 +3,7 @@
 from collections.abc import Mapping
 from dataclasses import dataclass, field, fields, is_dataclass
 from pathlib import Path
-from typing import Any, Self
+from typing import Any, Self, cast
 
 import yaml
 
@@ -85,7 +85,7 @@ class MLflowTrackingConfig:
         mapping = _extract_mapping(data, name="MLflowTrackingConfig")
         if mapping.get("tracking_uri") == "mlruns":
             mapping = {**mapping, "tracking_uri": "sqlite:///mlruns.db"}
-        return cls(**dict(mapping))
+        return cls(**cast("dict[str, Any]", dict(mapping)))
 
 
 @dataclass(frozen=True, slots=True)

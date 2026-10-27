@@ -12,4 +12,7 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 
 | Name | Defined in | Summary |
 |---|---|---|
-
+| `ConfigValidationError` | [[src/temporal_fact_checked_retrieval_eval/config.py]] | Raised when a configuration value is invalid. |
+| `ExperimentConfig` | [[src/temporal_fact_checked_retrieval_eval/config.py]] | Top-level experiment configuration. |
+| `MLflowTrackingConfig` | [[src/temporal_fact_checked_retrieval_eval/config.py]] | Local MLflow tracking configuration. |
+| `load_experiment_config` | [[src/temporal_fact_checked_retrieval_eval/config.py]] | Load and validate an experiment config from a YAML file. |

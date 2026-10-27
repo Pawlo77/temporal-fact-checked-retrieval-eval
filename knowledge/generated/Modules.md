@@ -12,7 +12,7 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 
 | Module | Summary | Lines |
 |---|---|---|
-| [[src/temporal_fact_checked_retrieval_eval/__init__.py]] | temporal-fact-checked-retrieval-eval experiment package. | 3 |
+| [[src/temporal_fact_checked_retrieval_eval/__init__.py]] | temporal-fact-checked-retrieval-eval experiment package. | 15 |
 | [[src/temporal_fact_checked_retrieval_eval/config.py]] | Typed experiment configuration loaded from YAML. | 147 |
 | [[src/temporal_fact_checked_retrieval_eval/dataset/__init__.py]] | Dataset loading and preprocessing. | 3 |
 | [[src/temporal_fact_checked_retrieval_eval/models/__init__.py]] | Model definitions for experiments. | 3 |
