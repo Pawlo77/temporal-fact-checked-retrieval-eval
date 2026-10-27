@@ -9,7 +9,7 @@ updated: 2026-10-27
 ---
 # Enhanced topic research
 
-Builds on [[Original Task]]. Sources checked on 2026-10-27 and re-verified the same day against primary sources (per-paper notes in `research/`, corrections in [[Literature corrections log]]); every claim below carries a URL in the reference list. Counts quoted from papers are the papers' numbers, not ours; our own counts come only after the data request is granted. Team-level synthesis: [[Research summary]].
+Builds on [[Original Task]]. Sources checked on 2026-10-27 and re-verified the same day against primary sources (per-paper notes in `research/`, corrections in [[Literature corrections log]]); every claim below carries a URL in the reference list. Counts quoted from papers are the papers' numbers, not ours; our own counts come only after the data request is granted. Team-level synthesis: [[Research]].
 
 ## Recommended enhanced topic
 

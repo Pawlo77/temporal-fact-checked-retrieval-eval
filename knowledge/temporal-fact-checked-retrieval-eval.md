@@ -44,11 +44,11 @@ Start here: [[Proposed Task]]. Dashboard: [[Dashboard]]. Open items: [[Fixed iss
 
 ## Research
 
-Literature on one question: how much retrieval performance survives a time-respecting index. Index and corrections: [[Research]], [[Research summary]], [[Literature corrections log]].
+Literature on one question: how much retrieval performance survives a time-respecting index. Index and corrections: [[Research]], [[Literature corrections log]].
 
 ## Handbook
 
-[[Original Task]] · [[Proposed Task]] · [[Enhanced topic research]] · [[Research summary]] · [[Language scope analysis]] · [[Literature corrections log]] · [[compute]]
+[[Original Task]] · [[Proposed Task]] · [[Enhanced topic research]] · [[Language scope analysis]] · [[Literature corrections log]] · [[compute]]
 
 ## Generated
 
