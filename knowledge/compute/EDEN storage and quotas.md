@@ -17,8 +17,8 @@ updated: 2026-10-27
 | Path | Scope | Backing | Use |
 |---|---|---|---|
 | `/home2/<group>/<user>` | shared: login node + `dgx-[1-4]` | DDN array, HDD | default for code, venvs, results [V] |
-| `/mnt/evafs/groups/<group>/` | group-shared | storage array (path from cheat sheet) | corpora, embeddings, HF cache [U] |
-| `/scratch` | shared: login + DGX | 24 NVMe, 332.6 TiB | temporary data during computation only [V] |
+| `/mnt/evafs/groups/<group>/` | group-shared | storage array (path from cheat sheet) | corpora, embeddings, HF cache; `/mnt/evafs/groups/<group>` exists for many groups [V:run] |
+| `/scratch` | shared: login + DGX | 24 NVMe, 332.6 TiB | temporary data during computation only [V]; `/scratch/shared` exists on the login node but not on `dgx-2` [V:run] |
 | `/raid` | per DGX, not shared | 4x NVMe RAID 0 | I/O-heavy job-local data [V] |
 | `/mnt/workspace/dgx-[1-4]` | login node view of each `/raid` | NFS | fetch results from a DGX `/raid` [V] |
 
@@ -46,11 +46,15 @@ updated: 2026-10-27
 id                                   # uid, gids
 df -h $HOME                          # filesystem free space (shared array, not your quota) [V:slurm n/a, standard]
 du -sh $HOME/* 2>/dev/null | sort -h # biggest dirs
-lfs quota -hp <project-id> /mnt/evafs   # [U] cheat sheet; docs mention no quota command
-lfs quota -hg <group> /mnt/evafs        # [U] Lustre group quota form
+lfs quota -h -u $USER /mnt/evafs     # per-user usage; quota 0k means no limit [V:run]
+lfs quota -h -g <unix-group> /mnt/evafs   # group usage [V:run]; the `researchers` group showed no limit
 ```
 
-- Description page names Lustre on the AI400X array [V]; whether `/mnt/evafs` is Lustre is [U].
+- `/mnt/evafs` is Lustre, 1.6 PB with about 445 TB free at the probe, mounted on login and compute nodes [V:run].
+- `df -h $HOME` reports a 200 GB filesystem for the home mount although the user quota is unlimited; treat 200 GB as the practical home limit until tested [V:run]; use group space for large data.
+- `$HOME` is `/home2/faculty/<user>` [V:run].
+- A compute node has a local `/` of 1.8 TB (about 1.6 TB free) and `/dev/shm` of 504 GB; both are local and temporary [V:run].
+- `/raid` does not exist on the login node, as expected for a per-DGX mount [V:run].
 
 ## Retention and backup
 

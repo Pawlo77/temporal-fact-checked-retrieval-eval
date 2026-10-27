@@ -12,10 +12,16 @@ updated: 2026-10-27
 ## Cluster
 
 - EDEN: HPC cluster of the Faculty of Mathematics and Information Science (MiNI), Warsaw University of Technology [V].
-- Docs: https://hpc.mini.pw.edu.pl; wiki: https://hpc.mini.pw.edu.pl/dokuwiki/doku.php; live status: https://eden-status.mini.pw.edu.pl [V]; Grafana dashboard (nodes, GPUs, queue): https://edenstatus.mini.pw.edu.pl/d/7I8DDL3nz/eden-overview?orgId=1 (link from the maintainer, not crawled).
+- Docs: https://hpc.mini.pw.edu.pl; wiki: https://hpc.mini.pw.edu.pl/dokuwiki/doku.php [V].
 - Scheduler: Slurm; reserved resources are exclusive, availability is not guaranteed [V].
 - OS: Ubuntu or DGX OS on all nodes [V].
 - Placeholders used in every note: `<user>`, `<group>`, `<email>`, `<mini-ssh-gateway>`, `<eden-login-node>`; real values stay out of the vault.
+
+## Live status
+
+- Status page: https://eden-status.mini.pw.edu.pl [V].
+- Grafana dashboard `eden-overview` (node load, GPU use, queue over time): https://edenstatus.mini.pw.edu.pl/d/7I8DDL3nz/eden-overview?orgId=1 (link from the maintainer; opens in a browser, not read by a script).
+- From the shell: `sfree`, `squeue`, `sinfo`; how to read demand and choose a partition is in [[EDEN Slurm basics and partitions]] under "Choosing where to run".
 
 ## Notes
 

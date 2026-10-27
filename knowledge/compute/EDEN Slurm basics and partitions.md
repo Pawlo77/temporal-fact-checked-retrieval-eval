@@ -76,19 +76,31 @@ sacctmgr show qos format=Name,MaxWall,MaxTRESPU,Priority   # [V:slurm] may be de
 - QOS seen: `normal` (default for jobs, no limits shown), `long-part` (long partition), `student` (20 submitted jobs per user, `cpu=72`, 2 `rtx6000`, `mem=1T` per user), `test-no-fairshare`, `3dgnome` [V:run].
 - A reservation `vllm_reservation` holds one H200 and 4 CPUs on `hopper-2` for partition `llm` until 2027-10-05 [V:run].
 
+## Choosing where to run
+
+Look at demand first, then pick the partition, GPU type and time limit that start soonest.
+
+```bash
+sfree                                   # free CPUs, GPUs and RAM per node right now [V:run]
+squeue -h | wc -l                       # jobs in the queue (89 at the probe) [V:run]
+squeue -t PD -o "%.10i %.9P %.12u %.5D %.5C %.8b %.19S %R" | head -20   # who waits, for what, expected start [V:slurm]
+squeue --start -u $USER                 # expected start of your pending jobs [V:slurm]
+sbatch --test-only -p short -A <group> --gres=gpu:a100:1 -c 8 --mem=32G -t 04:00:00 job.sh   # dry run: reports the planned node and start time, submits nothing [V:slurm]
+sprio -l                                # priority terms of pending jobs [V:slurm]
+sshare -l                               # fair-share state of your account [V:run]
+```
+
+- Live dashboards (status page and the Grafana `eden-overview` dashboard, links in the hub) show node load and GPU use over time; use them to see whether a busy hour will pass.
+- `sfree` is the quickest decision aid: it lists free CPUs, GPUs and RAM per node, so you can see which GPU type has room.
+- Jobs up to 1 day fit in `short`; longer ones need `long` (5 days, QOS `long-part`, same priority value 0 as `normal`) [V:run].
+- The scheduler is `backfill` [V:run], so a job with a realistic `--time` can start in a gap that a maximum-length job cannot [V:slurm].
+- A100 40 GB (`dgx-*`, 32 GPUs) is the large default pool; `hopper` (8 H100) and `hopper-2` (H200) are single nodes that fill quickly, so check `sfree` before asking for them.
+- CPU-only work: omit `--gres`; `short` and `long` contain both DGX and CPU-only `sr-*` nodes, so Slurm may place it on either; pin `-w sr-3` for a CPU node [V:slurm].
+- Many small jobs: use one array (maximum size 50000), not hundreds of separate submissions.
+- If nothing is free, shrink the request (fewer CPUs, less RAM, shorter time) instead of waiting for a big node.
+
 ## Why pending
 
-- Docs have an FAQ entry for PENDING with free-looking resources; body is a separate page, not fetched [U]. A job needed about one minute to start on a free A100 in `short` [V:run]."),
-])
-edit("EDEN storage and quotas.md",[
-("| corpora, embeddings, HF cache [U] |","| corpora, embeddings, HF cache; `/mnt/evafs/groups/<group>` exists for many groups "+V+" |"),
-("| `/scratch` | shared: login + DGX | 24 NVMe, 332.6 TiB | temporary data during computation only [V] |","| `/scratch` | docs: login + DGX | 24 NVMe, 332.6 TiB | temporary data during computation only [V]; `/scratch/shared` exists on the login node but not on `dgx-2` "+V+" |"),
-("lfs quota -hp <project-id> /mnt/evafs   # [U] cheat sheet; docs mention no quota command","lfs quota -h -u $USER /mnt/evafs     # per-user usage; quota 0k means no limit "+V),
-("lfs quota -hg <group> /mnt/evafs        # [U] Lustre group quota form","lfs quota -h -g <unix-group> /mnt/evafs   # group usage "+V+"; the `researchers` group showed no limit"),
-("- Description page names Lustre on the AI400X array [V]; whether `/mnt/evafs` is Lustre is [U].","- `/mnt/evafs` is Lustre, 1.6 PB with about 445 TB free at the probe, mounted on login and compute nodes "+V+".
-- `df -h $HOME` reports a 200 GB filesystem for the home mount although the user quota is unlimited; treat 200 GB as the practical home limit until tested "+V+"; use group space for large data.
-- `$HOME` is `/home2/faculty/<user>` [V:run].
-- A compute node has a local `/` of 1.8 TB (about 1.6 TB free) and `/dev/shm` of 504 GB; both are local and temporary [V:run].
-- `/raid` does not exist on the login node, as expected for a per-DGX mount [V:run].
+- Docs have an FAQ entry for PENDING with free-looking resources; body is a separate page, not fetched [U]. A job needed about one minute to start on a free A100 in `short` [V:run].
 - Typical reasons: `Priority`, `Resources`, `ReqNodeNotAvail` (reservation), `AssocGrpCPURunMinutesLimit`/group limits [V:slurm].
 - Check: `squeue -u $USER -o "%.10i %.12P %.20j %.8T %.10M %.10l %R"`, `scontrol show job <id> | grep -i reason`.
