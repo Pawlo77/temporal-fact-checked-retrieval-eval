@@ -21,7 +21,7 @@ Question: is a Polish-vs-English contrast enough for a publishable causal evalua
 - Replace "Polish penalty is larger than English" as the only mechanism test with a dose-response test: the causal penalty as a function of archive density (log causal same-language pool size at post time, earlier-sibling count, post-to-debunk lag).
 - Identify the mechanism mainly from within-language variation (the causal pool grows over time inside every language), with between-language spread as corroboration; two languages alone cannot separate "thin archive" from everything else that differs between Polish and English.
 - Keep the brief's deliverables unchanged: the Polish-English difference-in-differences stays the central number, the 50-query manual analysis stays 25 Polish + 25 English.
-- Needs supervisor sign-off before committing, since the brief names Polish and English only; [[2026-10-27-temporal-retrieval-eval|Project plan]] adopts it as an additive robustness layer with Polish and English only as the fallback.
+- [[2026-10-27-temporal-retrieval-eval|Project plan]] adopts it as an additive robustness layer, gated only on MultiClaim v2 access, with Polish and English only as the fallback.
 
 ## Why two languages is thin
 

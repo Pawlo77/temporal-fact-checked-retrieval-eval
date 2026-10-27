@@ -73,7 +73,7 @@ Likelihood (L) and impact (I): H/M/L, author's judgment. Plan status: whether th
 | R23 | Repo not ready: no retrieval dependencies, empty dataset/models packages, README points to a missing `knowledge/handbook/Proposed Task.md`, report template is `Interspeech.cls` | reproducibility, process | H | L | `pyproject.toml`, `src/`, `README.md`, `report/` as of 2026-10-27; the plan file carries title "Proposed Task" and type handbook | Fix links and template before writing; add torch, sentence-transformers, bm25s with justifications; seed and log every run in MLflow | W5; trigger: first PR | partly: README link fixed; dependencies and report template open |
 | R24 | Two-team split: the plan absorbs both brief slots; if a second team is assigned, interfaces and shared split must be agreed | team, process | M | M | [[Original Task]]: max 2 teams, one shared split and one results table | Agree at the first Wednesday who owns what; freeze split format (ids, cutoffs, qrels) by 25 Nov; one results schema | Team; trigger: 28 Oct meeting | addressed: one plan, freeze on 25 Nov |
 | R25 | Supervisor bottleneck: Wednesday-only access; decisions (language scope, scope cuts, access terms) wait a week each | process | H | M | [[Original Task]] availability | Batch questions (below) into each Wednesday; default decisions written down in advance and applied if no answer | Team lead; trigger: weekly | partly: questions batched in section 12 |
-| R26 | Language-scope expansion read as the out-of-scope language-bias study | scope | M | M | [[Language and Retrieval Bias]]; brief excludes language-bias analysis | Keep option B as stretch only with written sign-off; within-language deltas only | Team; trigger: supervisor answer | addressed: extended tier with written sign-off |
+| R26 | Language-scope expansion read as the out-of-scope language-bias study | scope | M | M | [[Language and Retrieval Bias]]; brief excludes language-bias analysis | Keep option B as stretch only, gated on v2 access; within-language deltas only | Team; trigger: v2 access | addressed: extended tier and reporting rules |
 | R27 | Narrative-drift LLM labels unvalidated or drifting with prompt changes | methodology | M | L | Plan validates on "a human sample" of unstated size | Fix prompt and model version; validate on ≥ 100 items; treat as covariate only | W4; trigger: stretch gate | partly: judge validation against humans |
 | R28 | Multimodal-only posts (13 of 100 in MultiClaim audit) inflate failures | data | M | L | [[MultiClaim]] noise audit | Code them in the 50-query analysis; sensitivity run excluding OCR-only posts | W4; trigger: failure analysis | addressed: multimodal-only in the failure codebook |
 
@@ -94,17 +94,13 @@ Ordered by cost; each can kill or reshape the project.
 - **Go/no-go 1 (18 Nov):** no data access → switch to a protocol-and-code deliverable on whatever record arrived, and tell the supervisor.
 - **Go/no-go 2 (first data week):** Polish strict-causal answerable ≥ 150 → keep the DiD headline; 50-149 → report DiD with CIs as descriptive; < 50 → headline becomes answerability and time-to-findability, Polish as a case study.
 - **Core complete (16 Dec):** 4 systems × 3 protocols × 2 languages in one table with cluster-bootstrap CIs. If not done, all stretch work stops.
-- **Stretch unlock:** core complete and ≥ 4 Wednesdays left → add in this order: sibling qrels (Polish), more languages (with sign-off), fine-tuning regimes. LLM reranker and RQ5 only with a documented model cutoff.
+- **Stretch unlock:** core complete and ≥ 4 Wednesdays left → add in this order: sibling qrels (Polish), more languages (with v2 access), fine-tuning regimes. LLM reranker and RQ5 only with a documented model cutoff.
 - **Publication go (mid-January):** pursue ARR (4 Jan 2027 deadline is not realistic) or SIGIR short (21 Jan 2027) only if R2 shows a non-trivial ranking effect; otherwise target a 2027 workshop.
 
 ## Open questions for the supervisor
 
-- Does the course require one team to cover both brief slots, or is a second team expected to share the split?
-- Is Polish and English only the graded scope, with extra languages optional, or is the wider set welcome?
-- Can "reproduces from public data" be read as "reproduces for anyone granted MultiClaim access"?
 - Will you co-sign the Zenodo access requests from a pw.edu.pl address?
 - Does the faculty need an ethics statement or data-management note for restricted social-media data?
-- Is a strong negative result (gap is answerability, not ranking) acceptable as the main finding?
 - Is a paper submission expected, and does a course deadline in late January conflict with ARR or SIGIR timing?
 - Which grading weight falls on the 50-query manual analysis vs the results table?
 

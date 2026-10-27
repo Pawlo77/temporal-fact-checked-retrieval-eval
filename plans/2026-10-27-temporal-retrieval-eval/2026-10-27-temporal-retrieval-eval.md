@@ -57,7 +57,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 
 **Extended tier (stretch, unlocked in this order once the core is complete and at least four supervisor Wednesdays remain):**
 1. Sibling qrels for Polish: cluster-expanded causal protocol with a validated three-family LLM judge panel.
-2. More languages, with the lecturer's written sign-off and MultiClaim v2 access: Spanish, German, Turkish, Czech, Slovak, chosen to span archive size so that the Polish-English contrast becomes a dose-response (see section 6).
+2. More languages, once MultiClaim v2 access is granted: Spanish, German, Turkish, Czech, Slovak, chosen to span archive size so that the Polish-English contrast becomes a dose-response (see section 6).
 3. Fine-tuned retriever under random and chronological training.
 4. LLM-scale systems and RQ5, only with models whose training cutoff is documented (section 7).
 
@@ -82,7 +82,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 - **Why widen (extended tier):** with two languages the contrast has zero degrees of freedom for a mechanism claim, and Polish is not extreme (6,912 Polish fact-checks in MultiClaim v1, close to Turkish 6,676 and German 4,996; English has 85,814). A dose-response of the penalty against archive density turns the "thin archive" claim into a testable prediction.
 - **Extended set:** Spanish, German, Turkish, Czech, Slovak plus Polish and English (seven languages); the mechanism is identified mainly from within-language variation (the causal pool grows over time in every language), with the between-language spread as corroboration.
 - **Reporting rules that keep it out of the language-bias study:** only within-language deltas and slopes, no ranking of languages by absolute score, language as a random effect.
-- **Gate:** written sign-off from the lecturer and MultiClaim v2 access; without v2 the plan degrades to Polish and English only, which is the brief.
+- **Gate:** MultiClaim v2 access; without v2 the plan degrades to Polish and English only, which is the brief.
 - **Power:** with v2, Polish has roughly 1,190 to 1,690 queries; the minimum detectable Polish-English difference is about 6 points of Success@10 on answerable queries if 30% of queries are answerable, and larger if fewer are (assumed numbers, restated after the first data load).
 
 ## 7. Models
@@ -124,7 +124,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 - [ ] **Step 1:** Send the v1, v2 and SemEval access requests from pw.edu.pl addresses naming all team members (target 28 October); lecturer co-signs.
 - [ ] **Step 2:** On the existing EDEN account, check partitions, time limits, quotas and compute-node internet; pre-download models on the login node.
 - [ ] **Step 3:** Write to the dataset authors: may a second team, id-list and qrel releases and EDEN storage be used; what do the timestamps mean.
-- [ ] **Step 4:** Obtain the lecturer's answers to the questions in section 12.
+- [ ] **Step 4:** Obtain the lecturer's answers to the questions in section 12 (co-signing, ethics statement, grading weights).
 
 ### Task 1: Dated corpus and first checks (W1)
 
@@ -157,7 +157,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 ### Task 5: Extended tier (only after the core is complete)
 
 - [ ] **Step 1:** Polish sibling qrels with the validated judge panel; fact-checker-only qrels reported next to expanded ones.
-- [ ] **Step 2:** Added languages and the dose-response mixed model (with sign-off and v2).
+- [ ] **Step 2:** Added languages and the dose-response mixed model (with v2).
 - [ ] **Step 3:** Fine-tuned retriever under random and chronological training with the same test set.
 - [ ] **Step 4:** LLM-scale systems and RQ5 with the model set of section 7.
 
@@ -189,12 +189,9 @@ About 10 usable supervisor Wednesdays remain to the end of January 2027 (11 Nove
 
 ## 12. Decisions requested from the lecturer
 
-1. The brief asks for Polish and English. We would also like to run Spanish, German, Turkish, Czech and Slovak as an optional extra analysis, to test whether the Polish penalty depends on how large the fact-check archive is. May we add them, or should we stay with Polish and English only?
-2. The brief asks for code that reproduces both evaluations "from the public data". MultiClaim is not fully public: access must be requested and the data may not be re-shared. Is it enough that our code reproduces the results for anyone who has been granted access to MultiClaim?
-3. Will you co-sign the Zenodo access requests from a pw.edu.pl address?
-4. Does the faculty need an ethics statement or data-management note for restricted social-media data?
-5. The main finding may turn out to be that an index limited to earlier fact-checks barely changes ranking quality, and that most of the score drop comes from posts whose fact-check did not exist yet. Is such a result acceptable as the main finding?
-6. How will the project be graded: how much weight falls on the manual analysis of 50 failing queries compared with the results table, so that we can plan our effort accordingly?
+1. Will you co-sign the Zenodo access requests from a pw.edu.pl address?
+2. Does the faculty need an ethics statement or data-management note for restricted social-media data?
+3. How will the project be graded: how much weight falls on the manual analysis of 50 failing queries compared with the results table, so that we can plan our effort accordingly?
 
 ## 13. Main risks and mitigations
 
