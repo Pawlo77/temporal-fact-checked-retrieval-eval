@@ -25,4 +25,6 @@ Start here: [[Dashboard]]. Fixed bugs: [[Fixed issues]].
 - [[Original Task]]
 - [[Proposed Task]]
 - [[Enhanced topic research]]
+- [[Research summary]]
+- [[Language scope analysis]]
 - [[EDEN overview]]
