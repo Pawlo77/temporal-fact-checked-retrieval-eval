@@ -73,9 +73,9 @@ Intuition: the two setups differ only in when their training text was written, s
 
 ## Relation to our project
 
-- Our encoders and LLM rerankers face the same gap from both sides. A model trained before a post's period may represent new narratives poorly. A model trained after it may already know the later debunk, the parametric leakage behind our RQ5 ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[2026-10-27-topic-research|Topic research]]).
+- Our encoders and LLM rerankers face the same gap from both sides. A model trained before a post's period may represent new narratives poorly. A model trained after it may already know the later debunk, the parametric leakage behind our RQ5 ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[Topic research]]).
 - We take its control design: hold training size fixed and vary only the time of the data. Our pool-size-matched control and chronological training regime follow the same logic ([[Data Splits]]).
-- The proper-noun and emerging-word finding suggests causal-index losses will concentrate on posts about new events and names. Breaking results down by event novelty and language is a cheap check ([[2026-10-27-language-scope|Language scope analysis]]).
+- The proper-noun and emerging-word finding suggests causal-index losses will concentrate on posts about new events and names. Breaking results down by event novelty and language is a cheap check ([[Language scope]]).
 - Its follow-up benchmark for question answering over a news stream is [[StreamingQA]].
 
 ## Future work

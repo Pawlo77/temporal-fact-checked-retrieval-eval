@@ -63,7 +63,7 @@ Intuition: the test set stays fixed and only the amount of future data changes, 
 ## Relation to our project
 
 - The "future item" finding is the recommender form of index leakage in PFCR: a fact-check published after the post can be retrieved only because the pool ignores the global timeline ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
-- The timeline scheme is our causal protocol in recommender terms: each post is scored against the pool available at its time ([[2026-10-27-topic-research|Topic research]]).
+- The timeline scheme is our causal protocol in recommender terms: each post is scored against the pool available at its time ([[Topic research]]).
 - Unpredictable model order supports reporting rank changes between random and causal protocols, not only score changes ([[Chronological Evaluation]]).
 - Its leakage is in training data; [[Dont Get Ahead of Yourself]] later shows that in standard settings the net effect is a large inflation, not a random one.
 

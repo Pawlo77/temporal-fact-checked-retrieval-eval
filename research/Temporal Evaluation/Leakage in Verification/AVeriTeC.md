@@ -64,10 +64,10 @@ Intuition: evidence the claim's author could not yet have seen is the only evide
 
 ## Relation to our project
 
-- Direct precedent for a causal evidence constraint plus temporally ordered splits, which supports our training-regime arm and the parametric-leakage stratum ([[2026-10-27-temporal-retrieval-eval|Project plan]]; [[2026-10-27-topic-research|Topic research]]).
+- Direct precedent for a causal evidence constraint plus temporally ordered splits, which supports our training-regime arm and the parametric-leakage stratum ([[2026-10-27-temporal-retrieval-eval|Project plan]]; [[Topic research]]).
 - Its finding that an earlier fact-check of the same claim by another outlet counts as legitimate pre-claim evidence matches our earlier-sibling cluster-expanded relevance sets.
 - Its date-noise caveat supports our timestamp-leakage category and margin sensitivity ([[Leakage in Verification]]).
-- It does not cover matching posts to a fact-check archive, ranking metrics, pool size or non-English data ([[2026-10-27-language-scope|Language scope analysis]]).
+- It does not cover matching posts to a fact-check archive, ranking metrics, pool size or non-English data ([[Language scope]]).
 
 ## Future work
 

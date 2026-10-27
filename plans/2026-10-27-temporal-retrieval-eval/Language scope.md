@@ -1,18 +1,17 @@
 ---
-title: "Language scope analysis"
-type: plan
+title: "Language scope"
+type: plan-note
 domain: vault
-parent: "[[temporal-fact-checked-retrieval-eval]]"
-status: draft
-tags: [plan, language-scope, power-analysis, study-design]
+parent: "[[2026-10-27-temporal-retrieval-eval]]"
+tags: [language-scope, power-analysis, study-design]
 created: 2026-10-27
 updated: 2026-10-27
 related:
   - "[[Original Task]]"
   - "[[2026-10-27-temporal-retrieval-eval|Project plan]]"
-  - "[[2026-10-27-topic-research|Topic research]]"
+  - "[[Topic research]]"
 ---
-# Language scope analysis
+# Language scope
 
 Question: is a Polish-vs-English contrast enough for a publishable causal evaluation of previously fact-checked claim retrieval (PFCR), or should the language set be broadened? Sources checked on 2026-10-27; dataset counts are the papers' published numbers, our own counts come only after data access.
 

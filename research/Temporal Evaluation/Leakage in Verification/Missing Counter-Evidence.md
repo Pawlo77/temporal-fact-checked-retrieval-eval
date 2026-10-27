@@ -67,7 +67,7 @@ Intuition: a system that sees only the claim text can only use global counter-ev
 ## Relation to our project
 
 - It frames our question from the other side: for verification a later fact-check is leakage, while in PFCR retrieving the existing fact-check is the task. The leak is a fact-check published after the post, which is what our causal index removes ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
-- Its finding that most new misinformation lacks prior counter-evidence predicts low answerability under a causal pool for genuinely new claims; we report the answerable rate separately ([[2026-10-27-topic-research|Topic research]]).
+- Its finding that most new misinformation lacks prior counter-evidence predicts low answerability under a causal pool for genuinely new claims; we report the answerable rate separately ([[Topic research]]).
 - Fact-checks of the same claim by other organisations are leaks for verification but legitimate earlier siblings for PFCR, which our cluster-expanded qrels exploit ([[Leakage in Verification]]).
 - The paper itself names claim matching ([[That is a Known Lie]]) as related but different and does not evaluate retrieval.
 

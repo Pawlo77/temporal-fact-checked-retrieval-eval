@@ -62,7 +62,7 @@ Intuition: if two systems are equally good, their disagreements should split eve
 
 ## Relation to our project
 
-- We take the statistical practice: paired significance tests between systems, multiple-comparison correction, and checking whether rankings survive a change of protocol. In our setting the protocol change is random vs causal index, not standard vs random split ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[2026-10-27-topic-research|Topic research]]).
+- We take the statistical practice: paired significance tests between systems, multiple-comparison correction, and checking whether rankings survive a change of protocol. In our setting the protocol change is random vs causal index, not standard vs random split ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[Topic research]]).
 - We avoid its recommendation itself. For PFCR, a random split of posts lets near-duplicate claims from the future sit in training and in the pool, the leakage our causal protocol removes. We cite it as the position that [[We Need to Talk about Random Splits]] rebuts, not as support for time-based evaluation.
 - Its observation that random splits score higher because rare items spread across splits mirrors our expectation that random PFCR protocols overstate Success@k ([[Data Splits]]).
 

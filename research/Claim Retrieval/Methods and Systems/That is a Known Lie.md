@@ -69,7 +69,7 @@ Intuition: BM25 catches pairs with shared words, embeddings catch paraphrases, a
 ## Relation to our project
 
 - We take the task definition and the field choices (claim, title, body) as the base case for our PFCR systems ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
-- The Snopes construction, a tweet cited inside its fact-check, is the same mechanism as MultiClaim backlinks ([[MultiClaim]]). Such pairs imply the post existed before $t_f$, which supports our premise that gold fact-checks often postdate the post; the paper itself gives no dates ([[2026-10-27-topic-research|Topic research]]).
+- The Snopes construction, a tweet cited inside its fact-check, is the same mechanism as MultiClaim backlinks ([[MultiClaim]]). Such pairs imply the post existed before $t_f$, which supports our premise that gold fact-checks often postdate the post; the paper itself gives no dates ([[Topic research]]).
 - Its random sentence-level split is the protocol later shown to overstate scores by the same group's chronological split ([[Role of Context in PFCR]]).
 - We avoid body-text fields that quote the post when measuring leakage; the paper's own Snopes result shows how such text inflates scores ([[Methods and Systems]]).
 

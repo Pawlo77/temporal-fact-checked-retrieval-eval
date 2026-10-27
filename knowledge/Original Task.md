@@ -1,6 +1,6 @@
 ---
 title: "Original Task"
-type: handbook
+type: brief
 domain: vault
 parent: "[[temporal-fact-checked-retrieval-eval]]"
 tags: [handbook, task]

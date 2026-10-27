@@ -62,7 +62,7 @@ Intuition: ST-LOO is T-LOO with a global clock, so the only systematic differenc
 ## Relation to our project
 
 - The size-matched control is the closest design analogue to our per-query size-matched random pool: it separates "less data" from "no future data" ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
-- The active vs inactive split suggests a diagnostic for PFCR: under the random protocol, posts whose gold fact-check appears long after them should gain most, which we can test by stratifying on post-to-fact-check lag ([[2026-10-27-topic-research|Topic research]]).
+- The active vs inactive split suggests a diagnostic for PFCR: under the random protocol, posts whose gold fact-check appears long after them should gain most, which we can test by stratifying on post-to-fact-check lag ([[Topic research]]).
 - Ranking reversals support reporting rank stability of our systems between random and causal protocols, not only score drops ([[Chronological Evaluation]]).
 - Leakage here is in training data, not in the candidate pool, so it maps to our training-regime arm rather than to the causal index.
 

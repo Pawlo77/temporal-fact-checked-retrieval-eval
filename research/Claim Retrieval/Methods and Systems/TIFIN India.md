@@ -64,8 +64,8 @@ Intuition: translation puts every language into the space where the strongest sm
 ## Relation to our project
 
 - It is a ready recipe for our strongest system family: translate, fine-tune with hard negatives, rerank with an LLM ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
-- Each stage carries a leakage route our protocol separates: supervised pairs from a random split, and LLM parametric knowledge of fact-checks published after the post ([[2026-10-27-topic-research|Topic research]]).
-- Its Polish score (0.886) slightly above English (0.880) is evidence against assuming Polish is the weaker language under random evaluation ([[2026-10-27-language-scope|Language scope analysis]]).
+- Each stage carries a leakage route our protocol separates: supervised pairs from a random split, and LLM parametric knowledge of fact-checks published after the post ([[Topic research]]).
+- Its Polish score (0.886) slightly above English (0.880) is evidence against assuming Polish is the weaker language under random evaluation ([[Language scope]]).
 - Its finding that rerankers add little when the retriever is fine-tuned tells us to report reranking gains separately under causal and full pools ([[Methods and Systems]]).
 
 ## Future work

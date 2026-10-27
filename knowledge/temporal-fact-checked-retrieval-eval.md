@@ -29,7 +29,7 @@ Start here: [[2026-10-27-temporal-retrieval-eval|Project plan]]. Dashboard: [[Da
 1. Request MultiClaim access and build the dated corpus ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
 2. Build the splits: random, strict causal, size-matched random, cluster-expanded causal.
 3. Run BM25, dense, cross-lingual and reranking systems under each protocol ([[compute]]).
-4. Report Success@10 and MRR with paired bootstrap, then decompose the gap and code 50 failing queries ([[2026-10-27-language-scope|Language scope analysis]]).
+4. Report Success@10 and MRR with paired bootstrap, then decompose the gap and code 50 failing queries ([[Language scope]]).
 
 ## Invariants
 
@@ -44,11 +44,11 @@ Start here: [[2026-10-27-temporal-retrieval-eval|Project plan]]. Dashboard: [[Da
 
 ## Research
 
-Literature on one question: how much retrieval performance survives a time-respecting index. Index and corrections: [[Research]], [[2026-10-27-literature-corrections|Literature corrections log]].
+Literature on one question: how much retrieval performance survives a time-respecting index. Index and corrections: [[Research]], [[Literature corrections]].
 
 ## Plans
 
-[[2026-10-27-temporal-retrieval-eval|Project plan]] · [[2026-10-27-topic-research|Topic research]] · [[2026-10-27-language-scope|Language scope analysis]] · [[2026-10-27-literature-corrections|Literature corrections log]]
+[[2026-10-27-temporal-retrieval-eval|Project plan]] (context: [[Topic research]] · [[Language scope]] · [[LLM selection]] · [[Risk register]] · [[Literature corrections]])
 
 ## Handbook
 

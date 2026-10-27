@@ -72,8 +72,8 @@ Intuition: a negative that shares words and topic with the post forces the model
 ## Relation to our project
 
 - It defines the strongest random-split recipe we compare against: e5 with similarity negatives, plus an LLM reranker ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
-- Its fact-check-disjoint split addresses one training leak, a fact-check seen in training; it leaves index leakage and answerability untouched, which our causal index $P(q)$ adds ([[2026-10-27-topic-research|Topic research]]).
-- Polish is one of its 30 post languages with 1,309 monolingual pairs, a usable size reference for our Polish slice ([[2026-10-27-language-scope|Language scope analysis]]).
+- Its fact-check-disjoint split addresses one training leak, a fact-check seen in training; it leaves index leakage and answerability untouched, which our causal index $P(q)$ adds ([[Topic research]]).
+- Polish is one of its 30 post languages with 1,309 monolingual pairs, a usable size reference for our Polish slice ([[Language scope]]).
 - Dropping the identical-claim relationship matches our plan to report such pairs separately ([[MultiClaim Zenodo Records]]).
 - We take [[Multilingual E5]], [[BGE-M3]] and [[bge-reranker-v2-m3]] as in its comparison, so our scores can be compared with its random-split numbers ([[Methods and Systems]]).
 

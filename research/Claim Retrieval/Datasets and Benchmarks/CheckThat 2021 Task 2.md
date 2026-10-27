@@ -64,7 +64,7 @@ Intuition: the same rumour checked by several Arabic outlets should count as sev
 ## Relation to our project
 
 - Shared-task PFCR with fixed splits is not new; we cite this edition as the English and Arabic precedent ([[Datasets and Benchmarks]]).
-- The Snopes construction is the same "post cited in its fact-check" mechanism as MultiClaim's links ([[MultiClaim]]), which is why gold fact-checks tend to postdate posts in our data ([[2026-10-27-topic-research|Topic research]]).
+- The Snopes construction is the same "post cited in its fact-check" mechanism as MultiClaim's links ([[MultiClaim]]), which is why gold fact-checks tend to postdate posts in our data ([[Topic research]]).
 - No causal pool or temporal split is described, so the 2021 results say nothing about our RQ1 ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
 
 ## Future work

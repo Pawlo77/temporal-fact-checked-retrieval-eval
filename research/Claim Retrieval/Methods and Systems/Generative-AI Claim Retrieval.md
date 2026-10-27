@@ -67,9 +67,9 @@ Intuition: if embeddings encoded metadata well, the criterion query would select
 
 ## Relation to our project
 
-- It is the closest prior PFCR work that mentions date filtering. Its date feature is a user filter applied through embeddings, not an evaluation protocol, so our causal-index claim stands; we cite it in the overlap discussion ([[2026-10-27-topic-research|Topic research]], [[Methods and Systems]]).
+- It is the closest prior PFCR work that mentions date filtering. Its date feature is a user filter applied through embeddings, not an evaluation protocol, so our causal-index claim stands; we cite it in the overlap discussion ([[Topic research]], [[Methods and Systems]]).
 - Its failure with dates confirms our design choice: the causal pool $P(q)$ is built by an exact metadata filter on $t_f < t_q$, never by embedding text ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
-- Its Polish monolingual Success@10 (0.77, above English 0.75) is a reference for our Polish slice ([[2026-10-27-language-scope|Language scope analysis]]).
+- Its Polish monolingual Success@10 (0.77, above English 0.75) is a reference for our Polish slice ([[Language scope]]).
 - LLM filtering is a candidate final stage whose parametric leakage we would need to measure separately.
 
 ## Future work

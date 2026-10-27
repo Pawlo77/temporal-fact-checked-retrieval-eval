@@ -59,8 +59,8 @@ Intuition: the student copies the ordering of a much larger LLM judge, so it can
 
 ## Relation to our project
 
-- Our Polish reranker over a Polish candidate list; the 8K context lets it read full fact-check articles, not only claims and titles ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[2026-10-27-topic-research|Topic research]]).
-- It cannot score Polish posts against English fact-checks reliably, so [[bge-reranker-v2-m3]] covers the cross-lingual case ([[2026-10-27-language-scope|Language scope analysis]]).
+- Our Polish reranker over a Polish candidate list; the 8K context lets it read full fact-check articles, not only claims and titles ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[Topic research]]).
+- It cannot score Polish posts against English fact-checks reliably, so [[bge-reranker-v2-m3]] covers the cross-lingual case ([[Language scope]]).
 - Teacher and student are LLM-derived, so parametric knowledge of dated events may enter the ranking; we report the retriever alone next to every reranked run.
 
 ## Future work

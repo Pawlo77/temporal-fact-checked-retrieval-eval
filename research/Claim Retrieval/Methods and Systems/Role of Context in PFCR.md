@@ -70,7 +70,7 @@ Intuition: a pronoun-heavy sentence borrows the matching signal of the sentences
 ## Relation to our project
 
 - It is the closest precedent for chronological PFCR evaluation, and our novelty claims cite it: chronological training splits exist; a per-query causal index $P(q)$ does not ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[Methods and Systems]]).
-- Its random-to-chronological MAP drop of 0.17 is the effect size our training-regime comparison extends to multilingual social media posts ([[2026-10-27-topic-research|Topic research]]).
+- Its random-to-chronological MAP drop of 0.17 is the effect size our training-regime comparison extends to multilingual social media posts ([[Topic research]]).
 - We adopt its practice of tuning on the latest training period, so hyper-parameters never see the test period.
 - Its uncontrolled pool is what our gap decomposition separates: index leakage, answerability and pool size, alongside training leakage.
 

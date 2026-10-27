@@ -9,9 +9,9 @@ updated: 2026-10-27
 tags: [plan, task, proposal]
 related:
   - "[[Original Task]]"
-  - "[[2026-10-27-topic-research|Topic research]]"
-  - "[[2026-10-27-language-scope|Language scope analysis]]"
-  - "[[2026-10-27-literature-corrections|Literature corrections log]]"
+  - "[[Topic research]]"
+  - "[[Language scope]]"
+  - "[[Literature corrections]]"
   - "[[Research]]"
 ---
 # Temporal Retrieval Evaluation Plan
@@ -44,7 +44,7 @@ A naive "index only earlier fact-checks" filter conflates four effects: the gold
 
 ## Scope
 
-- **Languages:** Polish is the focus and headline, English the high-archive anchor. [[2026-10-27-language-scope|Language scope analysis]] recommends adding Spanish, German, Turkish, Czech and Slovak, chosen to span archive size, so that the mechanism is tested as a dose-response instead of a two-point contrast.
+- **Languages:** Polish is the focus and headline, English the high-archive anchor. [[Language scope]] recommends adding Spanish, German, Turkish, Czech and Slovak, chosen to span archive size, so that the mechanism is tested as a dose-response instead of a two-point contrast.
 - **Fallback:** Polish and English only is the brief's scope and a strict subset of this plan; every deliverable holds in that case, and only the mechanism test (RQ3 dose-response) weakens.
 - **Gate:** the wider language set needs the supervisor's sign-off and MultiClaim v2 access; it is an additive robustness layer, not a change of the brief's deliverables.
 - **Reporting rules:** within-language deltas and slopes only, no ranking of languages by absolute score, so the study stays clear of the published language-bias work.
@@ -66,7 +66,7 @@ A naive "index only earlier fact-checks" filter conflates four effects: the gold
 - Multilingual dense: [[Multilingual E5|multilingual-e5-large]], [[BGE-M3]].
 - Polish or cross-lingual encoder: [[mmlw-retrieval-roberta-large]], [[LaBSE]].
 - Cross-encoder rerankers: [[bge-reranker-v2-m3]], [[polish-reranker-roberta-v3]].
-- LLM scale: [[Qwen3 Embedding|Qwen3-Embedding-8B]] and a Qwen3 reranker, with pre- and post-cutoff query strata; the single-family risk is handled in the LLM selection plan once written.
+- LLM scale: [[Qwen3 Embedding|Qwen3-Embedding-8B]] and a Qwen3 reranker, with pre- and post-cutoff query strata; the single-family risk and the model set are worked out in [[LLM selection]].
 - Fine-tuned multilingual-e5 under random and chronological training.
 
 ## Metrics and statistics
@@ -175,4 +175,4 @@ ACL Rolling Review (Findings or main) as an evaluation-methodology paper with a 
 - Date reliability and missing post dates; small answerable Polish set; v2 access.
 - Overlap with the dataset authors' group and with [[Role of Context in PFCR]]: claim only the index restriction, the decomposition and the multilingual mechanism test.
 - Scope perception of the wider language set: the reporting rules and the sign-off gate address it.
-- The full register is written separately once the risk scan finishes.
+- The full register, with checks to run first and stop/go criteria, is [[Risk register]].

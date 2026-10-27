@@ -1,19 +1,18 @@
 ---
-title: "Literature corrections log"
-type: plan
+title: "Literature corrections"
+type: plan-note
 domain: vault
-parent: "[[temporal-fact-checked-retrieval-eval]]"
-status: done
-tags: [plan, literature, corrections]
+parent: "[[2026-10-27-temporal-retrieval-eval]]"
+tags: [literature, corrections]
 created: 2026-10-27
 updated: 2026-10-27
 related:
   - "[[Research]]"
   - "[[2026-10-27-temporal-retrieval-eval|Project plan]]"
 ---
-# Literature corrections log
+# Literature corrections
 
-Errors and unsupported claims in the first pass of [[2026-10-27-topic-research|Topic research]], checked against primary sources on 2026-10-27.
+Errors and unsupported claims in the first pass of [[Topic research]], checked against primary sources on 2026-10-27.
 
 | Claim in first pass | Correction | Paper note |
 |---------------------|------------|------------|

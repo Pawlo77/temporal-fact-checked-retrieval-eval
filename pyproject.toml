@@ -150,13 +150,14 @@ skip = "report/*,research/*"
 [tool.agent-kit.vault]
 notes = ["knowledge", "research"]
 isolated = ["knowledge", "research"]  # every note needs an inbound link
+flat = [".remember"]  # plans hold one folder per plan
 
 [tool.agent-kit.vault.schema]
 dirs = ["knowledge"]
 required = ["title", "type", "domain", "created", "parent"]
 types = [
   "map", "dashboard", "module", "decision-log", "issue", "concept", "handbook",
-  "solution", "plan", "generated",
+  "solution", "plan", "plan-note", "brief", "generated",
 ]
 link-fields = ["related-code"]
 sections-exempt = ["Fixed issues"]
