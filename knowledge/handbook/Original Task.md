@@ -10,7 +10,7 @@ related:
   - "[[Proposed Task]]"
   - "[[compute]]"
 ---
-# Task description
+# Original Task
 
 Course project 2 of the NLP course (Warsaw University of Technology): **Retrieval that cannot see the future: temporal evaluation of fact-checked claim retrieval**. Supervisor: Soveatin Kuntur (M.Sc. Eng.). Difficulty: Hard (16/25). Availability: Wednesdays only, during NLP course hours. Max 2 teams: one on sparse and dense retrieval baselines, one on reranking and gap decomposition; one shared split, one shared results table.
 
