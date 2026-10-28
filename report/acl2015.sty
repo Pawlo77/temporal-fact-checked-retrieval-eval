@@ -3,7 +3,7 @@
 
 % This is the LaTeX style file for ACL 2015. It is nearly identical to
 % the style files for ACL 2014, EACL 2006, ACL2005, ACL 2002, ACL
-% 2001, ACL 2000, EACL 95 and EACL 99. 
+% 2001, ACL 2000, EACL 95 and EACL 99.
 %
 % Changes made include: adapt layout to A4 and centimeters, widen abstract
 
@@ -34,11 +34,11 @@
 
 % The ANLP '94 style file is a slightly modified
 % version of the style used for AAAI and IJCAI, using some changes
-% prepared by Fernando Pereira and others and some minor changes 
+% prepared by Fernando Pereira and others and some minor changes
 % by Paul Jacobs.
 
 % Papers prepared using the aclsub.sty file and acl.bst bibtex style
-% should be easily converted to final format using this style.  
+% should be easily converted to final format using this style.
 % (1) Submission information (\wordcount, \subject, and \makeidpage)
 % should be removed.
 % (2) \summary should be removed.  The summary material should come
@@ -50,7 +50,7 @@
 % column, some adjustments may have to be made to fit text in the column
 % or to choose full-width (\figure*} figures.
 
-% Place this in a file called aclap.sty in the TeX search path.  
+% Place this in a file called aclap.sty in the TeX search path.
 % (Placing it in the same directory as the paper should also work.)
 
 % Prepared by Peter F. Patel-Schneider, liberally using the ideas of
@@ -109,16 +109,16 @@
 % A4 modified by Eneko; again modified by Alexander for 5cm titlebox
 \setlength{\paperwidth}{21cm}   % A4
 \setlength{\paperheight}{29.7cm}% A4
-\setlength\topmargin{-0.5cm}    
-\setlength\oddsidemargin{0cm}   
-\setlength\textheight{24.7cm} 
+\setlength\topmargin{-0.5cm}
+\setlength\oddsidemargin{0cm}
+\setlength\textheight{24.7cm}
 \setlength\textwidth{16.0cm}
-\setlength\columnsep{0.6cm}  
-\newlength\titlebox 
+\setlength\columnsep{0.6cm}
+\newlength\titlebox
 \setlength\titlebox{5cm}
-\setlength\headheight{5pt}   
+\setlength\headheight{5pt}
 \setlength\headsep{0pt}
-\thispagestyle{empty}        
+\thispagestyle{empty}
 \pagestyle{empty}
 
 
@@ -142,14 +142,14 @@
  \linewidth\hsize \vskip 0.125in minus 0.125in \centering
  {\Large\bf \@title \par} \vskip 0.2in plus 1fil minus 0.1in
  {\def\and{\unskip\enspace{\rm and}\enspace}%
-  \def\And{\end{tabular}\hss \egroup \hskip 1in plus 2fil 
+  \def\And{\end{tabular}\hss \egroup \hskip 1in plus 2fil
            \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\bf}%
   \def\AND{\end{tabular}\hss\egroup \hfil\hfil\egroup
           \vskip 0.25in plus 1fil minus 0.125in
            \hbox to \linewidth\bgroup\large \hfil\hfil
              \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\bf}
   \hbox to \linewidth\bgroup\large \hfil\hfil
-    \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\bf\@author 
+    \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\bf\@author
                             \end{tabular}\hss\egroup
     \hfil\hfil\egroup}
   \vskip 0.3in plus 2fil minus 0.1in
@@ -163,8 +163,8 @@
 		      \setlength{\leftmargin}{0.6cm}}%
 		   \item[]\ignorespaces}%
 		 {\unskip\end{list}}
-		     
-%\renewenvironment{abstract}{\centerline{\large\bf  
+
+%\renewenvironment{abstract}{\centerline{\large\bf
 % Abstract}\vspace{0.5ex}\begin{quote}}{\par\end{quote}\vskip 1ex}
 
 
@@ -196,7 +196,7 @@
 % {\csname b@\@citeb\endcsname}}}{#1}}
 
 % don't box citations, separate with ; and a space
-% Replaced for multiple citations (pj) 
+% Replaced for multiple citations (pj)
 % don't box citations and also add space, semicolon between multiple citations
 \def\@citex[#1]#2{\if@filesw\immediate\write\@auxout{\string\citation{#2}}\fi
   \def\@citea{}\@cite{\@for\@citeb:=#2\do
@@ -208,7 +208,7 @@
 % Allow short (name-less) citations, when used in
 % conjunction with a bibliography style that creates labels like
 %       \citename{<names>, }<year>
-% 
+%
 \let\@internalcite\cite
 \def\cite{\def\citename##1{##1, }\@internalcite}
 \def\shortcite{\def\citename##1{}\@internalcite}
@@ -265,7 +265,7 @@
  \sfcode`\.=1000\relax}
 \let\endthesourcebibliography=\endlist
 
-\def\@lbibitem[#1]#2{\item[]\if@filesw 
+\def\@lbibitem[#1]#2{\item[]\if@filesw
       { \def\protect##1{\string ##1\space}\immediate
         \write\@auxout{\string\bibcite{#2}{#1}}\fi\ignorespaces}}
 
@@ -310,7 +310,7 @@
    \itemsep \parsep}
 \def\@listiii{\leftmargin\leftmarginiii
     \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
-    \topsep 1pt plus 0.5pt minus 0.5pt 
+    \topsep 1pt plus 0.5pt minus 0.5pt
     \parsep \z@ \partopsep 0.5pt plus 0pt minus 0.5pt
     \itemsep \topsep}
 \def\@listiv{\leftmargin\leftmarginiv
@@ -322,7 +322,7 @@
 
 \abovedisplayskip 7pt plus2pt minus5pt%
 \belowdisplayskip \abovedisplayskip
-\abovedisplayshortskip  0pt plus3pt%   
+\abovedisplayshortskip  0pt plus3pt%
 \belowdisplayshortskip  4pt plus3pt minus3pt%
 
 % Less leading in most fonts (due to the narrow columns)

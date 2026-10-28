@@ -808,7 +808,7 @@ FUNCTION {mastersthesis}
 
 FUNCTION {misc}
 { output.bibitem
-  format.authors output 
+  format.authors output
   new.block
   format.year.label output
   new.block
