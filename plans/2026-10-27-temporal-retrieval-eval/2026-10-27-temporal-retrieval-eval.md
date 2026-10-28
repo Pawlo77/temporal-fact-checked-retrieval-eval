@@ -14,6 +14,7 @@ related:
   - "[[LLM selection]]"
   - "[[Risk register]]"
   - "[[Literature corrections]]"
+  - "[[Plan summary]]"
   - "[[Research]]"
   - "[[Qwen3 Embedding]]"
   - "[[Gemma 3]]"
@@ -152,7 +153,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 - [ ] **Step 1:** Send the v1, v2 and SemEval access requests from pw.edu.pl addresses naming all team members (target 28 October); supervisor co-signs.
 - [x] **Step 2:** On the existing EDEN account, partitions, time limits, quotas, compute-node internet and a project install were checked on 2026-10-27 (compute notes); remaining: pre-download models on the login node.
 - [ ] **Step 3:** Write to the dataset authors: may id-list and qrel releases and EDEN storage be used; what do the timestamps mean.
-- [ ] **Step 4:** Obtain the supervisor's answers to the questions in section 12 (co-signing, ethics statement, grading weights).
+- [ ] **Step 4:** Obtain the supervisor's answers to the questions in section 12 (co-signing, grading weights).
 
 ### Task 1: Dated corpus and first checks (W1)
 
@@ -234,8 +235,7 @@ About 10 usable supervisor Wednesdays remain (estimate) to the end of January 20
 ## 12. Decisions requested from the supervisor
 
 1. Will you co-sign the Zenodo access requests from a pw.edu.pl address?
-2. Does the faculty need an ethics statement or data-management note for restricted social-media data?
-3. How will the project be graded: how much weight falls on the manual analysis of 50 failing queries compared with the results table, so that we can plan our effort accordingly?
+2. How will the project be graded: how much weight falls on the manual analysis of 50 failing queries compared with the results table, so that we can plan our effort accordingly?
 
 ## 13. Main risks and mitigations
 

@@ -100,6 +100,5 @@ Ordered by cost; each can kill or reshape the project.
 ## Open questions for the supervisor
 
 - Will you co-sign the Zenodo access requests from a pw.edu.pl address?
-- Does the faculty need an ethics statement or data-management note for restricted social-media data?
 - Is a paper submission expected, and does a course deadline in late January conflict with ARR or SIGIR timing?
 - Which grading weight falls on the 50-query manual analysis vs the results table?
