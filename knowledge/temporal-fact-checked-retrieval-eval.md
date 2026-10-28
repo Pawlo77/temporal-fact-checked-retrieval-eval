@@ -48,7 +48,7 @@ Literature on one question: how much retrieval performance survives a time-respe
 
 ## Plans
 
-[[2026-10-27-temporal-retrieval-eval|Project plan]] (context: [[Topic research]] · [[Language scope]] · [[LLM selection]] · [[Risk register]] · [[Literature corrections]] · [[Expansion options]])
+[[2026-10-27-temporal-retrieval-eval|Project plan]] (context: [[Topic research]] · [[Language scope]] · [[LLM selection]] · [[Risk register]] · [[Literature corrections]])
 
 ## Handbook
 
