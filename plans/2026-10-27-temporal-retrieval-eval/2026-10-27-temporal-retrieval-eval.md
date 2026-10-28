@@ -34,7 +34,7 @@ related:
 
 **Goal:** Measure how much of the reported performance of previously fact-checked claim retrieval (PFCR) survives an index that cannot see the future, separate the reasons for the drop, and release the protocol, split definitions and code so others can reuse them. This is the whole of project 2 ("Retrieval that cannot see the future: temporal evaluation of fact-checked claim retrieval") as one study: both team slots of the brief (sparse and dense baselines; reranking and gap decomposition) are workstreams of a single plan with one split, one results table and one paper.
 
-**Architecture:** A dated MultiClaim corpus, read through a dataset-agnostic adapter, feeds one protocol module that builds the random, strict causal, size-matched and cluster-expanded pools. Retrieval systems run under every protocol and write rows to one shared results table. Analysis reads that table: cluster bootstrap per system, Polish-English difference-in-differences, an additive gap decomposition, and 50 hand-coded failures. Everything beyond the brief's scope is a stretch tier that unlocks only after the core is complete.
+**Architecture:** A dated MultiClaim corpus, read through a dataset-agnostic adapter, feeds one protocol module that builds the random, strict causal, size-matched, cross-lingual causal and cluster-expanded pools. Retrieval systems run under every protocol and write rows to one shared results table. Analysis reads that table: cluster bootstrap per system, Polish-English difference-in-differences, an additive gap decomposition, and 50 hand-coded failures. Beyond the brief's scope, core+ (LLM-scale RQ5) and a conditional conformal step follow the core, and a stretch tier unlocks after that.
 
 **Tech Stack:** Python 3.12, uv, bm25s (custom causal statistics), sentence-transformers, transformers and vLLM, MLflow, statsmodels; EDEN cluster with A100-class GPUs; open-weight models only for any text taken from MultiClaim.
 
@@ -67,7 +67,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 **Core tier (committed, equals the brief):**
 - Languages: Polish (focus) and English (control).
 - Systems: BM25 with causal-pool statistics, multilingual-e5-large, a cross-lingual or Polish encoder (mmlw-retrieval-roberta-large or LaBSE), and bge-reranker-v2-m3 as cross-encoder.
-- Protocols: random, strict causal, size-matched random, cross-lingual causal pool (RQ8).
+- Protocols: random, strict causal, size-matched random, cross-lingual causal pool (Polish posts only, RQ8, reported next to the main table).
 - Analysis: Success@10 and MRR with cluster-bootstrap significance and effect sizes, gap decomposition, risk-coverage curves (RQ7), a time-decay sensitivity figure, 50 hand-coded newly failing queries (25 Polish, 25 English).
 
 **Core+ (right after the core is complete, once reranker GPU time is confirmed):** LLM-scale systems and RQ5 with the refinements of section 7; about 2-3 engineer-days beyond the reranker runs, no new training.
@@ -182,12 +182,12 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 ### Task 4: Core analysis (W4)
 
 - [ ] **Step 1:** Cluster bootstrap with paired effect sizes, Holm, difference-in-differences; unconditional and conditional tables separately.
-- [ ] **Step 1a:** Risk-coverage curves and the answerability-versus-ranking split (RQ7); cross-lingual pool recovery (RQ8); time-decay sensitivity figure (about 2.5 engineer-days together, no GPU).
+- [ ] **Step 1a:** Risk-coverage curves and the answerability-versus-ranking split (RQ7); cross-lingual pool recovery (RQ8); time-decay sensitivity figure (analysis only, about 2.5 engineer-days together, no GPU; the pool is Task 2 step 2).
 - [ ] **Step 1b:** Ranking-reversal check (RQ6): rank the systems under the random and the causal protocol, report Kendall tau with a bootstrap interval, every pairwise reversal with its significance, and whether the best system changes; this result decides the publication target (section 10).
 - [ ] **Step 2:** Additive gap chain with order shuffling; covariate regression.
 - [ ] **Step 3:** Code the 50 failing queries with two annotators; report kappa.
 
-### Task 4b: Core+ (after the core, reranker GPU time confirmed)
+### Task 4b: Core+ (16 Dec to 7 Jan, reranker GPU time confirmed)
 
 - [ ] **Step 1:** LLM-scale systems with the model set of section 7, over one shared first-stage candidate list.
 - [ ] **Step 2:** RQ5 with its refinements: effective-cutoff probes, direct vs causally related taxonomy, prompted-cutoff ablation, cutoff-stratified comparison.
@@ -215,8 +215,8 @@ About 10 usable supervisor Wednesdays remain (estimate) to the end of January 20
 | Data access | 18 Nov | no data access by then: switch to a protocol-and-code deliverable on whatever record arrived and tell the supervisor |
 | Split and schema frozen | 25 Nov | ids, cutoffs, qrels format, one results schema |
 | Answerability check | first data week | Polish strict-causal answerable at least 150: keep the Polish-English difference-in-differences as headline; 50 to 149: report it as descriptive with intervals; below 50: the headline becomes answerability and time-to-findability, Polish as a case study |
-| Core complete | 16 Dec | 4 systems x 3 protocols x 2 languages in one table with cluster-bootstrap intervals; otherwise all extended work stops |
-| Core+ unlock | after core | reranker GPU time confirmed; RQ5 and Task 4b run before any extended work |
+| Core complete | 16 Dec | 4 systems x 3 protocols x 2 languages in one table with cluster-bootstrap intervals, plus the Polish cross-lingual pool; otherwise all later work stops |
+| Core+ unlock | after core | reranker GPU time confirmed; RQ5 and Task 4b run before any extended work; stops 7 Jan so the final report (13 Jan) is written from finished results, unfinished core+ work is reported as exploratory |
 | Conformal (conditional) | after Task 4 step 1a | answerable rate and the risk-coverage curve show abstention matters, and at least 4 Wednesdays remain; otherwise skip |
 | Extended unlock | after core and core+ | at least 4 Wednesdays left; order as in section 4 |
 | Venue decision | after the ranking-reversal check | significant reversals or a changed best system: aim at an A* main track and unlock the second dataset first; otherwise target ARR Findings or SIGIR short (section 15) |

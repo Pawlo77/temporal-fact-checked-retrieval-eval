@@ -4,7 +4,7 @@ type: plan-note
 domain: vault
 parent: "[[2026-10-27-temporal-retrieval-eval]]"
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [risks, methodology, data-access, ethics, timeline]
 related:
   - "[[Original Task]]"
@@ -93,7 +93,7 @@ Ordered by cost; each can kill or reshape the project.
 
 - **Go/no-go 1 (18 Nov):** no data access → switch to a protocol-and-code deliverable on whatever record arrived, and tell the supervisor.
 - **Go/no-go 2 (first data week):** Polish strict-causal answerable ≥ 150 → keep the DiD headline; 50-149 → report DiD with CIs as descriptive; < 50 → headline becomes answerability and time-to-findability, Polish as a case study.
-- **Core complete (16 Dec):** 4 systems × 3 protocols × 2 languages in one table with cluster-bootstrap CIs. If not done, all stretch work stops.
+- **Core complete (16 Dec):** 4 systems × 3 protocols × 2 languages in one table with cluster-bootstrap CIs, plus the Polish cross-lingual pool. If not done, all stretch work stops.
 - **Stretch unlock:** core complete and ≥ 4 Wednesdays left → add in this order: sibling qrels (Polish), more languages (with v2 access), fine-tuning regimes. LLM reranker and RQ5 only with a documented model cutoff.
 - **Publication go (after the ranking-reversal check):** aim at an A* venue only if RQ6 shows significant reversals or a changed best system; ARR 4 Jan and SIGIR 21 Jan 2027 are not realistic, so target the next ARR cycle; otherwise ARR Findings or SIGIR short, no workshops.
 

@@ -5,11 +5,11 @@ domain: vault
 parent: "[[temporal-fact-checked-retrieval-eval]]"
 tags: [handbook, course, grading, deadlines, report]
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-10-28
 ---
 # Course grading and report
 
-Distilled from the course documents in `_temp/` (Assessment criteria, Course rules, Project topics, Reading list, Overleaf template). The raw PDFs and the template zip stay in `_temp/`, not in the vault.
+Distilled from the course documents in `_temp/` (Assessment criteria, Course rules, Project topics, Reading list, Overleaf template). The raw PDFs and the template zip stay in the gitignored `_temp/` on the authors' machines, so a fresh clone does not have them.
 
 ## Deadlines (2026/27)
 
@@ -50,13 +50,13 @@ ACL 2015 style, not the Interspeech scaffold in `report/`. The course template i
 - `project-proposal.tex` — Phase 1, max 4 meaningful pages.
 - `project-final-report-structure.tex` — Phase 3, about 9 pages, max 12.
 - `reproducibility-checklist.tex` — appendix, graded in Phase 3.
-- `acl2015.sty`, `acl.bst` — style and bibliography files.
+- `acl2015.sty`, `acl.bst` — style and bibliography files; `template-editorial-tips.tex` — editorial rules, source of the penalties below; references go in `report/mybib.bib`.
 
 These files are now in `report/` (the Interspeech scaffold was removed); fill them in per phase.
 
-## Mandatory in every phase (conditions of acceptance, not scored)
+## Mandatory (conditions of acceptance, not scored)
 
-- Contribution table: each member, what they did, workload in hours.
+- Contribution table: each member, what they did, workload in hours. The templates disagree on Phase 1: the proposal template requires it "in this and every later phase", the editorial tips say "from Phase 2 onward"; include it from Phase 1 and confirm with the supervisor.
 - Declaration of LLM use: which tools, for what.
 - Data statement: source, licence, personal data, what we do about it (six lines).
 - Folder named `surname_surname_surname_surname`, order fixed from Milestone 1; a mismatch costs 5 pts.
