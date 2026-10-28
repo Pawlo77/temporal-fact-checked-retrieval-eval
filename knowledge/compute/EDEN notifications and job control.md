@@ -25,7 +25,7 @@ How to find out that a job started, finished or failed, and how to run long work
 
 - `END` and `FAIL` are the useful pair; `TIME_LIMIT_80` warns at 80 percent of `--time` [V:slurm].
 - For arrays add `ARRAY_TASKS` or mail arrives per task, which floods an inbox [V:slurm].
-- `MailProg` is `/bin/mail`; `mail`, `mailx` and `sendmail` exist, `msmtp` does not [V:run]. A test job with `--mail-type=END,FAIL` was submitted; delivery to an outside address is confirmed only when the message arrives [U].
+- `MailProg` is `/bin/mail`; `mail`, `mailx` and `sendmail` exist, `msmtp` does not [V:run]. A test job with `--mail-type=END,FAIL` delivered its end-of-job message to an outside address [V:run].
 - Spam filters may drop the first message: check the junk folder once.
 
 ## Alternatives without a mail relay
