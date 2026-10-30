@@ -2,7 +2,7 @@
 
 No network: ``fetch`` and ``time.sleep`` are replaced.
 
-@see [[.agents/skills/literature-search/scripts/harvest.py]]
+@see .agents/skills/literature-search/scripts/harvest.py
 """
 
 import csv
