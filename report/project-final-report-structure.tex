@@ -1,0 +1,83 @@
+%
+% File main.tex
+%
+% NLP course final-report-structure template, Warsaw University of Technology.
+% Prepared by Anna Wróblewska, adapted from the ACL 2015 conference
+% formatting template (acl2015.sty), originally by the ACL 2015
+% organizers and earlier ACL/EACL format authors (see acl2015.pdf
+% for the full credits chain).
+
+\documentclass[11pt]{article}
+\usepackage{acl2015}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{xcolor}
+
+%\setlength\titlebox{5cm}
+
+% You can expand the title box if you need extra space
+% to show all the authors. Please do not make the title box
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+
+\title{Title\\Project Report for NLP Course, Winter 2026/27}
+% https://www.overleaf.com/project/63440c16442dba647b52a1ae
+\author{Author 1 (submitted by) \\
+  Album number \\
+  {\tt email@pw.edu.pl} \\
+  \And
+  Author 2 \\
+  Album number \\
+  {\tt email@pw.edu.pl} \\
+  \AND
+  supervisor: Anna Wróblewska\\
+  Warsaw University of Technology \\
+  {\tt anna.wroblewska1@pw.edu.pl}
+  }
+
+\date{}
+\begin{document}
+\maketitle
+
+{\small\em Template: Anna Wr\'oblewska (Warsaw University of Technology), adapted from the ACL 2015 conference formatting template.}
+\vspace{4pt}
+
+
+\begin{abstract}
+  Write about the proposed work touching the research gap you are addressing, the novelty, and the proposed deliverable aimed at this project.
+  (Short description up to 250 words.)
+\end{abstract}
+
+\section{Introduction}
+Detailed description (about nine pages, max up to 12 pages) in English, including the following information:
+\begin{enumerate}
+\item Introduction (max 1.5 pages):
+\begin{itemize}
+\item Background and significance of the project (state of the art, justification for tackling a specific scientific problem, justification for the pioneering nature of the project, the impact of the project results on the development of the research field and scientific discipline);
+\item Scientific goal of the project (description of the problem to be solved, research questions and hypotheses) and the project contributions;
+\item Description of the rest of the report (what contains the following sections).
+\end{itemize}
+\item Related work
+\begin{itemize}
+\item State-of-the-art in your particular domain, similar approaches, etc.;
+\item Open and proprietary datasets the same or similar to your approach (also the datasets that you utilize in your work);
+\end{itemize}
+\item Approach \& research methodology -- underlying scientific methodology, methods, techniques and research tools, methods of results analysis, equipment and devices to be used in research;
+\item Experiments and results -- experimental procedures, more detailed exploratory data analysis on utilized datasets, results with ablation studies;
+\item \textbf{Uncertainty of results} (new for 2026/27) -- the main comparison from at least 3 runs with the spread reported (std/CI), or a stated reason why not. Conclusions must be consistent with the spread, not just the mean;
+\item \textbf{Error analysis} (new for 2026/27) -- at least 20 misclassified examples, grouped into named error types with counts and what each implies;
+\item Discussion on your results -- the relation to the state-of-the-art results with referring to literature and Tables and Figures with the results and summary plots;
+\item \textbf{Limitations} (new for 2026/27) -- what your result does NOT show, each limitation with its consequence for how the result may be read;
+\item Conclusions and future work -- summing up your report and contributions;
+\item \textbf{Data statement} (new for 2026/27) -- source of the data, licence, whether it contains personal data, and what you do about it;
+\item Well-justified project literature -- a reference list for publications included in the project description, with full bibliographic data. Arxiv preprints are not well-justified literature; you can use only those citations when they are fresh or not published;
+\item Appendices with reproducibility tables or lists, ablations studies, other remarks, and analyses that are not crucial for the main text.
+\end{enumerate}
+
+% include your bib file like this:
+\bibliographystyle{acl}
+\bibliography{mybib}
+
+\end{document}

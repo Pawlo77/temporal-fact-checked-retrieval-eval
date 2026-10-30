@@ -1,0 +1,85 @@
+%
+% File main.tex
+%
+% NLP course reproducibility-checklist template, Warsaw University of Technology.
+% Prepared by Anna Wróblewska, adapted from the ACL 2015 conference
+% formatting template (acl2015.sty), originally by the ACL 2015
+% organizers and earlier ACL/EACL format authors (see acl2015.pdf
+% for the full credits chain).
+
+\documentclass[11pt]{article}
+\usepackage{acl2015}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{xcolor}
+
+%\setlength\titlebox{5cm}
+
+% You can expand the title box if you need extra space
+% to show all the authors. Please do not make the title box
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+
+\title{Reproducibility Appendix\\Project Report for NLP Course, Winter 2026/27}
+% https://www.overleaf.com/project/63440c16442dba647b52a1ae
+\author{Author 1 (submitted by) \\
+  Album number \\
+  {\tt email@pw.edu.pl} \\
+  \And
+  Author 2 \\
+  Album number \\
+  {\tt email@pw.edu.pl} \\
+  \AND
+  supervisor: Anna Wróblewska\\
+  Warsaw University of Technology \\
+  {\tt anna.wroblewska1@pw.edu.pl}
+  }
+
+\date{}
+\begin{document}
+\maketitle
+
+{\small\em Template: Anna Wr\'oblewska (Warsaw University of Technology), adapted from the ACL 2015 conference formatting template.}
+\vspace{4pt}
+
+
+\section*{Reproducibility checklist}
+
+% This list is based on the paper: Ian Magnusson, Noah A. Smith, and Jesse Dodge. 2023. Reproducibility in NLP: What Have We Learned from the Checklist?. In Findings of the Association for Computational Linguistics: ACL 2023, pages 12789–12811, Toronto, Canada. Association for Computational Linguistics.
+
+Overall results:
+\begin{itemize}
+    \item MODEL DESCRIPTION -- A clear description of the mathematical setting, algorithm, and/or model
+    \item LINK TO CODE -- A link to a downloadable source code, with specification of all dependencies, including external libraries
+    \item INFRASTRUCTURE -- A description of the computing infrastructure used
+    \item RUNTIME PARAMETERS -- Average runtime for each approach
+    \item PARAMETERS -- The number of parameters in each model
+    \item VALIDATION PERFORMANCE -- Corresponding validation performance for each reported test result
+    \item METRICS -- Explanation of evaluation metrics used, with links to code
+    \item \textbf{SEEDS} -- Random seeds used for each reported run, so the exact run can be reproduced
+    \item \textbf{EXACT COMMANDS} -- The exact command(s) or script used to produce the main reported result, with library/package versions
+\end{itemize}
+
+Multiple Experiments:
+\begin{itemize}
+    \item NO TRAINING EVAL RUNS -- The exact number of training and evaluation runs
+    \item HYPER BOUND -- Bounds for each hyperparameter
+    \item HYPER BEST CONFIG -- Hyperparameter configurations for best-performing models
+    \item HYPER SEARCH -- Number of hyperparameter search trials
+    \item HYPER METHOD -- The method of choosing hyperparameter values (e.g., uniform sampling, manual tuning, etc.) and the criterion used to select among them (e.g., accuracy)
+    \item EXPECTED PERF -- Summary statistics of the results (e.g., mean, variance, error bars, etc.)
+\end{itemize}
+
+Datasets -- utilized in the experiments and/or the created ones:
+\begin{itemize}
+    \item DATA STATS -- Relevant statistics, such as the number of examples
+    \item DATA SPLIT -- Details of train/validation/test splits
+    \item DATA PROCESSING -- Explanation of any data that were excluded and all preprocessing steps
+    \item DATA DOWNLOAD -- A link to a downloadable version of the data
+    \item NEW DATA DESCRIPTION --  For new data collected, a complete description of the data collection process, such as instructions to annotators and methods for quality control
+    \item DATA LANGUAGES -- For natural language data, the name of the language(s)
+\end{itemize}
+
+\end{document}

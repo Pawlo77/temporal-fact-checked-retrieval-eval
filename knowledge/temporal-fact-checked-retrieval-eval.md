@@ -52,7 +52,7 @@ Literature on one question: how much retrieval performance survives a time-respe
 
 ## Handbook
 
-[[Original Task]] · [[compute]]
+[[Original Task]] · [[Course grading and report]] · [[compute]]
 
 ## Generated
 
