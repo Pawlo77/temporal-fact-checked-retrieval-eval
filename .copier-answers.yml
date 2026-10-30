@@ -1,15 +1,18 @@
 # Changes here will be overwritten by Copier; run `copier update` instead.
-_commit: v1.1.0
+_commit: v1.4.2
 _src_path: https://github.com/Pawlo77/python-kit-template
 affiliation: Warsaw University of Technology
 author_email: pozorski.paul@gmail.com
 author_name: Pawel Pozorski
 description: Temporal evaluation of fact-checked claim retrieval (MultiClaim, Polish
     vs English)
+eden: false
 module: temporal_fact_checked_retrieval_eval
 owner: Pawlo77
+plgrid: false
 research: true
 scaffold: experiment
+scaffold_stubs: true
 slug: temporal-fact-checked-retrieval-eval
 vault: true
 year: '2026'

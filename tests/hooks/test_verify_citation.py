@@ -10,6 +10,7 @@ import importlib.util
 import json
 from pathlib import Path
 from types import ModuleType
+from typing import Any
 
 import pytest
 
@@ -62,7 +63,7 @@ def module(monkeypatch: pytest.MonkeyPatch) -> ModuleType:
     spec = importlib.util.spec_from_file_location("verify_citation_under_test", SCRIPT)
     assert spec is not None
     assert spec.loader is not None
-    loaded = importlib.util.module_from_spec(spec)
+    loaded: Any = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(loaded)
     loaded.calls = []
     flaky = {"n": 0}
@@ -210,7 +211,7 @@ def test_verified_field(module: ModuleType, tmp_path: Path) -> None:
 
 
 def test_main_checks_paper_notes_only(
-    module: ModuleType, tmp_path: Path, capsys: pytest.CaptureFixture[str]
+    module: Any, tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
     _note(tmp_path, 'arxiv: "1706.03762"')
     hub = tmp_path / "research" / "Research.md"
