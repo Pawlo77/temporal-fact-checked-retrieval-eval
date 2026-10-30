@@ -5,7 +5,7 @@ parent: "[[Language Models]]"
 ---
 # Evaluated LLMs
 
-LLMs we evaluate as rerankers of the shared first-stage candidates. They differ in stated cutoff, data openness and Polish coverage, so the RQ5 effect (gain on queries whose gold fact-check predates the cutoff) can be tested across families.
+LLMs we evaluate as rerankers of the shared first-stage candidates. They differ in stated cutoff, data openness and Polish coverage, so the RQ4 effect (gain on queries whose gold fact-check predates the cutoff) can be tested across families.
 
 ## Summary
 

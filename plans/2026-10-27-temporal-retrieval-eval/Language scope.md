@@ -127,7 +127,7 @@ Within-language query-level slope of hit on log10 causal pool size (linear proba
 | Language-bias risk | low | low with the reporting rules above | higher: 12 per-language bars invite cross-language ranking |
 | Reranking load (cross-encoder, top-100, 5 protocols; en and es subsampled to 3,000) | 4,690 queries, about 2.3M pairs | 14,373 queries, about 7.2M pairs (about 3.1x A) | about 21k-25k queries, roughly 5x A |
 | Dense and BM25 load | negligible extra | negligible: encode the pool once, apply time masks at search time | negligible |
-| LLM reranker (RQ5) | pl, en | keep pl, en only | keep pl, en only |
+| LLM reranker (RQ4) | pl, en | keep pl, en only | keep pl, en only |
 | Annotation | 50 queries + 200 pl + 200 en sibling judgments | unchanged; other languages get automatic covariates and LLM sibling judgments only | same as B, more unvalidated LLM labels |
 | Data work | v1 + ST7 for two languages | per-language archive and sibling counts from v2 and [[MultiClaimNet]]; timestamp checks for 5 more languages (50 dates each) | 10 more languages of timestamp checks |
 | Reviewer reaction | "n = 2 languages, Polish could differ for any reason" | "mechanism tested with variation in archive density; Polish is a well-powered case study" | "broad but shallow; why Polish in the title?" |

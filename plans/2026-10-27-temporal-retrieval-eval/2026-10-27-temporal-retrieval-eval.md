@@ -35,7 +35,7 @@ related:
 
 **Goal:** Measure how much of the reported performance of previously fact-checked claim retrieval (PFCR) survives an index that cannot see the future, separate the reasons for the drop, and release the protocol, split definitions and code so others can reuse them. This is the whole of project 2 ("Retrieval that cannot see the future: temporal evaluation of fact-checked claim retrieval") as one study: both team slots of the brief (sparse and dense baselines; reranking and gap decomposition) are workstreams of a single plan with one split, one results table and one paper.
 
-**Architecture:** A dated MultiClaim corpus, read through a dataset-agnostic adapter, feeds one protocol module that builds the random, strict causal, size-matched, cross-lingual causal and cluster-expanded pools. Retrieval systems run under every protocol and write rows to one shared results table. Analysis reads that table: cluster bootstrap per system, Polish-English difference-in-differences, an additive gap decomposition, and 50 hand-coded failures. Beyond the brief's scope, core+ (LLM-scale RQ5) and a conditional conformal step follow the core, and a stretch tier unlocks after that.
+**Architecture:** A dated MultiClaim corpus, read through a dataset-agnostic adapter, feeds one protocol module that builds the random, strict causal, size-matched, cross-lingual causal and cluster-expanded pools. Retrieval systems run under every protocol and write rows to one shared results table. Analysis reads that table: cluster bootstrap per system, Polish-English difference-in-differences, an additive gap decomposition, and 50 hand-coded failures. Beyond the brief's scope, core+ (LLM-scale RQ4) and a conditional conformal step follow the core, and a stretch tier unlocks after that.
 
 **Tech Stack:** Python 3.12, uv, bm25s (custom causal statistics), sentence-transformers, transformers and vLLM, MLflow, statsmodels; EDEN cluster with A100-class GPUs; open-weight models only for any text taken from MultiClaim.
 
@@ -51,14 +51,17 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 
 ## 3. Research questions and hypotheses
 
-- **RQ1:** How much Success@10 and MRR survive a causal index, reported unconditionally (unanswerable queries count as misses) and on answerable queries, with pool size controlled?
-- **RQ2:** What share of the random-vs-causal gap is answerability loss, pool composition, training leakage, or missing sibling labels?
-- **RQ3:** Is the penalty larger for Polish than for English (difference-in-differences)? With the extended languages: does archive density at query time explain it?
-- **RQ4:** How many days after a post does the first relevant fact-check become retrievable (time-to-findability among debunked posts)?
-- **RQ5 (core+):** Do LLM rerankers gain more on queries whose gold fact-check predates the model's training cutoff, and does that gain track each model's own cutoff?
-- **RQ6:** Does the ranking of retrieval systems change between the random and the causal protocol (rank reversals, rank correlation with intervals, significance of the reversals), and does the effect appear on a second dated dataset?
-- **RQ7:** On the causal index, what coverage-Success@10 trade-off does abstaining on low-confidence queries give, and how much of the drop is answerability loss (the gold does not exist yet, the system should abstain) versus ranking loss (the gold exists but ranks low)?
-- **RQ8:** How much answerability and Success@10 does a cross-lingual causal pool recover for Polish posts (earlier English fact-checks allowed), and how many misses are explained by an English debunk that existed at query time while a Polish one did not?
+- **RQ1: How much survives?** Does a causal index cost Success@10 and MRR, and does the ranking of systems change?
+  - **RQ1a:** How much Success@10 and MRR survive a causal index, reported unconditionally (unanswerable queries count as misses) and on answerable queries, with pool size controlled?
+  - **RQ1b:** Does the ranking of retrieval systems change between the random and the causal protocol (rank reversals, rank correlation with intervals, significance of the reversals), and does the effect appear on a second dated dataset?
+- **RQ2: Why does it drop?** Which causes explain the gap, and how long does a debunk take to appear?
+  - **RQ2a:** What share of the random-vs-causal gap is answerability loss, pool composition, training leakage, or missing sibling labels?
+  - **RQ2b:** How many days after a post does the first relevant fact-check become retrievable (time-to-findability among debunked posts)?
+  - **RQ2c:** On the causal index, what coverage-Success@10 trade-off does abstaining on low-confidence queries give, and how much of the drop is answerability loss (the gold does not exist yet, the system should abstain) versus ranking loss (the gold exists but ranks low)?
+- **RQ3: Is Polish hit harder?** Is the penalty larger for Polish, and do earlier English fact-checks recover it?
+  - **RQ3a:** Is the penalty larger for Polish than for English (difference-in-differences)? With the extended languages: does archive density at query time explain it?
+  - **RQ3b:** How much answerability and Success@10 does a cross-lingual causal pool recover for Polish posts (earlier English fact-checks allowed), and how many misses are explained by an English debunk that existed at query time while a Polish one did not?
+- **RQ4 (core+): Do LLM rerankers leak?** Do LLM rerankers gain more on queries whose gold fact-check predates the model's training cutoff, and does that gain track each model's own cutoff?
 - **H-answerability:** most gold pairs are post-first, so many queries are unanswerable under a causal index by definition; the share is measured first, not assumed.
 - **H-distractors (restated after the risk review):** on queries whose gold is unchanged between protocols, the causal pool only removes later distractors, so the conditional score may rise; the hypothesis is that time-local distractors are harder than the same number of random ones (causal vs size-matched random). A null or positive conditional delta is reported as a finding.
 - **H-PL and H-DOSE (extended tier):** pre-registered tests of the Polish-English difference and of the dose-response on log causal same-language pool size.
@@ -68,10 +71,10 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 **Core tier (committed, equals the brief):**
 - Languages: Polish (focus) and English (control).
 - Systems: BM25 with causal-pool statistics, multilingual-e5-large, a cross-lingual or Polish encoder (mmlw-retrieval-roberta-large or LaBSE), and bge-reranker-v2-m3 as cross-encoder.
-- Protocols: random, strict causal, size-matched random, cross-lingual causal pool (Polish posts only, RQ8, reported next to the main table).
-- Analysis: Success@10 and MRR with cluster-bootstrap significance and effect sizes, gap decomposition, risk-coverage curves (RQ7), a time-decay sensitivity figure, 50 hand-coded newly failing queries (25 Polish, 25 English).
+- Protocols: random, strict causal, size-matched random, cross-lingual causal pool (Polish posts only, RQ3b, reported next to the main table).
+- Analysis: Success@10 and MRR with cluster-bootstrap significance and effect sizes, gap decomposition, risk-coverage curves (RQ2c), a time-decay sensitivity figure, 50 hand-coded newly failing queries (25 Polish, 25 English).
 
-**Core+ (right after the core is complete, once reranker GPU time is confirmed):** LLM-scale systems and RQ5 with the refinements of section 7; about 2-3 engineer-days beyond the reranker runs, no new training.
+**Core+ (right after the core is complete, once reranker GPU time is confirmed):** LLM-scale systems and RQ4 with the refinements of section 7; about 2-3 engineer-days beyond the reranker runs, no new training.
 
 **Conditional (decided after the core, not committed):** conformal time-respecting retrieval, only if the measured answerable rate makes abstention worthwhile (section 10); empirical coverage is reported, not a guarantee, because a growing archive is not exchangeable.
 
@@ -88,8 +91,8 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 - **Random protocol:** the published setup.
 - **Strict causal protocol:** per-query pool of fact-checks published before the post; a query is answerable only if a gold fact-check is in the pool.
 - **Size-matched random control:** the same pool size per query, drawn from the full pool, gold kept.
-- **Cross-lingual causal pool (core, RQ8):** all fact-checks before the post in Polish and English, against the same-language causal pool; reuses the cross-lingual encoders (LaBSE, multilingual-e5, mmlw), no new models. Reported: answerable rate and Success@10/MRR delta, and the share of misses where an English debunk existed at query time but a Polish one did not. The language-family ablation needs the extended languages.
-- **Abstention view (core, RQ7):** conditional and unconditional scores reported side by side, plus a risk-coverage curve from a threshold on the top retrieval score (selective prediction, Geifman & El-Yaniv 2017); no learned abstainer. The curve splits the causal drop into answerability and ranking loss.
+- **Cross-lingual causal pool (core, RQ3b):** all fact-checks before the post in Polish and English, against the same-language causal pool; reuses the cross-lingual encoders (LaBSE, multilingual-e5, mmlw), no new models. Reported: answerable rate and Success@10/MRR delta, and the share of misses where an English debunk existed at query time but a Polish one did not. The language-family ablation needs the extended languages.
+- **Abstention view (core, RQ2c):** conditional and unconditional scores reported side by side, plus a risk-coverage curve from a threshold on the top retrieval score (selective prediction, Geifman & El-Yaniv 2017); no learned abstainer. The curve splits the causal drop into answerability and ranking loss.
 - **Time-decay sensitivity (core, one figure):** `score * exp(-lambda * age)` re-scoring of stored BM25 and dense runs over a lambda grid, no re-encoding; precedent Efron & Golovchinsky 2011. It admits future documents, so it is reported separately from the hard causal cutoff.
 - **Cluster-expanded causal protocol (extended):** relevance extended to earlier same-claim fact-checks via MultiClaimNet clusters and judge-panel labels; every system is also reported on fact-checker-only qrels, so the expanded numbers are a bound, not the primary result.
 - **Statistics leakage:** BM25 IDF and length statistics from the causal pool only (cumulative document frequencies by date), full-pool statistics as a sensitivity row.
@@ -127,8 +130,8 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 | Reranker (control) | [[Llama 3.3\|Llama-3.3-70B-Instruct]] | December 2023 | earliest cutoff, widest split |
 | Judge | [[gpt-oss-120b]], [[Command A\|Command A (03-2025)]], [[Mistral Large 2411\|Mistral-Large-Instruct-2411]] | n/a | three families disjoint from every evaluated system; majority vote |
 
-- **RQ5 design:** per model with a stated cutoff, stratify queries by gold fact-check date before or after that cutoff and estimate the reranker gain over the shared first stage; control with difference-in-differences against the cross-encoders; a gain jump at each model's own cutoff, not at a common date, is the leakage signature. Qwen3 and Bielik are reported as "cutoff unknown". For Apertus and Olmo, exposure is checked directly in the released pretraining data.
-- **RQ5 refinements (core+):** per-source effective knowledge cutoffs (Polish and English fact-check sites differ) estimated with dated fact probes with fixed phrasing (Dated Data 2024); each leaked pair classified as direct (the fact-check states the answer) or causally related (the reranker must infer it), since prompted cutoffs fail on the latter (Gao et al., EMNLP 2025); a prompted-cutoff ablation ("ignore anything after YYYY-MM-DD") on the rerankers; and a comparison stratified by the documented cutoffs above. Different models also differ in more than cutoff, so the cutoff-stratified result is reported as suggestive unless the gain jumps at each model's own date.
+- **RQ4 design:** per model with a stated cutoff, stratify queries by gold fact-check date before or after that cutoff and estimate the reranker gain over the shared first stage; control with difference-in-differences against the cross-encoders; a gain jump at each model's own cutoff, not at a common date, is the leakage signature. Qwen3 and Bielik are reported as "cutoff unknown". For Apertus and Olmo, exposure is checked directly in the released pretraining data.
+- **RQ4 refinements (core+):** per-source effective knowledge cutoffs (Polish and English fact-check sites differ) estimated with dated fact probes with fixed phrasing (Dated Data 2024); each leaked pair classified as direct (the fact-check states the answer) or causally related (the reranker must infer it), since prompted cutoffs fail on the latter (Gao et al., EMNLP 2025); a prompted-cutoff ablation ("ignore anything after YYYY-MM-DD") on the rerankers; and a comparison stratified by the documented cutoffs above. Different models also differ in more than cutoff, so the cutoff-stratified result is reported as suggestive unless the gain jumps at each model's own date.
 - **Conformal option (conditional):** split-conformal risk control over stored scores (Bates et al. 2021; Angelopoulos et al. 2024): a chronological calibration split disjoint from the test set, a rank-based nonconformity score, candidate sets with abstention, calibrated per post-to-debunk lag bucket. About 3-5 engineer-days, CPU only.
 - **Narrative-drift labels (validity gate):** the drift prompt and judge-panel model versions are frozen before validation; two humans label a stratified calibration sample of 100 items (50 Polish, 50 English); drift enters the analysis as a covariate only when the panel-vs-human Cohen's kappa is at least 0.6 on each language, otherwise it is reported as exploratory and the human-coded 50 failing queries carry the drift finding; every drift result is shown with and without the covariate, and a 5% sample is rerun three times for label flip rate.
 - **Judge protocol:** binary sibling relevance and three-way narrative drift; independent labels with one released prompt; majority label; Fleiss' kappa across judges, Cohen's kappa against humans per language, each judge validated on the 400 Polish pairs of AMC-16K before use; humans label 200 Polish and 200 English items.
@@ -183,15 +186,15 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 ### Task 4: Core analysis (W4)
 
 - [ ] **Step 1:** Cluster bootstrap with paired effect sizes, Holm, difference-in-differences; unconditional and conditional tables separately.
-- [ ] **Step 1a:** Risk-coverage curves and the answerability-versus-ranking split (RQ7); cross-lingual pool recovery (RQ8); time-decay sensitivity figure (analysis only, about 2.5 engineer-days together, no GPU; the pool is Task 2 step 2).
-- [ ] **Step 1b:** Ranking-reversal check (RQ6): rank the systems under the random and the causal protocol, report Kendall tau with a bootstrap interval, every pairwise reversal with its significance, and whether the best system changes; this result decides the publication target (section 10).
+- [ ] **Step 1a:** Risk-coverage curves and the answerability-versus-ranking split (RQ2c); cross-lingual pool recovery (RQ3b); time-decay sensitivity figure (analysis only, about 2.5 engineer-days together, no GPU; the pool is Task 2 step 2).
+- [ ] **Step 1b:** Ranking-reversal check (RQ1b): rank the systems under the random and the causal protocol, report Kendall tau with a bootstrap interval, every pairwise reversal with its significance, and whether the best system changes; this result decides the publication target (section 10).
 - [ ] **Step 2:** Additive gap chain with order shuffling; covariate regression.
 - [ ] **Step 3:** Code the 50 failing queries with two annotators; report kappa.
 
 ### Task 4b: Core+ (16 Dec to 7 Jan, reranker GPU time confirmed)
 
 - [ ] **Step 1:** LLM-scale systems with the model set of section 7, over one shared first-stage candidate list.
-- [ ] **Step 2:** RQ5 with its refinements: effective-cutoff probes, direct vs causally related taxonomy, prompted-cutoff ablation, cutoff-stratified comparison.
+- [ ] **Step 2:** RQ4 with its refinements: effective-cutoff probes, direct vs causally related taxonomy, prompted-cutoff ablation, cutoff-stratified comparison.
 
 ### Task 5: Extended tier (only after the core is complete)
 
@@ -217,7 +220,7 @@ About 10 usable supervisor Wednesdays remain (estimate) to the end of January 20
 | Split and schema frozen | 25 Nov | ids, cutoffs, qrels format, one results schema |
 | Answerability check | first data week | Polish strict-causal answerable at least 150: keep the Polish-English difference-in-differences as headline; 50 to 149: report it as descriptive with intervals; below 50: the headline becomes answerability and time-to-findability, Polish as a case study |
 | Core complete | 16 Dec | 4 systems x 3 protocols x 2 languages in one table with cluster-bootstrap intervals, plus the Polish cross-lingual pool; otherwise all later work stops |
-| Core+ unlock | after core | reranker GPU time confirmed; RQ5 and Task 4b run before any extended work; stops 7 Jan so the final report (13 Jan) is written from finished results, unfinished core+ work is reported as exploratory |
+| Core+ unlock | after core | reranker GPU time confirmed; RQ4 and Task 4b run before any extended work; stops 7 Jan so the final report (13 Jan) is written from finished results, unfinished core+ work is reported as exploratory |
 | Conformal (conditional) | after Task 4 step 1a | answerable rate and the risk-coverage curve show abstention matters, and at least 4 Wednesdays remain; otherwise skip |
 | Extended unlock | after core and core+ | at least 4 Wednesdays left; order as in section 4 |
 | Venue decision | after the ranking-reversal check | significant reversals or a changed best system: aim at an A* main track and unlock the second dataset first; otherwise target ARR Findings or SIGIR short (section 15) |
@@ -226,9 +229,9 @@ About 10 usable supervisor Wednesdays remain (estimate) to the end of January 20
 
 - Split definitions as id lists plus code that rebuilds them from the official files; no post text.
 - The shared results table: at least four systems under the random and the temporal protocol, Polish and English, with significance tests; the central number is how much more the temporal split costs Polish.
-- The ranking-reversal analysis (RQ6), the gap decomposition and the coded analysis of 50 newly failing queries.
-- Risk-coverage curves (RQ7), cross-lingual pool recovery (RQ8) and the time-decay figure.
-- Core+: the RQ5 leakage experiment. Conditional: conformal coverage results.
+- The ranking-reversal analysis (RQ1b), the gap decomposition and the coded analysis of 50 newly failing queries.
+- Risk-coverage curves (RQ2c), cross-lingual pool recovery (RQ3b) and the time-decay figure.
+- Core+: the RQ4 leakage experiment. Conditional: conformal coverage results.
 - Extended tier, if unlocked: judged sibling ids, released prompts, model hashes and response-cache index, dose-response analysis.
 - A paper written from the shared table.
 
@@ -259,7 +262,7 @@ The full register has 26 risks with checks and stop/go gates (Risk register). Th
 - **Target:** an A* main track (ACL, EMNLP or NAACL through ACL Rolling Review, or SIGIR full paper). No workshops. Fallbacks if the result is smaller: ARR Findings, SIGIR short paper or ECIR.
 - **Assessment:** as a single-dataset audit the paper is a solid Findings or SIGIR-short candidate; reviewers may call "index only earlier fact-checks" obvious, and on queries with unchanged gold the filter only removes distractors. An A* attempt needs a consequence, which the plan builds in as follows.
 - **What the paper needs and where the plan provides it:**
-  1. System rankings change: RQ6 and the ranking-reversal check (Task 4, core, costs almost nothing extra).
+  1. System rankings change: RQ1b and the ranking-reversal check (Task 4, core, costs almost nothing extra).
   2. The effect generalises: a formal, dataset-agnostic protocol (Task 2 steps 3 and 4) plus a second dated dataset (Task 5 step 3), framed as a general causal-evaluation protocol for retrieval over a growing archive.
   3. A mechanism: the archive-density dose-response across seven languages (extended tier).
   4. A consequence for practice: the recovery analysis (Task 5 step 4).

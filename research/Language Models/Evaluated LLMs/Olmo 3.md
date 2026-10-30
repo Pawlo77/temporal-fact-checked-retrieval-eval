@@ -67,7 +67,7 @@ Notation: query post $q$, candidate fact-check $f$; the model is used as a reran
 
 ## Relation to our project
 
-- Reranker 4 for RQ5, the English slice with auditable data: for each English gold fact-check we search Dolma 3 for its URL and long claim n-grams and record exposure, as for [[Apertus]]. See ([[2026-10-27-temporal-retrieval-eval]], [[LLM selection]]).
+- Reranker 4 for RQ4, the English slice with auditable data: for each English gold fact-check we search Dolma 3 for its URL and long claim n-grams and record exposure, as for [[Apertus]]. See ([[2026-10-27-temporal-retrieval-eval]], [[LLM selection]]).
 - The cutoff for date strata should be treated as uncertain between December 2024 and mid-2025; per-query exposure from the corpus is the safer variable ([[Simulated Ignorance Fails]]).
 - At 32B it fits one 80 GB GPU for bf16 weights; we pin a specific checkpoint (base or Olmo 3.1 Instruct) before any run.
 - English only, so Polish rows use [[Apertus]], [[Gemma 3]] and Polish models; relevance validation uses English [[AMC-16K]] pairs ([[Language and Retrieval Bias]]).
