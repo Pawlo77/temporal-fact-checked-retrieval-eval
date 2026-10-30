@@ -81,7 +81,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 3. A second dated dataset to show that the effect generalises beyond MultiClaim (see Task 5).
 4. Fine-tuned retriever under random and chronological training.
 
-**Out of scope:** a new retrieval architecture, judging claim veracity, language-bias analysis (already published on this dataset), training dated model checkpoints, a narrative-drift annotation paper, and synthetic difference-in-differences (two units are under-powered; revisit only with the extended languages). Errors are reported in aggregate; there is no ranked list of outlets or authors.
+**Out of scope:** a new retrieval architecture, judging claim veracity, language-bias analysis (already published on this dataset). Errors are reported in aggregate; there is no ranked list of outlets or authors.
 
 ## 5. Protocols and methods
 

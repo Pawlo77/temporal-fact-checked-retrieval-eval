@@ -39,7 +39,6 @@ We evaluate previously fact-checked claim retrieval (given a social media post, 
 | Time-decay figure and effect sizes (core) | One extra figure from stored scores, and effect sizes (how big the drop is, not only whether it is significant) next to the significance tests. Almost no extra work. |
 | RQ5 moved to core+ | We have the compute, so it runs right after the core. We added checks of what each model knows and when its knowledge ends. |
 | Conformal retrieval (conditional) | It returns a set of candidates with a stated chance of containing the right fact-check. Interesting, but its guarantee is weak on time-ordered data. We do it only if abstention turns out to matter, and report measured coverage. |
-| Dropped: synthetic difference-in-differences (a statistical comparison method), training our own dated models, a separate narrative-drift paper | Two languages are too few for the first, and the other two are too big for the time we have. |
 
 Unchanged: the four systems, the three setups, the 50 hand-coded failures and the extended tier (sibling labels, more languages, a second dataset, a fine-tuned retriever).
 
