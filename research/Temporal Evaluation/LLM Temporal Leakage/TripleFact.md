@@ -68,7 +68,7 @@ Intuition: a model that answers differently once a famous name is replaced was u
 
 - It states the risk in the register: contamination can inflate LLM fact-checking scores, so pretrained models may know fact-check sites ([[LLM selection]], [[2026-10-27-temporal-retrieval-eval|Project plan]]).
 - Cite the "up to 23%" figure only with its setting: fine-tuning injection into one model, not the 17 evaluated LLMs.
-- We take the live-then-label idea: queries newer than a model's cutoff are contamination-free for that model, which is the post-cutoff stratum of RQ5.
+- We take the live-then-label idea: queries newer than a model's cutoff are contamination-free for that model, which is the post-cutoff stratum of RQ4.
 - ECVE-style entity swaps give a cheap test on a sample of our posts: if a reranker's ranking changes when named entities are masked, memory is involved. We would have to design it.
 - Pairs with [[Dated Data]] for the cutoff boundary and [[Simulated Ignorance Fails]] for prompting limits.
 

@@ -67,7 +67,7 @@ Notation: query post $q$, candidate fact-check $f$; the model is used as a reran
 
 ## Relation to our project
 
-- Reranker 2 for RQ5, with a stated August 2024 cutoff inside the query period; a 27B bf16 model fits one 80 GB GPU for weights, with the cache on top ([[2026-10-27-temporal-retrieval-eval]], [[LLM selection]]).
+- Reranker 2 for RQ4, with a stated August 2024 cutoff inside the query period; a 27B bf16 model fits one 80 GB GPU for weights, with the cache on top ([[2026-10-27-temporal-retrieval-eval]], [[LLM selection]]).
 - Already used as a relevance judge in [[Language and Retrieval Bias]], where it gained in every prompting strategy, so its behaviour on the PFCR domain has precedent; compare [[AMC-16K]].
 - Language caveat: "over 140 languages" is a coverage claim, not a Polish measurement, so we validate on the 400 Polish [[AMC-16K]] pairs first.
 - The distillation teacher is unknown, so we treat the August 2024 cutoff as a lower bound on exposure, not as a clean boundary ([[Simulated Ignorance Fails]]).

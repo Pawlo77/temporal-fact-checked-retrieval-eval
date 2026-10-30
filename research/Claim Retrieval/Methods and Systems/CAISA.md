@@ -61,7 +61,7 @@ Intuition: a cheap embedder narrows the pool, and the LLM reads each candidate a
 ## Relation to our project
 
 - It is the SemEval LLM filtering step our risk register cites: a small LLM used as relevance filter after a dense candidate list, on the full pool ([[LLM selection]], [[2026-10-27-temporal-retrieval-eval|Project plan]]).
-- The filter sees the fact-check text and ranks it with parametric knowledge, so for RQ5 its gain should be reported by cutoff stratum and under a causal pool; the paper has neither.
+- The filter sees the fact-check text and ranks it with parametric knowledge, so for RQ4 its gain should be reported by cutoff stratum and under a causal pool; the paper has neither.
 - Its gains depend on the embedder, as in [[TIFIN India]], where reranking added 1.7%; report reranking against the first-stage ranking alone.
 - Weak and inconsistent numbers make it a design reference, not a baseline to reproduce.
 

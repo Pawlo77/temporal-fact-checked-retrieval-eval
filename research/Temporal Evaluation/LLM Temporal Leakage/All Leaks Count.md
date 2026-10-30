@@ -69,7 +69,7 @@ Intuition: the share of the evidence that actually drives the prediction which c
 
 ## Relation to our project
 
-- If an LLM reranker returns rationales, claim-level dating gives a way to measure parametric and retrieved leakage per claim, complementing our knowledge-cutoff strata (RQ5 in [[2026-10-27-temporal-retrieval-eval|Project plan]], [[Topic research]]).
+- If an LLM reranker returns rationales, claim-level dating gives a way to measure parametric and retrieved leakage per claim, complementing our knowledge-cutoff strata (RQ4 in [[2026-10-27-temporal-retrieval-eval|Project plan]], [[Topic research]]).
 - Its Control/Treatment design (questions after every cutoff versus before) is the model for separating parametric from retrieval leakage in our own pool.
 - Confirms that a hard date filter is insufficient, so the causal pool $P(q)$ needs stored timestamps ([[Temporal Leakage in Date-Filtered Web Retrieval]], [[LLM Temporal Leakage]]).
 - Avoid: treating output-level audits as proof of no leakage; stratification by cutoff is still needed.

@@ -66,7 +66,7 @@ Intuition: the generator learns from the explanations a fact-checker would give,
 ## Relation to our project
 
 - It is the evidence behind the risk-register entry on contamination with fact-check sites: gold fact-checks and posts both sit on the same sites, so "after the cutoff" does not mean "unseen" ([[LLM selection]], [[2026-10-27-temporal-retrieval-eval|Project plan]]).
-- For RQ5, do not treat date alone as the clean stratum: the PolitiFact trend shows post-cutoff items can be easier through surface patterns, so we should compare to non-LLM baselines ([[bge-reranker-v2-m3]]) on the same strata.
+- For RQ4, do not treat date alone as the clean stratum: the PolitiFact trend shows post-cutoff items can be easier through surface patterns, so we should compare to non-LLM baselines ([[bge-reranker-v2-m3]]) on the same strata.
 - Retrieval restoring accuracy on Snopes warns that an LLM reranker given the fact-check text can be right through the text, not through knowledge; our protocol separates the two by pool design ([[Dated Data]], [[TripleFact]]).
 - The task here is verification, not PFCR, so the numbers do not transfer; only the mechanism does.
 

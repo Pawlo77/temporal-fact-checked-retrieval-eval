@@ -19,25 +19,23 @@ We evaluate previously fact-checked claim retrieval (given a social media post, 
 
 ## Research questions
 
-| ID | Question | Status |
+Four questions; the sub-letters are the separate analyses behind each.
+
+| ID | Question | Covers |
 |---|---|---|
-| RQ1 | How much performance survives when the index cannot see the future? | original |
-| RQ2 | How much of the drop is a missing fact-check, a smaller pool, training leakage or missing labels? | original |
-| RQ3 | Is the drop larger for Polish than for English? | original |
-| RQ4 | How many days after a post does the first relevant fact-check appear? | original |
-| RQ6 | Does the ranking of systems change between the normal and the time-respecting setup? | original |
-| RQ7 | If a system may abstain on low-confidence posts, what is the trade-off between coverage and accuracy? | new, core |
-| RQ8 | For Polish posts, how much do earlier English fact-checks recover? | new, core |
-| RQ5 | Do LLM rerankers do better on facts they may have seen in training? | was a stretch goal, now core+ |
+| RQ1 | How much performance survives when the index cannot see the future, and does the ranking of systems change? | RQ1a drop (original), RQ1b ranking change (original) |
+| RQ2 | Why does it drop: missing fact-check, smaller pool, training leakage or missing labels? | RQ2a causes (original), RQ2b days to the first fact-check (original), RQ2c abstention trade-off (new, core) |
+| RQ3 | Is the drop larger for Polish than for English, and how much do earlier English fact-checks recover? | RQ3a Polish vs English (original), RQ3b earlier English fact-checks (new, core) |
+| RQ4 | Do LLM rerankers do better on facts they may have seen in training? | was a stretch goal, now core+ |
 
 ## What changed and why
 
 | Change | Why |
 |---|---|
-| RQ7 added (core) | Many posts have no earlier fact-check, so the right answer is "don't know". Abstention curves split the drop into missing fact-check versus bad ranking. |
-| RQ8 added (core) | It tests whether a thin Polish archive explains the Polish drop. It reuses the encoders we already plan to use. |
+| RQ2c added (core) | Many posts have no earlier fact-check, so the right answer is "don't know". Abstention curves split the drop into missing fact-check versus bad ranking. |
+| RQ3b added (core) | It tests whether a thin Polish archive explains the Polish drop. It reuses the encoders we already plan to use. |
 | Time-decay figure and effect sizes (core) | One extra figure from stored scores, and effect sizes (how big the drop is, not only whether it is significant) next to the significance tests. Almost no extra work. |
-| RQ5 moved to core+ | We have the compute, so it runs right after the core. We added checks of what each model knows and when its knowledge ends. |
+| RQ4 moved to core+ | We have the compute, so it runs right after the core. We added checks of what each model knows and when its knowledge ends. |
 | Conformal retrieval (conditional) | It returns a set of candidates with a stated chance of containing the right fact-check. Interesting, but its guarantee is weak on time-ordered data. We do it only if abstention turns out to matter, and report measured coverage. |
 
 Unchanged: the four systems, the three setups, the 50 hand-coded failures and the extended tier (sibling labels, more languages, a second dataset, a fine-tuned retriever).
@@ -50,7 +48,7 @@ The core only measured the drop. The additions explain it, and they reuse stored
 |---|---|
 | 18 Nov | Data access gate: without it we deliver the protocol and code on whatever data arrived. |
 | 25 Nov | Split and results format frozen. |
-| 16 Dec | Core done: 4 systems, 3 setups, 2 languages, plus the Polish run with earlier English fact-checks (RQ8). |
+| 16 Dec | Core done: 4 systems, 3 setups, 2 languages, plus the Polish run with earlier English fact-checks (RQ3b). |
 | 7 Jan | Core+ stops. Unfinished work is reported as exploratory. |
 | 13 Jan | Final report. |
 

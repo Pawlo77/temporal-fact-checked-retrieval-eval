@@ -67,7 +67,7 @@ Notation: query post $q$, candidate fact-check $f$; the model scores the pair $(
 
 ## Relation to our project
 
-- Reranker 3 for RQ5, the auditable one: for each gold fact-check we can search the reconstructed corpus for its URL and long claim n-grams and use per-query exposure instead of date strata. See ([[2026-10-27-temporal-retrieval-eval]], [[LLM selection]]).
+- Reranker 3 for RQ4, the auditable one: for each gold fact-check we can search the reconstructed corpus for its URL and long claim n-grams and use per-query exposure instead of date strata. See ([[2026-10-27-temporal-retrieval-eval]], [[LLM selection]]).
 - Goldfish loss makes it a low-memorization contrast: an exposure effect may be weaker here than for [[Gemma 3]] or [[Llama 3.3]], which is itself informative.
 - The 70B model needs two 80 GB GPUs for bf16 weights; the 8B model supplies the size axis at about 16 GB.
 - Polish is a high-resource language in its data, but no Polish judge or reranker validation exists, so we use the 400 Polish [[AMC-16K]] pairs first ([[Language and Retrieval Bias]]).

@@ -67,7 +67,7 @@ Intuition: a model has seen text from the months it knows best, so its surprise 
 
 ## Relation to our project
 
-- It supports stratifying RQ5 by each model's own effective cutoff and not by a reported date, and it argues against Qwen3 treated as having a known boundary ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[LLM selection]]).
+- It supports stratifying RQ4 by each model's own effective cutoff and not by a reported date, and it argues against Qwen3 treated as having a known boundary ([[2026-10-27-temporal-retrieval-eval|Project plan]], [[LLM selection]]).
 - We could run the same perplexity-over-time probe on fact-check articles published by the sources in [[MultiClaim]] for the open models in the plan, as a check of when exposure ends; the paper does not do this.
 - Treat a band around the reported cutoff as ambiguous and report it separately, because old copies and late additions blur the boundary in both directions.
 - Complements [[Simulated Ignorance Fails]], which shows prompts cannot enforce a cutoff, and [[All Leaks Count]], which audits what the model says rather than what it holds.
