@@ -11,6 +11,8 @@
 .nav-folder:has(> .nav-folder-title[data-path="report"]),
 .nav-folder:has(> .nav-folder-title[data-path="mlruns"]),
 .nav-folder:has(> .nav-folder-title[data-path="knowledge/_templates"]),
+.nav-folder:has(> .nav-folder-title[data-path="research/protocols"]),
+.nav-folder:has(> .nav-folder-title[data-path="fulltext"]),
 .nav-file:has(> .nav-file-title[data-path="README.md"]),
 .nav-file:has(> .nav-file-title[data-path="CONTRIBUTING.md"]),
 .nav-file:has(> .nav-file-title[data-path="AGENTS.md"]),

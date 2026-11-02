@@ -159,7 +159,7 @@ types = [
   "map", "dashboard", "module", "decision-log", "issue", "concept", "handbook",
   "solution", "plan", "plan-note", "brief", "generated",
 ]
-link-fields = ["related-code"]
+link-fields = ["related-code", "references"]
 sections-exempt = ["Fixed issues"]
 
 [tool.agent-kit.vault.schema.exempt]
@@ -189,8 +189,8 @@ patterns = ["knowledge/AGENTS.md"]
 lines = 60
 
 [[tool.agent-kit.brevity.budget]]
-patterns = ["research/*/*.md"]  # paper and folder notes
-words = 1500
+patterns = ["research/*/*.md"]  # paper and folder notes, any depth (fnmatch * crosses /)
+words = 3500
 sentences = true
 
 [[tool.agent-kit.brevity.budget]]
@@ -199,6 +199,6 @@ words = 600
 sentences = true
 
 [[tool.agent-kit.brevity.budget]]
-patterns = [".agents/skills/paper-notes/reference.md"]  # project vocabulary: placement, glossary, tags
-words = 600
+patterns = [".agents/skills/paper-notes/reference.md"]  # project vocabulary: placement, contracts, glossary, tags
+words = 1150
 sentences = true

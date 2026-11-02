@@ -40,17 +40,26 @@ File names are the paper's short name (method or system name), never `Year - Aut
 
 | Section | Contract |
 |---------|----------|
-| `> [!info] TL;DR` | What the paper changes and the result, 2–4 plain sentences |
-| `## Motivation` | The gap before the paper, 3–5 bullets; prior work linked (vault note or verified URL) |
-| `## Method` | Notation sentence, definitions, the method; an `Intuition:` sentence next to each key equation |
-| `## Key numbers` | 2–5 headline results, each with its setting and baseline |
-| `## Experiments` | One bullet per experiment: `**Name:** what was tested; what was found` |
-| `## Data` | One bullet per dataset: name, what it is, size |
-| `> [!failure] Limitations` | One bullet per failure mode |
+| `> [!info] TL;DR` | What the paper changes and its main result, 3–5 plain sentences |
+| `## Motivation` | The gap before the paper, 3–6 bullets; prior work linked (vault note or verified URL) |
+| `## Method` | Notation sentence; every definition, equation, algorithm step and theorem needed to re-implement or check the paper, in LaTeX (`$…$`, `$$…$$`); an `Intuition:` sentence after each key equation; theorems with their assumptions |
+| `## Implementation` | Code (URL or "not released"), software and frameworks, hardware, architectures and sizes, neuron and surrogate parameters, time steps, optimiser and schedule, training budget |
+| `## Data` | One bullet per dataset: name, what it is, size, splits, encoding or preprocessing |
+| `## Experiments` | One bullet per experiment: `**Name:** setup, baselines and metrics; what was found` |
+| `## Results` | The main and ablation results in numbers, each with setting and baseline; described in prose, never a copied table |
+| `## Limitations` | One bullet per failure mode, marked `(authors)` when the paper states it, `(ours)` otherwise |
 | `## Relation to our project` | What we take, test or avoid; links to project notes |
 | `## Future work` | Bullets led by `**Done:**` or `**Partly done:**` (with a verified link) or `**Open:**` ending `(searched YYYY-MM)` |
 
-Whole note: 500–1500 words.
+Whole note: 1200–3500 words; sentences of at most 35 words. A section the paper has nothing for says so in one line (for example, a theory paper's `## Data`).
+
+## Full-text snapshots
+
+`fulltext/` mirrors `research/` (`fulltext/<Area>/[<Theme>/]<Short title>.txt`): the 1:1 extracted text of each paper, git-ignored and hidden in Obsidian. `scripts/snapshot.py` creates it from the note's `arxiv`, `doi` or `url`, moves it when the note moves and lists notes without one. Later passes over a paper read the snapshot instead of downloading again.
+
+## Review
+
+An independent reviewer (not the writer) checks every claim, number and equation against the snapshot, adds what is missing for the contract, and sets `reviewed` to the date. A note without `reviewed` is a draft.
 
 ## Never
 

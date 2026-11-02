@@ -7,19 +7,21 @@ venue: "{{VENUE WITH VOLUME AND PAGES}}"
 arxiv: "{{ARXIV ID}}"
 doi: "{{DOI}}"
 url: "{{URL OF PUBLISHED VERSION, ELSE ARXIV}}"
+code: "{{CODE URL, OMIT IF NOT RELEASED}}"
 citekey: {{firstauthor}}{{year}}{{firstword}}
 verified: {{YYYY-MM-DD}}
+reviewed: {{YYYY-MM-DD, SET BY THE REVIEWER ONLY}}
 theme: "[[{{THEME}}]]"
 tags: [type/paper, theme/{{theme-slug}}, topic/{{topic}}]
 ---
 # {{SHORT NAME}}
 
 > [!info] TL;DR
-> {{What the paper changes and what it achieves, 2–4 plain sentences.}}
+> {{What the paper changes and its main result, 3–5 plain sentences.}}
 
 ## Motivation
 
-- {{The gap, with the prior work linked: [Author et al., YEAR](verified URL).}}
+- {{The gap, with the prior work linked: [Author et al., YEAR](verified URL) or a vault note.}}
 - {{Why it matters.}}
 
 ## Method
@@ -28,22 +30,37 @@ tags: [type/paper, theme/{{theme-slug}}, topic/{{topic}}]
 
 **{{Definition or step}}.** {{Statement.}}
 
+$$
+{{key equation}}
+$$
+
 Intuition: {{one sentence in plain words}}.
 
-## Key numbers
+**{{Theorem or proposition}}.** {{Statement with its assumptions.}}
 
-- {{Headline result}} ({{setting}}; {{baseline}}).
+## Implementation
 
-## Experiments
-
-- **{{Name}}:** {{what was tested}}; {{what was found}}.
+- **Code:** {{URL or "not released"}}.
+- **Software and hardware:** {{frameworks, versions if given, GPUs or chips}}.
+- **Architecture:** {{layers, widths, parameters, neuron model and parameters, surrogate, time steps}}.
+- **Training:** {{optimiser, learning rate and schedule, batch size, epochs, budget}}.
 
 ## Data
 
-- {{Dataset}}: {{what it is}}, {{size}}.
+- {{Dataset}}: {{what it is}}, {{size and splits}}, {{encoding or preprocessing}}.
 
-> [!failure] Limitations
-> - {{Failure mode.}}
+## Experiments
+
+- **{{Name}}:** {{setup, baselines and metrics}}; {{what was found}}.
+
+## Results
+
+- {{Result in numbers}} ({{setting}}; {{baseline}}).
+
+## Limitations
+
+- {{Failure mode}} (authors).
+- {{Failure mode}} (ours).
 
 ## Relation to our project
 
