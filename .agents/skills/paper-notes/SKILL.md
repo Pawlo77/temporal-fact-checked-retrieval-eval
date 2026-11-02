@@ -8,7 +8,8 @@ description: >-
 # Paper notes
 
 One note per paper at `research/<Area>/[<Theme>/]<Short title>.md`, hub `research/Research.md`;
-every folder has a note named after it that lists its papers. No PDFs are kept. The
+every folder has a note named after it that lists its papers. No PDFs are kept; the
+extracted text of each paper lives in git-ignored `fulltext/`, mirroring `research/`. The
 project's half of this skill is [reference.md](reference.md) (layout and placement,
 section contracts, tags, glossary, notation); every note starts from [template.md](template.md).
 
@@ -26,8 +27,7 @@ section contracts, tags, glossary, notation); every note starts from [template.m
   is a past ISO date. `OK (url only)` is weaker, for sources without DOI or arXiv id
   (proceedings, model cards, GitHub, Zenodo): only that `url` resolves and the title words
   occur in its page title. Say so in the report; use it only when no id exists.
-- Every prior work linked in Motivation is checked the same way; unverifiable ones are not
-  linked.
+- Prior work linked in Motivation is checked the same way.
 - Finding candidates for the user: agent `paper-scout`, then a table of citation,
   verified URL, one-line relevance and theme; the user picks. A whole area: skill
   `literature-search`.
@@ -40,19 +40,20 @@ its folder note and add it to the parent's table (`Research.md` for an area).
 
 ## 3. Read
 
-Read from the URL: arXiv HTML (`https://arxiv.org/html/<id>`) first. Otherwise download
-the PDF to a temp dir, extract it and delete it; never save a PDF in the repository:
+Snapshot the full text, then read all of it (appendices with method or results too):
 
 ```bash
-d=$(mktemp -d) && curl -sL "<pdf url>" -o "$d/p.pdf" && uv run --with pypdf python -c "import sys; from pypdf import PdfReader; [print(f'=== p{i}', p.extract_text() or '') for i, p in enumerate(PdfReader(sys.argv[1]).pages, 1)]" "$d/p.pdf" > "$d/p.txt"; rm "$d/p.pdf"
+uv run --with pypdf python .agents/skills/paper-notes/scripts/snapshot.py "research/<Area>/<Short title>.md"
 ```
 
+Other sources: `--pdf <url>`; `--missing` and `--sync` keep `fulltext/` in step with `research/`.
 A paper without readable full text is recorded as unread, never written from the abstract.
 
 ## 4. Write
 
 1. Fill every section of the template in order, following the contracts, glossary and
-   notation in [reference.md](reference.md).
+   notation in [reference.md](reference.md). Give equations (LaTeX), algorithms,
+   theorems, software, hyperparameters and results: enough to check the work without the PDF.
 2. Write for human readers: no tooling, plans or config keys in the note; project usage
    goes to `Relation to our project`, tooling to `research/AGENTS.md`.
 3. Future work: the paper's own directions, then its main gaps; search citations and arXiv
@@ -60,14 +61,19 @@ A paper without readable full text is recorded as unread, never written from the
    `Open (searched YYYY-MM)`.
 4. Re-read the source for every number, dataset and claim you wrote; delete what you
    cannot find. Then set `verified` in the frontmatter to today's date.
-5. Read the note once as a newcomer: each idea once, no section repeating another.
+5. Re-read as a newcomer: each idea once.
 
-## 5. Link
+## 5. Review (another agent or person)
+
+Never the writer: the reviewer checks every claim, number and equation against the
+snapshot, fixes and completes the note, and sets `reviewed`.
+
+## 6. Link
 
 - Add the paper to the table of its folder note (an unlinked note fails `vault-check`).
 - Link related vault notes from Motivation or Relation to our project, not a "See also".
 
-## 6. Check
+## 7. Check
 
 ```bash
 uv run python .agents/skills/paper-notes/scripts/verify_citation.py
