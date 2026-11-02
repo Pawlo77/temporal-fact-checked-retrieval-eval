@@ -120,5 +120,8 @@ outputs/
 logs/
 data/
 
+# Paper full-text snapshots (skill paper-notes): local reading copies, never committed
+fulltext/
+
 # Project-specific entries below
 _temp/

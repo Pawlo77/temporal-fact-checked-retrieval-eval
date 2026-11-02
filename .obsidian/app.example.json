@@ -9,6 +9,8 @@
     ".remember/logs/",
     ".remember/tmp/",
     "knowledge/_templates/",
+    "research/protocols/",
+    "fulltext/",
     "configs/",
     "notebooks/",
     "outputs/",
