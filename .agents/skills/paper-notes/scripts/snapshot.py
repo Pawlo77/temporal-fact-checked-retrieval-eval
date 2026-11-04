@@ -1,11 +1,12 @@
 """Keep a 1:1 full-text snapshot of each paper note under ``fulltext/``.
 
-Usage: ``uv run --with pypdf python <this script> NOTE [--pdf URL] [--force]`` writes
-``fulltext/<path of NOTE relative to research/>.txt``. The source is ``--pdf`` if given,
-else the arXiv PDF of the note's ``arxiv`` field, else its ``url`` (a PDF is extracted
-page by page; an HTML page is reduced to its text). ``--missing`` lists paper notes
-without a snapshot; ``--sync`` moves snapshots whose note moved (same file name, one
-match) and lists orphans. ``fulltext/`` is git-ignored and hidden in Obsidian: the
+Usage: ``uv run --with pypdf python <this script> NOTE [--pdf SOURCE] [--force]`` writes
+``fulltext/<path of NOTE relative to research/>.txt``. The source is ``--pdf`` (a URL or
+local file), else the arXiv PDF of the note's ``arxiv`` field, else its ``url``. Each
+URL in the ``supplement`` field is appended after a ``# supplement:`` line.
+``--all`` writes every missing snapshot (a fresh clone has none); ``--missing`` lists
+paper notes without one; ``--sync`` moves snapshots whose note moved (same file name,
+one match) and lists orphans. ``fulltext/`` is git-ignored and hidden in Obsidian: the
 snapshots are working copies for reading, never committed.
 """
 
@@ -53,7 +54,9 @@ def target(note: Path) -> Path:
 
 
 def fetch(url: str) -> tuple[bytes, str]:
-    """Download ``url`` with retries; return the body and its content type."""
+    """Download ``url`` with retries, or read a local file; return body and type."""
+    if Path(url).is_file():
+        return Path(url).read_bytes(), ""
     for attempt in range(4):
         try:
             req = urllib.request.Request(url, headers={"User-Agent": AGENT})
@@ -106,9 +109,33 @@ def sources(meta: dict, pdf: str | None) -> list[str]:
     return urls
 
 
+def decode(body: bytes, kind: str) -> str:
+    """Return the text of a PDF, a plain-text file or an HTML page."""
+    if body[:5] == b"%PDF-":
+        return pdf_text(body)
+    if kind.startswith("text/plain"):
+        return body.decode("utf-8", errors="replace")
+    return html_text(body)
+
+
+def extract(url: str) -> str:
+    """Download ``url`` and return its text."""
+    return decode(*fetch(url))
+
+
+def supplement_text(meta: dict) -> str:
+    """Return the text of the note's ``supplement`` URLs, each under its own line."""
+    urls = meta.get("supplement") or []
+    text = ""
+    for url in [urls] if isinstance(urls, str) else urls:
+        text += f"\n\n# supplement: {url}\n{extract(str(url))}"
+    return text
+
+
 def snapshot(note: Path, pdf: str | None, force: bool) -> str:
     """Write the snapshot of one note; return a one-line status."""
     out = target(note)
+    rel = note.resolve().relative_to(ROOT)
     if out.exists() and not force:
         return f"exists {out.relative_to(ROOT)}"
     meta = frontmatter(note)
@@ -118,7 +145,7 @@ def snapshot(note: Path, pdf: str | None, force: bool) -> str:
         except OSError as err:
             print(f"  {url}: {err}", file=sys.stderr)
             continue
-        text = pdf_text(body) if body[:5] == b"%PDF-" else html_text(body)
+        text = decode(body, kind)
         if len(text.split()) < 1500:
             print(
                 f"  {url}: only {len(text.split())} words ({kind}), skipped",
@@ -127,11 +154,10 @@ def snapshot(note: Path, pdf: str | None, force: bool) -> str:
             continue
         out.parent.mkdir(parents=True, exist_ok=True)
         today = dt.date.today().isoformat()
-        rel = note.resolve().relative_to(ROOT)
         head = f"# source: {url}\n# retrieved: {today}\n# note: {rel}\n\n"
-        out.write_text(head + text, encoding="utf-8")
+        out.write_text(head + text + supplement_text(meta), encoding="utf-8")
         return f"wrote {out.relative_to(ROOT)} ({len(text.split())} words)"
-    return f"FAIL {note.relative_to(ROOT)}: no readable full text; pass --pdf URL"
+    return f"FAIL {rel}: no readable full text; pass --pdf URL"
 
 
 def sync() -> None:
@@ -154,9 +180,14 @@ def main(argv: list[str] | None = None) -> int:
     """Parse arguments and run."""
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("notes", nargs="*", type=Path)
-    parser.add_argument("--pdf", help="explicit PDF or HTML URL for a single note")
+    parser.add_argument(
+        "--pdf", help="PDF or HTML URL, or a local file, for a single note"
+    )
     parser.add_argument(
         "--force", action="store_true", help="overwrite an existing snapshot"
+    )
+    parser.add_argument(
+        "--all", action="store_true", help="write every missing snapshot"
     )
     parser.add_argument(
         "--missing", action="store_true", help="list notes without a snapshot"
@@ -172,7 +203,8 @@ def main(argv: list[str] | None = None) -> int:
             if not target(note).exists():
                 print(note.relative_to(ROOT))
     failed = False
-    for note in args.notes:
+    todo = [n for n in paper_notes() if not target(n).exists()] if args.all else []
+    for note in [*args.notes, *todo]:
         status = snapshot(note, args.pdf, args.force)
         failed |= status.startswith("FAIL")
         print(status)
