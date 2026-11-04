@@ -55,7 +55,7 @@ Intuition: if A matches B and B matches C, all three state one fact.
 ## Data
 
 - ClaimCheck, ClaimMatch and MultiClaim cluster sets, as above; fields are claim, cluster id, language, English translation and claim id, plus timestamp and URL for the MultiClaim set.
-- Zenodo record 15100352, restricted, research use only.
+- Zenodo record 15100352 (access may still require a request); licence Creative Commons Attribution 4.0 International (CC BY 4.0).
 
 > [!failure] Limitations
 > - Large-set clusters rest on LLM labels with no human validation of a sample reported.

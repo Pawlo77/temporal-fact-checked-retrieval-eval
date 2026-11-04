@@ -5,7 +5,7 @@ domain: vault
 parent: "[[2026-10-27-temporal-retrieval-eval]]"
 tags: [summary, changes]
 created: 2026-10-28
-updated: 2026-10-28
+updated: 2026-11-03
 related:
   - "[[Risk register]]"
 ---
@@ -44,13 +44,16 @@ The core only measured the drop. The additions explain it, and they reuse stored
 
 ## Timeline
 
+Internal work finishes before Christmas; course final remains 13 Jan 2027.
+
 | When | What |
 |---|---|
 | 18 Nov | Data access gate: without it we deliver the protocol and code on whatever data arrived. |
 | 25 Nov | Split and results format frozen. |
-| 16 Dec | Core done: 4 systems, 3 setups, 2 languages, plus the Polish run with earlier English fact-checks (RQ3b). |
-| 7 Jan | Core+ stops. Unfinished work is reported as exploratory. |
-| 13 Jan | Final report. |
+| 2 Dec | Phase 2: core systems PoC running on Polish and English. |
+| 16 Dec | Core done: 4 systems, 3 setups, 2 languages, gap decomposition, 50 failure codes; RQ3b if data allows. |
+| 23 Dec | Release check and write-up done; core+ only if time remains. Unfinished stretch work is exploratory. |
+| 13 Jan | Course final submission (packaging only if the Christmas draft is already complete). |
 
 ## Risks
 
