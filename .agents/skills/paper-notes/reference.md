@@ -55,11 +55,11 @@ Whole note: 1200–3500 words; sentences of at most 35 words. A section the pape
 
 ## Full-text snapshots
 
-`fulltext/` mirrors `research/` (`fulltext/<Area>/[<Theme>/]<Short title>.txt`): the 1:1 extracted text of each paper, git-ignored and hidden in Obsidian. `scripts/snapshot.py` creates it from the note's `arxiv`, `doi` or `url`, moves it when the note moves and lists notes without one. Later passes over a paper read the snapshot instead of downloading again.
+`fulltext/` mirrors `research/` (`fulltext/<Area>/[<Theme>/]<Short title>.txt`): the 1:1 extracted text of each paper, git-ignored and hidden in Obsidian. `scripts/snapshot.py` creates it from the note's `arxiv`, `doi` or `url`. Keep it in step with `research/`: `--sync` after moving a note, `--missing` to list gaps, `--all` to rebuild on a fresh clone. When a supplement, appendix or second version holds method or results, put its URL in the note's `supplement` field so the text is appended and survives a rebuild. Later passes read the snapshot instead of downloading again.
 
 ## Review
 
-An independent reviewer (not the writer) checks every claim, number and equation against the snapshot, adds what is missing for the contract, and sets `reviewed` to the date. A note without `reviewed` is a draft.
+An independent reviewer (not the writer) checks every claim, number and equation against the snapshot, looks up each future-work link, adds what is missing for the contract, and sets `reviewed` to the date. A claim from a supplement or released code that the snapshot lacks is looked up there before it is deleted. A note without `reviewed` is a draft.
 
 ## Never
 

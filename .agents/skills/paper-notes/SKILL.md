@@ -46,7 +46,7 @@ Snapshot the full text, then read all of it (appendices with method or results t
 uv run --with pypdf python .agents/skills/paper-notes/scripts/snapshot.py "research/<Area>/<Short title>.md"
 ```
 
-Other sources: `--pdf <url>`; `--missing` and `--sync` keep `fulltext/` in step with `research/`.
+Other sources: `--pdf <url or file>`. Upkeep flags and supplements: [reference.md](reference.md).
 A paper without readable full text is recorded as unread, never written from the abstract.
 
 ## 4. Write
@@ -65,8 +65,8 @@ A paper without readable full text is recorded as unread, never written from the
 
 ## 5. Review (another agent or person)
 
-Never the writer: the reviewer checks every claim, number and equation against the
-snapshot, fixes and completes the note, and sets `reviewed`.
+Never the writer: the reviewer checks every claim, number, equation and future-work link
+against the snapshot, fixes and completes the note, and sets `reviewed`.
 
 ## 6. Link
 

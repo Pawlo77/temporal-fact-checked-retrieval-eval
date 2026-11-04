@@ -87,3 +87,47 @@ def test_sync_moves_snapshot_after_note_moves(snap: ModuleType, tmp_path: Path) 
     snap.sync()
     assert not old.exists()
     assert (tmp_path / "fulltext" / "New theme" / "Transformer.txt").exists()
+
+
+def test_supplement_field_is_appended(
+    snap: ModuleType, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A rebuild keeps the supplement listed in the note."""
+    note = write_note(tmp_path, "Models/Transformer.md")
+    url = "https://example.org/supp"
+    text = note.read_text(encoding="utf-8").replace(
+        "tags:", f"supplement: {url}\ntags:"
+    )
+    note.write_text(text, encoding="utf-8")
+    monkeypatch.setattr(snap, "fetch", lambda _: (PAGE.encode(), "text/html"))
+    snap.snapshot(note, None, False)
+    out = tmp_path / "fulltext" / "Models" / "Transformer.txt"
+    assert f"# supplement: {url}" in out.read_text(encoding="utf-8")
+
+
+def test_all_writes_every_missing_snapshot(
+    snap: ModuleType, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """``--all`` rebuilds a fresh clone, which has no fulltext/."""
+    write_note(tmp_path, "A/One.md")
+    write_note(tmp_path, "B/Two.md")
+    monkeypatch.setattr(snap, "fetch", lambda _: (PAGE.encode(), "text/html"))
+    assert snap.main(["--all"]) == 0
+    assert (tmp_path / "fulltext" / "A" / "One.txt").exists()
+    assert (tmp_path / "fulltext" / "B" / "Two.txt").exists()
+
+
+def test_pdf_flag_reads_a_local_file(snap: ModuleType, tmp_path: Path) -> None:
+    """A downloaded paper can be passed as a path; nothing goes to the network."""
+    note = write_note(tmp_path, "Area/Transformer.md")
+    local = tmp_path / "paper.html"
+    local.write_text(PAGE, encoding="utf-8")
+    assert snap.main([str(note), "--pdf", str(local)]) == 0
+    assert "word\nword" in snap.target(note).read_text(encoding="utf-8")
+
+
+def test_plain_text_is_kept_verbatim(snap: ModuleType) -> None:
+    """Code supplements keep their angle brackets."""
+    assert snap.decode(b"a < b and c > d", "text/plain; charset=utf-8") == (
+        "a < b and c > d"
+    )

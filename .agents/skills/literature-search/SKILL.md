@@ -38,9 +38,9 @@ uv run python .agents/skills/literature-search/scripts/harvest.py research/proto
 
 ## 3. Read and write
 
-- Every noted paper is read in full (fallbacks in [reference.md](reference.md)); a paper
-  without accessible full text, or a position paper with no method, is recorded, not
-  noted.
+- Every noted paper is read in full from its `fulltext/` snapshot (skill `paper-notes`;
+  fallbacks in [reference.md](reference.md)); a paper without accessible full text, or a
+  position paper with no method, is recorded, not noted.
 - Check that a candidate is not already noted under another title (renamed arXiv
   versions are common).
 - Write notes with skill `paper-notes`, batched by destination folder; add each to its

@@ -8,6 +8,7 @@ arxiv: "{{ARXIV ID}}"
 doi: "{{DOI}}"
 url: "{{URL OF PUBLISHED VERSION, ELSE ARXIV}}"
 code: "{{CODE URL, OMIT IF NOT RELEASED}}"
+supplement: "{{SUPPLEMENT URL, OMIT IF NONE}}"
 citekey: {{firstauthor}}{{year}}{{firstword}}
 verified: {{YYYY-MM-DD}}
 reviewed: {{YYYY-MM-DD, SET BY THE REVIEWER ONLY}}
