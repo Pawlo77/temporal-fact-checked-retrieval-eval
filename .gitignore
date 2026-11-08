@@ -118,7 +118,12 @@ mlruns/
 runs/
 outputs/
 logs/
-data/
+# Restricted datasets (MultiClaim v1/v2, SemEval-2025 Task 7, MultiClaimNet):
+# research-only, no re-sharing. Raw files are NEVER committed; they live in this
+# gitignored data/ tree or on the cluster. The repo ships only loaders and a
+# synthetic fixture. data/README.md (tracked) documents the layout.
+data/*
+!data/README.md
 
 # Paper full-text snapshots (skill paper-notes): local reading copies, never committed
 fulltext/
