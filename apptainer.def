@@ -1,0 +1,33 @@
+Bootstrap: docker
+From: python:3.12-slim
+
+# Self-contained definition (mirrors Dockerfile): the restricted data/ dir is
+# never copied here and must be bind-mounted at runtime on the cluster.
+
+%files
+    pyproject.toml /workspace/pyproject.toml
+    uv.lock /workspace/uv.lock
+    README.md /workspace/README.md
+    LICENSE /workspace/LICENSE
+    src /workspace/src
+
+%post
+    # Raw restricted data/ is mounted at runtime; never baked into this image.
+    export DEBIAN_FRONTEND=noninteractive
+    export UV_COMPILE_BYTECODE=1
+    export UV_LINK_MODE=copy
+    export UV_PROJECT_ENVIRONMENT=/opt/venv
+
+    # Install uv (project pins required-version >= 0.11.28 in pyproject.toml).
+    pip install --no-cache-dir "uv==0.13.6"
+
+    cd /workspace
+    uv sync --frozen --no-dev
+
+%environment
+    export UV_PROJECT_ENVIRONMENT=/opt/venv
+    export UV_LINK_MODE=copy
+    export PATH="/opt/venv/bin:$PATH"
+
+%runscript
+    exec "$@"

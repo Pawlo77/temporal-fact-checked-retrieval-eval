@@ -1,0 +1,43 @@
+# Restricted datasets — NEVER copied into an image. Mounted at runtime.
+data/
+
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# Virtual environment / uv cache
+.venv/
+.uv/
+
+# Python caches and bytecode
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.dmypy.json
+
+# MLflow tracking and experiment outputs (local only, never in the image)
+mlruns/
+mlruns.db
+mlruns.db-*
+outputs/
+runs/
+logs/
+
+# Notebooks (and their outputs)
+notebooks/
+.ipynb_checkpoints/
+
+# Secrets and local environment
+.env
+.env.*
+.envrc
+
+# Paper full-text snapshots and other local-only paths
+fulltext/
+_temp/
