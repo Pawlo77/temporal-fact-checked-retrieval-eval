@@ -25,6 +25,35 @@ related:
 
 Owners: PP = Paweł Pozorski, MJ = Mateusz Jarosz, PF = Paweł Florek, JC = Jan Cwalina.
 
+## Status for checkpoint 2 (submission 2.12)
+
+State on 2026-11-11. "Needed" means graded or required at the 2.12 submission; "after" is Phase 3 or later.
+
+| Item | Needed | State | Owner |
+|---|---|---|---|
+| Report fixes F1-F30 in `report/checkpoint_2/` (Task 3) | yes | done | PP, MJ, PF, JC |
+| Rebuttal quoting every remark, independently reviewed (Task 4 steps 1-3) | yes | done; re-review after the open rows below | JC |
+| Extended SOTA table with proof-of-concept rows (2.5) | yes | done | MJ |
+| Contribution table, named tasks, hours 12/10/5/5 (2.8) | yes | done | JC |
+| LLM-use declaration with tools named (F24) | yes | done | JC |
+| BM25 proof of concept, permutation tests, Polish-English interval (2.1) | yes | done (PR 18) | PP |
+| Table 2 numbers, answerable rates, AMC-16K request sent 11 Nov | yes | done | PP |
+| F25 judge details: prompt, how three judges combine, fallback if AMC-16K is late | yes | open, row is marked corrected but overclaims | JC |
+| F28 access grants: who, which record, date | yes | open, row is marked corrected but overclaims | PP |
+| F29 matched controls on learned systems: e5, mmlw, reranker (Task 8) | yes | open | MJ, PF |
+| Meeting 6 / supervisor rows in the rebuttal (Task 5) | yes | open, meeting 13 Nov | PP |
+| Meeting 8 Q&A rows in the rebuttal (Task 4 step 1b) | yes | open, after 25 Nov | JC |
+| EDA (2.2) | yes | open | PP |
+| Experiment plan with two method classes (2.3) | yes | open | PF, MJ |
+| README and merge request to the course repository (2.6) | yes | open | PF, MJ |
+| Runtime and memory of every system (2.7) | yes | BM25 done, rest open | PF |
+| Mid-term video 18 Nov, Q&A questions 25 Nov (5a) | yes | open | PF, all |
+| Merge PR 18 then PR 21, rebuild the PDFs | yes | open | PP |
+| Date audit of 100 URLs per language | yes | open | PF |
+| Judge validation on AMC-16K | after | waits for the data | MJ |
+| 50 failure annotations, codebook, kappa | after | due 16 Dec | JC, PF |
+| Independent cross-check of paper notes (Task 1 step 3) | after | open | all |
+
 ---
 ### Task 1: Research re-check and novelty search (11-17 Nov)
 
@@ -32,7 +61,7 @@ Owners: PP = Paweł Pozorski, MJ = Mateusz Jarosz, PF = Paweł Florek, JC = Jan 
 - Modify: notes behind Table 1 in `research/` (venue, numbers, split or pool); [[Literature corrections]]
 - Create: `research/Evaluation Methodology/<Urbano note>.md`, `research/protocols/causal-index-pfcr.yaml`
 
-- [ ] **Step 1:** Re-read each Table 1 number in its source and record split, pool and scale in the note. MJ: CheckThat 2021/22, CrowdChecked, SemEval, TIFIN, Ramponi (which pool gives 0.8042), AMC-16K. PP: MultiClaim (X1: same-language pool, all pairs), That is a Known Lie, Role of Context. PF: AVeriTeC (dev, F2), TREC 2011 (49 topics), StreamingQA, Missing Counter-Evidence, Chronological Splits.
+- [x] **Step 1:** Re-read each Table 1 number in its source and record split, pool and scale in the note. MJ: CheckThat 2021/22, CrowdChecked, SemEval, TIFIN, Ramponi (which pool gives 0.8042), AMC-16K. PP: MultiClaim (X1: same-language pool, all pairs), That is a Known Lie, Role of Context. PF: AVeriTeC (dev, F2), TREC 2011 (49 topics), StreamingQA, Missing Counter-Evidence, Chronological Splits.
 - [x] **Step 2:** Fix the Ramponi note pages to 29045-29064 (F17, X3); note the published BGE-M3 title (F18). Owner MJ.
 - [ ] **Step 3:** Independent review: each owner cross-checks another owner's notes (PP→PF→MJ→JC→PP) and logs disagreements in [[Literature corrections]].
 - [x] **Step 4:** (note written; it does not support the bootstrap, so the report cites it for a permutation test) Add an Urbano et al. 2019 note via skill `paper-notes`. It recommends the t-test or permutation test, and the bootstrap only for large samples, so it does not justify the bootstrap. Re-check the existing notes for Vykopal 2026, Søgaard 2021, Kazemi 2021 and LongEval 2023 against [[Review verification]]. Owner JC.
@@ -78,18 +107,18 @@ Must be computed from data (never estimated in the report):
 | 5 Data stmt | F20, F25, F28 | No per-outlet or per-author ranking. Judge: specify (panel, released prompt, Yes/No labels, validation on AMC-16K PL+EN mono pairs, Cohen's kappa, accept at kappa ≥ 0.6) or remove if AMC-16K is not received by 25 Nov. List the access grants | JC |
 | 7 LLM use | F24 | Name each tool and model version, and what it did; give concrete per-member tasks in the contribution table | JC |
 
-- [ ] **Step 1:** Apply the fixes; every number traces to a note or to Task 2 output.
-- [ ] **Step 2:** Build the PDF and check the ACL 2015 template and page limit.
+- [x] **Step 1:** Apply the fixes; every number traces to a note or to Task 2 output.
+- [x] **Step 2:** Build the PDF and check the ACL 2015 template and page limit.
 
 ### Task 4: Rebuttal and extended SOTA table (25 Nov-1 Dec)
 
 **Files:**
 - Modify: `report/checkpoint_2/report.tex` (rebuttal section or appendix, Table 1)
 
-- [ ] **Step 1:** Rebuttal table: F-id | quoted remark | response | where fixed (section, table, line); rules section 6 require the quote and criterion 2.4 scores restated remarks 0. Owner JC, review PP.
+- [x] **Step 1:** Rebuttal table: F-id | quoted remark | response | where fixed (section, table, line); rules section 6 require the quote and criterion 2.4 scores restated remarks 0. Owner JC, review PP.
 - [ ] **Step 1b:** After the 25.11 Q&A, add every question our team received to the same table (2.4). Owner JC.
-- [ ] **Step 2:** Polite corrections with evidence from [[Review verification]]: F14 (size-matched already in Figure 1), F21 (line was never present, now added), F9 (the card's October request was MultiClaim, granted), F19 (`\newcite` in this template), F26 (gate already planned), Urbano (supports t-test or permutation; we keep the cluster bootstrap for clustered queries and add a paired permutation check).
-- [ ] **Step 3:** Answer Q1 with the timestamp rule and Task 2 counts. Answer Q2 with the PoC number (random vs strict causal vs size-matched on one query set) or state when it comes.
+- [x] **Step 2:** Polite corrections with evidence from [[Review verification]]: F14 (size-matched already in Figure 1), F21 (line was never present, now added), F9 (the card's October request was MultiClaim, granted), F19 (`\newcite` in this template), F26 (gate already planned), Urbano (supports t-test or permutation; we keep the cluster bootstrap for clustered queries and add a paired permutation check).
+- [x] **Step 3:** Answer Q1 with the timestamp rule and Task 2 counts. Answer Q2 with the PoC number (random vs strict causal vs size-matched on one query set) or state when it comes.
 - [x] **Step 4:** (four cited works added to Table 1; Urbano not cited; PoC-stage findings still to add) Extended SOTA table (2.5): the current 15 works plus the five suggested ones (number, dataset, split each; Urbano and Søgaard as method rows with no score). Owner MJ.
 
 ### Task 5: Supervisor meeting (by 13 Nov)
@@ -105,7 +134,7 @@ Taken from the Assessment criteria PDF; none of it is in the feedback, all of it
 - [ ] **Step 2:** EDA (2.2, 3 pts): label and length distributions, duplicates, leakage check between splits, comparison with one more dataset or a sentence why not. Reuse Task 2 counts. Owner PP.
 - [ ] **Step 3:** Experiment plan (2.3, 3 pts): baselines from at least two method classes (BM25 classical; e5 or mmlw fine-tuned encoder; reranker or prompted LLM), hyperparameters, splits, measures. Owner PF.
 - [ ] **Step 4:** README and merge request to `github.com/grant-TraDA/NLP-2026W` that a stranger can run for one result (2.6); measured runtime, hardware and memory (2.7). Owners PF, MJ.
-- [ ] **Step 5:** Contribution table with named tasks and hours consistent with git history (2.8); revised SOTA table (2.5, Task 4). Owner JC.
+- [x] **Step 5:** Contribution table with named tasks and hours consistent with git history (2.8); revised SOTA table (2.5, Task 4). Owner JC.
 - [ ] **Step 6:** Mid-term video (18.11) and meeting-8 Q&A (25.11); each member prepares questions for other teams (5a). All.
 
 ### Task 6: Deadline 2.12
@@ -119,3 +148,12 @@ Taken from the Assessment criteria PDF; none of it is in the feedback, all of it
 | 2 Dec | Submit Phase 2 via skill `ship` | PP |
 
 - [ ] **Step 1:** `make check` green, PDF rebuilt, rebuttal covers F1-F30 and Q1-Q2.
+
+### Task 8: Open rows and systems for checkpoint 2 (by 1 Dec)
+
+- [ ] **Step 1:** F25: write the judge protocol in Sec. 5 (English prompt text in the repository, Yes/No labels, majority of three, kappa per judge and for the majority on the 400 Polish AMC-16K pairs, fallback: sibling labels reported unvalidated if the data is not here by W4), then fix the rebuttal row. Owner JC.
+- [ ] **Step 2:** F28: add to Sec. 5 who requested each Zenodo record, the record and the date of the grant; fix the rebuttal row. Owner PP.
+- [ ] **Step 3:** F29 and 2.3: run multilingual-e5 and then mmlw and the reranker under the three pools on the same query sets; Polish locally, English on the cluster (copying restricted data there needs the supervisor's approval); report S@10 with intervals and permutation p-values, and the Polish-English interval. Owners MJ (runs), PF (GPU).
+- [ ] **Step 4:** Meeting 6 and meeting 8 rows: quote each remark or question, answer it and name the place in the report. Owner PP (13 Nov), JC (after 25 Nov).
+- [ ] **Step 5:** Ask an independent reviewer to re-check the rebuttal after steps 1-4; set every row to its honest status.
+- [ ] **Step 6:** Merge PR 18 then PR 21; rebuild `report/checkpoint_2/*.pdf`; run `make check`. Owner PP.
