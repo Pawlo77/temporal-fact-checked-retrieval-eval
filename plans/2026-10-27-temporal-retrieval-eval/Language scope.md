@@ -51,7 +51,7 @@ Counts from the papers. v1 = [[MultiClaim]] (Table 5 posts and fact-checks); v2 
 
 | Language | v1 fact-checks | v1 posts | v2 subset mono pairs | ST7 test posts / pairs / pool claims | Main outlets in v1 (Table 6) |
 |---|---|---|---|---|---|
-| English | 85,814 | 7,307 | 19,341 | 500 / 574 / 145,287 | snopes 18,376, politifact 9,029 |
+| English | 85,814 | 7,307 | 19,341 | 500 / 740 / 145,287 | snopes 18,376, politifact 9,029 |
 | Spanish | 14,082 | 7,319 | 7,470 | 500 / 576 / 25,440 | factual.afp 4,051, newtral 3,256 |
 | Portuguese | 21,569 | 3,366 | 3,628 | 500 / 613 / 32,598 | sapo.pt 5,200, uol 3,908 |
 | Arabic | 14,201 | 931 | 3,360 | 500 / 514 / 21,153 | misbar 9,027 |

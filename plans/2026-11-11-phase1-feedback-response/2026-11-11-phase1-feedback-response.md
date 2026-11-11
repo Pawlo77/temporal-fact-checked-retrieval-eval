@@ -51,14 +51,14 @@ Known without data (cite the source; Polish/English splits in [[Language scope]]
 | MultiClaim v1 PL / EN posts, FC | 453 / 6,912; 7,307 / 85,814 | Pikuliak 2023 Table 5 |
 | v1 dated posts | 26,337 of 28,092 | Pikuliak 2023 |
 | v2 subset PL / EN mono pairs | 1,309; 19,341 | Ramponi 2025 Table 4 (curated subset, not v2 itself) |
-| ST7 test PL / EN posts, pairs, pool | 500/564/8,796; 500/574/145,287 | Peng 2025 Table 2 |
+| ST7 test PL / EN posts, pairs, pool | 500/564/8,796; 500/740/145,287 | Peng 2025 Table 2 (English pairs corrected from 574 to 740 after counting `pairs_test_monolingual.csv`) |
 | AMC-16K relevant share | 16% overall, PL mono 20.25%, 400 PL mono pairs | Vykopal 2025 |
 
 Must be computed from data (never estimated in the report):
 
-- [ ] **Step 1:** For each of v1, v2 and ST7 (all, PL, EN): posts, pairs, FC, dated posts and dated FC; gold pairs per post (mean, median); gold FC per post; share of FC with at least one linked post (F6, F7). Owner PP.
-- [ ] **Step 2:** Share of pairs with the post before the FC (H1), and the answerable rate per language at margins 0, 1 and 7 days, which gives the Polish answerable count (F7, F26). Owner PP, review PF.
-- [ ] **Step 3:** Tied-timestamp count and multi-instance share (F22, Q1). Owner PF.
+- [x] **Step 1:** (done 2026-11-11 with `scripts/corpus_stats.py` from PR 18; v1 has no post language, so v1 PL/EN stay on paper counts) For each of v1, v2 and ST7 (all, PL, EN): posts, pairs, FC, dated posts and dated FC; gold pairs per post (mean, median); gold FC per post; share of FC with at least one linked post (F6, F7). Owner PP.
+- [x] **Step 2:** (done: v1 85%, v2 93%, v2 PL 89% post-first; Polish answerable posts 152, 14 and 9 at margins 0, 1, 7 days) Share of pairs with the post before the FC (H1), and the answerable rate per language at margins 0, 1 and 7 days, which gives the Polish answerable count (F7, F26). Owner PP, review PF.
+- [x] **Step 3:** (same-day pairs and multi-instance counts measured; exact-second ties not counted separately) Tied-timestamp count and multi-instance share (F22, Q1). Owner PF.
 - [ ] **Step 4:** Send the AMC-16K request to KInIT and log the date. PP drafts; the team sends from a university address (F9).
 - [ ] **Step 5:** Copy the Zenodo access conditions verbatim for v1, v2 and ST7. Ask the authors in writing whether id lists may be redistributed (F10, F28). Owner PP.
 

@@ -162,7 +162,9 @@ Work & Metric & Value & Dataset / split or condition \\
 \label{sec:data}
 Table~\ref{tab:data} lists the source datasets and the two datasets we will create.
 For ranking corpora, class balance is the density of positive post--fact-check links (gold pairs per post, share of fact-checks with a linked post), not a balanced classification split.
-Counts marked \emph{to compute} come from the data itself in week~1; counts from the papers are marked with the source.
+Balance is measured on the raw files (\texttt{scripts/corpus\_stats.py}): gold fact-checks per post (FC/post) and the share of fact-checks with at least one linked post.
+Posts without a date are dropped: 25,957 of 28,092 in v1 and 87,304 of 89,139 in v2; 202,716 of 205,751 v1 and 430,630 of 435,252 v2 fact-checks are dated.
+The Polish and English rows are monolingual v2 slices (posts, fact-checks and pairs of that language); all 9,044 Polish and 166,080 of 166,430 English fact-checks are dated.
 
 \begin{table*}[t]
 \centering
@@ -175,14 +177,14 @@ Counts marked \emph{to compute} come from the data itself in week~1; counts from
 \toprule
 Dataset & Size & Label definition & Class balance & Licence & How obtained & Status \\
 \midrule
-MultiClaim v1 & 206k FC, 28k posts, 31k pairs & fact-checker gold links (ClaimReview / warnings) & to compute (W1) & Zenodo access conditions, restricted record & Zenodo 7737983 & READY \\
-MultiClaim v2 & 435k FC, 89k posts, 105k pairs & same + relationship types & to compute (W1) & same & Zenodo 15413169 & READY \\
-SemEval-2025 T7 & train from MultiClaim; test 4.3k mono posts (PL: 500 / 564 pairs) & shared-task gold for S@10 & to compute (W1) & same & Zenodo 14989176 & READY \\
+MultiClaim v1 & 206k FC, 28k posts, 31k pairs & fact-checker gold links (ClaimReview / warnings) & 1.12 FC/post; 8.2\% of FC linked & Zenodo access conditions, restricted record & Zenodo 7737983 & READY \\
+MultiClaim v2 & 435k FC, 89k posts, 105k pairs & same + relationship types & 1.18 FC/post; 17.7\% linked & same & Zenodo 15413169 & READY \\
+SemEval-2025 T7 & train from MultiClaim; test 4.3k mono posts, 4,936 pairs (PL: 499 posts, 563 pairs) & shared-task gold for S@10 & 1.16 FC/post; 1.7\% of the 272k test pool linked & same & Zenodo 14989176 & READY \\
 MultiClaimNet & 85.3k FC in 30.9k clusters & same-claim cluster ids & n/a (clustering) & CC BY 4.0 & Zenodo 15100352 & READY \\
 AMC-16K & 16k pairs / 20 langs & human Yes/No relevance & 16\% relevant overall; PL mono 20.25\% & CC BY-NC-SA 4.0 & authors (not via the Language Data Space, LDS) & RESTRICTED; request not yet sent, date logged on sending \\
-\multicolumn{7}{@{}l}{\emph{Polish / English (papers: MultiClaim v1 posts, fact-checks; v2 subset monolingual pairs; SemEval test pool)}} \\
-PL & 453 posts, 6,912 FC & as above & to compute (W1) & as above & as above & v2: 1,309 pairs; test pool 8,796 \\
-EN & 7,307 posts, 85,814 FC & as above & to compute (W1) & as above & as above & v2: 19,341 pairs; test pool 145,287 \\
+\multicolumn{7}{@{}l}{\emph{Polish / English (v1 counts from the paper, v2 and SemEval measured)}} \\
+PL & v1 (paper): 453 posts, 6,912 FC; v2: 1,406 posts, 9,044 FC, 1,550 pairs & as above & 1.13 FC/post; 13.7\% linked & as above & as above & SemEval test pool 8,796 FC \\
+EN & v1 (paper): 7,307 posts, 85,814 FC; v2: 24,004 posts, 166,430 FC, 28,533 pairs & as above & 1.26 FC/post; 13.1\% linked & as above & as above & SemEval test pool 145,287 FC \\
 \multicolumn{7}{@{}l}{\emph{Datasets we will create}} \\
 Causal split & id lists per language and protocol, no post text & post--fact-check ids with the date rule of Sec.~\ref{sec:plan} & n/a & our release terms; id-list redistribution to confirm with the dataset authors & built by us, W1--W2 & TO COLLECT \\
 Failure annotations & 50 queries (25 PL, 25 EN) & failure code per newly failing query (codebook by W3) & n/a & our own & Florek, Cwalina, by 16~Dec & TO COLLECT \\
@@ -204,6 +206,11 @@ The central claim is the Polish--English difference-in-differences of unconditio
 MRR and the answerable-only versions are secondary.
 The per-language answerable rate is the first result reported.
 All protocols are scored on one fixed query set per language, so the random, size-matched and causal pools differ only in the index.
+
+\paragraph{First result: answerable rate.}
+Most gold pairs are post-before-fact-check: 85\% in v1, 93\% in v2 and 89\% of the Polish v2 pairs.
+Posts with an earlier gold fact-check (margin 0), as a share of posts with a gold pair: v1 15.1\% and v2 7.7\%; monolingual v2 Polish 152 posts (11.1\%) and English 2,364 (10.5\%); SemEval test Polish 33 (6.6\%) and English 72 (14.5\%).
+With margins of 1 and 7 days the Polish count falls to 14 and 9 posts and the English count to 1,058 and 567.
 
 \paragraph{Dates and ties.}
 A fact-check or post may carry several dated instances, so we take the earliest instance, at full second precision, as its time; $P(q)$ uses the strict inequality $t_f<t_q$ (margin 0), so a fact-check enters only if it was published earlier, ties are excluded, and a same-day fact-check published earlier counts.
@@ -260,7 +267,7 @@ Internal work finishes before Christmas; course checkpoints: mid-term video 18~N
 \item \textbf{W5 (to 16~Dec):} 50 failure annotations and codebook (Cwalina); judge validation (Jarosz).
 \item \textbf{W6 (to 23~Dec):} release check of split and code (Pozorski); write-up (Cwalina).
 \end{itemize}
-Main risks: unknown Polish answerable rate (if $<$150, Polish--English contrast becomes descriptive); timestamp semantics undocumented (URL date audit + margin sensitivity); AMC-16K still to be requested.
+Main risks: the Polish answerable count is 152 posts at margin 0, barely above 150, and 14 and 9 at margins of 1 and 7 days, so Polish margin sensitivity is descriptive; timestamp semantics are undocumented (URL date audit); AMC-16K is still to be requested.
 
 \section{Data statement}
 \label{sec:datastmt}
