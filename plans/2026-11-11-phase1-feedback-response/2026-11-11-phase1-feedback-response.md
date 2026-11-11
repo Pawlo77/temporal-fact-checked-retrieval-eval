@@ -153,7 +153,7 @@ Taken from the Assessment criteria PDF; none of it is in the feedback, all of it
 
 - [ ] **Step 1:** F25: write the judge protocol in Sec. 5 (English prompt text in the repository, Yes/No labels, majority of three, kappa per judge and for the majority on the 400 Polish AMC-16K pairs, fallback: sibling labels reported unvalidated if the data is not here by W4), then fix the rebuttal row. Owner JC.
 - [ ] **Step 2:** F28: add to Sec. 5 who requested each Zenodo record, the record and the date of the grant; fix the rebuttal row. Owner PP.
-- [ ] **Step 3:** F29 and 2.3: run multilingual-e5 and then mmlw and the reranker under the three pools on the same query sets; Polish locally, English on the cluster (copying restricted data there needs the supervisor's approval); report S@10 with intervals and permutation p-values, and the Polish-English interval. Owners MJ (runs), PF (GPU).
+- [ ] **Step 3:** F29 and 2.3: run multilingual-e5 and then mmlw and the reranker under the three pools on the same query sets; Polish locally, English on the cluster (copying restricted data there needs the team's approval under the data terms); report S@10 with intervals and permutation p-values, and the Polish-English interval. Owners MJ (runs), PF (GPU).
 - [ ] **Step 4:** Meeting 6 and meeting 8 rows: quote each remark or question, answer it and name the place in the report. Owner PP (13 Nov), JC (after 25 Nov).
 - [ ] **Step 5:** Ask an independent reviewer to re-check the rebuttal after steps 1-4; set every row to its honest status.
 - [ ] **Step 6:** Merge PR 18 then PR 21; rebuild `report/checkpoint_2/*.pdf`; run `make check`. Owner PP.
