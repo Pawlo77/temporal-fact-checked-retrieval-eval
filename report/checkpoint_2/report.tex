@@ -152,6 +152,7 @@ Work & Metric & Value & Dataset / split or condition \\
 \multicolumn{4}{@{}l}{\emph{Added after the Phase 1 review}} \\
 This work & S@10 & 0.631 / 0.091 & MultiClaim v2 Polish, 1,367 queries / random vs causal pool, BM25 \\
 This work & S@10 & 0.553 / 0.051 & MultiClaim v2 English, 22,600 queries / random vs causal pool, BM25 \\
+This work & S@10 & 0.754 / 0.093 & MultiClaim v2 Polish, 1,367 queries / random vs causal pool, multilingual-e5-large \\
 \cite{vykopal2026investigating} & S@10 & 0.829 & MultiClaim test split, 1,239 pairs / all fact-checks, multilingual-e5 \\
 \cite{kazemi2021claim} & F1 & 0.885 & claim similarity set, 2,343 pairs / 10-fold cross-validation, AdaBoost on features of a distilled multilingual encoder \\
 \cite{sogaard2021random} & error reduction & 0.808 / 0.450 & SentEval bigram shift / random split vs new Gutenberg sample, BERT \\
@@ -216,25 +217,31 @@ Posts with an earlier gold fact-check (margin 0), as a share of posts with a gol
 With margins of 1 and 7 days the Polish count falls to 14 and 9 posts and the English count to 1,058 and 567.
 
 \paragraph{Proof of concept.}
-BM25 (bm25s, original-language words) scores one fixed query set per language, the posts with a same-language gold fact-check, under the three pools (Table~\ref{tab:poc}); intervals are paired bootstrap over queries (1,000 resamples), and the size-matched pool is averaged over three seeds.
+BM25 (bm25s, original-language words), multilingual-e5-large and, for Polish, mmlw-retrieval-roberta-large score one fixed query set per language, the posts with a same-language gold fact-check, under the three pools (Table~\ref{tab:poc}); the bge reranker is not yet run; intervals are paired bootstrap over queries (1,000 resamples), and the size-matched pool is averaged over three seeds.
 Unconditionally S@10 falls from 0.631 to 0.091 for Polish and from 0.553 to 0.051 for English, a Polish--English difference-in-differences of $-0.037$ (95\% bootstrap interval $[-0.062,-0.010]$).
 On answerable queries the causal pool costs little: 0.829 to 0.822 for Polish (152 queries) and 0.519 to 0.492 for English (2,364), so the drop is almost all answerability; English size-matched pools are easier than causal ones (0.528 vs 0.492), in the direction of H2.
 Paired permutation tests (10,000 sign flips) give $p<0.001$ for random vs causal and for size-matched vs causal unconditionally in both languages; on answerable queries the Polish difference is not significant (a single discordant query) and the English one is ($p<0.001$).
 Document-frequency statistics come from the full corpus, so the causal pool still shares future statistics.
 Of the 152 Polish answerable posts, 138 have their gold fact-check less than a day before the post, where time zones are undocumented, so the Polish causal result is fragile.
-The three runs with their tests took 5\,s (Polish) and 23\,min (English) on a laptop (macOS, arm64) with a peak of 1.1\,GB.
+The learned encoders show the same pattern: unconditionally the causal pool cuts S@10 from 0.754 to 0.093 (e5) and from 0.752 to 0.093 (mmlw) for Polish and from 0.646 to 0.062 (e5) for English, while on answerable queries the causal pool equals the random one (0.836 for Polish, 152 queries; 0.591 vs 0.591 for English e5, 2,364 queries), so the loss is again answerability, not ranking.
+The e5 Polish--English difference-in-differences is $-0.077$ (95\% bootstrap interval $[-0.102,-0.049]$), twice the BM25 one, in the direction of H3.
+Permutation tests give $p<0.001$ for random vs causal unconditionally for every system and language.
+The three runs with their tests took on a laptop (macOS, arm64): BM25 5\,s (Polish) and 23\,min (English), peak 1.1\,GB; mmlw Polish 4.3\,min, peak 1.1\,GB; e5 Polish 7.4\,min and English 2.4\,h, peak 1.9\,GB.
 
 \begin{table*}[!t]
 \centering
-\caption{BM25 S@10 on monolingual MultiClaim v2 slices under three pools; brackets give 95\% bootstrap intervals; size-matched is the mean of three seeds (range below 0.01). Answerable: a gold fact-check predates the post.}
+\caption{S@10 on monolingual MultiClaim v2 slices under three pools; brackets give 95\% bootstrap intervals; size-matched is the mean of three seeds (range below 0.02). Answerable: a gold fact-check predates the post.}
 \label{tab:poc}
 \small
 \begin{tabular}{@{}lrrrr@{}}
 \toprule
 Language (queries; answerable) & random pool & size-matched & causal pool & causal, answerable only \\
 \midrule
-Polish (1,367; 152) & 0.631 [0.606, 0.656] & 0.484 & 0.091 [0.076, 0.108] & 0.822 [0.766, 0.881] \\
-English (22,600; 2,364) & 0.553 [0.547, 0.560] & 0.398 & 0.051 [0.049, 0.054] & 0.492 [0.470, 0.512] \\
+BM25, Polish (1,367; 152) & 0.631 [0.606, 0.656] & 0.484 & 0.091 [0.076, 0.108] & 0.822 [0.766, 0.881] \\
+BM25, English (22,600; 2,364) & 0.553 [0.547, 0.560] & 0.398 & 0.051 [0.049, 0.054] & 0.492 [0.470, 0.512] \\
+e5, Polish (1,367; 152) & 0.754 [0.732, 0.777] & 0.582 & 0.093 [0.078, 0.108] & 0.836 [0.779, 0.891] \\
+e5, English (22,600; 2,364) & 0.646 [0.639, 0.652] & 0.464 & 0.062 [0.059, 0.065] & 0.591 [0.571, 0.609] \\
+mmlw, Polish (1,367; 152) & 0.752 [0.730, 0.775] & 0.583 & 0.093 [0.078, 0.109] & 0.836 \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -288,7 +295,7 @@ Internal work finishes before Christmas; course checkpoints: mid-term video 18~N
 \begin{itemize}
 \setlength\itemsep{0pt}
 \item \textbf{W1 (to 18~Nov):} date audit of 100 URLs per language (Florek).
-\item \textbf{W2 (to 25~Nov):} BM25 and multilingual-e5 on all three pools, PL and EN (Jarosz); mmlw and reranker, graphics-processing-unit (GPU) runs (Florek).
+\item \textbf{W2 (to 25~Nov):} BM25 and multilingual-e5 on all three pools, PL and EN (done 11~Nov, run by Pozorski); mmlw and reranker, graphics-processing-unit (GPU) runs (Florek).
 \item \textbf{W3 (to 2~Dec):} causal and size-matched runs for all four systems (Jarosz); Phase~2 report and proof-of-concept (PoC) table (Cwalina).
 \item \textbf{W4 (to 9~Dec):} bootstrap intervals and difference-in-differences (Florek); gap decomposition with covariates (Pozorski).
 \item \textbf{W5 (to 16~Dec):} 50 failure annotations and codebook (Cwalina; Florek second annotator); judge validation (Jarosz).
