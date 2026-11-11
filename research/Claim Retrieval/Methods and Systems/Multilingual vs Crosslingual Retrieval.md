@@ -3,7 +3,7 @@ title: "Multilingual vs Crosslingual Retrieval"
 aliases: ["Multilingual vs Crosslingual Retrieval of Fact-Checked Claims: A Tale of Two Approaches"]
 authors: ["Alan Ramponi", "Marco Rovera", "Robert Moro", "Sara Tonelli"]
 year: 2025
-venue: "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP 2025), pages 29057-29076"
+venue: "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP 2025), pages 29045-29064"
 arxiv: "2505.22118"
 doi: "10.18653/v1/2025.emnlp-main.1480"
 url: "https://aclanthology.org/2025.emnlp-main.1480/"

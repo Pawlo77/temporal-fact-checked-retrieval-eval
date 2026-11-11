@@ -130,7 +130,7 @@ Previously fact-checked claim retrieval (PFCR) is scored on [[MultiClaim]] and [
 - English is the largest monolingual block (Snopes 18,376 and PolitiFact 9,029 fact-checks in v1).
 - Post time: in v2 `instances` is a list of (unix timestamp, platform) (the v1 record says "timestamps" without "unix"); define `t_post` as the earliest instance; the v1 paper had dates for 26,337 of 28,092 posts, so missing dates must be dropped and reported.
 - Fact-check time: `instances` is a list of (timestamp, URL); one fact-check can have several instances (several outlets or republications); define `t_fc` as the earliest instance and keep the per-instance list for a sensitivity run.
-- Timestamp granularity, time zone and semantics (publication vs crawl vs update) are undocumented in both records; compare at day resolution with a configurable margin (0, ±1, ±7 days) and report sensitivity.
+- Timestamp granularity, time zone and semantics (publication vs crawl vs update) are undocumented in both records; compare at full second precision (margin 0) with margins of 1 and 7 days as sensitivity.
 - `similarity:identical` pairs in v2 are, on our reading of "(for identical claims)", added by text identity rather than by a fact-checker (interpretation, to confirm); report them separately, as [[Multilingual vs Crosslingual Retrieval|Ramponi et al.]] dropped them.
 
 ### Protocol definitions
