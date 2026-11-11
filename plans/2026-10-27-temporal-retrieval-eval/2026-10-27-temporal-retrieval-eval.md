@@ -172,7 +172,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 
 - [x] **Step 1:** Strict causal pool and answerability flag; property tests (no pool item dated after the post). Done in PR 18 (`protocols.py`, `tests/test_protocols.py`).
 - [ ] **Step 2:** Size-matched control (done, PR 18); cross-lingual causal pool (about 1-2 days); delayed-query variant; chronological training split.
-- [ ] **Step 3:** Dataset-agnostic protocol module: all protocols read a small adapter (posts, fact-checks, gold pairs, timestamps with instance intervals), so any dated corpus, a second dataset or a newer fact-check dump, is processed by re-running the module with a new cutoff and no code changes; test it with a synthetic corpus and with MultiClaim.
+- [ ] **Step 3:** (partly: adapter and synthetic corpus in PR 18, `dataset/adapter.py`, `synthetic.py`) Dataset-agnostic protocol module: all protocols read a small adapter (posts, fact-checks, gold pairs, timestamps with instance intervals), so any dated corpus, a second dataset or a newer fact-check dump, is processed by re-running the module with a new cutoff and no code changes; test it with a synthetic corpus and with MultiClaim.
 - [ ] **Step 4:** Write the formal definition of causal evaluation for retrieval over a growing archive (pool P(q), answerability, the protocols as operators on the pool) and its properties, each with a proof sketch and a test: pools are monotone in the cutoff; the unconditional strict-causal Success@k is bounded by the answerable rate; the size-matched control has the same pool size as the causal pool; the additive chain telescopes to the total gap.
 - [ ] **Step 5:** Freeze the split format (ids, cutoffs, qrels) and the one results schema by 25 November.
 
