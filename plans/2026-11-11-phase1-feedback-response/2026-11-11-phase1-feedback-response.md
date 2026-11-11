@@ -33,10 +33,10 @@ Owners: PP = Paweł Pozorski, MJ = Mateusz Jarosz, PF = Paweł Florek, JC = Jan 
 - Create: `research/Evaluation Methodology/<Urbano note>.md`, `research/protocols/causal-index-pfcr.yaml`
 
 - [ ] **Step 1:** Re-read each Table 1 number in its source and record split, pool and scale in the note. MJ: CheckThat 2021/22, CrowdChecked, SemEval, TIFIN, Ramponi (which pool gives 0.8042), AMC-16K. PP: MultiClaim (X1: same-language pool, all pairs), That is a Known Lie, Role of Context. PF: AVeriTeC (dev, F2), TREC 2011 (49 topics), StreamingQA, Missing Counter-Evidence, Chronological Splits.
-- [ ] **Step 2:** Fix the Ramponi note pages to 29045-29064 (F17, X3); note the published BGE-M3 title (F18). Owner MJ.
+- [x] **Step 2:** Fix the Ramponi note pages to 29045-29064 (F17, X3); note the published BGE-M3 title (F18). Owner MJ.
 - [ ] **Step 3:** Independent review: each owner cross-checks another owner's notes (PP→PF→MJ→JC→PP) and logs disagreements in [[Literature corrections]].
 - [ ] **Step 4:** Add an Urbano et al. 2019 note via skill `paper-notes`. It recommends the t-test or permutation test, and the bootstrap only for large samples, so it does not justify the bootstrap. Re-check the existing notes for Vykopal 2026, Søgaard 2021, Kazemi 2021 and LongEval 2023 against [[Review verification]]. Owner JC.
-- [ ] **Step 5:** Write the novelty-claim protocol per skill `literature-search` (OpenAlex, arXiv, forward citations of MultiClaim, SemEval-2025 T7, Shaar 2022 and TREC 2011; since 2019; queries on date-restricted, causal, temporal index for claim retrieval). Run the harvest, screen it, and fill `outcome` with counts and the date (F5). Owner PP.
+- [x] **Step 5:** (done 2026-11-11: 1,738 retrieved, 240 kept, 6 adjacent works, none PFCR with a per-query pre-post index; no full-text notes) Write the novelty-claim protocol per skill `literature-search` (OpenAlex, arXiv, forward citations of MultiClaim, SemEval-2025 T7, Shaar 2022 and TREC 2011; since 2019; queries on date-restricted, causal, temporal index for claim retrieval). Run the harvest, screen it, and fill `outcome` with counts and the date (F5). Owner PP.
 
 ### Task 2: Table 2 numbers (11-24 Nov)
 
@@ -90,7 +90,7 @@ Must be computed from data (never estimated in the report):
 - [ ] **Step 1b:** After the 25.11 Q&A, add every question our team received to the same table (2.4). Owner JC.
 - [ ] **Step 2:** Polite corrections with evidence from [[Review verification]]: F14 (size-matched already in Figure 1), F21 (line was never present, now added), F9 (the card's October request was MultiClaim, granted), F19 (`\newcite` in this template), F26 (gate already planned), Urbano (supports t-test or permutation; we keep the cluster bootstrap for clustered queries and add a paired permutation check).
 - [ ] **Step 3:** Answer Q1 with the timestamp rule and Task 2 counts. Answer Q2 with the PoC number (random vs strict causal vs size-matched on one query set) or state when it comes.
-- [ ] **Step 4:** Extended SOTA table (2.5): the current 15 works plus the five suggested ones (number, dataset, split each; Urbano and Søgaard as method rows with no score). Owner MJ.
+- [x] **Step 4:** (four cited works added to Table 1; Urbano not cited; PoC-stage findings still to add) Extended SOTA table (2.5): the current 15 works plus the five suggested ones (number, dataset, split each; Urbano and Søgaard as method rows with no score). Owner MJ.
 
 ### Task 5: Supervisor meeting (by 13 Nov)
 

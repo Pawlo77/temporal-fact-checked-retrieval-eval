@@ -1,0 +1,63 @@
+# Novelty search for the report claim: no previously fact-checked claim retrieval (PFCR)
+# evaluation restricts the fact-check index per query to documents published before the post.
+name: causal-index-pfcr
+since: "2019-01-01"
+openalex_queries:
+  - previously fact-checked claim retrieval temporal
+  - fact-checked claim retrieval chronological split
+  - claim matching time-aware evaluation
+  - fact-check retrieval future information leakage
+  - retrieval fact-checks published before the post
+  - time-respecting evaluation information retrieval
+  - temporal leakage retrieval evaluation
+  - temporal split fact-checking claim detection
+  - temporal generalization claim retrieval
+  - date filtered retrieval leakage
+  - verified claim retrieval multilingual
+  - claim detection previously fact-checked claims
+  - longitudinal evaluation retrieval collection snapshots
+  - temporal evaluation fact verification evidence retrieval
+  - misinformation retrieval time-aware evaluation
+  - causal evaluation fact-check retrieval index
+arxiv_queries:
+  - 'abs:"previously fact-checked" AND abs:"temporal"'
+  - 'abs:"fact-checked claim retrieval" AND abs:"time"'
+  - 'abs:"claim retrieval" AND abs:"chronological"'
+  - 'abs:"fact-check" AND abs:"future" AND abs:"leakage"'
+  - 'abs:"claim matching" AND abs:"temporal"'
+  - 'abs:"fact-checking" AND abs:"temporal split"'
+  - 'abs:"retrieval" AND abs:"temporal leakage"'
+  - 'abs:"time-aware" AND abs:"fact-check"'
+  - 'abs:"MultiClaim" AND abs:"time"'
+  - 'abs:"claim retrieval" AND abs:"time lag"'
+  - 'abs:"misinformation" AND abs:"retrieval" AND abs:"before the claim"'
+  - 'abs:"longitudinal" AND abs:"retrieval evaluation"'
+seeds:
+  - "2305.07991"  # MultiClaim
+  - "2005.06058"  # That is a Known Lie
+  - "2104.07423"  # Role of Context in PFCR
+  - "2505.10740"  # SemEval-2025 Task 7
+  - "2505.22118"  # Multilingual vs Crosslingual Retrieval
+  - "2503.02737"  # AMC-16K
+  - "2210.04447"  # CrowdChecked
+  - "2205.11388"  # StreamingQA
+  - "2106.00853"  # Claim Matching Beyond English
+  - "2410.14651"  # Fact-Check Claims Stay Easy
+include:
+  - ['claim|fact-check|fact check|misinformation|verification|retriev']
+  - ['temporal|chronolog|time-aware|time-respecting|future|leak|longitudinal|snapshot|before the']
+exclude:
+  - recommender
+outcome:
+  date: "2026-11-11"
+  retrieved: 1738
+  after_dedup_and_keyword_screen: 240  # 1,114 unique records; 22 already noted, 7 excluded, 845 off topic
+  after_title_abstract_screen: 6  # adjacent works read at abstract level; 0 are PFCR with a per-query pre-post index
+  noted: "none; adjacent works are recorded here and cited from the report, no full-text read"
+  not_noted:
+    - "verification, point-in-time evidence: No Hindsight for LLM Fact-Checkers (arXiv 2610.04888), cited"
+    - "legal case retrieval, temporal fence: Fenced Citation-Context Retrieval for Case Law (arXiv 2607.17142), cited"
+    - "verification, time-aware evidence ranking: Time-aware evidence ranking for fact-checking (J. Web Semantics 2021)"
+    - "dataset: Matching Tweets With Applicable Fact-Checks Across Languages (arXiv 2202.07094), PFCR without temporal restriction"
+    - "analysis, no retrieval evaluation: Investigating Characteristics, Biases and Evolution of Fact-Checked Claims on the Web (HT 2024)"
+    - "data discovery: A Historical Corpus Is Not a Historical System (arXiv 2609.12766)"
