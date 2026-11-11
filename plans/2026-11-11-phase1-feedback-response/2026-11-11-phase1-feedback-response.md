@@ -38,8 +38,8 @@ State on 2026-11-11. "Needed" means graded or required at the 2.12 submission; "
 | LLM-use declaration with tools named (F24) | yes | done | JC |
 | BM25 proof of concept, permutation tests, Polish-English interval (2.1) | yes | done (PR 18) | PP |
 | Table 2 numbers, answerable rates, AMC-16K request sent 11 Nov | yes | done | PP |
-| F25 judge details: prompt, how three judges combine, fallback if AMC-16K is late | yes | open, row is marked corrected but overclaims | JC |
-| F28 access grants: who, which record, date | yes | open, row is marked corrected but overclaims | PP |
+| F25 judge details: prompt, how three judges combine, fallback if AMC-16K is late | yes | done | JC |
+| F28 access grants: who, which record, date | yes | done (Florek, requested 3 Nov, approved 4 Nov) | PP |
 | F29 matched controls on learned systems: e5, mmlw, reranker (Task 8) | yes | open | MJ, PF |
 | Meeting 6 / supervisor rows in the rebuttal (Task 5) | yes | open, meeting 13 Nov | PP |
 | Meeting 8 Q&A rows in the rebuttal (Task 4 step 1b) | yes | open, after 25 Nov | JC |
@@ -151,8 +151,8 @@ Taken from the Assessment criteria PDF; none of it is in the feedback, all of it
 
 ### Task 8: Open rows and systems for checkpoint 2 (by 1 Dec)
 
-- [ ] **Step 1:** F25: write the judge protocol in Sec. 5 (English prompt text in the repository, Yes/No labels, majority of three, kappa per judge and for the majority on the 400 Polish AMC-16K pairs, fallback: sibling labels reported unvalidated if the data is not here by W4), then fix the rebuttal row. Owner JC.
-- [ ] **Step 2:** F28: add to Sec. 5 who requested each Zenodo record, the record and the date of the grant; fix the rebuttal row. Owner PP.
+- [x] **Step 1:** F25: write the judge protocol in Sec. 5 (English prompt text in the repository, Yes/No labels, majority of three, kappa per judge and for the majority on the 400 Polish AMC-16K pairs, fallback: sibling labels reported unvalidated if the data is not here by W4), then fix the rebuttal row. Owner JC.
+- [x] **Step 2:** F28: add to Sec. 5 who requested each Zenodo record, the record and the date of the grant; fix the rebuttal row. Owner PP.
 - [ ] **Step 3:** F29 and 2.3: run multilingual-e5 and then mmlw and the reranker under the three pools on the same query sets; Polish locally, English on the cluster (copying restricted data there needs the team's approval under the data terms); report S@10 with intervals and permutation p-values, and the Polish-English interval. Owners MJ (runs), PF (GPU).
 - [ ] **Step 4:** Meeting 6 and meeting 8 rows: quote each remark or question, answer it and name the place in the report. Owner PP (13 Nov), JC (after 25 Nov).
 - [ ] **Step 5:** Ask an independent reviewer to re-check the rebuttal after steps 1-4; set every row to its honest status.

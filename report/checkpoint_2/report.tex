@@ -317,12 +317,13 @@ Jan Cwalina & drafting and polish of the Phase~1 report text & 5 \\
 \section{Data statement}
 \label{sec:datastmt}
 Primary data: MultiClaim v1/v2 and SemEval-2025 Task~7 from restricted Zenodo records (research use only: the v2 and SemEval records limit access to researchers for non-commercial research under the EU Directive 2019/790 exemption, v1 states no further terms; authors may ask for removal of their posts; no re-identification, no sharing beyond named requesters)~\cite{moro2025multiclaim,pikuliak2023multilingual,peng2025semeval}; MultiClaimNet (Zenodo; CC BY~4.0)~\cite{panchendrarajan2025multiclaimnet}.
-Access is granted for MultiClaim v1/v2, SemEval-2025 Task~7 and MultiClaimNet.
+Pawe{\l} Florek requested access to the Zenodo records of MultiClaim v1 and v2, SemEval-2025 Task~7 and MultiClaimNet on 3~Nov 2026 and it was approved on 4~Nov 2026.
 Posts are real social-media text, released in anonymised form by the dataset authors; we treat them as personal data.
 We store files only in a directory readable by named team members, never send post text to an external LLM API, never put raw text in git or the paper (examples paraphrased; errors aggregated), and delete the data at project end.
 No per-outlet or per-author error ranking will be published.
 AMC-16K is secondary: it validates the LLM relevance judges that pre-sort sibling fact-check candidates; failure codes are assigned by two human annotators.
-The judges are three open-weight models disjoint from the evaluated systems (gpt-oss-120b, Command A, Mistral Large 2411), validated on the 400 Polish AMC-16K pairs by Cohen's $\kappa$ against the human Yes/No labels and used only above $\kappa=0.6$ (to confirm with the supervisor).
+Each of three open-weight judges, disjoint from the evaluated systems (gpt-oss-120b, Command A, Mistral Large 2411), gets an English prompt (post, fact-check, ``Does the fact-check address the claim made in the post? Answer Yes or No.'') and answers Yes or No; the label is the majority of the three.
+Per judge and for the majority we compute Cohen's $\kappa$ against the human Yes/No labels of the 400 Polish AMC-16K pairs and use the judges only above $\kappa=0.6$; if AMC-16K has not arrived by week~4, sibling labels are reported unvalidated.
 Its public listing is on the EU Language Data Space (LDS) catalogue, which our university cannot use; we requested a copy on 11~Nov 2026 from the authors at the Kempelen Institute of Intelligent Technologies (KInIT) under research terms.
 
 
