@@ -53,11 +53,11 @@ outcome:
   retrieved: 1738
   after_dedup_and_keyword_screen: 240  # 1,114 unique records; 22 already noted, 7 excluded, 845 off topic
   after_title_abstract_screen: 6  # adjacent works read at abstract level; 0 are PFCR with a per-query pre-post index
-  noted: "none; adjacent works are recorded here and cited from the report, no full-text read"
+  noted:  # full text read 2026-11-11; none is PFCR with a per-query pre-post index
+    - "[[No Hindsight for LLM Fact-Checkers]]"
+    - "[[Fenced Case Law Retrieval]]"
+    - "[[Time-Aware Evidence Ranking]]"
+    - "[[Matching Tweets With Fact-Checks]]"
+    - "[[Historical Corpus Not Historical System]]"
   not_noted:
-    - "verification, point-in-time evidence: No Hindsight for LLM Fact-Checkers (arXiv 2610.04888), cited"
-    - "legal case retrieval, temporal fence: Fenced Citation-Context Retrieval for Case Law (arXiv 2607.17142), cited"
-    - "verification, time-aware evidence ranking: Time-aware evidence ranking for fact-checking (J. Web Semantics 2021)"
-    - "dataset: Matching Tweets With Applicable Fact-Checks Across Languages (arXiv 2202.07094), PFCR without temporal restriction"
-    - "analysis, no retrieval evaluation: Investigating Characteristics, Biases and Evolution of Fact-Checked Claims on the Web (HT 2024)"
-    - "data discovery: A Historical Corpus Is Not a Historical System (arXiv 2609.12766)"
+    - "analysis, no retrieval evaluation: Investigating Characteristics, Biases and Evolution of Fact-Checked Claims on the Web (HT 2024), unread: no open full text"

@@ -26,3 +26,5 @@ Chronological splits, time-respecting retrieval evaluation, temporal persistence
 | [[Data Leakage in Recommender Evaluation]] | 2023 | Training on interactions after the test moment makes models recommend items that did not yet exist; the proposed timeline scheme removes this. |
 | [[LongEval 2023]] | 2023 | Retrieval systems on later Qwant snapshots did not drop on average NDCG; the most stable systems were not the most effective. |
 | [[Dont Get Ahead of Yourself]] | 2025 | Removing future leakage from sequential recommender evaluation cuts sampled nDCG@10 by 21.7% to 73.4% and changes the best model in 7 of 8 settings. |
+| [[Fenced Case Law Retrieval]] | 2026 | Fencing citation context to pre-query citers; 14.9% of the unfenced gain on ECtHR-PCR, whose candidate pools are already per-query causal, is leakage. |
+| [[Historical Corpus Not Historical System]] | 2026 | A frozen corpus with full-log memory inflates Asset Recall@100 by 2.62 to 5.24 points and hides up to 48.4% of a memory's harm. |

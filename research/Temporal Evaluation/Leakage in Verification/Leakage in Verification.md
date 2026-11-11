@@ -19,6 +19,8 @@ Evidence or answer leakage in claim verification: retrieved evidence that was wr
 
 | Paper | Year | Takeaway |
 |-------|------|----------|
+| [[Time-Aware Evidence Ranking]] | 2021 | Timestamp-derived ranking targets raise MultiFC Micro F1 by up to 8.46%; newest-first beats the claim-date-restricted target. |
 | [[Missing Counter-Evidence]] | 2022 | In MultiFC, 69.7% of misinformation claims have evidence from or repeating a fact-check of the same claim; models exploit it. |
 | [[AVeriTeC]] | 2023 | A claim dataset whose web evidence is restricted to pre-claim documents and whose splits are temporal; the guarantee stays approximate (about 6% of dev answers from fact-checking domains). |
 | [[Complex Claim Verification in the Wild]] | 2024 | Adding a temporal or fact-check-site constraint cuts test accuracy from 49.0 to 33.5, so unconstrained web retrieval works largely through post-claim fact-checks. |
+| [[No Hindsight for LLM Fact-Checkers]] | 2026 | Dated AVeriTeC evidence: post-claim evidence adds 6.3 accuracy points (at most 3.1 strict hindsight); entity masking exposes parametric recall. |
