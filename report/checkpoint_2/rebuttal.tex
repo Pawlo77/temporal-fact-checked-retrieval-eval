@@ -1,7 +1,7 @@
 % Phase 2 rebuttal (criterion 2.4): one row per point of the Phase 1 feedback.
 \documentclass[10pt]{article}
 \usepackage[landscape,margin=1.6cm]{geometry}
-\usepackage{longtable,booktabs,array,xcolor}
+\usepackage{longtable,booktabs,array,xcolor,url}
 \title{Response to the Phase 1 feedback\\\large Retrieval that Cannot See the Future}
 \author{Pozorski, Jarosz, Florek, Cwalina}
 \date{}
@@ -13,14 +13,14 @@
 \maketitle
 Remarks are quoted from the Phase~1 feedback (ellipses mark omissions). Section, table and figure numbers refer to \texttt{report.pdf} in this folder. ``W'' is the week of the plan in Sec.~4.
 \small
-\begin{longtable}{@{}l p{4.6cm} p{1.6cm} p{7.2cm} p{2.4cm}@{}}
+\begin{longtable}{@{}l p{4.6cm} p{1.6cm} p{8.6cm} p{4.2cm}@{}}
 \toprule
 ID & Remark (quoted) & Status & Response & Where \\\midrule\endhead
 F1 & ``Table 1 ... claims ``every value names the dataset and the split''. This is not true for several rows.'' & \done & Every row of Table~1 now names the split or says `no split': Pikuliak 0.83 (all pairs, no split, same-language pool; the old label `full pool' was also wrong), Ramponi (test partition of the 80-10-10 split), Vykopal (monolingual half, no split), Glockner (all claims, no split) and Ounis (49 judged topics, no split). & Table~1, Sec.~2 \\
 F2 & ``Schlichtkrull macro-F1 0.23/0.49 is labelled ``AVeriTeC test''. The paper's baseline analysis is on the development set.'' & \done & AVeriTeC numbers are development-set results; the test labels were not public. Label and text corrected. & Table~1, Sec.~2 \\
 F3 & ``Table 1 mixes scales: some values are 0--1 ... and others 0--100. Use one scale.'' & \done & One 0--1 scale; converted: Hardalov 90.3 to 0.903, Pikuliak 80.02/80.04 to 0.8002/0.8004, Vykopal 82.46 to 0.825, Li\v{s}ka 57/43\% to 0.57/0.43, Glockner 69.7\% to 0.697, Mu 91.5/47.2 to 0.915/0.472. & Table~1 \\
 F4 & ``Aschern's CheckThat! 2021 score as MAP@5 0.883 ... but as 88.2 ... Reconcile the two numbers or explain the difference.'' & \done & Both numbers are faithful to their sources: 0.883 is the CheckThat! 2021 overview, 0.882 is Aschern's value quoted in the table of Hardalov et al. Both are now stated, with the source of each. & Sec.~2, Table~1 \\
-F5 & ``The ``No PFCR evaluation we found restricts the fact-check index per query'' claim should be backed by a stated search protocol.'' & \done & Protocol written and run on 11 Nov 2026: OpenAlex, arXiv and forward citations of ten seeds, works since 2019; 1,738 records, 1,114 unique, 240 after keyword screening, 6 read at abstract level; none restricts the PFCR index per query. The closest (verification, case-law retrieval) are cited and have research notes. & Sec.~2; \texttt{research/protocols/causal-index-pfcr.yaml} \\
+F5 & ``The ``No PFCR evaluation we found restricts the fact-check index per query'' claim should be backed by a stated search protocol.'' & \done & Protocol written and run on 11 Nov 2026: OpenAlex, arXiv and forward citations of ten seeds, works since 2019; 1,738 records, 1,114 unique, 240 after keyword screening, 6 read at abstract level; none restricts the PFCR index per query. The closest (verification, case-law retrieval) are cited and have research notes. & Sec.~2; \path{research/protocols/causal-index-pfcr.yaml} \\
 F6 & ``Class balance: ``sparse positives (ranking)'' is not a number.'' & \done & Measured on the raw files: gold FC per post and share of fact-checks with a linked post for v1, v2, SemEval and the Polish and English v2 slices. & Table~2 \\
 F7 & ``Polish and English subset sizes are missing.'' & \partly & Added: Polish and English counts for v1 (paper) and v2 (measured), dated fact-checks per language, SemEval Polish recounted from the raw file (499 posts, 563 pairs instead of 500 and 564, one undated post dropped). Missing: dated posts per language and v1 pair counts per language, because v1 posts carry no language field. & Table~2, Sec.~3 \\
 F8 & ``The causal split ... and the 50 hand-coded failure annotations are deliverables. Each needs its own row with a TO COLLECT label.'' & \partly & Rows added for the causal split (1,367 Polish and 22,600 English v2 queries, v1 and SemEval later) and for the 50 failure annotations with the seven codes, two annotators with Cohen's $\kappa$, owner and date (16 Dec). The annotators' names beyond the owner and the final codebook are fixed in W5. & Table~2 \\
