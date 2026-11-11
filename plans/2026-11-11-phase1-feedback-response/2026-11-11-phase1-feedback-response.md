@@ -59,8 +59,8 @@ Must be computed from data (never estimated in the report):
 - [x] **Step 1:** (done 2026-11-11 with `scripts/corpus_stats.py` from PR 18; v1 has no post language, so v1 PL/EN stay on paper counts) For each of v1, v2 and ST7 (all, PL, EN): posts, pairs, FC, dated posts and dated FC; gold pairs per post (mean, median); gold FC per post; share of FC with at least one linked post (F6, F7). Owner PP.
 - [x] **Step 2:** (done: v1 85%, v2 93%, v2 PL 89% post-first; Polish answerable posts 152, 14 and 9 at margins 0, 1, 7 days) Share of pairs with the post before the FC (H1), and the answerable rate per language at margins 0, 1 and 7 days, which gives the Polish answerable count (F7, F26). Owner PP, review PF.
 - [x] **Step 3:** (same-day pairs and multi-instance counts measured; exact-second ties not counted separately) Tied-timestamp count and multi-instance share (F22, Q1). Owner PF.
-- [ ] **Step 4:** Send the AMC-16K request to KInIT and log the date. PP drafts; the team sends from a university address (F9).
-- [ ] **Step 5:** Copy the Zenodo access conditions verbatim for v1, v2 and ST7. Ask the authors in writing whether id lists may be redistributed (F10, F28). Owner PP.
+- [x] **Step 4:** (sent 2026-11-11) Send the AMC-16K request to KInIT and log the date. PP drafts; the team sends from a university address (F9).
+- [x] **Step 5:** (done 2026-11-11: terms read from the records; the authors prefer id lists to stay confidential, so deliverable (1) is code only) Copy the Zenodo access conditions verbatim for v1, v2 and ST7. Ask the authors in writing whether id lists may be redistributed (F10, F28). Owner PP.
 
 ### Task 3: Report fixes into `report/checkpoint_2/` (18-28 Nov)
 

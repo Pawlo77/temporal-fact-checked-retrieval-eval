@@ -49,7 +49,7 @@ Project Proposal for NLP Course, Winter 2026/27\\ (revised after Phase~1 feedbac
 Previously fact-checked claim retrieval (PFCR) ranks an archive of fact-checks for a social media post.
 Published benchmarks search the full archive, including fact-checks written after the post, while a fact-checker at post time can only search what already exists.
 We propose a \emph{causal} evaluation protocol: for each post $q$ with time $t_q$, the pool is $P(q)=\{f:t_f<t_q\}$, and we report Success@10 (fraction of queries with a gold fact-check in the top~10) and mean reciprocal rank (MRR) under random, size-matched random, and strict-causal pools on MultiClaim, with Polish as focus and English as control.
-Deliverables: the protocol and rebuildable split as id lists and code; a results table of at least four systems under both protocols; and a gap decomposition with 50 hand-coded newly failing queries.
+Deliverables: the protocol and code that rebuilds the causal split from the restricted data (the authors asked us to keep id lists confidential); a results table of at least four systems under both protocols; and a gap decomposition with 50 hand-coded newly failing queries.
 \end{abstract}
 
 \section{Scientific goal}
@@ -167,6 +167,7 @@ For ranking corpora, class balance is the density of positive post--fact-check l
 Balance is measured on the raw files (\texttt{scripts/corpus\_stats.py}): gold fact-checks per post (FC/post) and the share of fact-checks with at least one linked post.
 Of 28,092 v1 and 89,139 v2 posts, 25,957 and 87,304 are dated and kept, the rest are dropped; 202,716 of 205,751 v1 and 430,630 of 435,252 v2 fact-checks are dated.
 The Polish and English rows are monolingual v2 slices (posts, fact-checks and pairs of that language); all 9,044 Polish and 166,080 of 166,430 English fact-checks are dated.
+The v1 files we received have no language field and an empty text column, and their post ids differ from v2, so v1 Polish and English post counts are the published ones.
 
 \begin{table*}[!t]
 \centering
@@ -183,12 +184,12 @@ MultiClaim v1 & 206k FC, 28k posts, 31k pairs & fact-checker gold links (ClaimRe
 MultiClaim v2 & 435k FC, 89k posts, 105k pairs & same + relationship types & 1.18 FC/post; 17.7\% linked & restricted record: researchers only, non-commercial research; EU Directive 2019/790 research exemption & Zenodo 15413169 & READY \\
 SemEval-2025 T7 & train from MultiClaim; test 4.3k mono posts, 4,936 pairs (PL: 499 posts, 563 pairs) & shared-task gold for S@10 & 1.16 FC/post; 1.7\% of the 272k test pool linked & restricted record, same terms as MultiClaim, access on request & Zenodo 14989176 & READY \\
 MultiClaimNet & 85.3k FC in 30.9k clusters & same-claim cluster ids & n/a (clustering) & CC BY 4.0 & Zenodo 15100352 & READY \\
-AMC-16K & 16k pairs / 20 langs & human Yes/No relevance & 16\% relevant overall; PL mono 20.25\% & CC BY-NC-SA 4.0 & authors (not via the Language Data Space, LDS) & RESTRICTED; request not yet sent, date logged on sending \\
+AMC-16K & 16k pairs / 20 langs & human Yes/No relevance & 16\% relevant overall; PL mono 20.25\% & CC BY-NC-SA 4.0 & authors (not via the Language Data Space, LDS) & RESTRICTED; requested 11 Nov 2026, answer pending \\
 \multicolumn{7}{@{}l}{\emph{Polish / English (v1 counts from the paper, v2 and SemEval measured)}} \\
-PL & v1 (paper): 453 posts, 6,912 FC; v2: 1,406 posts, 9,044 FC, 1,550 pairs & as above & 1.13 FC/post; 13.7\% linked & as above & as above & SemEval test pool 8,796 FC \\
-EN & v1 (paper): 7,307 posts, 85,814 FC; v2: 24,004 posts, 166,430 FC, 28,533 pairs & as above & 1.26 FC/post; 13.1\% linked & as above & as above & SemEval test pool 145,287 FC \\
+PL & v1 (paper): 453 posts, 6,912 FC; v2: 1,406 of 1,450 posts dated, 9,044 FC, 1,550 pairs & as above & 1.13 FC/post; 13.7\% linked & as above & as above & SemEval test: 499 of 500 posts dated, 8,796 FC \\
+EN & v1 (paper): 7,307 posts, 85,814 FC; v2: 24,004 of 24,396 posts dated, 166,430 FC (166,080 dated), 28,533 pairs & as above & 1.26 FC/post; 13.1\% linked & as above & as above & SemEval test: 497 of 500 posts dated, 145,287 FC \\
 \multicolumn{7}{@{}l}{\emph{Datasets we will create}} \\
-Causal split & id lists per language and protocol, no post text; 1,367 Polish and 22,600 English queries from v2, v1 and SemEval later & post--fact-check ids with the date rule of Sec.~\ref{sec:plan} & n/a & our own; the terms say nothing on sharing ids, so we ask the authors before release & built by us, W1--W2 & TO COLLECT \\
+Causal split & id lists per language and protocol, kept confidential; 1,367 Polish and 22,600 English queries from v2, v1 and SemEval later & post--fact-check ids with the date rule of Sec.~\ref{sec:plan} & n/a & our own; the dataset authors asked us not to publish id lists, so we release the code only & built by us, W1--W2 & TO COLLECT \\
 Failure annotations & 50 queries (25 PL, 25 EN) & one code per newly failing query: answerability, lexical leakage, narrative drift, cross-lingual-only debunk, missing label, timestamp error, multimodal-only (codebook and two annotators with Cohen's $\kappa$ by W5) & n/a & our own & Cwalina with a second annotator, by 16~Dec & TO COLLECT \\
 \bottomrule
 \end{tabular}%
@@ -277,7 +278,7 @@ We report both unconditionally (unanswerable queries count as misses) and on ans
 \end{figure*}
 
 \paragraph{Concrete success deliverables.}
-(1)~Rebuildable causal split (id lists + code; no post text).
+(1)~Code that rebuilds the causal split from the restricted data; id lists stay confidential at the dataset authors' request, post text is never released.
 (2)~Shared results table: $\geq$4 systems $\times$ random vs causal $\times$ Polish and English, with bootstrap intervals; central number = extra Polish temporal cost.
 (3)~Gap decomposition plus coded analysis of 50 newly failing queries.
 
@@ -285,14 +286,14 @@ We report both unconditionally (unanswerable queries count as misses) and on ans
 Internal work finishes before Christmas; course checkpoints: mid-term video 18~Nov, Phase~2 2~Dec, formal final 13~Jan~2027. One owner per task.
 \begin{itemize}
 \setlength\itemsep{0pt}
-\item \textbf{W1 (to 18~Nov):} AMC-16K access request (Pozorski); date audit of 100 URLs per language (Florek).
+\item \textbf{W1 (to 18~Nov):} date audit of 100 URLs per language (Florek).
 \item \textbf{W2 (to 25~Nov):} BM25 and multilingual-e5 on all three pools, PL and EN (Jarosz); mmlw and reranker, graphics-processing-unit (GPU) runs (Florek).
 \item \textbf{W3 (to 2~Dec):} causal and size-matched runs for all four systems (Jarosz); Phase~2 report and proof-of-concept (PoC) table (Cwalina).
 \item \textbf{W4 (to 9~Dec):} bootstrap intervals and difference-in-differences (Florek); gap decomposition with covariates (Pozorski).
 \item \textbf{W5 (to 16~Dec):} 50 failure annotations and codebook (Cwalina); judge validation (Jarosz).
-\item \textbf{W6 (to 23~Dec):} release check of split and code (Pozorski); write-up (Cwalina).
+\item \textbf{W6 (to 23~Dec):} release check of the code (Pozorski); write-up (Cwalina).
 \end{itemize}
-Main risks: the Polish answerable count is 152 posts at margin 0, barely above 150, and 14 and 9 at margins of 1 and 7 days, so Polish margin sensitivity is descriptive; timestamp semantics are undocumented (URL date audit); AMC-16K is still to be requested.
+Main risks: the Polish answerable count is 152 posts at margin 0, barely above 150, and 14 and 9 at margins of 1 and 7 days, so Polish margin sensitivity is descriptive; timestamp semantics are undocumented (URL date audit); AMC-16K was requested on 11~Nov and is pending.
 
 \begin{table*}[!t]
 \centering
@@ -321,7 +322,7 @@ We store files only in a directory readable by named team members, never send po
 No per-outlet or per-author error ranking will be published.
 AMC-16K is secondary: it validates the LLM relevance judges that pre-sort sibling fact-check candidates; failure codes are assigned by two human annotators.
 The judges are three open-weight models disjoint from the evaluated systems (gpt-oss-120b, Command A, Mistral Large 2411), validated on the 400 Polish AMC-16K pairs by Cohen's $\kappa$ against the human Yes/No labels and used only above $\kappa=0.6$ (to confirm with the supervisor).
-Its public listing is on the EU Language Data Space (LDS) catalogue, which our university cannot use; we will request a copy from the authors at the Kempelen Institute of Intelligent Technologies (KInIT) under research terms.
+Its public listing is on the EU Language Data Space (LDS) catalogue, which our university cannot use; we requested a copy on 11~Nov 2026 from the authors at the Kempelen Institute of Intelligent Technologies (KInIT) under research terms.
 
 
 \section{Contribution}
