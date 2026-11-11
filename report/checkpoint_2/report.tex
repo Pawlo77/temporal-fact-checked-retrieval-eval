@@ -42,6 +42,9 @@ Project Proposal for NLP Course, Winter 2026/27\\ (revised after Phase~1 feedbac
 \begin{document}
 \maketitle
 
+{\small\em Template: Anna Wr\'oblewska (Warsaw University of Technology), adapted from the ACL 2015 conference formatting template.}
+\vspace{4pt}
+
 \begin{abstract}
 Previously fact-checked claim retrieval (PFCR) ranks an archive of fact-checks for a social media post.
 Published benchmarks search the full archive, including fact-checks written after the post, while a fact-checker at post time can only search what already exists.
@@ -73,7 +76,7 @@ Random splits overestimate performance~\cite{sogaard2021random}, which motivates
 We summarise fifteen prior works and, after the Phase~1 review, four more.
 Table~\ref{tab:sota} lists the published numbers we compare on one 0--1 scale, with the dataset and the split or evaluation condition named for every value (``no split'' where the source has none).
 No PFCR evaluation we found restricts the fact-check index \emph{per query} to documents published before the post.
-Our search (OpenAlex, arXiv and forward citations, works since 2019; protocol in the repository) found no PFCR evaluation with a per-query pre-post index among 1,738 records; the closest restrict evidence to what predates the claim in verification~\cite{wu2026nohindsight} or fence citation context in case-law retrieval~\cite{liu2026fenced}.
+A search on 11~Nov 2026 (OpenAlex, arXiv and forward citations of ten seed papers; works since 2019; queries in \path{research/protocols/causal-index-pfcr.yaml}) returned 1,738 records, 1,114 unique, 240 after keyword screening and 6 read at abstract level; none restricts the PFCR index per query. The closest restrict evidence to what predates the claim in verification~\cite{wu2026nohindsight} or fence citation context in case-law retrieval, whose benchmark already limits each query's candidates to earlier cases~\cite{liu2026fenced}.
 
 \paragraph{PFCR task and shared tasks.}
 \newcite{shaar2020that} define PFCR as ranking verified claims for a social-media or debate input; on Snopes tweets and PolitiFact debate sentences, BM25 plus a ranking support vector machine (rankSVM) reaches MRR 0.788 and S@10 0.915 on the Snopes test (BM25 top-50 rerank).
@@ -82,7 +85,7 @@ Our search (OpenAlex, arXiv and forward citations, works since 2019; protocol in
 \newcite{hardalov2022crowdchecked} mine 333k noisy tweet--Snopes pairs from crowd replies and train sentence-BERT; on CheckThat! 2021 English test they report MAP@5 0.903 for the full system (vs Aschern 0.882 as quoted in their table; the lab overview reports 0.883).
 
 \paragraph{Multilingual PFCR corpora and systems.}
-\newcite{pikuliak2023multilingual} release MultiClaim (28k posts, 206k fact-checks, 31k pairs) and evaluate unsupervised and fine-tuned retrievers over all post--fact-check pairs with no held-out split, searching same-language fact-checks only; best monolingual S@10 is 0.83 (Generalizable T5-based dense Retriever, GTR-T5-Large, on English translations, averaged over languages with more than 100 pairs). Their post-newer vs post-older subsets score 0.800 vs 0.800 S@10 under the same index (no per-query date filter).
+\newcite{pikuliak2023multilingual} release MultiClaim (28k posts, 206k fact-checks, 31k pairs) and evaluate unsupervised and fine-tuned retrievers over all post--fact-check pairs with no held-out split, searching same-language fact-checks only; best monolingual S@10 is 0.83 (Generalizable T5-based dense Retriever, GTR-T5-Large, on English translations, averaged over languages with more than 100 pairs). Their post-newer vs post-older subsets score 0.8002 vs 0.8004 S@10 under the same index (no per-query date filter).
 \newcite{peng2025semeval} organise SemEval-2025 Task~7 on MultiClaim with out-of-time test posts (pool to May 2024); winner PINGAN AI reaches monolingual average S@10 0.9601 and Polish 0.9260 on the hidden test languages.
 \newcite{devadiga2025tifin} (a SemEval system) translate posts, fine-tune Stella with hard negatives and LLM-rerank; monolingual test S@10 0.938 (Polish 0.886).
 \newcite{ramponi2025multilingual} compare multilingual vs crosslingual retrieval on a curated MultiClaim v2 subset (47 languages) with an 80/10/10 language-stratified split that separates fact-checks across folds; LLM reranking of multilingual-e5-large reaches MRR@10 0.8042 multilingual.
@@ -93,7 +96,7 @@ Our search (OpenAlex, arXiv and forward citations, works since 2019; protocol in
 
 \paragraph{Time-respecting IR and verification (not PFCR index filtering).}
 \newcite{ounis2011overview} define the 2011 Microblog track of the Text REtrieval Conference (TREC) real-time search with a compulsory run that bans future tweets and future corpus statistics; best compulsory P@30 is 0.4551.
-\newcite{liska2022streamingqa} evaluate QA over a growing dated news corpus by quarter; dated dense passage retrieval (DPR) raises recall@20 on recent generated questions from 0.43 to 0.57.
+\newcite{liska2022streamingqa} evaluate question answering (QA) over a growing dated news corpus by quarter; dated dense passage retrieval (DPR) raises recall@20 on recent generated questions from 0.43 to 0.57.
 \newcite{glockner2022missing} show that a share of 0.697 of MultiFC misinformation claims have leaked fact-check evidence in search snippets (verification leakage from later fact-checks).
 \newcite{schlichtkrull2023averitec} release AVeriTeC with evidence restricted to documents before the claim and temporally ordered splits; baseline verdict macro-F1 is 0.23 (gold evidence 0.49) on the development set; the test labels were not public.
 \newcite{mu2023its} show rumour classifiers collapse under chronological splits: on Twitter~16, BERT macro-F1 falls from 0.915 (random) to 0.472 (stratified chronological).
@@ -111,9 +114,10 @@ Let $G(q)$ be the gold items for query~$q$ and $r_q$ the rank of the first gold 
 \emph{MAP@k} averages, over queries, precision at each relevant hit within the top~$k$ (plain MAP uses the full list).
 \emph{P@k} / \emph{R@k}: fraction of the top~$k$ that are relevant / fraction of all gold recovered in the top~$k$.
 \emph{Macro-F1}: unweighted mean of per-class F1 (classification, not ranking).
+\emph{NDCG}: gain discounted by rank and normalised by the ideal ranking.
 \emph{Leak rate}: share of claims whose later fact-check evidence already appears in search snippets~\cite{glockner2022missing}.
 
-\begin{table*}[t]
+\begin{table*}[!t]
 \centering
 \caption{Published numbers for the works above. All values on a 0--1 scale; each names the dataset and the split or evaluation condition of the source paper. Metrics as above.}
 \label{tab:sota}
@@ -130,7 +134,7 @@ Work & Metric & Value & Dataset / split or condition \\
 \cite{nakov2022overview} & MAP@5 & 0.956 & CheckThat! 2022 English Task 2A / 2022 test (RIET Lab) \\
 \cite{hardalov2022crowdchecked} & MAP@5 & 0.903 & CheckThat! 2021 English / test; CrowdChecked-trained system \\
 \cite{pikuliak2023multilingual} & S@10 & 0.83 & MultiClaim / all pairs, no split; same-language pool; GTR-T5-L on English text \\
-\cite{pikuliak2023multilingual} & S@10 & 0.800 / 0.800 & MultiClaim / post-newer vs post-older, same index, GTR-T5 \\
+\cite{pikuliak2023multilingual} & S@10 & 0.8002 / 0.8004 & MultiClaim / post-newer vs post-older, no split, same index, GTR-T5 \\
 \cite{peng2025semeval} & S@10 & 0.9601 & SemEval-2025 Task~7 / monolingual test average (PINGAN AI) \\
 \cite{peng2025semeval} & S@10 & 0.926 & same / Polish test (PINGAN AI) \\
 \cite{devadiga2025tifin} & S@10 & 0.938 & SemEval-2025 Task~7 / monolingual test (TIFIN) \\
@@ -139,7 +143,7 @@ Work & Metric & Value & Dataset / split or condition \\
 \cite{vykopal2025large} & Macro-F1 & 0.825 & AMC-16K / monolingual half, no split; Mistral Large few-shot \\
 \cite{shaar2022role} & MAP & 0.602 & PolitiFact debates / sentence-level random split \\
 \cite{shaar2022role} & MAP & 0.429 & same / debate-level chronological split \\
-\cite{ounis2011overview} & P@30 & 0.455 & TREC 2011 Microblog / 49 judged topics; compulsory no-future run \\
+\cite{ounis2011overview} & P@30 & 0.455 & TREC 2011 Microblog / 49 judged topics, no split; compulsory no-future run \\
 \cite{liska2022streamingqa} & R@20 & 0.57 / 0.43 & StreamingQA / 2020 recent generated questions; dated vs undated DPR \\
 \cite{glockner2022missing} & leak rate & 0.697 & MultiFC / all misinformation claims, no split; automatic leak detector \\
 \cite{schlichtkrull2023averitec} & macro-F1 & 0.23 / 0.49 & AVeriTeC / development set; baseline vs gold evidence \\
@@ -149,8 +153,8 @@ Work & Metric & Value & Dataset / split or condition \\
 This work & S@10 & 0.631 / 0.091 & MultiClaim v2 Polish, 1,367 queries / random vs causal pool, BM25 \\
 This work & S@10 & 0.553 / 0.051 & MultiClaim v2 English, 22,600 queries / random vs causal pool, BM25 \\
 \cite{vykopal2026investigating} & S@10 & 0.829 & MultiClaim test split, 1,239 pairs / all fact-checks, multilingual-e5 \\
-\cite{kazemi2021claim} & F1 & 0.885 & claim similarity set, 2,343 pairs / 10-fold cross-validation, AdaBoost on I-XLM-R features \\
-\cite{sogaard2021random} & error red. & 0.808 / 0.450 & SentEval bigram shift / random split vs new Gutenberg sample, BERT \\
+\cite{kazemi2021claim} & F1 & 0.885 & claim similarity set, 2,343 pairs / 10-fold cross-validation, AdaBoost on features of a distilled multilingual encoder \\
+\cite{sogaard2021random} & error reduction & 0.808 / 0.450 & SentEval bigram shift / random split vs new Gutenberg sample, BERT \\
 \cite{alkhalifa2023overview} & NDCG & 0.3226 / 0.3359 & LongEval 2023 / within-time (June 2022) vs long-term (Sept. 2022) snapshot, mean of runs \\
 \bottomrule
 \end{tabular}
@@ -161,10 +165,10 @@ This work & S@10 & 0.553 / 0.051 & MultiClaim v2 English, 22,600 queries / rando
 Table~\ref{tab:data} lists the source datasets and the two datasets we will create.
 For ranking corpora, class balance is the density of positive post--fact-check links (gold pairs per post, share of fact-checks with a linked post), not a balanced classification split.
 Balance is measured on the raw files (\texttt{scripts/corpus\_stats.py}): gold fact-checks per post (FC/post) and the share of fact-checks with at least one linked post.
-Posts without a date are dropped: 25,957 of 28,092 in v1 and 87,304 of 89,139 in v2; 202,716 of 205,751 v1 and 430,630 of 435,252 v2 fact-checks are dated.
+Of 28,092 v1 and 89,139 v2 posts, 25,957 and 87,304 are dated and kept, the rest are dropped; 202,716 of 205,751 v1 and 430,630 of 435,252 v2 fact-checks are dated.
 The Polish and English rows are monolingual v2 slices (posts, fact-checks and pairs of that language); all 9,044 Polish and 166,080 of 166,430 English fact-checks are dated.
 
-\begin{table*}[t]
+\begin{table*}[!t]
 \centering
 \caption{Source datasets. FC = fact-checks: short verified/debunked claims from fact-checking sites (the documents we retrieve).}
 \label{tab:data}
@@ -184,8 +188,8 @@ AMC-16K & 16k pairs / 20 langs & human Yes/No relevance & 16\% relevant overall;
 PL & v1 (paper): 453 posts, 6,912 FC; v2: 1,406 posts, 9,044 FC, 1,550 pairs & as above & 1.13 FC/post; 13.7\% linked & as above & as above & SemEval test pool 8,796 FC \\
 EN & v1 (paper): 7,307 posts, 85,814 FC; v2: 24,004 posts, 166,430 FC, 28,533 pairs & as above & 1.26 FC/post; 13.1\% linked & as above & as above & SemEval test pool 145,287 FC \\
 \multicolumn{7}{@{}l}{\emph{Datasets we will create}} \\
-Causal split & id lists per language and protocol, no post text & post--fact-check ids with the date rule of Sec.~\ref{sec:plan} & n/a & our own; the terms say nothing on sharing ids, so we ask the authors before release & built by us, W1--W2 & TO COLLECT \\
-Failure annotations & 50 queries (25 PL, 25 EN) & failure code per newly failing query (codebook by W3) & n/a & our own & Florek, Cwalina, by 16~Dec & TO COLLECT \\
+Causal split & id lists per language and protocol, no post text; 1,367 Polish and 22,600 English queries from v2, v1 and SemEval later & post--fact-check ids with the date rule of Sec.~\ref{sec:plan} & n/a & our own; the terms say nothing on sharing ids, so we ask the authors before release & built by us, W1--W2 & TO COLLECT \\
+Failure annotations & 50 queries (25 PL, 25 EN) & one code per newly failing query: answerability, lexical leakage, narrative drift, cross-lingual-only debunk, missing label, timestamp error, multimodal-only (codebook and two annotators with Cohen's $\kappa$ by W5) & n/a & our own & Cwalina with a second annotator, by 16~Dec & TO COLLECT \\
 \bottomrule
 \end{tabular}%
 }
@@ -195,7 +199,7 @@ Failure annotations & 50 queries (25 PL, 25 EN) & failure code per newly failing
 \label{sec:plan}
 \paragraph{Pipeline.}
 Figure~\ref{fig:pipeline} summarises the evaluation path.
-Systems (committed core, four): BM25; multilingual-e5-large~\cite{wang2024multilingual}; the Polish--English retrieval encoder mmlw-retrieval-roberta-large (chosen over LaBSE because it was trained on Polish--English pairs); bge-reranker-v2-m3 on the top~100~\cite{chen2024m3}.
+Systems (committed core, four): BM25; multilingual-e5-large~\cite{wang2024multilingual}; the Polish--English retrieval encoder mmlw-retrieval-roberta-large (chosen over the Language-agnostic BERT Sentence Embedding, LaBSE, because it was trained on Polish--English pairs); bge-reranker-v2-m3 on the top~100~\cite{chen2024m3}.
 Protocols: full-pool random; strict causal $P(q)$; size-matched random of $|P(q)|$.
 Compute: local open-weight models only; no commercial LLM API on post text.
 
@@ -215,9 +219,10 @@ BM25 (bm25s, original-language words) scores one fixed query set per language, t
 Unconditionally S@10 falls from 0.631 to 0.091 for Polish and from 0.553 to 0.051 for English, a Polish--English difference-in-differences of $-0.038$ (point estimate; its interval needs per-query rows).
 On answerable queries the causal pool costs little: 0.829 to 0.822 for Polish (152 queries) and 0.519 to 0.492 for English (2,364), so the drop is almost all answerability; English size-matched pools are easier than causal ones (0.528 vs 0.492), in the direction of H2.
 Document-frequency statistics come from the full corpus, so the causal pool still shares future statistics.
+Of the 152 Polish answerable posts, 138 have their gold fact-check less than a day before the post, where time zones are undocumented, so the Polish causal result is fragile.
 The three runs took 15\,s (Polish) and 28\,min (English) on a laptop (macOS, arm64) with a peak of 1.2\,GB.
 
-\begin{table*}[t]
+\begin{table*}[!t]
 \centering
 \caption{BM25 S@10 on monolingual MultiClaim v2 slices under three pools; brackets give 95\% bootstrap intervals; size-matched is the mean of three seeds (range below 0.01). Answerable: a gold fact-check predates the post.}
 \label{tab:poc}
@@ -236,7 +241,7 @@ English (22,600; 2,364) & 0.553 [0.547, 0.560] & 0.398 & 0.051 [0.049, 0.054] & 
 A fact-check or post may carry several dated instances, so we take the earliest instance, at full second precision, as its time; $P(q)$ uses the strict inequality $t_f<t_q$ (margin 0), so a fact-check enters only if it was published earlier, ties are excluded, and a same-day fact-check published earlier counts.
 Sensitivity runs shrink the pool by margins of 1 and 7 days ($t_f<t_q-m$) and use a conservative and a liberal bound (latest vs earliest instance); we report the answerable rate and headline scores under both, and the share of queries whose pool membership flips.
 100 dates per language are checked against live URLs; undated posts are dropped and counted.
-Fact-checks whose earlier sibling debunks are missing from the corpus are counted as answerable misses in the decomposition.
+A post whose only earlier debunk is missing from the corpus counts as unanswerable; we count such cases and report them as a source of false failures.
 
 \paragraph{Metrics.}
 Chosen before results (MultiClaim / SemEval-2025 convention~\cite{pikuliak2023multilingual,peng2025semeval}).
@@ -258,8 +263,8 @@ We report both unconditionally (unanswerable queries count as misses) and on ans
 \node[box] (data) {Dated posts + fact-checks};
 \node[box, right=of data] (proto) {Pools: random, size-matched, causal $P(q)$};
 \node[box, right=of proto] (sys) {BM25, e5, mmlw, reranker};
-\node[box, right=of sys] (met) {S@10, MRR, bootstrap CI};
-\node[box, text width=5.2cm, below=1.1cm of $(proto)!0.5!(sys)$] (gap)
+\node[box, right=of sys] (met) {S@10, MRR, answerable rate, intervals};
+\node[box, text width=5.2cm, below=2.2cm of $(proto)!0.5!(sys)$] (gap)
   {Gap decomposition + 50 failure codes};
 \draw[arr] (data) -- (proto);
 \draw[arr] (proto) -- (sys);
@@ -280,14 +285,32 @@ We report both unconditionally (unanswerable queries count as misses) and on ans
 Internal work finishes before Christmas; course checkpoints: mid-term video 18~Nov, Phase~2 2~Dec, formal final 13~Jan~2027. One owner per task.
 \begin{itemize}
 \setlength\itemsep{0pt}
-\item \textbf{W1 (to 18~Nov):} download MultiClaim v1/v2 and SemEval Task~7, dated corpus loader (Pozorski); causal-pool module and answerable-rate gate (Florek); AMC-16K access request (Pozorski).
-\item \textbf{W2 (to 25~Nov):} BM25 and multilingual-e5 on the random pool, PL and EN (Jarosz); mmlw and reranker, GPU runs (Florek); per-language answerable rates (Pozorski).
+\item \textbf{W1 (to 18~Nov):} AMC-16K access request (Pozorski); date audit of 100 URLs per language (Florek).
+\item \textbf{W2 (to 25~Nov):} BM25 and multilingual-e5 on all three pools, PL and EN (Jarosz); mmlw and reranker, graphics-processing-unit (GPU) runs (Florek).
 \item \textbf{W3 (to 2~Dec):} causal and size-matched runs for all four systems (Jarosz); Phase~2 report and proof-of-concept (PoC) table (Cwalina).
 \item \textbf{W4 (to 9~Dec):} bootstrap intervals and difference-in-differences (Florek); gap decomposition with covariates (Pozorski).
 \item \textbf{W5 (to 16~Dec):} 50 failure annotations and codebook (Cwalina); judge validation (Jarosz).
 \item \textbf{W6 (to 23~Dec):} release check of split and code (Pozorski); write-up (Cwalina).
 \end{itemize}
 Main risks: the Polish answerable count is 152 posts at margin 0, barely above 150, and 14 and 9 at margins of 1 and 7 days, so Polish margin sensitivity is descriptive; timestamp semantics are undocumented (URL date audit); AMC-16K is still to be requested.
+
+\begin{table*}[!t]
+\centering
+\caption{Contributions. Hours are approximate and cover the Phase~1 report.}
+\label{tab:contrib}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lp{11.5cm}r@{}}
+\toprule
+Member & Named tasks & Hours \\
+\midrule
+Pawe{\l} Pozorski & research plan and topic notes, paper notes in \texttt{research/}, EDEN compute notes, README, template updates; data, protocol and SOTA sections; Phase~2 revision: feedback note, response plan, rebuttal, corpus statistics, novelty search & 7 \\
+Mateusz Jarosz & adopted the ACL report template and the grading handbook note; data layer (MultiClaim v1/v2 and SemEval loaders, strict-causal and size-matched pools, answerable rate, exploratory data analysis (EDA) notebooks, container recipes); systems and SOTA sections & 7 \\
+Pawe{\l} Florek & Phase~1 report update and timeline; evaluation section, pipeline figure and LaTeX; LLM-use and contribution sections & 5 \\
+Jan Cwalina & drafting and polish of the Phase~1 report text & 5 \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
 \section{Data statement}
 \label{sec:datastmt}
@@ -296,36 +319,19 @@ Access is granted for MultiClaim v1/v2, SemEval-2025 Task~7 and MultiClaimNet.
 Posts are real social-media text, released in anonymised form by the dataset authors; we treat them as personal data.
 We store files only in a directory readable by named team members, never send post text to an external LLM API, never put raw text in git or the paper (examples paraphrased; errors aggregated), and delete the data at project end.
 No per-outlet or per-author error ranking will be published.
-AMC-16K is secondary: it validates the LLM relevance judges used to label sibling fact-checks and failure codes.
+AMC-16K is secondary: it validates the LLM relevance judges that pre-sort sibling fact-check candidates; failure codes are assigned by two human annotators.
 The judges are three open-weight models disjoint from the evaluated systems (gpt-oss-120b, Command A, Mistral Large 2411), validated on the 400 Polish AMC-16K pairs by Cohen's $\kappa$ against the human Yes/No labels and used only above $\kappa=0.6$ (to confirm with the supervisor).
 Its public listing is on the EU Language Data Space (LDS) catalogue, which our university cannot use; we will request a copy from the authors at the Kempelen Institute of Intelligent Technologies (KInIT) under research terms.
 
 
 \section{Contribution}
 \label{sec:contrib}
-Table~\ref{tab:contrib} lists each member's tasks and approximate hours spent preparing this report.
+Table~\ref{tab:contrib} lists each member's named tasks, taken from the repository history (branches \texttt{main} and \texttt{feat/data-foundation}) where it records them, and the approximate hours spent on the Phase~1 report; each member adds the hours of this revision at submission.
 
-\begin{table}[t]
-\centering
-\caption{Contributions to preparing this report. Hours are approximate.}
-\label{tab:contrib}
-\small
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}lp{4.4cm}r@{}}
-\toprule
-Member & Role focus & Hours \\
-\midrule
-Pawe{\l} Pozorski & data, protocol \& SOTA & 7 \\
-Mateusz Jarosz & systems \& SOTA & 7 \\
-Pawe{\l} Florek & evaluation, figure \& LaTeX & 5 \\
-Jan Cwalina & drafting \& polish & 5 \\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \section{LLM-use declaration}
 \label{sec:llm}
-We used the following AI tools while preparing this proposal and report: Claude Code (Anthropic Claude models).
+We used the following AI tools while preparing this proposal and report: Claude Code with Claude Sonnet 5.5 and Claude Opus 5.5 (Anthropic).
 In the first submission its role was limited to formatting (LaTeX tables, section structure, citation layout) and wording corrections; in this revision it also helped draft the rebuttal, run the literature search and write the data-statistics and BM25 code, and the authors reviewed these outputs.
 
 \bibliographystyle{acl}
