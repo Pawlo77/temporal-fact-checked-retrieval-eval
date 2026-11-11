@@ -1,0 +1,59 @@
+% Phase 2 rebuttal (criterion 2.4): one row per point of the Phase 1 feedback.
+\documentclass[10pt]{article}
+\usepackage[landscape,margin=1.6cm]{geometry}
+\usepackage{longtable,booktabs,array,xcolor}
+\title{Response to the Phase 1 feedback\\\large Retrieval that Cannot See the Future}
+\author{Pozorski, Jarosz, Florek, Cwalina}
+\date{}
+\newcommand{\done}{\textbf{Corrected}}
+\newcommand{\partly}{\textbf{Partly corrected}}
+\newcommand{\defer}{\textbf{Deferred}}
+\newcommand{\rej}{\textbf{Not changed}}
+\begin{document}
+\maketitle
+Remarks are quoted from the Phase~1 feedback (ellipses mark omissions). Section, table and figure numbers refer to \texttt{report.pdf} in this folder. ``W'' is the week of the plan in Sec.~4.
+\small
+\begin{longtable}{@{}l p{4.6cm} p{1.6cm} p{7.2cm} p{2.4cm}@{}}
+\toprule
+ID & Remark (quoted) & Status & Response & Where \\\midrule\endhead
+F1 & ``Table 1 ... claims ``every value names the dataset and the split''. This is not true for several rows.'' & \done & Every row of Table~1 now names the split or says ``no split''. Pikuliak 0.83 is relabelled: all pairs, no held-out split, same-language pool (the old label ``full pool'' was also wrong). Glockner, AMC-16K and TREC have no split; the condition is named instead. & Table~1, Sec.~2 \\
+F2 & ``Schlichtkrull macro-F1 0.23/0.49 is labelled ``AVeriTeC test''. The paper's baseline analysis is on the development set.'' & \done & AVeriTeC numbers are development-set results; the test labels were not public. Label and text corrected. & Table~1, Sec.~2 \\
+F3 & ``Table 1 mixes scales: some values are 0--1 ... and others 0--100. Use one scale.'' & \done & All values on a 0--1 scale. & Table~1, Sec.~2 \\
+F4 & ``Aschern's CheckThat! 2021 score as MAP@5 0.883 ... but as 88.2 ... Reconcile the two numbers or explain the difference.'' & \done & Both numbers are faithful to their sources: 0.883 is the CheckThat! 2021 overview, 0.882 is Aschern's value quoted in the table of Hardalov et al. Both are now stated, with the source of each. & Sec.~2, Table~1 \\
+F5 & ``The ``No PFCR evaluation we found restricts the fact-check index per query'' claim should be backed by a stated search protocol.'' & \defer & The search protocol (databases, queries, date) is written in W1 and will be cited here; the claim is currently marked with a TODO. & Sec.~2 \\
+F6 & ``Class balance: ``sparse positives (ranking)'' is not a number.'' & \defer & Class balance (gold pairs per post, share of fact-checks with a linked post) is computed from the data in W1; the cells say ``to compute''. We do not quote numbers we have not measured. & Table~2 \\
+F7 & ``Polish and English subset sizes are missing.'' & \partly & Published MultiClaim v1 Polish and English counts, the v2 subset pairs and the SemEval pools are added. Dated counts and the Polish answerable count need the data (W1--W2). & Table~2 \\
+F8 & ``The causal split ... and the 50 hand-coded failure annotations are deliverables. Each needs its own row with a TO COLLECT label.'' & \done & Rows for the causal split and the 50 failure annotations added: status TO COLLECT, size, label, annotators, date. & Table~2 \\
+F9 & ``AMC-16K is RESTRICTED ``to be requested'', but no request date is given.'' & \partly & No request date was given and none was sent yet; the table now says so and W1 sends it. Note: the topic card's October deadline concerns the MultiClaim access, which is granted; the card sets no deadline for AMC-16K. & Table~2, Sec.~5 \\
+F10 & ``Licence column: ``research use only'' describes access terms. Name the actual terms document.'' & \partly & Licence column names the Zenodo access conditions for the three restricted records; AMC-16K (CC BY-NC-SA 4.0) and MultiClaimNet (CC BY 4.0) already named theirs. Whether id lists may be shared is to be confirmed with the dataset authors. & Table~2 \\
+F11 & ``No primary metric.'' & \done & Primary metric fixed before results: unconditional S@10, Polish--English difference-in-differences, random vs causal. & Sec.~4, Primary metric \\
+F12 & ``The plan is not week by week. W1--W4 are blocks of about two weeks each.'' & \done & Weekly plan, one owner per task. (W4 of the old plan was one week, not two.) & Sec.~4 \\
+F13 & ``The fourth system is not scheduled ... ``mmlw / LaBSE'', which is undecided.'' & \done & mmlw-retrieval-roberta-large chosen and scheduled in W2. & Sec.~4 \\
+F14 & ``Figure 1 ... does not show the per-query date filter $P(q)$, the size-matched random control, or where the bootstrap enters.'' & \done & Figure~1 now shows $P(q)$ and the bootstrap; the size-matched control was already in it. & Fig.~1 \\
+F15 & ``RQ4 (LLM rerankers, ``core+'') has no metric, data or owner.'' & \done & RQ4 removed; stated as future work. & Sec.~1 \\
+F16 & ``Undefined abbreviations: DPR, PoC, LDS, CLEF, TREC, KInIT, WUT, LaBSE, mmlw, GTR, RIET, rankSVM, ``EN 2A''.'' & \done & Abbreviations expanded at first use. ``RIET Lab'' is a team name and kept; ``core+'' no longer occurs. & Secs.~2--5 \\
+F17 & ``(Ramponi et al., 2025) pages are 29045--29064.'' & \done & Ramponi pages corrected to 29045--29064. & Bibliography \\
+F18 & ``(Chen et al., 2024) uses the arXiv title ... with the Findings of ACL venue.'' & \done & Chen et al. title corrected to the published one. & Bibliography \\
+F19 & ``Citations used as sentence subjects are rendered in parentheses ... Use \texttt{\textbackslash citet}.'' & \done & Citations as sentence subjects use \verb|\newcite| (this template has no \verb|\citet|). & Sec.~2 \\
+F20 & ``State explicitly that no per-outlet or per-author error ranking will be published.'' & \done & Sentence added: no per-outlet or per-author ranking. & Sec.~5 \\
+F21 & ``Restore the template credit line under the author block.'' & \done & Credit line added under the title. (It was absent from the first submission, not removed.) & Title block \\
+F22 & ``Define how tied timestamps, uncertain original publication dates, and missing earlier sibling fact-checks will be handled.'' & \done & Rule for several dated instances, ties (strict inequality), margins, bounds and missing sibling debunks added. Ties are excluded by $t_f<t_q$ already. & Sec.~4, Dates and ties \\
+F23 & ``Add the card's gap factors (time lag, lexical overlap, narrative drift) to the decomposition, or justify replacing them.'' & \done & Time lag, lexical overlap and narrative drift added to RQ2 as covariates of the decomposition. & Sec.~1 \\
+F24 & ``Name every tool and model in a corrected PDF ... give concrete tasks rather than role areas.'' & \partly & Tools are named for Claude Code; the other members add theirs in the marked place (red TODO). The contribution table keeps role areas; concrete tasks are added in the Phase~2 version. & Sec.~7, Sec.~6 \\
+F25 & ``No LLM judge appears anywhere else in the plan. Either remove it, or specify the judge model, its prompt and output labels, and the validation.'' & \done & The judge is specified: three open-weight models, English prompt, Yes/No labels, validated on the 400 Polish AMC-16K pairs with Cohen's $\kappa$, threshold 0.6 (to confirm with the supervisor). & Sec.~5 \\
+F26 & ``The strict causal pool will contain no gold item for most queries ... Report the answerable rate per language as the first Phase 2 result.'' & \partly & The answerable rate and the unconditional/answerable split were already in Sec.~4; the per-language answerable rate is now declared the first reported result. & Sec.~4 \\
+F27 & ``The language-bias analysis ... is not cited. Cite it.'' & \done & Vykopal et al. (2026) cited to delimit the scope. & Sec.~1 \\
+F28 & ``Distinguish prespecified analysis from formally preregistered analysis.'' & \done & ``Pre-registered'' replaced by ``prespecified, not formally preregistered''. The access grants (Sec.~5) are those of the three Zenodo records. & Sec.~1, Sec.~5 \\
+F29 & ``Test temporal, full-index and size-matched controls on equal query sets.'' & \partly & Equal query sets stated. The leakage numbers come with the PoC results. & Sec.~4 \\
+F30 & ``Phase 2 requires a rebuttal ... and an extended SOTA table (criterion 2.5) that includes the works listed above.'' & \defer & This document answers every point. The extended SOTA table (criterion 2.5) will add the works below and is part of the Phase~2 report. & Plan task 4 \\
+Q1 & ``How do you handle tied publication dates, missing historical fact-checks and uncertain document timestamps?'' & \done & See F22. & Sec.~4 \\
+Q2 & ``Can you show the effect of a strictly time-respecting index against both an unrestricted index and a size-matched control?'' & \defer & Planned core comparison (random, size-matched, causal on one query set); first numbers in the Phase~2 PoC. & Sec.~4 \\
+\midrule
+\multicolumn{5}{@{}l}{\textbf{Suggested literature}} \\
+Vykopal 2026 & ``Cite it to delimit your contribution.'' & \done & Cited. & Sec.~1 \\
+S{\o}gaard 2021 & ``random splits overestimate performance'' & \done & Cited as the premise of the time-respecting split. & Sec.~1 \\
+Kazemi 2021, LongEval 2023 & ``missing from your multilingual PFCR section''; ``a closer precedent for a time-respecting index'' & \defer & Added to the extended SOTA table of Phase~2. & Plan task 4 \\
+Urbano 2019 & ``justifies the choice of paired bootstrap'' & \rej & Not cited for the bootstrap: the paper recommends the t-test or permutation test and sets no resample count, so it does not justify our test. We cite it only if we add one of those tests. & --- \\
+\bottomrule
+\end{longtable}
+\end{document}
