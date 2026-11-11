@@ -73,10 +73,11 @@ Random splits overestimate performance~\cite{sogaard2021random}, which motivates
 
 \section{Significance and state of the art}
 \label{sec:sota}
-We summarise fifteen prior works.
+We summarise fifteen prior works and, after the Phase~1 review, four more.
 Table~\ref{tab:sota} lists the published numbers we compare on one 0--1 scale, with the dataset and the split or evaluation condition named for every value (``no split'' where the source has none).
 No PFCR evaluation we found restricts the fact-check index \emph{per query} to documents published before the post.
-% TODO(F5): state the search protocol (databases, queries, date) once the novelty search is run; see plans/2026-11-11-phase1-feedback-response.
+Our search (11~Nov 2026; OpenAlex and arXiv keyword queries and forward citations of ten seed papers, works since 2019; protocol \texttt{research/protocols/causal-index-pfcr.yaml}) retrieved 1,738 records, 240 after deduplication and keyword screening, and none after reading titles and abstracts evaluates PFCR with a per-query pre-post index.
+The closest works restrict evidence to what predates the claim for verification~\cite{wu2026nohindsight} or fence citation context in case-law retrieval~\cite{liu2026fenced}.
 
 \paragraph{PFCR task and shared tasks.}
 \newcite{shaar2020that} define PFCR as ranking verified claims for a social-media or debate input; on Snopes tweets and PolitiFact debate sentences, BM25 plus a ranking support vector machine (rankSVM) reaches MRR 0.788 and S@10 0.915 on the Snopes test (BM25 top-50 rerank).
@@ -101,6 +102,12 @@ No PFCR evaluation we found restricts the fact-check index \emph{per query} to d
 \newcite{schlichtkrull2023averitec} release AVeriTeC with evidence restricted to documents before the claim and temporally ordered splits; baseline verdict macro-F1 is 0.23 (gold evidence 0.49) on the development set; the test labels were not public.
 \newcite{mu2023its} show rumour classifiers collapse under chronological splits: on Twitter~16, BERT macro-F1 falls from 0.915 (random) to 0.472 (stratified chronological).
 
+\paragraph{Added after the Phase~1 review.}
+\newcite{vykopal2026investigating} show that dense retrievers return some fact-checks far more often than their gold share, so a language penalty may reflect retrieval bias; we therefore report within-language changes only.
+\newcite{kazemi2021claim} frame claim matching beyond English and rerank BM25 candidates with a distilled multilingual encoder.
+\newcite{sogaard2021random} show that random splits overestimate performance on later data, the premise of our time-respecting split.
+\newcite{alkhalifa2023overview} evaluate retrieval on dated collection snapshots, a coarser precedent for a time-respecting index.
+
 \paragraph{Table metrics.}
 Let $G(q)$ be the gold items for query~$q$ and $r_q$ the rank of the first gold hit (undefined if none).
 \emph{S@10} is the fraction of queries with a gold hit in the top~10; \emph{MRR} is the mean of $1/r_q$ ($0$ if no gold ranked)~\cite{pikuliak2023multilingual,peng2025semeval}.
@@ -112,7 +119,7 @@ Let $G(q)$ be the gold items for query~$q$ and $r_q$ the rank of the first gold 
 
 \begin{table*}[t]
 \centering
-\caption{Published numbers for the fifteen works above. All values on a 0--1 scale; each names the dataset and the split or evaluation condition of the source paper. Metrics as above.}
+\caption{Published numbers for the works above. All values on a 0--1 scale; each names the dataset and the split or evaluation condition of the source paper. Metrics as above.}
 \label{tab:sota}
 \small
 \setlength{\tabcolsep}{4pt}
@@ -141,6 +148,12 @@ Work & Metric & Value & Dataset / split or condition \\
 \cite{glockner2022missing} & leak rate & 0.697 & MultiFC / all misinformation claims, no split; automatic leak detector \\
 \cite{schlichtkrull2023averitec} & macro-F1 & 0.23 / 0.49 & AVeriTeC / development set; baseline vs gold evidence \\
 \cite{mu2023its} & macro-F1 & 0.915 / 0.472 & Twitter 16 / random vs stratified chronological split, BERT \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Added after the Phase 1 review}} \\
+\cite{vykopal2026investigating} & S@10 & 0.829 & MultiClaim test split, 1,239 pairs / all fact-checks, multilingual-e5 \\
+\cite{kazemi2021claim} & F1 & 0.885 & claim similarity set, 2,343 pairs / 10-fold cross-validation, AdaBoost on I-XLM-R features \\
+\cite{sogaard2021random} & error red. & 0.808 / 0.450 & SentEval bigram shift / random split vs new Gutenberg sample, BERT \\
+\cite{alkhalifa2023overview} & NDCG & 0.3226 / 0.3359 & LongEval 2023 / within-time (June 2022) vs long-term (Sept. 2022) snapshot, mean of runs \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -193,8 +206,8 @@ The per-language answerable rate is the first result reported.
 All protocols are scored on one fixed query set per language, so the random, size-matched and causal pools differ only in the index.
 
 \paragraph{Dates and ties.}
-A fact-check or post may carry several dated instances, so we take the earliest instance at day resolution as its time; $P(q)$ uses the strict inequality $t_f<t_q$, so same-day pairs are excluded.
-Sensitivity runs use margins of 0, 1 and 7 days and a conservative and a liberal bound (latest vs earliest instance); we report the answerable rate and headline scores under both, and the share of queries whose pool membership flips.
+A fact-check or post may carry several dated instances, so we take the earliest instance, at full second precision, as its time; $P(q)$ uses the strict inequality $t_f<t_q$ (margin 0), so a fact-check enters only if it was published earlier, ties are excluded, and a same-day fact-check published earlier counts.
+Sensitivity runs shrink the pool by margins of 1 and 7 days ($t_f<t_q-m$) and use a conservative and a liberal bound (latest vs earliest instance); we report the answerable rate and headline scores under both, and the share of queries whose pool membership flips.
 100 dates per language are checked against live URLs; undated posts are dropped and counted.
 Fact-checks whose earlier sibling debunks are missing from the corpus are counted as answerable misses in the decomposition.
 
