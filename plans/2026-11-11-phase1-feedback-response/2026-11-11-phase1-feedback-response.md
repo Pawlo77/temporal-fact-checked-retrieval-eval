@@ -73,7 +73,7 @@ Must be computed from data (never estimated in the report):
 | 1 Goal | F11, F15, F28 | Primary claim: S@10, unconditional, strict causal vs random, PL-EN DiD, with answerable-only secondary. Drop RQ4 to future work unless an owner and metric are agreed. Rename "pre-registered" to "prespecified (frozen in git before results)" | PF |
 | 2 SOTA | F1-F5, F16, F19, F27, X1 | Per-row split or condition; AVeriTeC dev; one 0-1 scale; Aschern footnote; search protocol sentence; expand abbreviations; `\newcite`; cite Vykopal 2026 to delimit scope | MJ |
 | Bib | F17, F18 | Ramponi pages; published M3-Embedding title | MJ |
-| 3 Data | F6-F10 | Task 2 numbers; TO COLLECT rows for split id lists and 50 failure codes (codebook, 2 annotators, kappa, W3, PF/JC); AMC-16K request date; licence terms | PP |
+| 3 Data | F6-F10 | Task 2 numbers; TO COLLECT rows for split id lists and 50 failure codes (codebook, 2 annotators Florek and Cwalina, kappa, W5); AMC-16K request date; licence terms | PP |
 | 4 Plan | F12-F14, F22, F23, F26, F29 | Weekly plan, one owner per task; one 4th encoder in W2 (decide at the meeting, default LaBSE for PL→EN); Figure 1 with P(q) and bootstrap; timestamp rule (earliest instance, margins, bounds); lag, overlap and drift as covariates; answerable rate as first result; all protocols on one query set | PF (figure), PP (protocol) |
 | 5 Data stmt | F20, F25, F28 | No per-outlet or per-author ranking. Judge: specify (panel, released prompt, Yes/No labels, validation on AMC-16K PL+EN mono pairs, Cohen's kappa, accept at kappa ≥ 0.6) or remove if AMC-16K is not received by 25 Nov. List the access grants | JC |
 | 7 LLM use | F24 | Name each tool and model version, and what it did; give concrete per-member tasks in the contribution table | JC |

@@ -190,7 +190,7 @@ PL & v1 (paper): 453 posts, 6,912 FC; v2: 1,406 of 1,450 posts dated, 9,044 FC, 
 EN & v1 (paper): 7,307 posts, 85,814 FC; v2: 24,004 of 24,396 posts dated, 166,430 FC (166,080 dated), 28,533 pairs & as above & 1.26 FC/post; 13.1\% linked & as above & as above & SemEval test: 497 of 500 posts dated, 145,287 FC \\
 \multicolumn{7}{@{}l}{\emph{Datasets we will create}} \\
 Causal split & id lists per language and protocol, kept confidential; 1,367 Polish and 22,600 English queries from v2, v1 and SemEval later & post--fact-check ids with the date rule of Sec.~\ref{sec:plan} & n/a & our own; the dataset authors asked us not to publish id lists, so we release the code only & built by us, W1--W2 & TO COLLECT \\
-Failure annotations & 50 queries (25 PL, 25 EN) & one code per newly failing query: answerability, lexical leakage, narrative drift, cross-lingual-only debunk, missing label, timestamp error, multimodal-only (codebook and two annotators with Cohen's $\kappa$ by W5) & n/a & our own & Cwalina with a second annotator, by 16~Dec & TO COLLECT \\
+Failure annotations & 50 queries (25 PL, 25 EN) & one code per newly failing query: answerability, lexical leakage, narrative drift, cross-lingual-only debunk, missing label, timestamp error, multimodal-only (codebook frozen before annotation; two annotators, agreement by Cohen's $\kappa$) & n/a & our own & Florek and Cwalina, by 16~Dec & TO COLLECT \\
 \bottomrule
 \end{tabular}%
 }
@@ -291,7 +291,7 @@ Internal work finishes before Christmas; course checkpoints: mid-term video 18~N
 \item \textbf{W2 (to 25~Nov):} BM25 and multilingual-e5 on all three pools, PL and EN (Jarosz); mmlw and reranker, graphics-processing-unit (GPU) runs (Florek).
 \item \textbf{W3 (to 2~Dec):} causal and size-matched runs for all four systems (Jarosz); Phase~2 report and proof-of-concept (PoC) table (Cwalina).
 \item \textbf{W4 (to 9~Dec):} bootstrap intervals and difference-in-differences (Florek); gap decomposition with covariates (Pozorski).
-\item \textbf{W5 (to 16~Dec):} 50 failure annotations and codebook (Cwalina); judge validation (Jarosz).
+\item \textbf{W5 (to 16~Dec):} 50 failure annotations and codebook (Cwalina; Florek second annotator); judge validation (Jarosz).
 \item \textbf{W6 (to 23~Dec):} release check of the code (Pozorski); write-up (Cwalina).
 \end{itemize}
 Main risks: the Polish answerable count is 152 posts at margin 0, barely above 150, and 14 and 9 at margins of 1 and 7 days, so Polish margin sensitivity is descriptive; timestamp semantics are undocumented (URL date audit); AMC-16K was requested on 11~Nov and is pending.
