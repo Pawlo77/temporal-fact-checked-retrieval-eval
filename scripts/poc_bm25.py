@@ -14,12 +14,13 @@ import resource
 import sys
 import time
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
 from temporal_fact_checked_retrieval_eval.dataset import DatedCorpus
 from temporal_fact_checked_retrieval_eval.dataset.multiclaim import load_multiclaim
-from temporal_fact_checked_retrieval_eval.poc import evaluate, summarise
+from temporal_fact_checked_retrieval_eval.poc import did_interval, evaluate, summarise
 
 SEEDS = (0, 1, 2)
 
@@ -44,7 +45,11 @@ def main(root: Path, languages: list[str]) -> None:
     )
     fc_texts = _texts(folder / "fact_checks.csv", "fact_check_id", ("claim", "title"))
     post_texts = _texts(folder / "posts.csv", "post_id", ("post_body",))
-    out: dict = {"hardware": platform.platform(), "bm25": "bm25s default, \\w+ tokens"}
+    by_lang: dict[str, list[dict[str, Any]]] = {}
+    out: dict[str, Any] = {
+        "hardware": platform.platform(),
+        "bm25": "bm25s default, \\w+ tokens",
+    }
     for spec in languages:
         lang, _, size = spec.partition(":")
         posts = {k: p for k, p in corpus.posts.items() if p.language == lang}
@@ -60,16 +65,20 @@ def main(root: Path, languages: list[str]) -> None:
             )
             queries = [queries[i] for i in sorted(pick)]
         start = time.perf_counter()
-        runs = [
-            summarise(evaluate(sub, fc_texts, post_texts, queries, seed=s))
-            for s in SEEDS
-        ]
+        rows = {
+            seed: evaluate(sub, fc_texts, post_texts, queries, seed=seed)
+            for seed in SEEDS
+        }
+        by_lang[lang] = rows[SEEDS[0]]
+        runs = [summarise(rows[seed]) for seed in SEEDS]
         out[spec] = {
             "queries": len(queries),
             "pool": len(fcs),
             "seconds": round(time.perf_counter() - start, 1),
             "runs": runs,
         }
+    if {"pol", "eng"} <= by_lang.keys():
+        out["did_pol_vs_eng"] = did_interval(by_lang["pol"], by_lang["eng"])
     peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     out["peak_rss_mb"] = round(
         peak / (1 if sys.platform == "linux" else 1024) / 1024, 1

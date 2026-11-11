@@ -103,19 +103,90 @@ def evaluate(
     return rows
 
 
+def paired_permutation_p(
+    a: Sequence[float] | np.ndarray,
+    b: Sequence[float] | np.ndarray,
+    *,
+    resamples: int = 10_000,
+    seed: int = 0,
+) -> float:
+    """Two-sided paired sign-flip permutation p-value for equal means.
+
+    Args:
+        a: Per-query scores of one system.
+        b: Per-query scores of the other, aligned with ``a``.
+        resamples: Random sign assignments of the per-query differences.
+        seed: Seed of the sign draws.
+
+    Returns:
+        ``(hits + 1) / (resamples + 1)``, where a hit is a permuted mean difference at
+        least as large in absolute value as the observed one.
+    """
+    diff = np.asarray(a, dtype=float) - np.asarray(b, dtype=float)
+    if not diff.any():
+        return 1.0
+    rng = np.random.default_rng(seed)
+    observed = abs(diff.sum())
+    chunk = max(1, 2_000_000 // diff.size)
+    hits = 0
+    for start in range(0, resamples, chunk):
+        signs = rng.choice((-1.0, 1.0), size=(min(chunk, resamples - start), diff.size))
+        hits += int((np.abs(signs @ diff) >= observed - 1e-9).sum())
+    return (hits + 1) / (resamples + 1)
+
+
+def did_interval(
+    rows_a: Sequence[dict[str, Any]],
+    rows_b: Sequence[dict[str, Any]],
+    *,
+    resamples: int = 1000,
+    seed: int = 0,
+) -> dict[str, Any]:
+    """Difference in differences of S@10, causal minus random, of query set A minus B.
+
+    Args:
+        rows_a: Output of :func:`evaluate` for the focus language.
+        rows_b: Output of :func:`evaluate` for the control language.
+        resamples: Bootstrap resamples, drawn independently within each query set.
+        seed: Bootstrap seed.
+
+    Returns:
+        ``estimate`` and the 95% percentile interval ``ci``.
+    """
+    penalties = [
+        np.array([float(r["causal"] > 0) - float(r["random"] > 0) for r in rows])
+        for rows in (rows_a, rows_b)
+    ]
+    rng = np.random.default_rng(seed)
+    boot = [
+        p[rng.integers(0, len(p), (resamples, len(p)))].mean(axis=1) for p in penalties
+    ]
+    return {
+        "estimate": float(penalties[0].mean() - penalties[1].mean()),
+        "ci": [float(x) for x in np.percentile(boot[0] - boot[1], [2.5, 97.5])],
+    }
+
+
 def summarise(
-    rows: Sequence[dict[str, Any]], *, resamples: int = 1000, seed: int = 0
+    rows: Sequence[dict[str, Any]],
+    *,
+    resamples: int = 1000,
+    permutations: int = 10_000,
+    seed: int = 0,
 ) -> dict[str, Any]:
     """Mean S@10 and MRR@10 per protocol with paired bootstrap 95% intervals.
 
     Args:
         rows: Output of :func:`evaluate`.
         resamples: Bootstrap resamples over queries, shared by all protocols.
-        seed: Bootstrap seed.
+        permutations: Sign flips of the paired permutation tests.
+        seed: Bootstrap and permutation seed.
 
     Returns:
         ``n``, ``n_answerable`` and, per protocol, ``all`` and ``answerable`` entries
-        with ``s10``, ``mrr`` and their intervals ``s10_ci`` and ``mrr_ci``.
+        with ``s10``, ``mrr`` and their intervals ``s10_ci`` and ``mrr_ci``; ``tests``
+        holds the paired permutation p-values of S@10 for each of the random and
+        size-matched pools against the causal pool.
     """
     if not rows:
         msg = "no queries to summarise"
@@ -142,4 +213,16 @@ def summarise(
                     if total
                     else [0.0, 0.0]
                 )
+    out["tests"] = {}
+    for label, keep in (
+        ("all", np.ones(len(rows), bool)),
+        ("answerable", answerable > 0),
+    ):
+        hit = {n: np.array([r[n] > 0 for r in rows], float)[keep] for n in PROTOCOLS}
+        out["tests"][label] = {
+            f"{n}_vs_causal": paired_permutation_p(
+                hit[n], hit["causal"], resamples=permutations, seed=seed
+            )
+            for n in ("random", "size_matched")
+        }
     return out

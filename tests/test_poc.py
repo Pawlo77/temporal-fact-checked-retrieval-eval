@@ -10,7 +10,13 @@ from temporal_fact_checked_retrieval_eval.dataset import (
     GoldPair,
     Post,
 )
-from temporal_fact_checked_retrieval_eval.poc import evaluate, summarise, tokenize
+from temporal_fact_checked_retrieval_eval.poc import (
+    did_interval,
+    evaluate,
+    paired_permutation_p,
+    summarise,
+    tokenize,
+)
 
 
 def _setup() -> tuple[DatedCorpus, dict[str, str], dict[str, str]]:
@@ -80,3 +86,28 @@ def test_summarise_means_and_interval() -> None:
 def test_summarise_rejects_empty() -> None:
     with pytest.raises(ValueError, match="no queries"):
         summarise([])
+
+
+def test_permutation_p_detects_a_shift_and_accepts_equal_scores() -> None:
+    zeros = [0.0] * 200
+    ones = [1.0] * 200
+    assert paired_permutation_p(ones, zeros, resamples=999) < 0.01
+    assert paired_permutation_p(ones, ones, resamples=999) == 1.0
+
+
+def test_summarise_reports_paired_tests() -> None:
+    rows = [
+        {"answerable": True, "random": 1.0, "size_matched": 1.0, "causal": 0.0}
+        for _ in range(60)
+    ]
+    out = summarise(rows, resamples=100, permutations=499)
+    assert out["tests"]["all"]["random_vs_causal"] < 0.05
+    assert out["tests"]["answerable"]["size_matched_vs_causal"] < 0.05
+
+
+def test_did_interval_is_the_difference_of_penalties() -> None:
+    pl = [{"random": 1.0, "causal": 0.0}] * 50 + [{"random": 1.0, "causal": 1.0}] * 50
+    en = [{"random": 1.0, "causal": 0.0}] * 20 + [{"random": 1.0, "causal": 1.0}] * 80
+    out = did_interval(pl, en, resamples=300)
+    assert out["estimate"] == pytest.approx(-0.30)
+    assert out["ci"][0] < -0.30 < out["ci"][1]
