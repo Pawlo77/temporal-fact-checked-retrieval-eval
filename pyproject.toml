@@ -120,6 +120,7 @@ skips = ["B404", "B603"]  # git and system probes in reproducibility.py
 
 [tool.pytest.ini_options]
 pythonpath = [".", "src"]
+testpaths = ["tests"]  # data/ holds third-party scripts named like tests
 filterwarnings = [
 ]
 
