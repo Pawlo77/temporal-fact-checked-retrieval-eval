@@ -1,7 +1,7 @@
 """BM25 proof of concept: one query set under random, size-matched and causal pools."""
 
 import re
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from datetime import datetime
 from typing import Any
 
@@ -32,24 +32,19 @@ def _rank_score(
     return 1.0 / (hits[0] + 1) if hits.size else 0.0
 
 
-def evaluate(
+def evaluate_scores(
     corpus: DatedCorpus,
-    fc_texts: Mapping[str, str],
-    post_texts: Mapping[str, str],
+    score_fn: Callable[[str], np.ndarray],
     post_ids: Sequence[str],
     *,
     seed: int = 0,
     k: int = 10,
 ) -> list[dict[str, Any]]:
-    """Score each post with BM25 under the three pools of one fixed query set.
-
-    Document-frequency statistics come from the whole corpus; only the candidate
-    set is restricted, so the causal pool still shares full-corpus statistics.
+    """Rank each post under the three pools of one fixed query set.
 
     Args:
-        corpus: Dated corpus; its fact-checks are the full pool.
-        fc_texts: Fact-check id to text.
-        post_texts: Post id to text.
+        corpus: Dated corpus; its fact-checks, in insertion order, are the full pool.
+        score_fn: Post id to the scores of every fact-check, in corpus order.
         post_ids: The query set, scored identically under every protocol.
         seed: Seed of the size-matched sampling.
         k: Cut-off of the reciprocal rank (MRR@k).
@@ -67,10 +62,6 @@ def evaluate(
         else np.inf
         for f in fc_ids
     ])
-    retriever = bm25s.BM25()
-    retriever.index(
-        [tokenize(fc_texts.get(f, "")) for f in fc_ids], show_progress=False
-    )
     gold_of: dict[str, list[int]] = {}
     for pair in corpus.pairs:
         if pair.fact_check_id in index:
@@ -85,7 +76,7 @@ def evaluate(
         causal = times < (post_time - _EPOCH).total_seconds()
         gold = np.array(gold_of.get(post_id, []), dtype=int)
         gold_in_pool = gold[causal[gold]] if gold.size else gold
-        scores = retriever.get_scores(tokenize(post_texts.get(post_id, "")))
+        scores = score_fn(post_id)
         size = int(causal.sum())
         forced = np.unique(gold_in_pool)[:size]
         pool = np.zeros_like(causal)
@@ -101,6 +92,44 @@ def evaluate(
             "causal": _rank_score(scores, causal, gold, k),
         })
     return rows
+
+
+def evaluate(
+    corpus: DatedCorpus,
+    fc_texts: Mapping[str, str],
+    post_texts: Mapping[str, str],
+    post_ids: Sequence[str],
+    *,
+    seed: int = 0,
+    k: int = 10,
+) -> list[dict[str, Any]]:
+    """BM25 scores under the three pools (see :func:`evaluate_scores`).
+
+    Document-frequency statistics come from the whole corpus; only the candidate
+    set is restricted, so the causal pool still shares full-corpus statistics.
+
+    Args:
+        corpus: Dated corpus; its fact-checks are the full pool.
+        fc_texts: Fact-check id to text.
+        post_texts: Post id to text.
+        post_ids: The query set.
+        seed: Seed of the size-matched sampling.
+        k: Cut-off of the reciprocal rank (MRR@k).
+
+    Returns:
+        The rows of :func:`evaluate_scores`.
+    """
+    retriever = bm25s.BM25()
+    retriever.index(
+        [tokenize(fc_texts.get(f, "")) for f in corpus.fact_checks], show_progress=False
+    )
+    return evaluate_scores(
+        corpus,
+        lambda post_id: retriever.get_scores(tokenize(post_texts.get(post_id, ""))),
+        post_ids,
+        seed=seed,
+        k=k,
+    )
 
 
 def paired_permutation_p(

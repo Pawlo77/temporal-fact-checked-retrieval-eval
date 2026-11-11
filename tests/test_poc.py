@@ -2,6 +2,7 @@
 
 from datetime import datetime
 
+import numpy as np
 import pytest
 
 from temporal_fact_checked_retrieval_eval.dataset import (
@@ -13,6 +14,7 @@ from temporal_fact_checked_retrieval_eval.dataset import (
 from temporal_fact_checked_retrieval_eval.poc import (
     did_interval,
     evaluate,
+    evaluate_scores,
     paired_permutation_p,
     summarise,
     tokenize,
@@ -111,3 +113,19 @@ def test_did_interval_is_the_difference_of_penalties() -> None:
     out = did_interval(pl, en, resamples=300)
     assert out["estimate"] == pytest.approx(-0.30)
     assert out["ci"][0] < -0.30 < out["ci"][1]
+
+
+def test_evaluate_scores_uses_the_given_scores_under_every_pool() -> None:
+    corpus, _, _ = _setup()
+    order = list(corpus.fact_checks)
+
+    def oracle(post_id: str) -> np.ndarray:
+        gold = {p.fact_check_id for p in corpus.pairs if p.post_id == post_id}
+        return np.array([1.0 if f in gold else 0.0 for f in order])
+
+    rows = {
+        r["post_id"]: r for r in evaluate_scores(corpus, oracle, ["p_ok", "p_late"])
+    }
+    assert rows["p_ok"]["causal"] == 1.0
+    assert rows["p_late"]["random"] == 1.0
+    assert rows["p_late"]["causal"] == 0.0

@@ -52,6 +52,11 @@ Homepage = "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval"
 Repository = "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval"
 Issues = "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval/issues"
 
+[project.optional-dependencies]
+dense = [
+    "sentence-transformers>=3.0",
+]
+
 [build-system]
 requires = ["uv_build>=0.11.0,<0.14.0"]
 build-backend = "uv_build"
