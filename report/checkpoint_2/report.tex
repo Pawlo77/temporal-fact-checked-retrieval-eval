@@ -217,11 +217,12 @@ With margins of 1 and 7 days the Polish count falls to 14 and 9 posts and the En
 
 \paragraph{Proof of concept.}
 BM25 (bm25s, original-language words) scores one fixed query set per language, the posts with a same-language gold fact-check, under the three pools (Table~\ref{tab:poc}); intervals are paired bootstrap over queries (1,000 resamples), and the size-matched pool is averaged over three seeds.
-Unconditionally S@10 falls from 0.631 to 0.091 for Polish and from 0.553 to 0.051 for English, a Polish--English difference-in-differences of $-0.038$ (point estimate; its interval needs per-query rows).
+Unconditionally S@10 falls from 0.631 to 0.091 for Polish and from 0.553 to 0.051 for English, a Polish--English difference-in-differences of $-0.037$ (95\% bootstrap interval $[-0.062,-0.010]$).
 On answerable queries the causal pool costs little: 0.829 to 0.822 for Polish (152 queries) and 0.519 to 0.492 for English (2,364), so the drop is almost all answerability; English size-matched pools are easier than causal ones (0.528 vs 0.492), in the direction of H2.
+Paired permutation tests (10,000 sign flips) give $p<0.001$ for random vs causal and for size-matched vs causal unconditionally in both languages; on answerable queries the Polish difference is not significant (a single discordant query) and the English one is ($p<0.001$).
 Document-frequency statistics come from the full corpus, so the causal pool still shares future statistics.
 Of the 152 Polish answerable posts, 138 have their gold fact-check less than a day before the post, where time zones are undocumented, so the Polish causal result is fragile.
-The three runs took 15\,s (Polish) and 28\,min (English) on a laptop (macOS, arm64) with a peak of 1.2\,GB.
+The three runs with their tests took 5\,s (Polish) and 23\,min (English) on a laptop (macOS, arm64) with a peak of 1.1\,GB.
 
 \begin{table*}[!t]
 \centering
@@ -297,7 +298,7 @@ Main risks: the Polish answerable count is 152 posts at margin 0, barely above 1
 
 \begin{table*}[!t]
 \centering
-\caption{Contributions. Hours are approximate and cover the Phase~1 report.}
+\caption{Contributions. Hours are approximate and cover the Phase~1 report and this revision.}
 \label{tab:contrib}
 \small
 \setlength{\tabcolsep}{4pt}
@@ -305,8 +306,8 @@ Main risks: the Polish answerable count is 152 posts at margin 0, barely above 1
 \toprule
 Member & Named tasks & Hours \\
 \midrule
-Pawe{\l} Pozorski & research plan and topic notes, paper notes in \texttt{research/}, EDEN compute notes, README, template updates; data, protocol and SOTA sections; Phase~2 revision: feedback note, response plan, rebuttal, corpus statistics, novelty search & 7 \\
-Mateusz Jarosz & adopted the ACL report template and the grading handbook note; data layer (MultiClaim v1/v2 and SemEval loaders, strict-causal and size-matched pools, answerable rate, exploratory data analysis (EDA) notebooks, container recipes); systems and SOTA sections & 7 \\
+Pawe{\l} Pozorski & research plan and topic notes, paper notes in \texttt{research/}, EDEN compute notes, README, template updates; data, protocol and SOTA sections; Phase~2 revision: feedback note, response plan, rebuttal, corpus statistics, novelty search, BM25 proof of concept, permutation test & 12 \\
+Mateusz Jarosz & adopted the ACL report template and the grading handbook note; data layer (MultiClaim v1/v2 and SemEval loaders, strict-causal and size-matched pools, answerable rate, exploratory data analysis (EDA) notebooks, container recipes); systems and SOTA sections & 10 \\
 Pawe{\l} Florek & Phase~1 report update and timeline; evaluation section, pipeline figure and LaTeX; LLM-use and contribution sections & 5 \\
 Jan Cwalina & drafting and polish of the Phase~1 report text & 5 \\
 \bottomrule
@@ -327,7 +328,7 @@ Its public listing is on the EU Language Data Space (LDS) catalogue, which our u
 
 \section{Contribution}
 \label{sec:contrib}
-Table~\ref{tab:contrib} lists each member's named tasks, taken from the repository history (branches \texttt{main} and \texttt{feat/data-foundation}) where it records them, and the approximate hours spent on the Phase~1 report; each member adds the hours of this revision at submission.
+Table~\ref{tab:contrib} lists each member's named tasks, taken from the repository history (branches \texttt{main} and \texttt{feat/data-foundation}) where it records them, and the approximate hours spent on the Phase~1 report and this revision.
 
 
 \section{LLM-use declaration}
