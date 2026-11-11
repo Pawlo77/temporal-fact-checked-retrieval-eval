@@ -19,17 +19,17 @@ PALETTE = {
     "bluish_green": "#009E73",
     "yellow": "#F0E442",
     "blue": "#0072B2",
-    "vermillion": "#D55E00",
+    "vermilion": "#D55E00",
     "reddish_purple": "#CC79A7",
 }
 
 # Monochrome + a single accent for the headline Polish/English contrast.
-LANGUAGE_COLORS = {"pl": PALETTE["vermillion"], "en": PALETTE["black"]}
+LANGUAGE_COLORS = {"pl": PALETTE["vermilion"], "en": PALETTE["black"]}
 
 # Ordered colours for multi-category series (systems, extended languages).
 CATEGORICAL = [
     PALETTE["black"],
-    PALETTE["vermillion"],
+    PALETTE["vermilion"],
     PALETTE["blue"],
     PALETTE["bluish_green"],
     PALETTE["orange"],

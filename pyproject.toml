@@ -144,8 +144,8 @@ vault-dirs = "knowledge research"
 papers-dir = "report"  # skill latex-papers
 
 [tool.codespell]
-ignore-words-list = "demagog,pyproject,toml,venv,prek,kwargs,args,init,utils,workflow,workflows,pytest,cov"
-skip = "report/*,research/*"
+ignore-words-list = "demagog,pyproject,toml,venv,prek,kwargs,args,init,utils,workflow,workflows,pytest,cov,timstamp"
+skip = "report/*,research/*,*.ipynb"
 
 [tool.agent-kit.vault]
 notes = ["knowledge", "research"]

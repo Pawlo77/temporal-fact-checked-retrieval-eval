@@ -31,7 +31,7 @@ def make_synthetic_corpus(
         A corpus with ``n_posts`` posts, ``n_fact_checks`` fact-checks, and one
         gold pair per post split roughly evenly between answerable and not.
     """
-    rng = random.Random(seed)
+    rng = random.Random(seed)  # nosec B311 - seeded for reproducibility, not security
     posts = {
         post_id: _make_post(rng, post_id, languages) for post_id in _ids("p", n_posts)
     }
