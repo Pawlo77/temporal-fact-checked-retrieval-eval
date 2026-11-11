@@ -34,7 +34,7 @@ State on 2026-11-11. "Needed" means graded or required at the 2.12 submission; "
 | Report fixes F1-F30 in `report/checkpoint_2/` (Task 3) | yes | done | PP, MJ, PF, JC |
 | Rebuttal quoting every remark, independently reviewed (Task 4 steps 1-3) | yes | done; re-review after the open rows below | JC |
 | Extended SOTA table with proof-of-concept rows (2.5) | yes | done | MJ |
-| Contribution table, named tasks, hours 12/10/5/5 (2.8) | yes | done | JC |
+| Contribution table, named tasks, hours 15/10/5/5 (2.8) | yes | done | JC |
 | LLM-use declaration with tools named (F24) | yes | done | JC |
 | BM25 proof of concept, permutation tests, Polish-English interval (2.1) | yes | done (PR 18) | PP |
 | Table 2 numbers, answerable rates, AMC-16K request sent 11 Nov | yes | done | PP |
