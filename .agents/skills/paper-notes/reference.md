@@ -31,6 +31,7 @@ File names are the paper's short name (method or system name), never `Year - Aut
 | chronological splits, time-respecting evaluation, temporal persistence, recsys leakage | `research/Temporal Evaluation/Chronological Evaluation/` | `theme/chronological` |
 | LLM parametric or search-based temporal contamination | `research/Temporal Evaluation/LLM Temporal Leakage/` | `theme/llm-leakage` |
 | how to split data and what random splits hide | `research/Evaluation Methodology/Data Splits/` | `theme/splits` |
+| which significance test or interval to use for system comparisons | `research/Evaluation Methodology/Significance Testing/` | `theme/significance-testing` |
 | an embedding model, retriever or reranker used as a system | `research/Retrieval Models/` | `theme/models` |
 | an LLM evaluated as reranker or retriever | `research/Language Models/Evaluated LLMs/` | `theme/llm-evaluated` |
 | an LLM used as judge or labeller (model card or report) | `research/Language Models/Judge Models/` | `theme/llm-judge-model` |
@@ -87,7 +88,7 @@ Query post $q$ with time $t_q$; fact-check $f$ with time $t_f$; pool $P$; causal
 
 Paper notes carry `type/paper`, one `theme/` and one or more `topic/`:
 
-- `theme/`: `datasets`, `methods`, `bias`, `verification-leakage`, `chronological`, `llm-leakage`, `splits`, `models`, `llm-evaluated`, `llm-judge-model`, `llm-judging`.
+- `theme/`: `datasets`, `methods`, `bias`, `verification-leakage`, `chronological`, `llm-leakage`, `splits`, `significance-testing`, `models`, `llm-evaluated`, `llm-judge-model`, `llm-judging`.
 - `topic/`: `multilingual`, `polish`, `english`, `temporal`, `leakage`, `dense-retrieval`, `reranking`, `bm25`, `evaluation`, `significance`, `benchmark`, `shared-task`, `embedding`, `llm`, `recsys`, `judge-bias`, `reproducibility` (add values here before using them).
 
 Other notes: `type/hub`, `type/theme`.

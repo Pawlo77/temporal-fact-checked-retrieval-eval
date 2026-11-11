@@ -35,7 +35,7 @@ Owners: PP = Paweł Pozorski, MJ = Mateusz Jarosz, PF = Paweł Florek, JC = Jan 
 - [ ] **Step 1:** Re-read each Table 1 number in its source and record split, pool and scale in the note. MJ: CheckThat 2021/22, CrowdChecked, SemEval, TIFIN, Ramponi (which pool gives 0.8042), AMC-16K. PP: MultiClaim (X1: same-language pool, all pairs), That is a Known Lie, Role of Context. PF: AVeriTeC (dev, F2), TREC 2011 (49 topics), StreamingQA, Missing Counter-Evidence, Chronological Splits.
 - [x] **Step 2:** Fix the Ramponi note pages to 29045-29064 (F17, X3); note the published BGE-M3 title (F18). Owner MJ.
 - [ ] **Step 3:** Independent review: each owner cross-checks another owner's notes (PP→PF→MJ→JC→PP) and logs disagreements in [[Literature corrections]].
-- [ ] **Step 4:** Add an Urbano et al. 2019 note via skill `paper-notes`. It recommends the t-test or permutation test, and the bootstrap only for large samples, so it does not justify the bootstrap. Re-check the existing notes for Vykopal 2026, Søgaard 2021, Kazemi 2021 and LongEval 2023 against [[Review verification]]. Owner JC.
+- [x] **Step 4:** (note written; it does not support the bootstrap, so the report cites it for a permutation test) Add an Urbano et al. 2019 note via skill `paper-notes`. It recommends the t-test or permutation test, and the bootstrap only for large samples, so it does not justify the bootstrap. Re-check the existing notes for Vykopal 2026, Søgaard 2021, Kazemi 2021 and LongEval 2023 against [[Review verification]]. Owner JC.
 - [x] **Step 5:** (done 2026-11-11: 1,738 retrieved, 240 kept, 6 adjacent works, none PFCR with a per-query pre-post index; no full-text notes) Write the novelty-claim protocol per skill `literature-search` (OpenAlex, arXiv, forward citations of MultiClaim, SemEval-2025 T7, Shaar 2022 and TREC 2011; since 2019; queries on date-restricted, causal, temporal index for claim retrieval). Run the harvest, screen it, and fill `outcome` with counts and the date (F5). Owner PP.
 
 ### Task 2: Table 2 numbers (11-24 Nov)
@@ -101,7 +101,7 @@ Must be computed from data (never estimated in the report):
 
 Taken from the Assessment criteria PDF; none of it is in the feedback, all of it is graded on 2.12.
 
-- [ ] **Step 1:** PoC (2.1, 4 pts): pipeline end to end on real data with one number (random vs strict causal vs size-matched, one query set). Owner MJ.
+- [x] **Step 1:** (done 2026-11-11, PR 23: BM25, Polish and English, three pools) PoC (2.1, 4 pts): pipeline end to end on real data with one number (random vs strict causal vs size-matched, one query set). Owner MJ.
 - [ ] **Step 2:** EDA (2.2, 3 pts): label and length distributions, duplicates, leakage check between splits, comparison with one more dataset or a sentence why not. Reuse Task 2 counts. Owner PP.
 - [ ] **Step 3:** Experiment plan (2.3, 3 pts): baselines from at least two method classes (BM25 classical; e5 or mmlw fine-tuned encoder; reranker or prompted LLM), hyperparameters, splits, measures. Owner PF.
 - [ ] **Step 4:** README and merge request to `github.com/grant-TraDA/NLP-2026W` that a stranger can run for one result (2.6); measured runtime, hardware and memory (2.7). Owners PF, MJ.

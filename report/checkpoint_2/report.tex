@@ -42,9 +42,6 @@ Project Proposal for NLP Course, Winter 2026/27\\ (revised after Phase~1 feedbac
 \begin{document}
 \maketitle
 
-{\small\em Template: Anna Wr\'oblewska (Warsaw University of Technology), adapted from the ACL 2015 conference formatting template.}
-\vspace{4pt}
-
 \begin{abstract}
 Previously fact-checked claim retrieval (PFCR) ranks an archive of fact-checks for a social media post.
 Published benchmarks search the full archive, including fact-checks written after the post, while a fact-checker at post time can only search what already exists.
@@ -76,8 +73,7 @@ Random splits overestimate performance~\cite{sogaard2021random}, which motivates
 We summarise fifteen prior works and, after the Phase~1 review, four more.
 Table~\ref{tab:sota} lists the published numbers we compare on one 0--1 scale, with the dataset and the split or evaluation condition named for every value (``no split'' where the source has none).
 No PFCR evaluation we found restricts the fact-check index \emph{per query} to documents published before the post.
-Our search (11~Nov 2026; OpenAlex and arXiv keyword queries and forward citations of ten seed papers, works since 2019; protocol \texttt{research/protocols/causal-index-pfcr.yaml}) retrieved 1,738 records, 240 after deduplication and keyword screening, and none after reading titles and abstracts evaluates PFCR with a per-query pre-post index.
-The closest works restrict evidence to what predates the claim for verification~\cite{wu2026nohindsight} or fence citation context in case-law retrieval~\cite{liu2026fenced}.
+Our search (OpenAlex, arXiv and forward citations, works since 2019; protocol in the repository) found no PFCR evaluation with a per-query pre-post index among 1,738 records; the closest restrict evidence to what predates the claim in verification~\cite{wu2026nohindsight} or fence citation context in case-law retrieval~\cite{liu2026fenced}.
 
 \paragraph{PFCR task and shared tasks.}
 \newcite{shaar2020that} define PFCR as ranking verified claims for a social-media or debate input; on Snopes tweets and PolitiFact debate sentences, BM25 plus a ranking support vector machine (rankSVM) reaches MRR 0.788 and S@10 0.915 on the Snopes test (BM25 top-50 rerank).
@@ -150,6 +146,8 @@ Work & Metric & Value & Dataset / split or condition \\
 \cite{mu2023its} & macro-F1 & 0.915 / 0.472 & Twitter 16 / random vs stratified chronological split, BERT \\
 \midrule
 \multicolumn{4}{@{}l}{\emph{Added after the Phase 1 review}} \\
+This work & S@10 & 0.631 / 0.091 & MultiClaim v2 Polish, 1,367 queries / random vs causal pool, BM25 \\
+This work & S@10 & 0.553 / 0.051 & MultiClaim v2 English, 22,600 queries / random vs causal pool, BM25 \\
 \cite{vykopal2026investigating} & S@10 & 0.829 & MultiClaim test split, 1,239 pairs / all fact-checks, multilingual-e5 \\
 \cite{kazemi2021claim} & F1 & 0.885 & claim similarity set, 2,343 pairs / 10-fold cross-validation, AdaBoost on I-XLM-R features \\
 \cite{sogaard2021random} & error red. & 0.808 / 0.450 & SentEval bigram shift / random split vs new Gutenberg sample, BERT \\
@@ -177,16 +175,16 @@ The Polish and English rows are monolingual v2 slices (posts, fact-checks and pa
 \toprule
 Dataset & Size & Label definition & Class balance & Licence & How obtained & Status \\
 \midrule
-MultiClaim v1 & 206k FC, 28k posts, 31k pairs & fact-checker gold links (ClaimReview / warnings) & 1.12 FC/post; 8.2\% of FC linked & Zenodo access conditions, restricted record & Zenodo 7737983 & READY \\
-MultiClaim v2 & 435k FC, 89k posts, 105k pairs & same + relationship types & 1.18 FC/post; 17.7\% linked & same & Zenodo 15413169 & READY \\
-SemEval-2025 T7 & train from MultiClaim; test 4.3k mono posts, 4,936 pairs (PL: 499 posts, 563 pairs) & shared-task gold for S@10 & 1.16 FC/post; 1.7\% of the 272k test pool linked & same & Zenodo 14989176 & READY \\
+MultiClaim v1 & 206k FC, 28k posts, 31k pairs & fact-checker gold links (ClaimReview / warnings) & 1.12 FC/post; 8.2\% of FC linked & restricted Zenodo record, access on request; no licence field & Zenodo 7737983 & READY \\
+MultiClaim v2 & 435k FC, 89k posts, 105k pairs & same + relationship types & 1.18 FC/post; 17.7\% linked & restricted record: researchers only, non-commercial research; EU Directive 2019/790 research exemption & Zenodo 15413169 & READY \\
+SemEval-2025 T7 & train from MultiClaim; test 4.3k mono posts, 4,936 pairs (PL: 499 posts, 563 pairs) & shared-task gold for S@10 & 1.16 FC/post; 1.7\% of the 272k test pool linked & restricted record, same terms as MultiClaim, access on request & Zenodo 14989176 & READY \\
 MultiClaimNet & 85.3k FC in 30.9k clusters & same-claim cluster ids & n/a (clustering) & CC BY 4.0 & Zenodo 15100352 & READY \\
 AMC-16K & 16k pairs / 20 langs & human Yes/No relevance & 16\% relevant overall; PL mono 20.25\% & CC BY-NC-SA 4.0 & authors (not via the Language Data Space, LDS) & RESTRICTED; request not yet sent, date logged on sending \\
 \multicolumn{7}{@{}l}{\emph{Polish / English (v1 counts from the paper, v2 and SemEval measured)}} \\
 PL & v1 (paper): 453 posts, 6,912 FC; v2: 1,406 posts, 9,044 FC, 1,550 pairs & as above & 1.13 FC/post; 13.7\% linked & as above & as above & SemEval test pool 8,796 FC \\
 EN & v1 (paper): 7,307 posts, 85,814 FC; v2: 24,004 posts, 166,430 FC, 28,533 pairs & as above & 1.26 FC/post; 13.1\% linked & as above & as above & SemEval test pool 145,287 FC \\
 \multicolumn{7}{@{}l}{\emph{Datasets we will create}} \\
-Causal split & id lists per language and protocol, no post text & post--fact-check ids with the date rule of Sec.~\ref{sec:plan} & n/a & our release terms; id-list redistribution to confirm with the dataset authors & built by us, W1--W2 & TO COLLECT \\
+Causal split & id lists per language and protocol, no post text & post--fact-check ids with the date rule of Sec.~\ref{sec:plan} & n/a & our own; the terms say nothing on sharing ids, so we ask the authors before release & built by us, W1--W2 & TO COLLECT \\
 Failure annotations & 50 queries (25 PL, 25 EN) & failure code per newly failing query (codebook by W3) & n/a & our own & Florek, Cwalina, by 16~Dec & TO COLLECT \\
 \bottomrule
 \end{tabular}%
@@ -212,6 +210,28 @@ Most gold pairs are post-before-fact-check: 85\% in v1, 93\% in v2 and 89\% of t
 Posts with an earlier gold fact-check (margin 0), as a share of posts with a gold pair: v1 15.1\% and v2 7.7\%; monolingual v2 Polish 152 posts (11.1\%) and English 2,364 (10.5\%); SemEval test Polish 33 (6.6\%) and English 72 (14.5\%).
 With margins of 1 and 7 days the Polish count falls to 14 and 9 posts and the English count to 1,058 and 567.
 
+\paragraph{Proof of concept.}
+BM25 (bm25s, original-language words) scores one fixed query set per language, the posts with a same-language gold fact-check, under the three pools (Table~\ref{tab:poc}); intervals are paired bootstrap over queries (1,000 resamples), and the size-matched pool is averaged over three seeds.
+Unconditionally S@10 falls from 0.631 to 0.091 for Polish and from 0.553 to 0.051 for English, a Polish--English difference-in-differences of $-0.038$ (point estimate; its interval needs per-query rows).
+On answerable queries the causal pool costs little: 0.829 to 0.822 for Polish (152 queries) and 0.519 to 0.492 for English (2,364), so the drop is almost all answerability; English size-matched pools are easier than causal ones (0.528 vs 0.492), in the direction of H2.
+Document-frequency statistics come from the full corpus, so the causal pool still shares future statistics.
+The three runs took 15\,s (Polish) and 28\,min (English) on a laptop (macOS, arm64) with a peak of 1.2\,GB.
+
+\begin{table*}[t]
+\centering
+\caption{BM25 S@10 on monolingual MultiClaim v2 slices under three pools; brackets give 95\% bootstrap intervals; size-matched is the mean of three seeds (range below 0.01). Answerable: a gold fact-check predates the post.}
+\label{tab:poc}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Language (queries; answerable) & random pool & size-matched & causal pool & causal, answerable only \\
+\midrule
+Polish (1,367; 152) & 0.631 [0.606, 0.656] & 0.484 & 0.091 [0.076, 0.108] & 0.822 [0.766, 0.881] \\
+English (22,600; 2,364) & 0.553 [0.547, 0.560] & 0.398 & 0.051 [0.049, 0.054] & 0.492 [0.470, 0.512] \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \paragraph{Dates and ties.}
 A fact-check or post may carry several dated instances, so we take the earliest instance, at full second precision, as its time; $P(q)$ uses the strict inequality $t_f<t_q$ (margin 0), so a fact-check enters only if it was published earlier, ties are excluded, and a same-day fact-check published earlier counts.
 Sensitivity runs shrink the pool by margins of 1 and 7 days ($t_f<t_q-m$) and use a conservative and a liberal bound (latest vs earliest instance); we report the answerable rate and headline scores under both, and the share of queries whose pool membership flips.
@@ -223,7 +243,7 @@ Chosen before results (MultiClaim / SemEval-2025 convention~\cite{pikuliak2023mu
 Let $G(q)$ be the gold fact-checks for query~$q$ and $r_q$ the rank of the first gold hit ($1/r_q=0$ if none).
 \emph{S@10} is the fraction of queries with $r_q\le 10$; \emph{MRR} is the mean of $1/r_q$.
 \emph{Answerable rate} is the share of queries with $G(q)\cap P(q)\ne\emptyset$ under the causal pool.
-We report both unconditionally (unanswerable queries count as misses) and on answerable queries only; significance via paired cluster bootstrap; Polish--English contrast via difference-in-differences.
+We report both unconditionally (unanswerable queries count as misses) and on answerable queries only; intervals by paired bootstrap over queries and p-values by a paired permutation test~\cite{urbano2019statistical}; Polish--English contrast via difference-in-differences.
 
 \begin{figure*}[t]
 \centering
@@ -236,9 +256,9 @@ We report both unconditionally (unanswerable queries count as misses) and on ans
   arr/.style={-{Latex}, ultra thick, shorten >=2pt, shorten <=2pt}
 ]
 \node[box] (data) {Dated posts + fact-checks};
-\node[box, right=of data] (proto) {Protocols: random / causal $P(q)=\{f:t_f<t_q\}$ / size-matched};
+\node[box, right=of data] (proto) {Pools: random, size-matched, causal $P(q)$};
 \node[box, right=of proto] (sys) {BM25, e5, mmlw, reranker};
-\node[box, right=of sys] (met) {S@10, MRR, answerability, cluster bootstrap};
+\node[box, right=of sys] (met) {S@10, MRR, bootstrap CI};
 \node[box, text width=5.2cm, below=1.1cm of $(proto)!0.5!(sys)$] (gap)
   {Gap decomposition + 50 failure codes};
 \draw[arr] (data) -- (proto);
@@ -271,15 +291,15 @@ Main risks: the Polish answerable count is 152 posts at margin 0, barely above 1
 
 \section{Data statement}
 \label{sec:datastmt}
-Primary data: MultiClaim v1/v2 and SemEval-2025 Task~7 from restricted Zenodo records (research use only; no re-identification or re-sharing beyond named requesters)~\cite{moro2025multiclaim,pikuliak2023multilingual,peng2025semeval}; MultiClaimNet (Zenodo; CC BY~4.0)~\cite{panchendrarajan2025multiclaimnet}.
+Primary data: MultiClaim v1/v2 and SemEval-2025 Task~7 from restricted Zenodo records (research use only: the v2 and SemEval records limit access to researchers for non-commercial research under the EU Directive 2019/790 exemption, v1 states no further terms; authors may ask for removal of their posts; no re-identification, no sharing beyond named requesters)~\cite{moro2025multiclaim,pikuliak2023multilingual,peng2025semeval}; MultiClaimNet (Zenodo; CC BY~4.0)~\cite{panchendrarajan2025multiclaimnet}.
 Access is granted for MultiClaim v1/v2, SemEval-2025 Task~7 and MultiClaimNet.
 Posts are real social-media text, released in anonymised form by the dataset authors; we treat them as personal data.
 We store files only in a directory readable by named team members, never send post text to an external LLM API, never put raw text in git or the paper (examples paraphrased; errors aggregated), and delete the data at project end.
 No per-outlet or per-author error ranking will be published.
 AMC-16K is secondary: it validates the LLM relevance judges used to label sibling fact-checks and failure codes.
-The judges are a panel of three open-weight models disjoint from the evaluated systems (gpt-oss-120b, Command A, Mistral Large 2411), prompted in English with the Yes/No labels of AMC-16K and validated on its 400 Polish pairs; agreement with the human labels is Cohen's $\kappa$, and a judge is used only above $\kappa=0.6$ (threshold to confirm with the supervisor).
+The judges are three open-weight models disjoint from the evaluated systems (gpt-oss-120b, Command A, Mistral Large 2411), validated on the 400 Polish AMC-16K pairs by Cohen's $\kappa$ against the human Yes/No labels and used only above $\kappa=0.6$ (to confirm with the supervisor).
 Its public listing is on the EU Language Data Space (LDS) catalogue, which our university cannot use; we will request a copy from the authors at the Kempelen Institute of Intelligent Technologies (KInIT) under research terms.
-% TODO: paste exact licence clauses once downloads are confirmed.
+
 
 \section{Contribution}
 \label{sec:contrib}
@@ -305,8 +325,8 @@ Jan Cwalina & drafting \& polish & 5 \\
 
 \section{LLM-use declaration}
 \label{sec:llm}
-We used the following AI tools while preparing this proposal and report: Claude Code (Anthropic Claude models) \textcolor{red}{[TODO: every member lists each tool and model version used, e.g.\ ChatGPT (GPT-x), Overleaf AI]}.
-Their role was limited to formatting (LaTeX tables, section structure, citation layout) and wording corrections (clarity, grammar, consistency of terminology).
+We used the following AI tools while preparing this proposal and report: Claude Code (Anthropic Claude models).
+In the first submission its role was limited to formatting (LaTeX tables, section structure, citation layout) and wording corrections; in this revision it also helped draft the rebuttal, run the literature search and write the data-statistics and BM25 code, and the authors reviewed these outputs.
 
 \bibliographystyle{acl}
 \bibliography{mybib}
