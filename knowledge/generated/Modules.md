@@ -27,4 +27,5 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 | [[src/temporal_fact_checked_retrieval_eval/orchestration/tracking.py]] | Local MLflow tracking helpers for resumable runs. | 142 |
 | [[src/temporal_fact_checked_retrieval_eval/plotting.py]] | Shared plot style for consistent, publication-ready figures. | 78 |
 | [[src/temporal_fact_checked_retrieval_eval/protocols.py]] | Temporal retrieval protocols: causal pools and answerability. | 107 |
+| [[src/temporal_fact_checked_retrieval_eval/stats.py]] | Descriptive statistics of a dated corpus: class balance, order, answerability. | 69 |
 | [[src/temporal_fact_checked_retrieval_eval/training/__init__.py]] | Training loops and evaluation. | 3 |
