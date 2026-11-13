@@ -97,7 +97,7 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 - **Cluster-expanded causal protocol (extended):** relevance extended to earlier same-claim fact-checks via MultiClaimNet clusters and judge-panel labels; every system is also reported on fact-checker-only qrels, so the expanded numbers are a bound, not the primary result.
 - **Statistics leakage:** BM25 IDF and length statistics from the causal pool only (cumulative document frequencies by date), full-pool statistics as a sensitivity row.
 - **Time-to-findability:** delayed-query variant (re-query at post date plus 0, 1, 3, 7, 30, 90 days); right-censored at the dataset end; named "among debunked posts" because every post in the data has a fact-check by construction.
-- **Timestamps:** a fact-check or post can carry several dated instances (republications, other outlets or platforms), so its time is an interval, not a point. Primary rule: earliest instance as publication time, day resolution. Sensitivity runs: margins of 0, 1 and 7 days; first-listed and median instance; and bounds, a conservative pool (fact-check counts as published only at its latest instance, post at its earliest) against a liberal pool (earliest instance for the fact-check, latest for the post). Report, per language, the answerable rate and every headline score under both bounds, the share of queries whose pool membership flips between them, and a clean subset restricted to single-instance fact-checks. 100 dates per language are checked against live URLs; posts without dates are dropped and reported.
+- **Timestamps:** a fact-check or post can carry several dated instances (republications, other outlets or platforms), so its time is an interval, not a point. Primary rule: earliest instance as publication time, full second precision, margin 0 (decided 2026-11-11, as in the data loader). Sensitivity runs: margins of 1 and 7 days; first-listed and median instance; and bounds, a conservative pool (fact-check counts as published only at its latest instance, post at its earliest) against a liberal pool (earliest instance for the fact-check, latest for the post). Report, per language, the answerable rate and every headline score under both bounds, the share of queries whose pool membership flips between them, and a clean subset restricted to single-instance fact-checks. 100 dates per language are checked against live URLs; posts without dates are dropped and reported.
 - **Metrics and statistics:** Success@10, MRR, answerable rate, conditional and unconditional scores; cluster bootstrap by gold fact-check or MultiClaimNet cluster (posts sharing a fact-check are not independent), with the regime gap estimated as a paired difference and effect sizes leading, not p-values; Holm correction across systems and every headline comparison; difference-in-differences with an independent bootstrap per language.
 - **Gap decomposition:** additive chain random, size-matched random, cluster-expanded causal, strict causal answerable, strict causal all queries, every step scored unconditionally on one fixed query set, with order-shuffling (Shapley-style averaging); the core chain omits the cluster-expanded step, which belongs to the extended tier; covariates: signed post-to-debunk lag, lexical overlap, cross-lingual gold flag, relationship type, earlier-sibling count, topic, platform.
 - **Failure analysis:** 50 newly failing queries, two annotators, Cohen's kappa; codebook: answerability, lexical leakage, narrative drift, cross-lingual-only debunk, missing label, timestamp error, multimodal-only. Failure coding stays human; LLMs may only pre-sort.
@@ -153,39 +153,39 @@ PFCR benchmarks (MultiClaim, SemEval-2025 Task 7) score systems against a search
 
 ### Task 0: Approvals and access (week 1)
 
-- [ ] **Step 1:** Send the v1, v2 and SemEval access requests from pw.edu.pl addresses naming all team members (target 28 October); supervisor co-signs.
+- [x] **Step 1:** Send the v1, v2 and SemEval access requests from pw.edu.pl addresses naming all team members (target 28 October); supervisor co-signs. Done: Florek requested the Zenodo records on 3 Nov 2026, approved 4 Nov; AMC-16K requested 11 Nov, pending.
 - [x] **Step 2:** On the existing EDEN account, partitions, time limits, quotas, compute-node internet and a project install were checked on 2026-10-27 (compute notes); remaining: pre-download models on the login node.
-- [ ] **Step 3:** Write to the dataset authors: may id-list and qrel releases and EDEN storage be used; what do the timestamps mean.
+- [ ] **Step 3:** Write to the dataset authors: may id-list and qrel releases and EDEN storage be used; what do the timestamps mean. Partly: the authors answered on id lists (kept confidential at their request); timestamps and EDEN storage still open.
 - [ ] **Step 4:** Obtain the supervisor's answers to the questions in section 12 (co-signing, grading weights).
 
 ### Task 1: Dated corpus and first checks (W1)
 
 **Files:** loaders under `src/temporal_fact_checked_retrieval_eval/dataset/`, dataset config, tests on a synthetic fixture.
 
-- [ ] **Step 1:** Loaders for posts, fact-checks and pairs; earliest-instance timestamps with the interval bounds of section 5; drop and report undated posts.
+- [x] **Step 1:** Loaders for posts, fact-checks and pairs; earliest-instance timestamps with the interval bounds of section 5; drop and report undated posts.
 - [ ] **Step 1b:** Merge MultiClaim v1, v2 and SemEval data: map ids across the releases, deduplicate posts and fact-checks by normalised text (Unicode normalisation, lowercase, whitespace and URL stripping, hash), keep a provenance column, prefer v2 records, reconcile language labels, report the count lost per language, and keep SemEval test posts out of any training data.
-- [ ] **Step 2:** Answerable rate per language and relationship type at margins 0, 1 and 7 days, **before any model run**.
+- [x] **Step 2:** Answerable rate per language and relationship type at margins 0, 1 and 7 days, **before any model run**. Done (checkpoint 2 report, Sec. 4; PR 18).
 - [ ] **Step 3:** Check 30 Polish and 30 English dates against live URLs, then 100 per language; share of mixed earlier-and-later gold; posts per gold fact-check (design effect for the bootstrap); Polish pair mix by outlet and relationship type.
 - [ ] **Step 4:** Restate power and minimum detectable effects with measured numbers.
 
 ### Task 2: Protocols and shared split (W1)
 
-- [ ] **Step 1:** Strict causal pool and answerability flag; property tests (no pool item dated after the post).
-- [ ] **Step 2:** Size-matched control; cross-lingual causal pool (about 1-2 days); delayed-query variant; chronological training split.
-- [ ] **Step 3:** Dataset-agnostic protocol module: all protocols read a small adapter (posts, fact-checks, gold pairs, timestamps with instance intervals), so any dated corpus, a second dataset or a newer fact-check dump, is processed by re-running the module with a new cutoff and no code changes; test it with a synthetic corpus and with MultiClaim.
+- [x] **Step 1:** Strict causal pool and answerability flag; property tests (no pool item dated after the post). Done in PR 18 (`protocols.py`, `tests/test_protocols.py`).
+- [ ] **Step 2:** Size-matched control (done, PR 18); cross-lingual causal pool (about 1-2 days); delayed-query variant; chronological training split.
+- [ ] **Step 3:** (partly: adapter and synthetic corpus in PR 18, `dataset/adapter.py`, `synthetic.py`) Dataset-agnostic protocol module: all protocols read a small adapter (posts, fact-checks, gold pairs, timestamps with instance intervals), so any dated corpus, a second dataset or a newer fact-check dump, is processed by re-running the module with a new cutoff and no code changes; test it with a synthetic corpus and with MultiClaim.
 - [ ] **Step 4:** Write the formal definition of causal evaluation for retrieval over a growing archive (pool P(q), answerability, the protocols as operators on the pool) and its properties, each with a proof sketch and a test: pools are monotone in the cutoff; the unconditional strict-causal Success@k is bounded by the answerable rate; the size-matched control has the same pool size as the causal pool; the additive chain telescopes to the total gap.
 - [ ] **Step 5:** Freeze the split format (ids, cutoffs, qrels) and the one results schema by 25 November.
 
 ### Task 3: Core systems (W2, W3)
 
-- [ ] **Step 1:** BM25 with per-query causal statistics, prototype on 1,000 queries; fall back to monthly rolling statistics if exact per-query statistics are too slow.
-- [ ] **Step 2:** multilingual-e5-large and the Polish or cross-lingual encoder: encode the pool once, apply time masks at search time.
+- [ ] **Step 1:** BM25 with per-query causal statistics, prototype on 1,000 queries (partly: bm25s run on 1,367 Polish and 22,600 English queries with full-corpus statistics, candidates masked); fall back to monthly rolling statistics if exact per-query statistics are too slow.
+- [ ] **Step 2:** (e5 Polish and English, mmlw Polish done 11 Nov; mmlw English open) multilingual-e5-large and the Polish or cross-lingual encoder: encode the pool once, apply time masks at search time.
 - [ ] **Step 3:** bge-reranker-v2-m3 on the top 100.
 - [ ] **Step 4:** Run all protocols for Polish and English on EDEN; write rows to the shared table.
 
 ### Task 4: Core analysis (W4)
 
-- [ ] **Step 1:** Cluster bootstrap with paired effect sizes, Holm, difference-in-differences; unconditional and conditional tables separately.
+- [ ] **Step 1:** (partly: paired bootstrap, sign-flip permutation test and difference-in-differences done; cluster bootstrap and Holm open) Cluster bootstrap with paired effect sizes, Holm, difference-in-differences; unconditional and conditional tables separately.
 - [ ] **Step 1a:** Risk-coverage curves and the answerability-versus-ranking split (RQ2c); cross-lingual pool recovery (RQ3b); time-decay sensitivity figure (analysis only, about 2.5 engineer-days together, no GPU; the pool is Task 2 step 2).
 - [ ] **Step 1b:** Ranking-reversal check (RQ1b): rank the systems under the random and the causal protocol, report Kendall tau with a bootstrap interval, every pairwise reversal with its significance, and whether the best system changes; this result decides the publication target (section 10).
 - [ ] **Step 2:** Additive gap chain with order shuffling; covariate regression.

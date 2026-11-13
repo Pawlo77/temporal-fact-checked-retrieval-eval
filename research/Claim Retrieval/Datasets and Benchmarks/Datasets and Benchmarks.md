@@ -23,6 +23,7 @@ PFCR datasets, shared tasks and dataset releases: what posts, fact-checks and li
 |-------|------|----------|
 | [[CheckThat 2021 Task 2]] | 2021 | Tweet (Arabic, English) and debate PFCR shared task; BM25 plus reranking wins on tweets, nothing beats BM25 on debates. |
 | [[CheckThat 2022 Task 2]] | 2022 | Reruns 2021 with a small new test set; sentence-T5 plus GPT-Neo reranking reaches MAP@5 0.956 on English tweets. |
+| [[Matching Tweets With Fact-Checks]] | 2022 | 6.5k tweet and fact-check pairs in four language settings; full-article BM25 beats multilingual encoders monolingually, LaBSE wins Hindi-English. |
 | [[MultiClaim]] | 2023 | 28k posts, 206k fact-checks, 27/39 languages; translation helps, and its post-newer vs older leak test finds no leak. |
 | [[SemEval-2025 Task 7]] | 2025 | Monolingual and crosslingual PFCR on MultiClaim with out-of-time test posts and unseen Polish and Turkish. |
 | [[AMC-16K]] | 2025 | 16k human-labelled post-fact-check pairs in 20 languages; LLMs judge relevance well but worse on Slavic languages. |

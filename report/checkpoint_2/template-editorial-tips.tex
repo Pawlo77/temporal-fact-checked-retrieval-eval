@@ -1,0 +1,92 @@
+%
+% File main.tex
+%
+% NLP course editorial-tips document, Warsaw University of Technology.
+% Prepared by Anna Wróblewska, adapted from the ACL 2015 conference
+% formatting template (acl2015.sty), originally by the ACL 2015
+% organizers and earlier ACL/EACL format authors (see acl2015.pdf
+% for the full credits chain).
+
+\documentclass[11pt]{article}
+\usepackage{acl2015}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{xcolor}
+
+%\setlength\titlebox{5cm}
+
+% You can expand the title box if you need extra space
+% to show all the authors. Please do not make the title box
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+
+\title{Editorial Tips\\NLP Course, Winter 2026/27}
+
+\author{Author 1 (submitted by) \\
+  Album number \\
+  {\tt email@pw.edu.pl} \\\And
+  Author 2 \\
+  Album number \\
+  {\tt email@pw.edu.pl} \\ \And
+  supervisor: Anna Wróblewska\\
+  Warsaw University of Technology \\
+  {\tt anna.wroblewska1@pw.edu.pl}}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+{\small\em Template: Anna Wr\'oblewska (Warsaw University of Technology), adapted from the ACL 2015 conference formatting template.}
+\vspace{4pt}
+
+\begin{abstract}
+  This document collects the formatting and editorial rules for NLP-course reports. Read it once, then use it as a checklist before every submission.
+\end{abstract}
+
+\section{What stays the same across all phases}
+
+\subsection{Layout and fonts}
+Two columns, 11pt Times (already set by \texttt{acl2015.sty} and \texttt{\textbackslash usepackage\{times\}} above -- do not change the class options). Keep section headings numbered (Arabic numerals); do not number subsubsections. A4 page size is handled by the style file.
+
+\subsection{Citations}
+Use \verb|\cite{key}| for parenthetical citations and \verb|\shortcite{key}| or \verb|\newcite{key}| for ``Author (Year)'' in running text, exactly as in the original ACL macros. Two graded rules from the criteria document govern \emph{which} papers you cite, not just how:
+\begin{itemize}
+\item Preferred venues: ACL, EMNLP, NAACL, or ACM Computing Surveys (aclanthology.org).
+\item Cite the published version of a work whenever one exists; preprint-only citations (arXiv with no venue) should be under one third of your bibliography. The final-report template additionally excludes arXiv preprints from ``well-justified literature'' unless the work is too recent to have a published version yet.
+\end{itemize}
+
+\subsection{Language}
+Scientific, precise language; no unexplained abbreviations on first use. Every figure and table caption must be understandable without reading the surrounding text -- a reader skimming only captions should still follow the story.
+
+\subsection{Reproducibility}
+Seeds, library versions, and the exact command(s) used to produce your main reported result must be stated somewhere in the report or its appendix. Use \texttt{reproducibility-checklist.tex} as the appendix template -- it is graded as part of Phase 3.
+
+\section{What differs by phase}
+
+\begin{itemize}
+\item \textbf{Phase 1 (proposal)}: max. 4 meaningful pages. Template: \texttt{project-proposal.tex}.
+\item \textbf{Phase 3 (final report)}: about 9 pages, max 12, plus the reproducibility appendix. Template: \texttt{project-final-report-structure.tex}.
+\end{itemize}
+Do not carry one phase's page limit over to another -- this has been a recurring point of confusion.
+
+\section{Mandatory content, every phase}
+
+Three items are conditions of acceptance, not scored criteria: a report missing any of them is not graded at all until it is added, in every phase where it applies.
+\begin{itemize}
+\item \textbf{Contribution table} -- each team member, what they did, workload in hours. Required from Phase 2 onward.
+\item \textbf{Declaration of LLM use} -- which tools, for what.
+\item \textbf{Data statement} -- source of the data, licence, whether it contains personal data, and what you do about it.
+\end{itemize}
+
+\section{Submission mechanics}
+
+\begin{itemize}
+\item \textbf{Folder naming}: every milestone goes in a folder named \texttt{surname\_surname\_surname\_surname} (all team members). The order set at the first submission must not change for the rest of the semester -- a mismatch costs 5 points.
+\item \textbf{Format}: PDF compiled from these LaTeX templates, or the Word equivalent if you were told to use one. \textbf{Wrong template: $-5$ points}, and you resubmit in the correct one.
+\item \textbf{Late submission}: one delay of up to 48 hours per semester carries no penalty. Every further delay costs 5 points per started week of that phase.
+\end{itemize}
+
+\end{document}
