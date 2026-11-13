@@ -14,9 +14,19 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 |---|---|---|
 | [[src/temporal_fact_checked_retrieval_eval/__init__.py]] | temporal-fact-checked-retrieval-eval experiment package. | 15 |
 | [[src/temporal_fact_checked_retrieval_eval/config.py]] | Typed experiment configuration loaded from YAML. | 147 |
-| [[src/temporal_fact_checked_retrieval_eval/dataset/__init__.py]] | Dataset loading and preprocessing. | 3 |
+| [[src/temporal_fact_checked_retrieval_eval/dataset/__init__.py]] | Dataset loading and preprocessing. | 12 |
+| [[src/temporal_fact_checked_retrieval_eval/dataset/adapter.py]] | Dataset-agnostic view of a dated fact-check retrieval corpus. | 20 |
+| [[src/temporal_fact_checked_retrieval_eval/dataset/domain.py]] | Core data model for a dated fact-check retrieval corpus. | 41 |
+| [[src/temporal_fact_checked_retrieval_eval/dataset/multiclaim.py]] | MultiClaim CSV loader producing a :class:`DatedCorpus`. | 124 |
+| [[src/temporal_fact_checked_retrieval_eval/dataset/multiclaimnet.py]] | MultiClaimNet claim-to-cluster loader. | 29 |
+| [[src/temporal_fact_checked_retrieval_eval/dataset/semeval.py]] | SemEval-2025 Task 7 loader producing a :class:`DatedCorpus`. | 50 |
+| [[src/temporal_fact_checked_retrieval_eval/dataset/synthetic.py]] | Synthetic dated fact-check retrieval corpus generator. | 115 |
 | [[src/temporal_fact_checked_retrieval_eval/models/__init__.py]] | Model definitions for experiments. | 3 |
 | [[src/temporal_fact_checked_retrieval_eval/orchestration/__init__.py]] | Orchestration utilities for experiment runs and MLflow tracking. | 11 |
 | [[src/temporal_fact_checked_retrieval_eval/orchestration/reproducibility.py]] | Environment reproducibility snapshots for MLflow runs. | 224 |
 | [[src/temporal_fact_checked_retrieval_eval/orchestration/tracking.py]] | Local MLflow tracking helpers for resumable runs. | 142 |
+| [[src/temporal_fact_checked_retrieval_eval/plotting.py]] | Shared plot style for consistent, publication-ready figures. | 78 |
+| [[src/temporal_fact_checked_retrieval_eval/poc.py]] | BM25 proof of concept: one query set under random, size-matched and causal pools. | 257 |
+| [[src/temporal_fact_checked_retrieval_eval/protocols.py]] | Temporal retrieval protocols: causal pools and answerability. | 107 |
+| [[src/temporal_fact_checked_retrieval_eval/stats.py]] | Descriptive statistics of a dated corpus: class balance, order, answerability. | 69 |
 | [[src/temporal_fact_checked_retrieval_eval/training/__init__.py]] | Training loops and evaluation. | 3 |

@@ -30,6 +30,7 @@ classifiers = [
 ]
 
 dependencies = [
+  "bm25s>=0.3.16",  # plan baseline: BM25 over the dated corpus with sparse numpy scoring
   "humanize>=4.15.0",
   "ipykernel>=7.2.0",
   "ipywidgets>=8.1.8",
@@ -50,6 +51,11 @@ dependencies = [
 Homepage = "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval"
 Repository = "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval"
 Issues = "https://github.com/Pawlo77/temporal-fact-checked-retrieval-eval/issues"
+
+[project.optional-dependencies]
+dense = [
+    "sentence-transformers>=3.0",
+]
 
 [build-system]
 requires = ["uv_build>=0.11.0,<0.14.0"]
@@ -120,6 +126,7 @@ skips = ["B404", "B603"]  # git and system probes in reproducibility.py
 
 [tool.pytest.ini_options]
 pythonpath = [".", "src"]
+testpaths = ["tests"]  # data/ holds third-party scripts named like tests
 filterwarnings = [
 ]
 
@@ -144,8 +151,8 @@ vault-dirs = "knowledge research"
 papers-dir = "report"  # skill latex-papers
 
 [tool.codespell]
-ignore-words-list = "demagog,pyproject,toml,venv,prek,kwargs,args,init,utils,workflow,workflows,pytest,cov"
-skip = "report/*,research/*"
+ignore-words-list = "demagog,pyproject,toml,venv,prek,kwargs,args,init,utils,workflow,workflows,pytest,cov,timstamp"
+skip = "report/*,research/*,*.ipynb"
 
 [tool.agent-kit.vault]
 notes = ["knowledge", "research"]
