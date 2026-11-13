@@ -5,7 +5,7 @@ domain: vault
 parent: "[[temporal-fact-checked-retrieval-eval]]"
 tags: [handbook, course, grading, deadlines, report]
 created: 2026-10-27
-updated: 2026-11-11
+updated: 2026-11-13
 related:
   - "[[Phase 1 feedback]]"
 ---
@@ -26,6 +26,15 @@ Sources: the course documents Course rules, Assessment criteria (read 2026-11-11
 | 9.12, 16.12 | project feedback, mandatory |
 | 13.01.2027 | Phase 3: final report + 10-min video (faces visible, posted to the LeOn channel); final Q&A, mandatory |
 | 20.01, 27.01.2027 | feedback and rebuttals, course summary and grading |
+
+## Instructor clarification (email, 13 Nov 2026)
+
+- Mid-term video (18.11, 10 min): research problem, SOTA, method, PoC progress, preliminary findings, next steps. Not graded alone, but it feeds 2.1, 2.3 and 2.5; small-scale results are fine if limitations are stated. A Teams channel collects the videos; watch the others before 25.11 and post questions there.
+- Q&A 25.11 is mandatory; answers to the questions the team receives are graded under 2.4 together with the supervisors' reviews.
+- Phase 2 report: extend the Phase 1 report or use the final-report template; about 8 pages of main content is a suggestion, not a limit. Detailed rebuttals and extra results may go in appendices; methods, results and conclusions stay in the main text.
+- Rebuttal (2.4, 3 pts): every comment and every Q&A question marked fixed, rejected with justification or deferred, with evidence or literature, and the report revised with the change located. The Project Proposal template may be used for a first draft, but the corrections must land in the Phase 2 report.
+- 2.1 needs a reproducible PoC with measurable results on real data on 2.12.
+- Survey presentation and tutorial (5c, 10 pts) is separate and not replaced by the video; December sessions (9, 16, 23 Dec). Tutorial attendance is mandatory.
 
 ## Grading
 

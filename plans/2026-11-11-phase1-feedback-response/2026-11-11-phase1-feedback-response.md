@@ -5,7 +5,7 @@ domain: vault
 parent: "[[temporal-fact-checked-retrieval-eval]]"
 status: draft
 created: 2026-11-11
-updated: 2026-11-11
+updated: 2026-11-13
 tags: [plan, feedback, report, phase2]
 related:
   - "[[Phase 1 feedback]]"
@@ -53,6 +53,20 @@ State on 2026-11-11. "Needed" means graded or required at the 2.12 submission; "
 | Judge validation on AMC-16K | after | waits for the data | MJ |
 | 50 failure annotations, codebook, kappa | after | due 16 Dec | JC, PF |
 | Independent cross-check of paper notes (Task 1 step 3) | after | open | all |
+
+Course deliverables by phase (criteria and the instructor email of 13 Nov, [[Course grading and report]]); the plan owns what is missing:
+
+| Deliverable | When | State | Where |
+|---|---|---|---|
+| Mid-term video, 10 min, SOTA + PoC, uploaded to the Teams channel | 18 Nov | open | Task 7 step 6 |
+| Questions for other teams, posted before 25 Nov (5a, 1 point each, 10 in total) | 25 Nov | open | Task 7 step 6 |
+| Rebuttal rows for supervisor meeting and Q&A, changes located in the report (2.4) | 2 Dec | F1-F30 done; meeting rows open | Task 8 step 4 |
+| Report: PoC (2.1), SOTA (2.5), contributions (2.8), LLM declaration, data statement | 2 Dec | done in `report/checkpoint_2/` (9 pages with tables and references; the suggested 8 is for main content) | Tasks 3, 7 |
+| EDA (2.2), experiment plan (2.3), README and merge request (2.6), runtime and memory (2.7) | 2 Dec | open | Task 7 steps 2-4 |
+| Submission folder `surname_surname_surname_surname` in the Milestone 1 order | 2 Dec | open; confirm the Phase 1 order | Task 6 step 2 |
+| Survey presentation, quiz and demonstration notebook, one per student (5c) | 9-23 Dec | open, not yet planned | Task 9 |
+| Mid-term test, annotation exercise with kappa (5d), mandatory attendance | Dec | individual | Task 9 |
+| Phase 3: results with analysis, measurement procedures, reproducibility checklist, three runs with spread, 20 classified errors, limitations, metric choice, captions, final video | 13 Jan | planned in the [[2026-10-27-temporal-retrieval-eval|Project plan]] (Tasks 3-6, sections 10-11); the 50-failure coding (16 Dec) covers 3.7 | Task 9 |
 
 ---
 ### Task 1: Research re-check and novelty search (11-17 Nov)
@@ -148,6 +162,13 @@ Taken from the Assessment criteria PDF; none of it is in the feedback, all of it
 | 2 Dec | Submit Phase 2 via skill `ship` | PP |
 
 - [ ] **Step 1:** `make check` green, PDF rebuilt, rebuttal covers F1-F30 and Q1-Q2.
+- [ ] **Step 2:** Name the submission folder `surname_surname_surname_surname` in the order used at Milestone 1 (a wrong name costs 5 points and the submission is not accepted).
+
+### Task 9: After 2.12 (criteria 3.1-3.16, 5c, 5d)
+
+- [ ] **Step 1:** Survey presentations (5c): each member picks an ACL, EMNLP, NAACL or ACM Computing Surveys paper tied to the project, books a December slot (9, 16, 23 Dec), and prepares slides, a 3-5 question quiz and a notebook that runs top to bottom in under 10 minutes; a talk by several people needs the notebook and quiz. All.
+- [ ] **Step 2:** Phase 3 checklist before 13 Jan: three runs with spread for the main comparison (3.6), 20 or more classified errors with counts (3.7), measurement procedures, limitations each with a consequence, metric choice for rare positives, self-contained captions, reproducibility checklist appendix, seeds, versions and commands (3.3), final video with faces visible. Owners PP (results), JC (errors), PF (reproducibility).
+- [ ] **Step 3:** Update the rebuttal for every review and Q&A question since Phase 2 (3.4), including the 13 Jan Q&A.
 
 ### Task 8: Open rows and systems for checkpoint 2 (by 1 Dec)
 
