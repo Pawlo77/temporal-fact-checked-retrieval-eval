@@ -22,13 +22,13 @@ Start here: [[2026-10-27-temporal-retrieval-eval|Project plan]]. Dashboard: [[Da
 | [[2026-10-27-temporal-retrieval-eval\|Project plan]] | Enhanced project: protocol, systems, gap decomposition, deliverables |
 | [[Original Task]] | The assigned brief |
 | [[Research]] | Verified paper notes by area: claim retrieval, temporal evaluation, methodology, models |
-| [[compute]] | EDEN cluster: access, hardware, storage, Slurm, GPU jobs, environments |
+| [[EDEN compute]] | EDEN cluster: access, hardware, storage, Slurm, GPU jobs, environments |
 
 ## Flow
 
 1. Request MultiClaim access and build the dated corpus ([[2026-10-27-temporal-retrieval-eval|Project plan]]).
 2. Build the splits: random, strict causal, size-matched random, cluster-expanded causal.
-3. Run BM25, dense, cross-lingual and reranking systems under each protocol ([[compute]]).
+3. Run BM25, dense, cross-lingual and reranking systems under each protocol ([[EDEN compute]]).
 4. Report Success@10 and MRR with paired bootstrap, then decompose the gap and code 50 failing queries ([[Language scope]]).
 
 ## Invariants
@@ -52,7 +52,7 @@ Literature on one question: how much retrieval performance survives a time-respe
 
 ## Handbook
 
-[[Original Task]] · [[Course grading and report]] · [[compute]]
+[[Original Task]] · [[Course grading and report]] · [[EDEN compute]]
 
 ## Generated
 

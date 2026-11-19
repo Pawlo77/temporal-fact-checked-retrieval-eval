@@ -21,7 +21,7 @@ related:
   - "[[Language and Retrieval Bias]]"
   - "[[Qwen3 Embedding]]"
   - "[[polish-reranker-roberta-v3]]"
-  - "[[compute]]"
+  - "[[EDEN compute]]"
   - "[[EDEN access and networking]]"
   - "[[Generative-AI Claim Retrieval]]"
   - "[[Simulated Ignorance Fails]]"

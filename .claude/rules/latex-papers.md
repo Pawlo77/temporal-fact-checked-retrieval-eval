@@ -6,7 +6,7 @@ paths:
   - "report/**/*.cls"
 ---
 
-<!-- Generated from .cursor/rules/latex-papers.mdc by scripts/sync_rules.py; do not edit. -->
+<!-- Generated from .agents/rules/latex-papers.mdc by scripts/sync_rules.py; do not edit. -->
 
 # LaTeX papers
 

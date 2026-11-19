@@ -2,7 +2,7 @@
 title: "EDEN notifications and job control"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 related:
   - "[[EDEN monitoring and troubleshooting]]"
   - "[[EDEN resource profiling]]"
@@ -14,7 +14,7 @@ updated: 2026-10-27
 ---
 # EDEN notifications and job control
 
-How to find out that a job started, finished or failed, and how to run long work so a failure costs little. Markers follow the legend in [[compute]]; mail delivery on EDEN is not verified yet.
+How to find out that a job started, finished or failed, and how to run long work so a failure costs little. Markers follow the legend in [[EDEN compute]]; mail delivery on EDEN is not verified yet.
 
 ## Slurm mail
 

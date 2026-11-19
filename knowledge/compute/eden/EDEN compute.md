@@ -1,13 +1,13 @@
 ---
-title: "compute"
-type: handbook
+title: "EDEN compute"
+type: map
 domain: vault
 parent: "[[temporal-fact-checked-retrieval-eval]]"
-tags: [handbook, hpc]
+tags: [map, hpc]
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-11-18
 ---
-# compute
+# EDEN compute
 
 ## Cluster
 
@@ -15,7 +15,13 @@ updated: 2026-10-27
 - Docs: https://hpc.mini.pw.edu.pl; wiki: https://hpc.mini.pw.edu.pl/dokuwiki/doku.php [V].
 - Scheduler: Slurm; reserved resources are exclusive, availability is not guaranteed [V].
 - OS: Ubuntu or DGX OS on all nodes [V].
-- Placeholders used in every note: `<user>`, `<group>`, `<email>`, `<mini-ssh-gateway>`, `<eden-login-node>`; real values stay out of the vault.
+- Placeholders used in every note: `<user>`, `<group>`, `<email>`, `<mini-ssh-gateway>`, `<eden-login-node>`; real values stay out of the vault. `<group>` as `-A <group>` is the Slurm account: a student course account or a research project account.
+
+## Defaults
+
+- Submit the most generic request, so the first free node takes the job: one job, `-A <group>`, several partitions in one flag (`--partition=short,long,hopper,hopper-2`), an untyped `--gres=gpu:1`, small CPU, memory and time requests. Never pin a node (`-w`) and never use `--export`; pass parameters as script arguments. Details: [[EDEN Slurm basics and partitions]] under "Choosing where to run".
+- Watch disk use: the home project quota is 200 GB and 200,000 files (`lfs quota -h -p $(lfs project -d ~ | awk '{print $1}') /mnt/evafs`). Stream large intermediates instead of caching them, and delete regenerable artefacts (encoded features, raw downloads, package caches) once the results are recorded. Details: [[EDEN storage and quotas]].
+- At the end of a project, pack the results into one compressed archive without `.venv`, caches, re-downloadable datasets and other regenerable files, and keep it on EDEN only: not on the laptop, not in git ([[EDEN storage and quotas]] under "End of a project").
 
 ## Live status
 
@@ -51,5 +57,7 @@ ssh -J <user>@<mini-ssh-gateway> <user>@<eden-login-node>     # [V] one-hop form
 mkdir -p logs
 sinfo; sfree                                                   # partitions, free resources
 srun -p student -A <group> --cpus-per-task=1 --mem=4G --time=00:30:00 --pty bash   # [V]
-sbatch job.sh; squeue -u $USER; scancel <jobid>
+sbatch -A <group> --partition=short,long,hopper,hopper-2 --gres=gpu:1 job.sh <args>   # default GPU job [V:run]
+squeue -u $USER; scancel <jobid>
+lfs quota -h -p $(lfs project -d ~ | awk '{print $1}') /mnt/evafs   # home quota: bytes and files [V:run]
 ```

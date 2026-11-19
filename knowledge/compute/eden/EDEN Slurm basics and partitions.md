@@ -2,14 +2,14 @@
 title: "EDEN Slurm basics and partitions"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 related:
   - "[[EDEN GPU jobs]]"
   - "[[EDEN job templates]]"
   - "[[EDEN monitoring and troubleshooting]]"
 tags: [handbook, hpc]
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-11-18
 ---
 # EDEN Slurm basics and partitions
 
@@ -30,12 +30,13 @@ updated: 2026-10-27
 | Flag | Meaning | Status |
 |---|---|---|
 | `-A`, `--account=<group>` | research group account | V |
-| `-p`, `--partition=<name>` | queue | V |
+| `-p`, `--partition=<name>` | queue; a comma list (`short,long,hopper,hopper-2`) lets the job start in whichever has room first | V |
 | `--cpus-per-task=N` | cores | V |
 | `--mem=4G` or `--mem=4000M` | RAM for the whole job | V |
 | `--gres=gpu:N` | GPUs; `--gres=gpu:0` for none | V |
 | `--time=DD-HH:MM:SS` or `HH:MM:SS` | runtime limit | V |
-| `-w <node>` | pin a node, e.g. `dgx-3` | V |
+| `-w <node>` | pin a node, e.g. `dgx-3`; avoid by default: a pinned job waits for that node while others sit free | V |
+| `--export=...` | **do not use on EDEN**: any value (`ALL,VAR=x` or `VAR=x`) leaves the job pending as `user env retrieval failed requeued held`; pass values as script arguments (`sbatch job.sh <arg>`, read as `$1`) | V:run |
 | `--job-name`, `--output=logs/%x_%j.log` | naming, logs; `%j` job id | V |
 | `--array=0-23%4` | array, 4 at a time | V:slurm |
 | `--dependency=afterok:<id>` | chain jobs | V:slurm |
@@ -81,14 +82,28 @@ sacctmgr show qos format=Name,MaxWall,MaxTRESPU,Priority   # [V:slurm] may be de
 
 ## Choosing where to run
 
-Look at demand first, then pick the partition, GPU type and time limit that start soonest.
+Default: the most generic request starts quickest [V:run]. One job, no variants per GPU type:
+
+```bash
+sbatch -A <group> --partition=short,long,hopper,hopper-2 --gres=gpu:1 \
+  --cpus-per-task=8 --mem=32G --time=04:00:00 job.sh <args>
+```
+
+- `-A <group>` always: without an account the job fails, and a generic `--gres=gpu:1` test that failed for that reason looked like a gres problem [V:run].
+- List every GPU partition the account can use; Slurm starts the job in the first one with room. Leave out `experimental` (old Tesla GPUs) and the CPU-only nodes for GPU work.
+- No GPU type, no `-w`/`--nodelist`, no `--export`; parameters go in as script arguments (`$1`, `$2`).
+- Ask for little: a realistic `--time` of at most 1 day fits every listed partition (`short` and `hopper-2` cap at 1 day), and fewer CPUs and less memory fit more nodes.
+- Submit one job and wait; several pinned copies of the same job only add queue load.
+- Narrow the request (a GPU type, one partition) only for code that needs a given architecture or VRAM.
+
+Demand, when a job waits longer than expected:
 
 ```bash
 sfree                                   # free CPUs, GPUs and RAM per node right now [V:run]
 squeue -h | wc -l                       # jobs in the queue (89 at the probe) [V:run]
 squeue -t PD -o "%.10i %.9P %.12u %.5D %.5C %.8b %.19S %R" | head -20   # who waits, for what, expected start [V:slurm]
 squeue --start -u $USER                 # expected start of your pending jobs [V:slurm]
-sbatch --test-only -p short -A <group> --gres=gpu:a100:1 -c 8 --mem=32G -t 04:00:00 job.sh   # dry run: reports the planned node and start time, submits nothing [V:slurm]
+sbatch --test-only -p short -A <group> --gres=gpu:1 -c 8 --mem=32G -t 04:00:00 job.sh   # dry run: reports the planned node and start time, submits nothing [V:slurm]
 sprio -l                                # priority terms of pending jobs [V:slurm]
 sshare -l                               # fair-share state of your account [V:run]
 ```
@@ -97,8 +112,9 @@ sshare -l                               # fair-share state of your account [V:ru
 - `sfree` is the quickest decision aid: it lists free CPUs, GPUs and RAM per node, so you can see which GPU type has room.
 - Jobs up to 1 day fit in `short`; longer ones need `long` (5 days, QOS `long-part`, same priority value 0 as `normal`) [V:run].
 - The scheduler is `backfill` [V:run], so a job with a realistic `--time` can start in a gap that a maximum-length job cannot [V:slurm].
-- A100 40 GB (`dgx-*`, 32 GPUs) is the large default pool; `hopper` (8 H100) and `hopper-2` (H200) are single nodes that fill quickly, so check `sfree` before asking for them.
-- CPU-only work: omit `--gres`; `short` and `long` contain both DGX and CPU-only `sr-*` nodes, so Slurm may place it on either; pin `-w sr-3` for a CPU node [V:slurm].
+- A100 40 GB (`dgx-*`, 32 GPUs) is the large pool; `hopper` (8 H100) and `hopper-2` (H200) are single nodes that fill quickly. The default list includes them all, so a job takes whichever frees first.
+- `sbatch --test-only` can print a misleading start time for a multi-partition request; trust the real scheduler [V:run].
+- CPU-only work: omit `--gres` and give only the queue (`-p short` or `-p long`), with no `-w` or `--nodelist`. Both queues contain DGX and CPU-only `sr-*` nodes, and letting Slurm use any node with free cores starts the job sooner than pinning one [V:run]. Pin a node only for node-local data or a node-specific test.
 - Many small jobs: use one array (maximum size 50000), not hundreds of separate submissions.
 - Observed demand at the probe: estimated start times for pending `hopper` and `hopper-2` jobs were 6 to 24 hours away, while a free A100 job in `short` started in about a minute [V:run].
 - `sbatch --test-only` printed the planned node and start time for an A100 request and submitted nothing [V:run]; `sprio -l` lists the priority terms (age, fair-share, QOS), with fair-share the largest [V:run].

@@ -2,14 +2,15 @@
 title: "EDEN job templates"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 tags: [handbook, hpc]
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-11-18
 ---
 # EDEN job templates
 
-- Replace `<partition>`/`<gpu-partition>` after `sinfo` ([[EDEN Slurm basics and partitions]]).
+- GPU jobs list every GPU partition of the account with an untyped GPU (`--partition=short,long,hopper,hopper-2`, `--gres=gpu:1`); replace `<partition>` for CPU jobs after `sinfo` ([[EDEN Slurm basics and partitions]]).
+- Parameters go in as script arguments (`sbatch gpu.sh <model>`, read as `$1`), never through `--export`.
 - `<email>` stays in the local copy of a script; never commit it.
 - Create the log dir before submitting: `mkdir -p logs` [V].
 - Module name `<module>` stands for the project package entry point.
@@ -56,6 +57,7 @@ date
 ```
 
 - Smoke test with `srun` on the same flags before `sbatch`.
+- Give the queue, not a node: no `-w`/`--nodelist` unless the job needs that node. Pass settings as script arguments, never `--export` (the job is held) [V:run].
 
 ## GPU job
 
@@ -63,14 +65,15 @@ date
 #!/usr/bin/env bash
 #SBATCH -A <group>
 #SBATCH --job-name=gpu-job
-#SBATCH --partition=<gpu-partition>
+#SBATCH --partition=short,long,hopper,hopper-2
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=64gb
+#SBATCH --mem=32gb
 #SBATCH --time=04:00:00
 #SBATCH --output=logs/%x_%j.log
 
 set -euo pipefail
+MODEL="${1:?usage: sbatch gpu.sh <hf-model>}"
 cd /home2/<group>/<user>/<project>
 source .venv/bin/activate
 export HF_HOME=/mnt/evafs/groups/<group>/hf_cache
@@ -78,8 +81,8 @@ export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 export TOKENIZERS_PARALLELISM=false
 nvidia-smi
 uv pip freeze > logs/freeze_${SLURM_JOB_ID}.txt
-python -m <module> encode --model <hf-model> --batch-size 128 --fp16 \
-  --out /mnt/evafs/groups/<group>/artifacts/<model>.npy
+python -m <module> encode --model "$MODEL" --batch-size 128 --fp16 \
+  --out /mnt/evafs/groups/<group>/artifacts/"${MODEL//\//_}".npy
 ```
 
 ## Array job: cells from a CSV
@@ -88,7 +91,7 @@ python -m <module> encode --model <hf-model> --batch-size 128 --fp16 \
 #!/usr/bin/env bash
 #SBATCH -A <group>
 #SBATCH --job-name=cells
-#SBATCH --partition=<gpu-partition>
+#SBATCH --partition=short,long,hopper,hopper-2
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=48gb
@@ -135,8 +138,8 @@ squeue -u "$USER" -o "%.10i %.20j %.8T %.20E"
 
 ```bash
 srun -p student -A <group> --cpus-per-task=1 --mem=4G --time=00:30:00 --pty bash
-srun -p short -A <group> --gres=gpu:a100:1 --cpus-per-task=8 --mem=32G --time=01:00:00 --pty bash   # [V:run] (a 1-GPU `srun` ran on `dgx-2` with `-A`)
-srun -w dgx-3 --time 00:15:00 --pty --account <group> bash
+srun -p short,long,hopper,hopper-2 -A <group> --gres=gpu:1 --cpus-per-task=8 --mem=32G --time=01:00:00 --pty bash   # [V:run] (a 1-GPU `srun` ran on `dgx-2` with `-A`)
+srun -w dgx-3 --time 00:15:00 --pty --account <group> bash   # pins one node: only when you need that node, otherwise give just -p
 ```
 
 - Options before `bash`; `--time` after it is ignored [V].

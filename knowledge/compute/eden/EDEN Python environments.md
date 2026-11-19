@@ -2,7 +2,7 @@
 title: "EDEN Python environments"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 related:
   - "[[EDEN job templates]]"
   - "[[EDEN data sync workflows]]"
@@ -51,8 +51,8 @@ python -c "import torch; print(torch.__version__, torch.version.cuda)"
 ## Plain venv
 
 ```bash
-python3 -m venv /mnt/evafs/groups/<group>/venvs/nlp      # shared group venv [U path]
-source /mnt/evafs/groups/<group>/venvs/nlp/bin/activate
+python3 -m venv /mnt/evafs/groups/<group>/venvs/temporal-fact-checked-retrieval-eval      # shared group venv [U path]
+source /mnt/evafs/groups/<group>/venvs/temporal-fact-checked-retrieval-eval/bin/activate
 pip install -U pip
 pip install -r requirements.txt
 ```
