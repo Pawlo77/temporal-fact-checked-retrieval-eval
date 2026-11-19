@@ -2,7 +2,7 @@
 title: "EDEN resource profiling"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 related:
   - "[[EDEN monitoring and troubleshooting]]"
   - "[[EDEN GPU jobs]]"
@@ -14,7 +14,7 @@ updated: 2026-10-27
 ---
 # EDEN resource profiling
 
-Measure what a job really uses against what it was allocated, so the next run asks for the minimum, and find the bottleneck (disk, RAM, CPU, GPU feeding). Status markers follow the legend in [[compute]]; facts verified on the cluster are marked `[V:run]`; the rest comes from Slurm documentation or standard practice.
+Measure what a job really uses against what it was allocated, so the next run asks for the minimum, and find the bottleneck (disk, RAM, CPU, GPU feeding). Status markers follow the legend in [[EDEN compute]]; facts verified on the cluster are marked `[V:run]`; the rest comes from Slurm documentation or standard practice.
 
 ## After the run
 

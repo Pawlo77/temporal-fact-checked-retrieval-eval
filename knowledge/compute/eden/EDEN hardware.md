@@ -2,7 +2,7 @@
 title: "EDEN hardware"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 related:
   - "[[EDEN GPU jobs]]"
   - "[[EDEN Slurm basics and partitions]]"

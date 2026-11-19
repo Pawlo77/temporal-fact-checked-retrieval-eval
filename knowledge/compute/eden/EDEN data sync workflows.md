@@ -2,13 +2,13 @@
 title: "EDEN data sync workflows"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 related:
   - "[[EDEN storage and quotas]]"
   - "[[EDEN Python environments]]"
 tags: [handbook, hpc]
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-11-18
 ---
 # EDEN data sync workflows
 
@@ -64,9 +64,9 @@ rsync -avz --partial --progress -e "ssh -J <mini-login>@<mini-ssh-gateway>" \
   <user>@<eden-login-node>:/mnt/evafs/groups/<group>/artifacts/runs/ ./runs_from_eden/
 ```
 
-- Pull only small result files (run files, metrics); leave large arrays on the cluster.
+- Pull only small result files (run files, metrics, small figures); leave large arrays on the cluster.
 - Fetch `/raid` results from a DGX through `/mnt/workspace/dgx-N` on the login node [V].
-- Archive long-term results elsewhere; no guaranteed backup [V].
+- Finished projects: one compressed archive that stays on EDEN, not on the laptop or in git ([[EDEN storage and quotas]] under "End of a project"); there is no guaranteed backup [V].
 
 ## Checks
 

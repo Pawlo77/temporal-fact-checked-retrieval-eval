@@ -2,13 +2,13 @@
 title: "EDEN monitoring and troubleshooting"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 related:
   - "[[EDEN Slurm basics and partitions]]"
   - "[[EDEN storage and quotas]]"
 tags: [handbook, hpc]
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-11-18
 ---
 # EDEN monitoring and troubleshooting
 
@@ -43,6 +43,8 @@ scancel <jobid>; scancel -u $USER       # cancel one / all
 - `ReqNodeNotAvail, Reserved for maintenance`: reservation; shorten `--time` [V].
 - `AssocGrp*Limit` or `QOS*Limit`: group or user cap [V:slurm].
 - `DependencyNeverSatisfied`: predecessor failed; `scancel` [V:slurm].
+- `user env retrieval failed requeued held`: the job was submitted with `--export=...`, so Slurm tried to load the login environment on the node, failed, requeued the job and held it. It never starts on its own: `scancel` it and resubmit without `--export`, passing values as script arguments [V:run, 2026-11-16: test jobs with `--export=ALL,FOO=1` and `--export=FOO=1` were held; the same job without `--export` ran on `sr-3` at once].
+- `ReqNodeNotAvail` or a long `Resources` wait with `-w`/`--nodelist`: the pinned node is busy or reserved; drop the pin and give only the queue [V:run].
 - Over-requesting (time, RAM, GPUs) delays start; request what `seff` shows plus 20 percent.
 
 ## Failure table
@@ -65,6 +67,9 @@ scancel <jobid>; scancel -u $USER       # cancel one / all
 ## Common pitfalls
 
 - Computing on the login node; use `srun`/`sbatch` [V].
+- Pinning nodes (`-w`, `--nodelist`) or GPU types by habit; give several partitions and an untyped GPU (`--partition=short,long,hopper,hopper-2 --gres=gpu:1`) so any free node can take the job [V:run].
+- `Disk quota exceeded` while `df` shows free space: the home file-count quota is full ([[EDEN storage and quotas]]) [V:run].
+- Passing settings with `--export`; the job is held (see Pending reasons). Use script arguments [V:run].
 - `rsync --exclude='.*'` removes `.venv` and `.env` ([[EDEN data sync workflows]]).
 - Models downloaded to `~/.cache`; set `HF_HOME` ([[EDEN Python environments]]).
 - Results left in `/scratch` or `/raid`; copy to group space [V].

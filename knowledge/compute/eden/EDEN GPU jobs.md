@@ -2,13 +2,13 @@
 title: "EDEN GPU jobs"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 related:
   - "[[EDEN job templates]]"
   - "[[EDEN Slurm basics and partitions]]"
 tags: [handbook, hpc]
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-11-18
 ---
 # EDEN GPU jobs
 
@@ -17,7 +17,8 @@ updated: 2026-10-27
 - `--gres=gpu:N` is the documented form; `--gres=gpu:1` example [V].
 - `--gres=gpu:0` explicitly requests none (tutorial CPU job) [V].
 - Syntax `gpu[:type]:count`, count defaults to 1 [V:slurm].
-- Typed form `--gres=gpu:a100:1` works [V:run]; types: `a100`, `h100`, `h200`, `h200_4g.71gb`, `h200_3g.71gb`, `tesla`.
+- Default: untyped `--gres=gpu:1` with several partitions (`--partition=short,long,hopper,hopper-2`), so any free GPU takes the job [V:run].
+- Typed form `--gres=gpu:a100:1` works [V:run] but waits for that type; use it only when the code needs it. Types: `a100`, `h100`, `h200`, `h200_4g.71gb`, `h200_3g.71gb`, `tesla`.
 - `--gres` and `--gpus-per-node` cannot be combined [V:slurm].
 - Without a GPU request a job sees no GPU [V].
 - Reservations are exclusive [V].

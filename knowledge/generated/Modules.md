@@ -21,7 +21,6 @@ parent: "[[temporal-fact-checked-retrieval-eval]]"
 | [[src/temporal_fact_checked_retrieval_eval/dataset/multiclaimnet.py]] | MultiClaimNet claim-to-cluster loader. | 29 |
 | [[src/temporal_fact_checked_retrieval_eval/dataset/semeval.py]] | SemEval-2025 Task 7 loader producing a :class:`DatedCorpus`. | 50 |
 | [[src/temporal_fact_checked_retrieval_eval/dataset/synthetic.py]] | Synthetic dated fact-check retrieval corpus generator. | 115 |
-| [[src/temporal_fact_checked_retrieval_eval/models/__init__.py]] | Model definitions for experiments. | 3 |
 | [[src/temporal_fact_checked_retrieval_eval/orchestration/__init__.py]] | Orchestration utilities for experiment runs and MLflow tracking. | 11 |
 | [[src/temporal_fact_checked_retrieval_eval/orchestration/reproducibility.py]] | Environment reproducibility snapshots for MLflow runs. | 224 |
 | [[src/temporal_fact_checked_retrieval_eval/orchestration/tracking.py]] | Local MLflow tracking helpers for resumable runs. | 142 |

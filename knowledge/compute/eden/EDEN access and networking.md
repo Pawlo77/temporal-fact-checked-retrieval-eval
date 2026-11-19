@@ -2,7 +2,7 @@
 title: "EDEN access and networking"
 type: handbook
 domain: vault
-parent: "[[compute]]"
+parent: "[[EDEN compute]]"
 tags: [handbook, hpc]
 created: 2026-10-27
 updated: 2026-10-27
