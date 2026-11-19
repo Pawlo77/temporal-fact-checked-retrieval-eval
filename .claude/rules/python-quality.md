@@ -3,7 +3,7 @@ paths:
   - "src/**/*.py"
 ---
 
-<!-- Generated from .cursor/rules/python-quality.mdc by scripts/sync_rules.py; do not edit. -->
+<!-- Generated from .agents/rules/python-quality.mdc by scripts/sync_rules.py; do not edit. -->
 
 # Python quality
 

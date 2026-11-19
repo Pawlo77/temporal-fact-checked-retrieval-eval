@@ -1,4 +1,4 @@
-<!-- Generated from .cursor/rules/brevity.mdc by scripts/sync_rules.py; do not edit. -->
+<!-- Generated from .agents/rules/brevity.mdc by scripts/sync_rules.py; do not edit. -->
 
 # Brevity
 
@@ -13,7 +13,7 @@ Every line is read again by people and agents. Write the fewest lines that keep 
 - A file at or over budget must not grow: cut or split before adding. Files already over budget when the rule came in are capped at that size (`existing` in `[tool.agent-kit.brevity]`).
 - Reports and PR bodies: findings first; no recap of the task or of code you only read.
 
-<!-- Generated from .cursor/rules/experiment-boundaries.mdc by scripts/sync_rules.py; do not edit. -->
+<!-- Generated from .agents/rules/experiment-boundaries.mdc by scripts/sync_rules.py; do not edit. -->
 
 # Experiment boundaries
 
@@ -23,7 +23,7 @@ Every line is read again by people and agents. Write the fewest lines that keep 
 - Heavy optional dependencies → `[project.optional-dependencies]` extras when introduced
 - MLflow artifacts (`mlruns/`, `mlruns.db`) stay gitignored — log via tracking helpers only
 
-<!-- Generated from .cursor/rules/git-commits.mdc by scripts/sync_rules.py; do not edit. -->
+<!-- Generated from .agents/rules/git-commits.mdc by scripts/sync_rules.py; do not edit. -->
 
 # Git commits and pull requests
 
@@ -37,7 +37,7 @@ Every line is read again by people and agents. Write the fewest lines that keep 
 - PRs open ready for review, titled in commit style, with the body of `.github/pull_request_template.md`.
 - After `gh pr create`: `gh pr edit <n> --add-assignee Pawlo77 --add-label <label>`, with `bug` for `fix`, `documentation` for `docs` and `enhancement` otherwise.
 
-<!-- Generated from .cursor/rules/minimal-diff.mdc by scripts/sync_rules.py; do not edit. -->
+<!-- Generated from .agents/rules/minimal-diff.mdc by scripts/sync_rules.py; do not edit. -->
 
 # Minimal diff
 
