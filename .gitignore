@@ -130,3 +130,6 @@ fulltext/
 
 # Project-specific entries below
 _temp/
+
+# Claudian (Obsidian plugin realclaudian): local sessions and state
+.claudian/
