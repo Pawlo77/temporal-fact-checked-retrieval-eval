@@ -3,12 +3,13 @@
    `related-code` links keep working. Keep this list in step with userIgnoreFilters in
    app.json (search and graph); list a new non-note folder in both. */
 .nav-folder:has(> .nav-folder-title[data-path="src"]),
+.nav-folder:has(> .nav-folder-title[data-path="slurm"]),
+.nav-folder:has(> .nav-folder-title[data-path="mlartifacts"]),
 .nav-folder:has(> .nav-folder-title[data-path="tests"]),
 .nav-folder:has(> .nav-folder-title[data-path="scripts"]),
 .nav-folder:has(> .nav-folder-title[data-path="configs"]),
 .nav-folder:has(> .nav-folder-title[data-path="notebooks"]),
 .nav-folder:has(> .nav-folder-title[data-path="outputs"]),
-.nav-folder:has(> .nav-folder-title[data-path="report"]),
 .nav-folder:has(> .nav-folder-title[data-path="mlruns"]),
 .nav-folder:has(> .nav-folder-title[data-path="knowledge/_templates"]),
 .nav-folder:has(> .nav-folder-title[data-path="research/protocols"]),
