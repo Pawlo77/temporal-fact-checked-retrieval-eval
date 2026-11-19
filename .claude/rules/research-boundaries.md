@@ -3,7 +3,7 @@ paths:
   - "research/**"
 ---
 
-<!-- Generated from .cursor/rules/research-boundaries.mdc by scripts/sync_rules.py; do not edit. -->
+<!-- Generated from .agents/rules/research-boundaries.mdc by scripts/sync_rules.py; do not edit. -->
 
 # Research notes
 
