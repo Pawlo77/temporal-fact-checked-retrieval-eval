@@ -8,7 +8,7 @@ created: 2026-10-27
 updated: 2026-10-27
 related:
   - "[[2026-10-27-temporal-retrieval-eval|Project plan]]"
-  - "[[EDEN compute]]"
+  - "[[Cluster ops]]"
 ---
 # Original Task
 
