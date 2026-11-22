@@ -1,11 +1,12 @@
 # Changes here will be overwritten by Copier; run `copier update` instead.
-_commit: v3.0.0
+_commit: v4.0.0
 _src_path: https://github.com/Pawlo77/python-kit-template
 affiliation: Warsaw University of Technology
 agent_tools:
 - claude
 author_email: pozorski.paul@gmail.com
 author_name: Pawel Pozorski
+dependabot: false
 description: Temporal evaluation of fact-checked claim retrieval (MultiClaim, Polish
     vs English)
 eden: true
